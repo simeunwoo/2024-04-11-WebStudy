@@ -9,3 +9,4 @@ import lombok.Setter;
 public class GoodsVO {
 	private String name,poster;
 }
+ 
