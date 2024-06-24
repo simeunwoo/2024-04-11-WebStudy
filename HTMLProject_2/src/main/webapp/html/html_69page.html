@@ -35,14 +35,165 @@
 	2. CSS를 적용
 	
 	3. 자바스크립트 적용
+	
+	=> HTML의 기본 태그
+	
+	1) 글자 태그
+		h1 ~ h6 : 제목을 출력
+		br : \n => 다음 줄에 출력
+		p : 단락 (br을 두번 사용)
+		hr : 수평선 (라인선)
+		=====================
+		small / address (footer) / sup / sub / font / b / em / strong
+	
+	2) 목록 태그
+		<ul> => 순서가 없이 목록을 출력
+		<ol> => 순서가 있는 목록을 출력
+		<dl> => 상세 보기
+	
+	3) 테이블 태그
+		<table>
+	
+	4) 미디어 태그
+		<video>
+		<audio>
+		<embed> : 파일과 관련이 없다 (youtube)
+	
+	=> 입력 관련 태그
+	
+	1) 한줄 입력
+		= 일반 : <input type=text>
+		= 비밀 번호 : <input type=password>
+		
+	2) 버튼
+		= 일반 버튼 : <input type=button>
+		= 전송 버튼 : <input type=submit>
+		= 초기화 : <input type=reset>
+		= 라디오 : <input type=radio>
+		= 체크 박스 : <input type=checkbox>
+		= 이미지 버튼 : <input type=image src="">
+	
+	3) 달력
+		<input type=date> : Internet Explorer는 적용이 안된다
+		
+	4) 숫자만 출력
+		<input type=number> => Spinner
+	
+	5) 파일 업로드 (선택)
+		<input type=file>
+	
+	6) slider
+		<input type=range>
+		
+	7) 기타
+		<input type=email> week ...
+		
+	8) 여러줄 입력
+		<textarea>
+	
+	9) 콤보 박스
+		<select>
+		
+	=> 분할 태그
+	
+	화면 분할 : <div>
+	태그에 필요한 부분만 스타일 적용 : <span>
+	
+	=> <label>, <fieldset> ...
+	=================== 화면 UI =================== 데이터는 자바가 한다
+	
+	=> HTML / CSS는 로직이 없다
+	   ========== 표준화 (누구나 동일하게 사용) => 암기 => 아무 기능이 없다 => 화면 UI만 만든다
+	   
+	(일반적인 프로젝트의 과정)
+		아이템 선정 => 요구 사항 분석 => 데이터베이스 설계 => 데이터 수집
+		=> 화면 UI => 구현 => 테스트 => 배포
+	
+	아이템 선정 : 의뢰자
+	요구사항 분석 : PM / 아키텍쳐
+	데이터베이스 설계 : DBA
+	데이터 수집 : DBA
+	화면 UI : 퍼블리셔
+	구현 : 웹 프로그래머
+	테스트 : 테스터, QA
+	배포 : 웹 프로그래머 (고참)
+	
+	========================
+	
+	프로젝트
+		1차 => 세미 (자바 <=> 오라클)
+		2차 => 웹 흐름, 데이터베이스 SQL
+				= Back : JSP
+				= Front : JQuery, Ajax
+				= DB : JDBC (DBCP)
+				================================> AWS 호스팅
+		3차 => Spring의 기능 : MVC 구조
+				= Back : Spring => Spring-Security, Spring-Betch
+				= Front : VueJS
+				= DB : MyBatis
+				================================> AWS 호스팅
+		4차 => 다른 학원이나 다른 반과 차별화 => Spring-Boot
+				= Back : Spring-Boot
+				= Front : React, Redux, React-Query => NextJS(시간이 남을 경우)
+				= DB : MYSQL, JPA
+				
+		(2차부터는 Git을 원격으로)
+		
+	========================
+	
+	요구 사항 : 입문 (오더 => 찾아서 구현)
+		자바 => JDBC, Open API => DAO / VO
+		오라클 => DML, DQL, TCL => 트랜잭션
+	
 -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>70page : 글자 관련 태그</title>
 </head>
 <body>
-
+	<!-- 제목 태그 h1~h6 : bold체, block : \n을 포함하고 있다 -->
+	<h1>Hello HTML Start</h1>
+	<h2>Hello HTML Start</h2>
+	<h3>Hello HTML Start</h3>
+	<h4>Hello HTML Start</h4>
+	<h5>Hello HTML Start</h5>
+	<h6>Hello HTML Start</h6>
+	<!-- 라인선 출력 -->
+	<hr>
+	<!-- HTML은 한줄 문자열 -->
+	Hello HTML Start1<br><!-- 한줄을 내릴 때 <br> 활용 -->
+	Hello HTML Start2<br>
+	Hello HTML Start3<br>
+	Hello HTML Start4<br>
+	Hello HTML Start5<br>
+	Hello HTML Start6
+	<hr>
+	강등의 아픔을 겪은 백승호(27·버밍엄 시티)에게 잉글랜드 챔피언십(2부) 팀이 러브콜을 보내고 있다.<br>
+	<p>
+	영국 '버밍엄 메일'은 23일(한국시각) "백승호가 블랙번에 관심을 받고 있다"며
+	"존 유스터스 블랙번 감독이 지난 시즌 버밍엄에서 함께 한 미드필더 백승호를 영입하고 싶어 한다"고 전했다.<br>
+	<p>
+	이어 "지난 시즌 챔피언십에서 살아남지 못한 버밍엄은 잉글랜드 리그원(3부)에서 새 시즌을 시작해야 한다"며
+	"버밍엄의 예산은 넉넉할 것으로 보이지만 일부 선수들은 3부 리그에서 뛰는 것을 원한지 않을 수 있다"며
+	백승호의 이적 가능성을 제기했다.
+	<hr>
+	<pre>
+	강등의 아픔을 겪은 백승호(27·버밍엄 시티)에게 잉글랜드 챔피언십(2부) 팀이 러브콜을 보내고 있다.
+	
+	영국 '버밍엄 메일'은 23일(한국시각) "백승호가 블랙번에 관심을 받고 있다"며
+	"존 유스터스 블랙번 감독이 지난 시즌 버밍엄에서 함께 한 미드필더 백승호를 영입하고 싶어 한다"고 전했다.
+	
+	이어 "지난 시즌 챔피언십에서 살아남지 못한 버밍엄은 잉글랜드 리그원(3부)에서 새 시즌을 시작해야 한다"며
+	"버밍엄의 예산은 넉넉할 것으로 보이지만 일부 선수들은 3부 리그에서 뛰는 것을 원한지 않을 수 있다"며
+	백승호의 이적 가능성을 제기했다.</pre>
+	<!--
+		<h1>, <h3> : 제목을 출력할 때 주로 사용
+		<br> : 출력을 다음줄로 내리는 경우에 사용
+		<hr> : 한줄 수평선으로 사용
+		<p> : 문장의 단락을 나눌 때 사용
+		<pre> : 출력된 그대로 브라우저에 출력할 때 주로 사용
+	-->
 </body>
 </html>
