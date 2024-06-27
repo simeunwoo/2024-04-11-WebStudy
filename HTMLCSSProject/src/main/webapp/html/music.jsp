@@ -4,7 +4,6 @@
     // DAO로부터 데이터 받는다 
     MusicDAO dao=MusicDAO.newInstance();
     List<MusicVO> list=dao.musicAllData();
-    
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +20,17 @@
    text-align: center;
  }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#keyword').keyup(function(){
+			let k=$('#keyword').val();
+			$('#user-table > tbody > tr').hide();
+			let temp=$('#user-table > tbody > tr > td:nth-child(5n+4):contains("'+k+'")');
+			$(temp).parent().show();
+	})
+})
+</script>
 </head>
 <body>
    <h1>뮤직 Top200</h1>
