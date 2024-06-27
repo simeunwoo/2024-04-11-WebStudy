@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	a{
+		display: block;
+		color: black;
+		text-decoration: none;	
+	}
+	a:hover{
+		color: gray;
+		text-decoration: underline;
+	}
+	img{
+		width:150px;
+		height:200px;
+	}
+	img:hover{
+		cursor: pointer; /* hand-cursor : 링크 */
+		border: 1px solid red; /* 테두리 : solid / 일반 라인선 dashed, dotted */
+		opacity: 0.3; /* 투명 : 0.0 ~ 1.0 */
+	}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('img').click(function(){
+			alert("그림 선택")
+		})
+})
+</script>
+</head>
+<body>
+	<a href="#">대표팀 선배한테 "패스가 X같네" 욕설? 하다하다 '하극상' 논란까지...잉글랜드 왜 이러나</a>
+	<a href="#">'굿바이 SON' 연봉 삭감하고 AC밀란 계약 합의…토트넘 탈출 의지 컸다</a>
+	<a href="#">조지아, 포르투갈에 2:0 승리로 극적인 16강행...유로 2024 대진 완성</a>
+	<a href="#">첼시가 미쳤어요...1년 만에 '2000억' EPL 역대 최고 이적료 깰까</a>
+	<a href="#">'괴짜' 나폴리 회장, PSG에 섬뜩한 공개 경고..."내 선수한테 허락없이 연락하면 찾아간다"</a>
+	<img src="m1.jpg">
+	<img src="m2.jpg">
+	<img src="m3.jpg">
+	<img src="m4.jpg">
+	<img src="m5.jpg">
+	<img src="m6.jpg">
+	<img src="m7.jpg">
+</body>
+</html>
