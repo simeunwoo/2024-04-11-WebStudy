@@ -1,0 +1,48 @@
+<!--
+	<!DOCTYPE html> : HTML 5버전을 사용한다 => 브라우저에 알려주는 상태
+	=============== .dtd => 표준화 w3c(www)
+	= 태그와 속성에 대한 정보 저장
+	
+	1. 태그 정의
+		<!ELEMENT html(head,body)>
+		<!ELEMENT head(meta*,link*,style*,script*,title)>
+		default : 반드시 한번만 사용
+		* : 0번 이상
+		? : 0, 1번 이상
+		+ : 1번 이상
+		| : 선택
+		
+	2. 속성 정의
+		<!ATTLIST meta CDATA charset required>
+		
+	3. Entity : 특수 문자 (변수)
+		<!ENTITY nbsp ' '> => &nbsp;
+		<!ENTITY lt '<'> => &lt;
+		=> .dtd : MyBatis (XML), Spring => XML 자체 업체 => 반드시 제공
+		=> DOCTYPE => 이클립스 자동 완성기 => loose.dtd
+	
+	<html>
+		<head>
+			=> <title> : 브라우저(타이틀 바)에 이름 부여
+				<meta> : 한글 변환, 화면 이동, 모바일 크기, keyword 등록
+				<link> : CSS 파일을 읽기
+				<script> : HTML (정적 페이지) => 동적으로 변경 (이벤트 : 사용자 행위에 대한 처리)
+				<style> : 화면 디자인
+				*** HTML (태그 + 속성) + CSS (약간의 디자인) + JavaScript (요청 처리)
+					================================
+					표준화 (동일한 코딩)
+		</head>
+		<body>
+		</body>
+	</html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
