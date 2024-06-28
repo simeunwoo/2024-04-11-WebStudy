@@ -46,6 +46,19 @@
 	p		h1(1)	h1(2)	h1(3)	span
 									|
 									h1(4)
+		div h1 => 1 2 3 4
+		div > h1 => 1 2 3
+		div > p+h1 => 1
+				<th></th> th+td
+				<td></td>
+		div > p~h1 => 1 2 3
+		div > span > h1 => 4
+	
+	문자 선택자
+		::after
+		::before
+	=============================================
+	SELECTOR : 태그 찾기 => 필요한 CSS를 적용
 		
 -->
 <!DOCTYPE html>

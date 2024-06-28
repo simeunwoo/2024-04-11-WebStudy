@@ -1,0 +1,75 @@
+<!--
+	기본 선택자 (129page)
+	===============
+	전체 선택자 : *
+		* {
+			속성:값; => 글꼴 (사이트 + 글꼴이 동일 (크기 조절))
+		}
+		
+	태그 선택자 : 태그명
+		태그명 {
+			속성:값; => 속성 : 이미 만들어져 있다 (사용자 정의는 거의 없다, 고정)
+		}
+		=> 구분자
+			ID / CLASS
+			=> ID : 중복이 불가능 (단독)
+			=> CLASS : 공통으로 적용되는 CSS => 중복이 가능
+			=> 모든 id, class => 약간 수정
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/* 글자 색상 변경 : color, background-color */
+/*	h1:nth-child(2n+2) {
+		color: cornflowerblue;
+	}
+	h1:first-child {
+		color: gold;
+	}
+	h1:last-child {
+		color: seagreen;
+	} */
+/*	h1:nth-child(even) {
+		color: silver;
+	}
+	h1:nth-child(odd) {
+		color:indigo;
+	} */
+	.y {
+		color:yellow;
+	}
+	#r {
+		color:red;
+	}
+	/*
+		id => 한개만 적용
+		class => 여러개 적용 가능
+		
+		그런데 => id => HTML에서 중복이 가능
+		
+		id의 단점
+			=> HTML에서 CSS에 ID가 중복된 경우 : 적용
+			=> JavaScript에서는 적용 불가능
+		
+		let a=document.getElementById('red')
+		
+		String a="" ""
+	*/
+</style>
+</head>
+<body>
+	<h1>Hello CSS</h1>
+	<h1 class="y">Hello CSS</h1>
+	<h1 class="y">Hello CSS</h1>
+	<h1>Hello CSS</h1>
+	<h1 id="r">Hello CSS</h1>
+	<h1 class="y">Hello CSS</h1>
+	<h1 class="y">Hello CSS</h1 class="yellow">
+	<h1>Hello CSS</h1>
+	<h1 class="y">Hello CSS</h1>
+	<h1 id="r">Hello CSS</h1>
+</body>
+</html>

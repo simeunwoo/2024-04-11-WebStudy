@@ -1,0 +1,51 @@
+<!--
+	ID / CLASS
+	<div id="a">
+		
+	#a {
+		
+	}
+	
+	div#a {
+		
+	}
+	
+	class명
+	<h1 class="a"></h1>
+	<h6 class="a"></h6>
+	
+	.a {
+		h1, h6 둘 다 동시 적용
+	}
+	
+	h1.a {
+		h1만 적용
+	}
+	
+	h6.a {
+		h6만 적용
+	}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.a {
+		/* 공통 적용 */
+		color: white;
+	}
+	h1.a {
+		background-color: green;
+	}
+	h3.a {
+		background-color: blue;
+	}
+</style>
+</head>
+<body>
+	<h1 class="a">Hello CSS</h1> <!-- color : white, background : green -->
+	<h3 class="a">Hello CSS</h3> <!-- color : white, background : blue -->
+</body>
+</html>
