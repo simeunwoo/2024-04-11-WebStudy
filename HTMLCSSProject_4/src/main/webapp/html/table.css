@@ -23,8 +23,8 @@
 	}
 	/* td만 가지고 가는 속성 */
 	.table_content td{
-		border-bottomm-width: 1px;
-		border-bottom-style: dotte맞추다d;
+		border-bottom-width: 1px;
+		border-bottom-style: dotted;
 		border-bottom-color: #555;
 	}
 	/* 정렬 */
