@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.sist.dao.*"%>
 <%
 	// 데이터 가지고 오기
-	// 1. 사용자가 보내준 값을 받는다
+	// 사용자가 보내준 값을 받는다
 	// => http://localhost/HTMLCSSProject_5/html/detail.jsp?no=1 => ?no=1 : 사용자가 전송한 값
 	String no=request.getParameter("no"); // parameter : 매개 변수
 	// 데이터베이스 연동
