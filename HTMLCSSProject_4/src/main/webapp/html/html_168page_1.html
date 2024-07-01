@@ -1,0 +1,63 @@
+<!--
+	1. 단위
+		px / % / em
+		=> % : 백분율 단위
+		=> em : 배수 단위
+	
+	2. 색상 단위
+		background-color : red
+		background-color : rgb(255,255,200)
+		background-color : #F0F => (255,0,255)
+	
+	3. URL 단위
+		background : url('경로명')
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	p:nth-child(1){
+		background-color: red;
+	}
+	p:nth-child(2){
+		/* font-size: 100%; */
+		font-size: 1.0em;
+		background-color: #F00;
+	}
+	p:nth-child(3){
+		/* font-size: 150%; */
+		font-size: 1.5em;
+		background-color: rgb(255, 0, 0);
+	}
+	p:nth-child(4){
+		/* font-size: 200%; */
+		font-size: 2.0em; /* 배수 : 14px => 2.0*14 */
+		background-color: #FF0000;
+	}
+	div{
+		width: 500px;
+		height: 500px;
+		background-image: url('oh.png');
+		background-repeat: no-repeat; /* 반복하지 않는다 = title */
+		/* background-size: cover; */
+		background-size: width=500px height=500px;
+	}
+	h1 {
+		color: darkmagenta;
+		padding-left: 100px;
+		padding-top: 250px;
+	}
+</style>
+</head>
+<body>
+	<p>지난 2년과 다르다…K리그1 선두권에 김천·울산·포항 옹기종기</p>
+	<p>[오피셜] '1년' 만에 강등은 없다...승격 '일등공신' 영입 완료→이적료 384억+5년 계약</p>
+	<p>이것이 종가의 힘! 잉글랜드, '벨링엄 극장 동점골+케인 역전골'로 슬로바키아에 2-1 역전승...8강 진출</p>
+	<p>승리하고도 '분노 폭발'...상대 감독이 밀치자 "입 닥쳐" 반격했다/p>
+	<div>
+		<h1>Siuuuuuuuuuuuu</h1>
+	</div>
+</body>
+</html>
