@@ -1,5 +1,5 @@
 <!--
-	1. 선택자
+	선택자
 	
 	=> 태그별로 CSS 적용 => CSS / 속성
 		선택자{
@@ -37,12 +37,31 @@
 			<span class="a"> span.a
 	
 	=> 속성 선택자
+		태그명|ID명|class명[속성명=값]
+		*** 선택자를 찾을 경우
+		[속성*=값] => 속성값 중에 값이 포함된 문자 : contains
+		[속성=값] => 같은 값 : equals
+		[속성^=값] => 시작하는 문자열 : startsWith
+		[속성$=값] => 끝나는 문자열 : endsWith
 	
 	=> 동위 선택자
+		=> 인근 태그 선택 + (형제 선택자) => <dt><dd> <th><td>
+		=> 근처에는 모든 태그 ~ (인접 형제) => 스틸 사진, 출연자
 	
 	=> 자손 / 후손 선택자
+		=> 상위태그 > 찾는태그
+		=> 상위태그 찾는태그
 	
 	=> 가상 선택자
+		태그명:hover => mouseover
+		태그명:focus
+		태그명:enabled
+		태그명:disabled
+		태그명:first-child
+		태그명:last-child
+		태그명:nth-child => 수열
+	
+	(126~127page) => 도표
        		
 -->
 <!DOCTYPE html>
@@ -50,8 +69,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	ul{
+		overflow: hidden;
+	}
+	li{
+		list-style: none;
+		float: left;
+		padding: 15px;
+	}
+	li:first-child{
+		border-radius: 10px 0px 0px 10px;
+	}
+	li:last-child{
+		border-radius: 0px 10px 10px 0px;
+	}
+	li:nth-child(2n){
+		background-color: greenyellow;	
+	}
+	li:nth-child(2n+1){
+		background-color: pink;
+	}
+</style>
 </head>
 <body>
-
+	<ul>
+		<li>첫번째</li>
+		<li>두번째</li>
+		<li>세번째</li>
+		<li>네번째</li>
+		<li>다섯번째</li>
+		<li>여섯번째</li>
+		<li>일곱번째</li>
+	</ul>
 </body>
 </html>
