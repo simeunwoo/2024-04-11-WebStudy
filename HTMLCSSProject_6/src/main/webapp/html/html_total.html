@@ -1,0 +1,57 @@
+<!--
+	1. 선택자
+	
+	=> 태그별로 CSS 적용 => CSS / 속성
+		선택자{
+			속성 : 값 (지정된 값, 사용자 정의 값) // 속성 => 이미 제작되어 있다
+		}
+		
+	=> 태그별로 이벤트 처리 (선택자 : 동위/자손/후손 선택자) => 자바스크립트 (CSS의 선택자)
+		$(선택자).click(function(){}) // CSS와 동일
+		
+	=> 태그별로 저장된 데이터 읽기 (태그명, ID명, 클래스명, 후손 선택자) => 크롤링
+		doc.select("선택자") // 선택자 => CSS와 동일
+			셀레니움 => CSS와 동일
+			= 정적 : Jsoup
+			= 동적 : 셀레니움
+    *** 모든 태그는 id, class 속성을 가지고 있다
+        ====== name
+        <input type=text name=name>
+        request.getParameter("name")
+        ====== style : 인라인 스타일 => 태그마다 CSS => width / height
+       	=> 태그
+       		태그명{
+				   => 공통으로 적용되는 CSS   
+			   }
+       	=> ID => 중복이 없는 속성값
+       		#ID명{
+				   속성 : 값
+			   }
+			태그명#ID명
+       	=> CLASS => 중복이 있는 경우
+       		.class명{
+				   속성 : 값
+			   }
+			태그명.class명
+			<div class="a"> div.a
+			<span class="a"> span.a
+	
+	=> 속성 선택자
+	
+	=> 동위 선택자
+	
+	=> 자손 / 후손 선택자
+	
+	=> 가상 선택자
+       		
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
