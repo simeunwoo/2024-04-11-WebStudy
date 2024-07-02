@@ -3,8 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<style>
+	pre{
+		white-space: pre-wrap; /* 크기에 맞게 자동으로 줄 바꿈 => wrap : 자동 줄 바꿈 기능 */
+	}
+</style>
 </head>
 <body>
+	<table class="table_content" width="500">
+		<tr>
+			<th width="20%">번호</th>
+			<td width="30%" class="tdcenter">1</td>
+			<th width="20%">작성일</th>
+			<td width="30%" class="tdcenter">2024-07-02</td>
+		</tr>
+		<tr>
+			<th width="20%">이름</th>
+			<td width="30%" class="tdcenter">홍길동</td>
+			<th width="20%">조회수</th>
+			<td width="30%" class="tdcenter">17</td>
+		</tr>
+		<tr>
+			<th width="20%">제목</th>
+			<td colspan="3">화면을 초과하는 데이터가 있는 경우</td>
+		</tr>
+		<tr>
+			<td colspan="4" align="left" valign="top" height="200">
+				<pre>
+영국의 더선은 1일(한국시각) '워커가 슬로바키아전에서 놀라운 실수를 저질렀다'라고 보도했다.
 
+잉글랜드는 1일 독일 겔젠키르헨의 아레나 아우프샬케에서 열린 슬로바키아와의 유로 2024 16강 경기에서 선제 실점에도 불구하고 주드 벨링엄의 동점골과 해리 케인의 역전골에 힘입어 2대1로 승리해 8강에 진출했다.
+
+극적인 승리와 함께 잉글랜드 선수들도 화제의 중심이 됐다. 그중 워커는 경기 도중의 충격적인 실수로 팬들을 놀라게 했다.
+				</pre>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
