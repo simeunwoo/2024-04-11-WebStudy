@@ -1,0 +1,57 @@
+<!--
+	지정된 영역을 벗어나는 경우 (overflow)
+	=> hidden / scroll
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	body > div{
+		width: 400px;
+		height: 100px;
+		position: relative;
+		border: 2px solid black;
+	/*	overflow: hidden; */
+		overflow: scroll;
+	}
+	.d{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+	}
+	.a{
+		background-color: red;
+		left: 10px;
+		top: 10px;
+		z-index: 100;
+	}
+	.b{
+		background-color: skyblue;
+		left: 50px;
+		top: 50px;
+		z-index: 10;
+	}
+	.c{
+		background-color: purple;
+		left: 90px;
+		top: 90px;
+		z-index: 1;
+	}
+</style>
+</head>
+<body>
+	<h1>
+		“인격 부족, 제로 클래스” ‘캡틴’ 음바페, 팬들에게 욕먹은 이유
+	</h1>
+	<div>
+		<div class="a d"></div>
+		<div class="b d"></div>
+		<div class="c d"></div>
+	</div>
+	<h1>
+		'수장부터 잘못됐다' 축구협회 맹비판... "정몽규 회장은 축구인을 4선 도구로 이용하지 말라"
+	</h1>
+</body>
+</html>
