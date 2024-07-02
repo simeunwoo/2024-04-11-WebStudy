@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#topMenu{
+		width: 1200px;
+		height: 35px;
+	}
+	#topMenu ul{
+		list-style: none;
+		margin: 0px; /* margin: top right bottle left */
+		padding: 0px;
+	}
+	#topMenu ul li{
+		color: white;
+		background-color: #2d2d2d;
+		float: left;
+		line-height: 30px;
+		vertical-align: middle;
+		position: relative;
+	}
+	.menuLink,submenuLink{
+		text-decoration: none;
+		display: block;
+		width: 150px;
+		font-size: 15pt;
+		font-weight: bold;
+		font-family: "맑은 고딕";
+	}
+	.menuLink{
+		color: white;
+	}
+	.topMenuLink:hover,.menuLink{
+		color: red;
+		background-color: greenyellow;
+	}
+	.submenuLink{
+		color: aqua;
+		background-color: white;
+		border: 1px solid black;
+		margin-top: -1px;
+	}
+	.submenu{
+		z-index: 10;
+		position: absolute;
+		height: 0px;
+		overflow: hidden;
+		transition: height .2s;
+		-webkit-transform: height .2s; /* -webkit(크롬) -moz(FF) -ms(IE) */
+	}
+	.topMenu:hover .submenu{
+		height: 200px;
+	}
+	.submenuLink:hover{
+		color:darkgoldenrod;
+		background-color: #dddddd;
+	}
+</style>
+</head>
+<body>
+	<nav id="topMenu">
+		<ul>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">Home</a>
+			</li>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">회원</a>
+				<ul class="subMenu">
+					<li><a href="#" class="submenuLink">회원 가입</a></li>
+					<li><a href="#" class="submenuLink">아이디 찾기</a></li>
+					<li><a href="#" class="submenuLink">비밀 번호 찾기</a></li>
+				</ul>
+			</li>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">맛집</a>
+				<ul class="subMenu">
+					<li><a href="#" class="submenuLink">맛집 목록</a></li>
+					<li><a href="#" class="submenuLink">맛집 예약</a></li>
+					<li><a href="#" class="submenuLink">맛집 찾기</a></li>
+					<li><a href="#" class="submenuLink">맛집 추천</a></li>
+				</ul>
+			</li>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">여행</a>
+				<ul class="subMenu">
+					<li><a href="#" class="submenuLink">여행 목록</a></li>
+					<li><a href="#" class="submenuLink">여행 코스</a></li>
+					<li><a href="#" class="submenuLink">날씨</a></li>
+				</ul>
+			</li>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">레시피</a>
+				<ul class="subMenu">
+					<li><a href="#" class="submenuLink">레시피 목록</a></li>
+					<li><a href="#" class="submenuLink">셰프 목록</a></li>
+					<li><a href="#" class="submenuLink">레시피 등록</a></li>
+				</ul>
+			</li>
+			<li class="topMenuLink">
+				<a href="#" class="menuLink">커뮤니티</a>
+				<ul class="subMenu">
+					<li><a href="#" class="submenuLink">자유 게시판</a></li>
+					<li><a href="#" class="submenuLink">묻고 답하기</a></li>
+					<li><a href="#" class="submenuLink">공지 사항</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>
