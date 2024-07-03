@@ -90,7 +90,7 @@ public class MainClass {
 						vo.setType(type.text());
 						vo.setAddress(address.text());
 						vo.setTheme(theme.text());
-						vo.setPoster(poster.text());
+						vo.setPoster(poster.attr("src"));
 						vo.setContent(content.text());
 						vo.setScore(Double.parseDouble(score.text()));
 						
