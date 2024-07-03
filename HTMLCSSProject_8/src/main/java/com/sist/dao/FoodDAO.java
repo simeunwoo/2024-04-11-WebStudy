@@ -92,6 +92,22 @@ public class FoodDAO {
 	private int fno;
 	private String name,type,phone,address,theme,poster,content;
 	private double score;
+	
+	1. 데이터 설계 => DDL (CREATE, ALTER, RENAME, DROP, TRUNCATE)
+	2. 프로그램 구현
+	    SELECT : 목록 출력 / 상세 보기 / 데이터 검색
+		         ======           ========
+		            |                 |
+		            =================== 페이징 (인라인뷰)
+		            => 예약 / 구매 => JOIN / SUBQUERY
+		            
+		         사용자 ===== 맛집
+		                |
+		               예약 (매핑 테이블)
+		
+		UPDATE : 조회수 증가 / 찜 증가 / 좋아요 증가
+		DELETE : 회원 탈퇴 / 구매 취소 / 예약 취소
+		INSERT : 회원 가입 / 장바구니 구매 / 예약
  */
 	public FoodVO foodDetailData(int fno)
 	{
