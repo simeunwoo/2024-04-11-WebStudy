@@ -28,6 +28,9 @@
 	font-size: 15pt;
 	font-family: "휴먼모음T";
 }
+.red{
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -46,11 +49,11 @@
 				</tr>
 				<tr>
 					<th class="b">할인</th>
-					<td class="a"><%=vo.getGoods_discount()%>%</td>
+					<td class="a red"><%=vo.getGoods_discount()%>%</td>
 				</tr>
 				<tr>
 					<th class="b">첫구매할인가</th>
-					<td class="a"><%=vo.getGoods_first_price()%></td>
+					<td class="a red"><%=vo.getGoods_first_price()%></td>
 				</tr>
 				<tr>
 					<th class="b">배송가격</th>
@@ -69,7 +72,8 @@
 			<table class="table">
 				<tr>
 					<td>
-						<pre style="white-space: pre-wrap;border: none;background-color: white;">
+						<pre style="white-space: pre-wrap;border: none;background-color: white;
+						font-size: 16pt;font-family: 휴먼모음T;text-align: center;">
 						<%=vo.getGoods_sub()%></pre>
 					</td>
 				</tr>
