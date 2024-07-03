@@ -73,7 +73,7 @@
 				<tr>
 					<td>
 						<pre style="white-space: pre-wrap;border: none;background-color: white;
-						font-size: 16pt;font-family: 휴먼모음T;text-align: center;">
+						font-size: 14pt;font-family: "굴림체";>
 						<%=vo.getGoods_sub()%></pre>
 					</td>
 				</tr>
