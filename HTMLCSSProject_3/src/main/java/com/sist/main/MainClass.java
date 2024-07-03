@@ -47,7 +47,7 @@ public class MainClass {
 			int k=1;
 			for(int i=1;i<=347;i++)
 			{
-				Document doc=Jsoup.connect("https://www.menupan.com/restaurant/bestrest/bestrest.asp?page="+i+"&trec=8674&pt=rt").get();
+				Document doc=Jsoup.connect("http://www.menupan.com/restaurant/bestrest/bestrest.asp?page="+i+"&trec=8674&pt=rt").get();
 				Elements link=doc.select("ul.list p.listName a");
 				for(int j=0;j<link.size();j++)
 				{
@@ -55,7 +55,7 @@ public class MainClass {
 				   {
 					System.out.println(link.get(j).attr("href"));
 					System.out.println("업체번호:"+ k++);
-					String url="https://www.menupan.com"+link.get(j).attr("href");// 링크
+					String url="http://www.menupan.com"+link.get(j).attr("href");// 링크
 					// 상세보기로 이동 
 					// <li class="aa bb cc dd">
 					Document doc2=Jsoup.connect(url).get();
