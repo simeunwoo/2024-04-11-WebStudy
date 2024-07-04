@@ -1,157 +1,200 @@
 package com.sist.dao;
 import java.util.*;
-
-import javax.naming.spi.DirStateFactory.Result;
-
+import java.util.concurrent.Executor;
 import java.sql.*;
 import com.sist.database.*;
-
-public class FoodDAO {
-	private Connection conn; // 연결 담당
-	private PreparedStatement ps; // SQL 문장 송수신 => SQL 문장 전송 / 결과값을 받는다
-	private static FoodDAO dao; // 싱글턴
-	private DataBaseConnection dbConn=new DataBaseConnection();
-	
-	// 라이브러리 형식 (.jar) => 보안
-	// 싱글턴
-	public static FoodDAO newInstance()
-	{
-		if(dao==null)
-			dao=new FoodDAO();
-		return dao;
-	}
-	// 기능
-	// => 결과값 (브라우저) => 사용자 요청
-	// => 사용자가 페이지를 선택하면 오라클에 저장된 데이터 중에 페이지에 해당되는 데이터를 보낸다
-	// => List, FoodVO, int (총 페이지, 몇 개인지 확인), String, void
-	// 화면 목록 출력 => List
-	public List<FoodVO> foodListData(int page)
-	{
-		List<FoodVO> list=new ArrayList<FoodVO>();
-		try
-		{
-			conn=dbConn.getConnection();
-			String sql="SELECT fno,poster,name,num "
-					+ "FROM (SELECT fno,poster,name,rownum as num "
-					+ "FROM (SELECT /*+ INDEX_ASC(food_house fh_fno_pk) */ fno,poster,name "
-					+ "FROM food_house)) "
-					+ "WHERE num BETWEEN ? AND ?";
-			ps=conn.prepareStatement(sql);
-			int rowSize=12;
-			int start=(rowSize*page)-(rowSize-1); // rownum은 1부터 시작
-			int end=rowSize*page;
-			ps.setInt(1, start);
-			ps.setInt(2, end);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next())
-			{
-				FoodVO vo=new FoodVO();
-				vo.setFno(rs.getInt(1));
-				vo.setPoster(rs.getString(2));
-				vo.setName(rs.getString(3));
-				list.add(vo);
-			}
-			rs.close();
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		finally
-		{
-			dbConn.disConnection(conn, ps);
-		}
-		return list;
-	}
-	
-	public int foodTotalPage()
-	{
-		int total=0;
-		try
-		{
-			conn=dbConn.getConnection();
-			String sql="SELECT CEIL(COUNT(*)/12.0) FROM food_house";
-			// 전송
-			ps=conn.prepareStatement(sql);
-			// 결과값 받기
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			total=rs.getInt(1);
-			rs.close();
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		finally
-		{
-			dbConn.disConnection(conn, ps);
-		}
-		return total;
-	}
-	// 상세 보기
 /*
-	private int fno;
-	private String name,type,phone,address,theme,poster,content;
-	private double score;
-	
-	1. 데이터 설계 => DDL (CREATE, ALTER, RENAME, DROP, TRUNCATE)
-	2. 프로그램 구현
-	    SELECT : 목록 출력 / 상세 보기 / 데이터 검색
-		         ======           ========
-		            |                 |
-		            =================== 페이징 (인라인뷰)
-		            => 예약 / 구매 => JOIN / SUBQUERY
-		            
-		         사용자 ===== 맛집
-		                |
-		               예약 (매핑 테이블)
-		
-		UPDATE : 조회수 증가 / 찜 증가 / 좋아요 증가
-		DELETE : 회원 탈퇴 / 구매 취소 / 예약 취소
-		INSERT : 회원 가입 / 장바구니 구매 / 예약
+ *    1. 오라클 연결 => TCP
+ *       Connection : Socket
+ *                    ======= IP / PORT 
+ *    2. SQL문장 전송 / 수신 
+ *       PreparedStatement : BufferedReader / OutputStream  
+ *                                |               | executeQuery,executeUpdate
+ *                              ResultSet => 브라우저 전송 : List/VO
+ *    ==========================================================
+ *                 요청 ===> 요청값 받기 (request) => BufferedReader
+ *     브라우저   <==========>  서버 (DAO,JSP)
+ *                 응답 (HTML)
+ *                 response : OutputStream 
+ *     네트워크 : 서버 / 클라이언트 
+ *              |
+ *             오라클 / 웹 (톰캣)
+ *     순서 => SQL문장 주력 
+ *     
+ *     
+ *     1. JSP 
+ *        ===
+ *        1) 오라클로부터 데이터 읽기 
+ *           <%
+ *               => 
+ *           %>
+ *        2) 데이터를 HTML 출력 
+ *     
  */
-	public FoodVO foodDetailData(int fno)
-	{
-		FoodVO vo=new FoodVO();
-		try
-		{
-			conn=dbConn.getConnection();
-			String sql="UPDATE food_house SET "
-					+ "hit=hit+1 "
-					+ "WHERE fno=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, fno);
-			ps.executeUpdate();
-			////////////////////// 조회수 증가 설정 완료
-			sql="SELECT fno,name,type,phone,address,theme,poster,content,score "
-					+ "FROM food_house "
-					+ "WHERE fno=?";
-			ps=conn.prepareStatement(sql);
-			// ?에 값을 채운다
-			ps.setInt(1, fno);
-			// 실행 요청 => 결과값 받기
-			ResultSet rs=ps.executeQuery();
-			// 커서를 데이터가 출력된 위치로 이동
-			rs.next();
-			vo.setFno(rs.getInt(1));
-			vo.setName(rs.getString(2));
-			vo.setType(rs.getString(3));
-			vo.setPhone(rs.getString(4));
-			vo.setAddress(rs.getString(5));
-			vo.setTheme(rs.getString(6));
-			vo.setPoster(rs.getString(7).replace("https", "http"));
-			vo.setContent(rs.getString(8));
-			vo.setScore(rs.getDouble(9));
-			// 메모리 닫기
-			rs.close();
-		}catch(Exception ex)
-		{
-			System.out.println("======= foodDetailData() 오류 =======");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			dbConn.disConnection(conn, ps);
-		}
-		return vo;
-	}
+public class FoodDAO {
+   private Connection conn; 
+   private PreparedStatement ps;
+   private DataBaseConnection dbConn=new DataBaseConnection();
+   private static FoodDAO dao;
+   private String[] mode={"","한식","중식","양식","일식"};
+   public static FoodDAO newInstance()
+   {
+	   if(dao==null)
+		   dao=new FoodDAO();
+	   return dao;
+   }
+   
+   public List<FoodVO> foodFindData(String addr,int page)
+   {
+	   List<FoodVO> list=new ArrayList<FoodVO>();
+	   try
+	   {
+		   conn=dbConn.getConnection();
+		   String sql="SELECT fno,name,poster,num "
+				     +"FROM (SELECT fno,name,poster,rownum as num "
+				     +"FROM (SELECT fno,name,poster "
+				     +"FROM food_house WHERE address LIKE '%'||?||'%')) "
+				     +"WHERE num BETWEEN ? AND ?";
+		   ps=conn.prepareStatement(sql);
+		   int rowSize=12;
+		   int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   // IN OUT 
+		   ps.setString(1, addr);
+		   ps.setInt(2, start);
+		   ps.setInt(3, end);
+		   // 결과값 받기 
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next())
+		   {
+			   FoodVO vo=new FoodVO();
+			   vo.setFno(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setPoster(rs.getString(3).replace("https", "http"));
+			   list.add(vo);
+		   }
+		   rs.close();
+		   
+	   }catch(Exception ex)
+	   {
+		   System.out.println("===== foodFindData() 오류 발생 =====");
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbConn.disConnection(conn, ps);
+	   }
+	   return list;
+   }
+   public int foodFindTotalPage(String addr)
+   {
+	   int total=0;
+	   try
+	   {
+		   conn=dbConn.getConnection();
+		   String sql="SELECT CEIL(COUNT(*)/12.0) "
+				     +"FROM food_house "
+				     +"WHERE address LIKE '%'||?||'%'";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, addr);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbConn.disConnection(conn, ps);
+	   }
+	   return total;
+   }
+   // 종류별 분리 50~60 : SELECT 
+   /*
+    *  INSERT : 게시판 글쓰기 , 댓글 , 회원가입 , 장바구니 , 예약 
+    *  UPDATE : 게시판 수정   댓글 수정  회원가입 장바구니 수정 예약수정 
+    *  DELETE : 게시판 삭제   댓글 삭제   회원탈퇴 장바구니 취소 예약취소 
+    *  나머지 : SELECT
+    */
+   public List<FoodVO> foodListData(int type,int page)
+   {
+	   List<FoodVO> list=new ArrayList<FoodVO>();
+	   
+	   try
+	   {
+		   conn=dbConn.getConnection();
+		   String sql="SELECT fno,name,poster,num "
+				     +"FROM (SELECT fno,name,poster,rownum as num "
+				     +"FROM (SELECT fno,name,poster "
+				     +"FROM food_house WHERE type LIKE '%'||?||'%')) "
+				     +"WHERE num BETWEEN ? AND ?";
+		   /*
+		    *   String sql="SELECT fno,name,poster,num "
+				     +"FROM (SELECT fno,name,poster,rownum as num "
+				     +"FROM (SELECT fno,name,poster "
+				     +"FROM food_house WHERE REGEXP_LIKE(type,?))) "
+				     +"WHERE num BETWEEN ? AND ?";
+		    */
+		   // rownum은 Top-N => 처음부터 , 중간은 자르지 못한다 => 인라인뷰 
+		   ps=conn.prepareStatement(sql);
+		   int rowSize=12;
+		   int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   
+		   // ?에 값을 채운다 => 실행
+		   ps.setString(1, mode[type]);
+		   ps.setInt(2, start);
+		   ps.setInt(3, end);
+		   // => 전체 / 베스트 / 특가 / 신상품 => 각각 테이블이 만들어져 있다 
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next())
+		   {
+			   FoodVO vo=new FoodVO();
+			   vo.setFno(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setPoster(rs.getString(3).replace("https", "http"));
+			   list.add(vo);
+		   }
+		   rs.close();
+		   
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbConn.disConnection(conn, ps);
+	   }
+	   return list;
+   }
+   public int foodListTotalPage(int type)
+   {
+	   int total=0;
+	   try
+	   {
+		   conn=dbConn.getConnection();
+		   String sql="SELECT CEIL(COUNT(*)/12.0) "
+				     +"FROM food_house "
+				     +"WHERE type LIKE '%'||?||'%'";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, mode[type]);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbConn.disConnection(conn, ps);
+	   }
+	   return total;
+   }
 }
+
+
+
