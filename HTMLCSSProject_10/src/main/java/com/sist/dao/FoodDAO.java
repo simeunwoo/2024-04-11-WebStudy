@@ -86,4 +86,30 @@ public class FoodDAO {
 		}
 		return list;
 	}
+	
+	public int foodFindTotalPage(String addr)
+	{
+		int total=0;
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT CEIL(COUNT(*)/12.0) "
+					+ "FROM food_house "
+					+ "WHERE address LIKE '%'||?|||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
+		return total;
+	}
 }
