@@ -1,0 +1,131 @@
+<!--
+	=> 순서 (알고리즘)
+	=> 흐름 파악 => 요청 / 응답
+		=> 요청 : 브라우저
+		=> 응답 : 서버
+		=> DAO => SQL
+	=> 분석 : 라이브러리 => 개발에 맞는지 (오버라이딩)
+	=> 자바 (객체 지향 프로그램 => 3개 특성) => 개념 (면접)
+	=> 반복 / 숙달
+	=> 개념 vs 프로젝트 (기술)
+	=> 모든 것을 외워야 한다 (X) => 직접 해보면서 시행 착오 겪고 만들어 보는 게 차라리 더 낫다
+	=> 개념만 알고 가지말고 => 금방 실무에 들어가야 되니 기술을 빨리 익히는 게 더 낫다
+	========================== 스프링 개념
+	태그 + 속성
+	
+		텍스트 관련
+			=> <font> : 색상 지정, 크기, 글꼴 => CSS로 변경
+			=> <font color="" size="" face="">
+				color : #FFF, rgb(), 지정된 색상 (red, blue)
+				size : px => em(배수)
+			=> <u> : underline
+			=> <em> : 강조체
+			=> <strong> : 강조체
+			=> *** <b> : 굵은체
+			=> *** <h1> ~ <h6> : 제목 => b1ock + bold
+			=> *** <sup> : 위첨자 => 새글 new
+			=> *** <p> : 단락
+			=> *** <br> : 줄 바꿈
+			=> *** <pre> : 입력된 상태로 그대로 출력 : 내용 / 줄거리
+				style, id, class
+				
+		멀티 미디어 관련
+			=> *** <img>
+				=> 속성
+				src="파일명"
+				width / height
+				class
+				title="풍선도움말"
+			=> <embed>
+				=> 동영상 출력
+				src="동영상파일"
+				width / height
+				
+		화면 이동
+			=> *** <a> : GET 방식만 사용 가능
+				=> 속성
+				href="이동할파일명" => 데이터 전송 => 파일명?변수=값
+				                             ==========
+				                             ? 앞에 있는 파일에서 값을 받는다
+				target="_self","_blank"
+					_self : 현재 화면
+					_blank : 새로운 브라우저
+					
+		목록 출력
+			=> *** <ul> : 메뉴 => style="list-type:none"
+				<ul>
+				 |
+				<li> : 실제 출력하는 데이터
+			=> *** <table> : 제목이 있는 목록 출력 / 장바구니, 게시판 ...
+				<table>
+				   |
+				  <tr>
+				   |
+				=========
+				|		|
+				<th>	<td>
+				제목		실제 데이터
+				=> 속성 : table => width
+				tr => height
+				td|th => width, align, valign
+					width
+					align : left|center|right => default는 left
+					valign : top|middle|bottom
+			=> <ol>
+				|
+			   <li>
+			=> <dl> : 외부 : 상세 보기
+				|
+			  ===========
+			  |			|
+			  <dt>		<dd>
+				  
+		입력 관련
+		=====================
+		=> <input>
+			type="" value="" size=""
+			type="text" : 한줄 문자열
+			type="password" : 비밀 번호
+			type="radio" : 라디오 버튼 => 한개 선택
+			type="checkbox" : 여러개 동시 선택 => 멀티 조건 검색
+			type="number" : 숫자로 표시 => Spinner
+			type="range" : Slider
+			type="file" : 자료실 => 파일 업로드/다운로드
+			type="date" : 생년월일 입력 => 예약 (직접 달력)
+			type="color"
+			*** type="button" => 기능이 없다 => 반드시 자바 스크립트에서 처리
+			*** type="submit" : 데이터 전송 => <form>을 이용한다
+			*** type="image" : submit 버튼
+		=> <select> : 콤보 박스
+			  |
+			<option selected value=""> : 데이터 저장
+		=> <textarea> : 여러줄 입력 => <textarea></textarea>
+		===================== <form> 입력된 데이터를 모아서 해당 파일에 전송
+		                      ======
+		                      GET / POST => 선택 => HTML 태그는 GET
+		=> <button> : 데이터 전송 버튼 (submit)
+			=> <button>로그인</button>
+			
+		화면 분할
+			<div> : 화면 분할
+			<span> : 부분적으로 CSS를 적용, 부메뉴
+		===============================================
+		block : <pr>, <br>, <div>, <ul>, <table>, <h1> ~ <h6>
+		inline : <b>, <input>, <textarea>, <select>, <font>
+			  
+	2. CSS
+	
+		선택자
+		
+		속성
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
