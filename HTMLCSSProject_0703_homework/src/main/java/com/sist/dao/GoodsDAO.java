@@ -84,9 +84,9 @@ public class GoodsDAO {
 		try
 		{
 			conn=dbConn.getConnection();
-			String sql="UPDATE food_house SET "
+			String sql="UPDATE goods_all SET "
 					+ "hit=hit+1 "
-					+ "WHERE fno=?";
+					+ "WHERE no=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.executeUpdate();

@@ -37,6 +37,7 @@ public class FoodDAO {
    private DataBaseConnection dbConn=new DataBaseConnection();
    private static FoodDAO dao;
    private String[] mode={"","한식","중식","양식","일식"};
+   
    public static FoodDAO newInstance()
    {
 	   if(dao==null)
