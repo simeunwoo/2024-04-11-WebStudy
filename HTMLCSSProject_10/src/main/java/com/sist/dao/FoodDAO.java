@@ -54,7 +54,7 @@ public class FoodDAO {
 			String sql="SELECT fno,name,poster,num "
 					+ "FROM (SELECT fno,name,poster,rownum as num "
 					+ "FROM (SELECT fno,name,poster "
-					+ "FROM food_house WHERE name LIKE '%'||?|||'%')) "
+					+ "FROM food_house WHERE address LIKE '%'||?||'%')) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			// 결과값 실행 이전에 먼저 ?에 값을 채우기
@@ -95,7 +95,7 @@ public class FoodDAO {
 			conn=dbConn.getConnection();
 			String sql="SELECT CEIL(COUNT(*)/12.0) "
 					+ "FROM food_house "
-					+ "WHERE address LIKE '%'||?|||'%'";
+					+ "WHERE address LIKE '%'||?||'%'";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, addr);
 			ResultSet rs=ps.executeQuery();
