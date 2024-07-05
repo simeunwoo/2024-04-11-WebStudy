@@ -85,7 +85,7 @@ h3{
 			<table class="table">
 				<tr>
 					<td class="text-left">
-						<select class="input-sm">
+						<select>
 							<option>이름</option>
 							<option>제목</option>
 							<option>내용</option>
