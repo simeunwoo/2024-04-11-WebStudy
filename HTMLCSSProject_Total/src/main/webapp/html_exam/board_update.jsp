@@ -21,7 +21,7 @@ h3{
 </head>
 <body>
 	<div class="container">
-		<h3>글 쓰기</h3>
+		<h3>수정하기</h3>
 		<div class="row">
 			<table class="table">
 				<tr>
@@ -50,7 +50,7 @@ h3{
 				</tr>
 				<tr>
 					<td colspan="2" class="text-center">
-						<input type=submit value="글 쓰기" class="btn-sm btn-success">
+						<input type=submit value="수정" class="btn-sm btn-success">
 						<input type=button value="취소" class="btn-sm btn-warning"
 						onclick="javascript:history.back()">
 					</td>
