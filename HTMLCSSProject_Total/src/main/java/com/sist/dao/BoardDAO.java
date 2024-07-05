@@ -125,7 +125,7 @@ public class BoardDAO {
 		}
 		return vo;
 	}
-	// 3, 글쓰기 => input
+	// 3. 글쓰기 => input
 	public void boardInsert(BoardVO vo)
 	{
 		try
@@ -150,6 +150,78 @@ public class BoardDAO {
 		}
 	}
 	// 4. 수정하기 => input
+	public BoardVO boardUpdateData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT no,name,subject,content "
+					+ "FROM board "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardUpdateData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	
+	public boolean boardUpdate(BoardVO vo)
+	{
+		boolean bCheck=false;
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT pwd FROM board "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getNo());
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd()))
+			{
+				bCheck=true;
+				sql="UPDATE board SET "
+						+ "name=?,subject=?,content=? "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSubject());
+				ps.setString(3, vo.getContent());
+				ps.setInt(4, vo.getNo());
+				ps.executeUpdate();
+			}
+			else
+			{
+				bCheck=false;
+			}
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardUpdate(BoardVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 	// 5. 삭제하기 => input
 	// 6. 검색 => <select>
 }
