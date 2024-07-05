@@ -9,7 +9,7 @@
 	
 	// 데이터베이스 연동
 	BoardDAO dao=BoardDAO.newInstance();
-	boolean bCheck=false;
+	boolean bCheck=dao.boardDelete(Integer.parseInt(no), pwd);
 	// 이동
 	if(bCheck==false)
 	{
