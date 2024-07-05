@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%-- 
+	1. 브라우저 출력
+	2. 사용자가 보내준 데이터를 받아서 => 오라클 연결 => 보여주는 창이 아니다
+		_ok.jsp
+--%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,29 +28,34 @@ h3{
 	<div class="container">
 		<h3>글 쓰기</h3>
 		<div class="row">
+		<form method="post" action="board_insert_ok.jsp">
 			<table class="table">
 				<tr>
 					<th width=25% class="text-right">이름</th>
 					<th width=75%>
-						<input type=text size=20 class="input-sm">
+						<input type=text size=20 class="input-sm" required name="name">
 					</th>
 				</tr>
 				<tr>
 					<th width=25% class="text-right">제목</th>
 					<th width=75%>
-						<input type=text size=55 class="input-sm">
+						<input type=text size=55 class="input-sm" required name="subject">
+						<%-- 
+							name => 자바에서 보내준 데이터를 받는 경우에 사욛되는 속성명
+							id, class => 자바스크립트, CSS의 구분자
+						--%>
 					</th>
 				</tr>
 				<tr>
 					<th width=25% class="text-right">내용</th>
 					<th width=75%>
-						<textarea rows="10" cols="56"></textarea>
+						<textarea rows="10" cols="56" required name="content"></textarea>
 					</th>
 				</tr>
 				<tr>
 					<th width=25% class="text-right">비밀 번호</th>
 					<th width=75%>
-						<input type=password size=10 class="input-sm">
+						<input type=password size=10 class="input-sm" required name="pwd">
 					</th>
 				</tr>
 				<tr>
@@ -56,6 +66,7 @@ h3{
 					</td>
 				</tr>
 			</table>
+		</form>
 		</div>
 	</div>
 </body>

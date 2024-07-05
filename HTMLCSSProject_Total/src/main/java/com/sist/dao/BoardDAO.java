@@ -126,6 +126,29 @@ public class BoardDAO {
 		return vo;
 	}
 	// 3, 글쓰기 => input
+	public void boardInsert(BoardVO vo)
+	{
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="INSERT INTO board VALUES("
+					+ "board_no_seq.nextval,?,?,?,?,SYSDATE,0)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardInsert(BoardVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
+	}
 	// 4. 수정하기 => input
 	// 5. 삭제하기 => input
 	// 6. 검색 => <select>

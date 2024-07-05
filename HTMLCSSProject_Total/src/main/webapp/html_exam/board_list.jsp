@@ -94,9 +94,11 @@ h3{
 						<input type=submit value="검색" class="btn-sm btn-success">
 					</td>
 					<td class="text-right">
-						<a href="#" class="btn btn-sm btn-primary">이전</a>
+						<a href="board_list.jsp?page=<%=curpage>1?curpage-1:curpage %>"
+						class="btn btn-sm btn-primary">이전</a>
 						<%=curpage %> page / <%=totalpage %> pages
-						<a href="#" class="btn btn-sm btn-primary">다음</a>
+						<a href="board_list.jsp?page=<%=curpage<totalpage?curpage+1:curpage %>"
+						class="btn btn-sm btn-primary">다음</a>
 					</td>
 				</tr>
 			</table>
