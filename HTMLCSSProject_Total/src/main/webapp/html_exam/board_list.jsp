@@ -63,7 +63,7 @@ h3{
 						<tr>
 							<td width="10%" class="text-center"><%=count-- %></td>
 							<td width="45%">
-								<a href="board _detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a>
+								<a href="board_detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a>
 								<%
 									String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 									if(today.equals(vo.getDb_day()))

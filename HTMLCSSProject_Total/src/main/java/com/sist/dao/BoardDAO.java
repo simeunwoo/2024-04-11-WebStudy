@@ -29,7 +29,7 @@ public class BoardDAO {
 			conn=dbConn.getConnection();
 			String sql="SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
 					+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
-					+ "FROM (SELECT /* +INDEX_DESC(board board_no_pk) */no,subject,name,regdate,hit "
+					+ "FROM (SELECT /*+INDEX_DESC(board board_no_pk)*/ no,subject,name,regdate,hit "
 					+ "FROM board)) "
 					+ "WHERE num BETWEEN ? AND ?";
 					// ORDER BY보다는 INDEX_ASC(테이블명 PK) => index는 pk, uk는 자동 생성
