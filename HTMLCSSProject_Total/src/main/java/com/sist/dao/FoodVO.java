@@ -37,6 +37,16 @@ import lombok.Data;
 	 DATE => java.util.Date (java, sql.Date)
 	 	=> 오늘 : SYSDATE
 	 	=> 예약일 : YY/MM/DD => TO_DATE로 변환 후에 INSERT
+	 VO => 한개의 맛집
+	       ======= 상세 보기
+	 목록 => 여러개의 맛집
+	       ========= VO가 여러개 => List
+	 MyBatis / JPA => 컬럼이 다르면 변경
+	 
+	 goods_name
+	 
+	 @Column(name="goods_name")
+	 String name
  *   
  */
 @Data
