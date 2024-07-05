@@ -5,6 +5,8 @@
 	FoodDAO dao=FoodDAO.newInstance();
 	List<FoodVO> list=dao.foodListData();
 	// JSP = Java / .net = #C / 장고 = ***** python
+	/*
+	*/
 %>
 <!--
 	======================== container
@@ -69,6 +71,9 @@ $(function(){
 							 %>
 							 	<tr class="infos" data-name="<%=vo.getName() %>"
 							 	data-poster="<%=vo.getPoster()%>">
+							 		<%--
+							 			System.out.println(vo.getPoster())
+							 		--%>
 							 		<td class="text-center">
 							 			<img src="<%=vo.getPoster() %>" width="30" height="30">
 							 		</td>
