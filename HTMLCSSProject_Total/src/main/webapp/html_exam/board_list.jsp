@@ -1,5 +1,23 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
+<% 
+	// 사용자가 보내준 값을 받는다 => 페이지 => request.getParameter()
+	String strPage=request.getParameter("page");
+	// 보내준 값을 이용하여 => 오라클 연결
+	BoardDAO dao=BoardDAO.newInstance();
+	// 오라클로부터 사용자가 요청한 데이터를 받는다
+	if(strPage==null)
+		strPage="1";
+	int curpage=Integer.parseInt(strPage); // 현재 보여주는 페이지 번호
+	// 가지고 온 데이터를 화면에 출력
+	List<BoardVO> list=dao.boardListData(curpage);
+	// 총 페이지
+	int count=dao.boardTotalPage();
+	int totalpage=(int)(Math.ceil(count/10.0));
+	
+	count=count-((curpage*10)-10);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +56,31 @@ h3{
 					<th width="20%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회수</th>
 				</tr>
+				<%
+					for(BoardVO vo:list)
+					{
+				%>
+						<tr>
+							<td width="10%" class="text-center"><%=count-- %></td>
+							<td width="45%">
+								<a href="board _detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a>
+								<%
+									String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+									if(today.equals(vo.getDb_day()))
+									{
+								%>
+										&nbsp;<sup style="color:red">new</sup>
+								<%		
+									}
+								%>
+							</td>
+							<td width="15%" class="text-center"><%=vo.getName() %></td>
+							<td width="20%" class="text-center"><%=vo.getDb_day() %></td>
+							<td width="10%" class="text-center"><%=vo.getHit() %></td>
+						</tr>
+				<%		
+					}
+				%>
 			</table>
 			<table class="table">
 				<tr>
@@ -52,7 +95,7 @@ h3{
 					</td>
 					<td class="text-right">
 						<a href="#" class="btn btn-sm btn-primary">이전</a>
-						1 page / 1 pages
+						<%=curpage %> page / <%=totalpage %> pages
 						<a href="#" class="btn btn-sm btn-primary">다음</a>
 					</td>
 				</tr>
