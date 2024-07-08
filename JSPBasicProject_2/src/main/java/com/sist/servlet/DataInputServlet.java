@@ -1,7 +1,6 @@
 package com.sist.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,35 +9,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/OutputServlet")
-public class OutputServlet extends HttpServlet {
+@WebServlet("/DataInputServlet")
+public class DataInputServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+
+    public DataInputServlet() {
+        // TODO Auto-generated constructor stub
+    }
 
 
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("OutputServlet:init(ServletConfig config) Call ...");
+		System.out.println("DataInputServlet:init() Call ...");
+		// 자동 로그인 / 쿠키 읽기
 	}
 
 
 	public void destroy() {
 		// TODO Auto-generated method stub
-		System.out.println("OutputServlet:destroy() Call ...");
+		// 해제 => 메모리 => 새로운 화면 (new => 생성)
+		System.out.println("DataInputServlet:destroy() Call ...");
 	}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("OutputServlet:doGet() Call...");
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("OutputServlet:doPost() Call ...");
-		// HTTP 상태 405 - 허용되지 않는 메소드
-		// GET => doGet() / POST => doPost()
-		// GET => doPost() (오류) / <a> => GET 방식
+		// 1. 브라우저에 알려준다 (메모리를 읽어 간다 => HTML / XML / JSON)
+		
 	}
 
 }
