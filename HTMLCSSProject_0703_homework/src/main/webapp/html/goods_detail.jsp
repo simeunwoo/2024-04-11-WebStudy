@@ -4,7 +4,7 @@
 	GoodsDAO dao=GoodsDAO.newInstance();
 	String no=request.getParameter("no");
 	GoodsVO vo=dao.goodsDetailData(Integer.parseInt(no));
-	//     == vo에 저장된 데이터를 출력 => 상세 보기
+	//      == vo에 저장된 데이터를 출력 => 상세 보기
 %>
 <!DOCTYPE html>
 <html>
