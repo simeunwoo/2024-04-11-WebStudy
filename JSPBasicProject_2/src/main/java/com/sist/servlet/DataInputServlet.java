@@ -33,7 +33,29 @@ public class DataInputServlet extends HttpServlet {
 		// 해제 => 메모리 => 새로운 화면 (new => 생성)
 		System.out.println("DataInputServlet:destroy() Call ...");
 	}
-
+	/*
+	 * 	클라이언트 요청 ====================> request 안에 첨부된다 (주고)
+	 * 	서버 요청 처리 => 응답 (HTML) ===============> response (받고)
+	 * 
+	 * 	요청 : 전송하는 값
+	 * 	응답 : 어떤 값을 출력할 지 ... (HTML)
+	 * 
+	 * 	Client / Server
+	 * 
+	 * 	=> <input> => name 속성을 가지고 있어야 된다
+	 * 	<form>
+	 * 		=> <input>, <select>, <textarea>
+	 * 	=> <form> => 포함하고 있는 데이터만 넘어간다
+	 * 
+	 * 	<a href="이동할 주소">
+	 *           ======= GET
+	 *           DataOutputServlet?name=홍길동
+	 *           DataOutputServlet?name=홍길동&sex=남자
+	 *           
+	 *           getParameter("name"), getParameter("sex")
+http://localhost/JSPBasicProject_2/DataOutputServlet?name=a&sex=남자
+&tel1=010&tel2=33333333&content=aa&hobby=여행&hobby=영화&hobby=게임
+	 */
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -49,7 +71,7 @@ public class DataInputServlet extends HttpServlet {
 		out.write("</head>");		
 		out.write("<body>");		
 		out.write("<center>");
-		out.write("<form method=\"post\" action=\"DataOutputServlet\">");
+		out.write("<form method=\"get\" action=\"DataOutputServlet\">");
 		/*
 		 * 	RestFul => 다른 프로그램과 연동
 		 * 
@@ -69,7 +91,8 @@ public class DataInputServlet extends HttpServlet {
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">이름</th>");		
 		out.write("<td width=80%><input type=text name=name size=15></td>");		
-		out.write("</tr>");		
+		out.write("</tr>");	
+		out.write("</form>");
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">성별</th>");		
 		out.write("<td width=80%>");
@@ -90,16 +113,18 @@ public class DataInputServlet extends HttpServlet {
 		out.write("</tr>");
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">소개</th>");		
-		out.write("<td width=80%><textarea rows=5 cols=30></textarea></td>");		
+		out.write("<td width=80%><textarea rows=5 cols=30 name=content></textarea></td>");		
+		// null => name 속성이 없다, name을 틀리게 => JSP / Spring
+		// id, class => CSS / JavaScript
 		out.write("</tr>");	
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">취미</th>");		
 		out.write("<td width=80%>");
-		out.write("<input type=radio value=\"낚시\" name=hobby>낚시");
-		out.write("<input type=radio value=\"여행\" name=hobby>여행");
-		out.write("<input type=radio value=\"영화\" name=hobby>영화");
-		out.write("<input type=radio value=\"게임\" name=hobby>게임");
-		out.write("<input type=radio value=\"등산\" name=hobby>등산");
+		out.write("<input type=checkbox value=\"낚시\" name=hobby>낚시");
+		out.write("<input type=checkbox value=\"여행\" name=hobby>여행");
+		out.write("<input type=checkbox value=\"영화\" name=hobby>영화");
+		out.write("<input type=checkbox value=\"게임\" name=hobby>게임");
+		out.write("<input type=checkbox value=\"등산\" name=hobby>등산");
 		out.write("</td>");		
 		out.write("</tr>");
 		out.write("<tr>");
@@ -107,7 +132,6 @@ public class DataInputServlet extends HttpServlet {
 		out.write("<button>전송</button>");
 		out.write("</tr>");		
 		out.write("</table>");	
-		out.write("</form>");
 		out.write("</center>");		
 		out.write("</body>");		
 		out.write("</html>");
