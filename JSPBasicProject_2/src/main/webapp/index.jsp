@@ -1,48 +1,6 @@
-package com.sist.servlet;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
-@WebServlet("/DataInputServlet")
-public class DataInputServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-
-    public DataInputServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		System.out.println("DataInputServlet:init() Call ...");
-		// 자동 로그인 / 쿠키 읽기
-	}
-
-
-	public void destroy() {
-		// TODO Auto-generated method stub
-		// 해제 => 메모리 => 새로운 화면 (new => 생성)
-		System.out.println("DataInputServlet:destroy() Call ...");
-	}
-
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// 1. 브라우저에 알려준다 (메모리를 읽어 간다 => HTML / XML / JSON)
-		// => 메모리에 저장된 내용을 읽어간다
-		response.setContentType("text/html;charset=UTF-8");
-		// 2. 누가 요청했는지
-		PrintWriter out=response.getWriter();
-		// out 영역에 HTML을 출력 => 브라우저가 읽어간다
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
 		out.write("<html>");
 		out.write("<head>");		
 		out.write("<link rel=\"stylesheet\" href=\"table.css\">");		
@@ -68,18 +26,18 @@ public class DataInputServlet extends HttpServlet {
 		out.write("<table class=\"table_content\" width=500>");		
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">이름</th>");		
-		out.write("<td width=80%><input type=text name=name size=15></td>");		
+		out.write("<td width=80% ><input type=text name=name size=15></td>");		
 		out.write("</tr>");		
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">성별</th>");		
-		out.write("<td width=80%>");
+		out.write("<td width=80% >");
 		out.write("<input type=radio value=\"남자\" name=sex checked>남자");
 		out.write("<input type=radio value=\"여자\" name=sex>여자");
 		out.write("</td>");		
 		out.write("</tr>");	
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">전화</th>");		
-		out.write("<td width=80%>");
+		out.write("<td width=80% >");
 		out.write("<select name=\"tel1\">");
 		out.write("<option>010</option>");
 		out.write("<option>011</option>");
@@ -90,11 +48,11 @@ public class DataInputServlet extends HttpServlet {
 		out.write("</tr>");
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">소개</th>");		
-		out.write("<td width=80%><textarea rows=5 cols=30></textarea></td>");		
+		out.write("<td width=80% ><textarea rows=5 cols=30></textarea></td>");		
 		out.write("</tr>");	
 		out.write("<tr>");		
 		out.write("<th width=20% class=\"tdright\">취미</th>");		
-		out.write("<td width=80%>");
+		out.write("<td width=80% >");
 		out.write("<input type=radio value=\"낚시\" name=hobby>낚시");
 		out.write("<input type=radio value=\"여행\" name=hobby>여행");
 		out.write("<input type=radio value=\"영화\" name=hobby>영화");
@@ -111,6 +69,4 @@ public class DataInputServlet extends HttpServlet {
 		out.write("</center>");		
 		out.write("</body>");		
 		out.write("</html>");
-	}
-
-}
+%>
