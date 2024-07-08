@@ -24,7 +24,10 @@
 						List = [{}, {} ...]
 				= 라이브러리 추가 : import
 				= 한글 변환 : pageEncoding => UTF-8 (호환성)
-				= 에러 페이지
+				= 에러 페이지 : errorPage="파일명"
+					1) 404 : 파일이 없는 경우
+						<a href="파일명">
+					2) 500 : 
 			include
 			taglib
 			
