@@ -28,7 +28,7 @@
     	img=img.replace("https", "http");
     	vo.setPoster(img);
     }
-    int totalpage=dao.foodTotalPage(); // 총페이지 
+    int totalpage=dao.foodListTotalPage(); // 총페이지 
     
     // 페이지 처리 
     final int BLOCK=10;
