@@ -1,6 +1,8 @@
 package com.sist.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *                         .java => 컴파일 .class         a.jsp
  *                         한줄씩 번역 => 인터프리터
  *                         =======
- *                         out.write("") => 메모리에 출력
+ *                         out.println("") => 메모리에 출력
  *                                          =========
  *                                          요청한 브라우저에서 읽어서 화면 출력
  *      파일 한개에 데이터 변경이 가능 => 동적 페이지
@@ -45,18 +47,18 @@ import javax.servlet.http.HttpServletResponse;
  *				=> 웹 => 정보 공유 목적 (1995 이전 => 문자로만 출력)
  *			=> 웹 서비스 기능을 해주는 자바 클래스
  *				=> 자바 안에 HTML 코드를 첨부 (JSP => HTML 안에 Java를 첨부)
- *					out.write("<html>") => <% %> <html>
+ *					out.println("<html>") => <% %> <html>
  *				=> 단점
  *					1. HTML을 사용하기 어렵다 (복잡) => CSS / JavaScript => 화면 UI는 하지 않는다
- *						out.write("<html>")
- *						out.write("<head>")
- *						out.write("<script type=\"text/javascript\">")
- *						out.write("<function aaa(){>")
- *						out.write("alert(\"\");")
- *						out.write("}")
- *						out.write("</script>")
- *						out.write("</head>")
- *						out.write("</html>")
+ *						out.println("<html>")
+ *						out.println("<head>")
+ *						out.println("<script type=\"text/javascript\">")
+ *						out.println("<function aaa(){>")
+ *						out.println("alert(\"\");")
+ *						out.println("}")
+ *						out.println("</script>")
+ *						out.println("</head>")
+ *						out.println("</html>")
  *					2. HTML / CSS / JavaScript에 대한 에러 처리가 어렵다
  *					3. 확장자가 java => 변경 시마다 컴파일을 다시 해야 한다
  *						=> 톰캣 연결
@@ -77,7 +79,7 @@ import javax.servlet.http.HttpServletResponse;
  *				=> 단점 보완
  *					=> 수정과 동시에 확인이 가능하게 만들어 준다 : JSP
  *					=> HTML/CSS/JavaScript => 사용이 쉽게
- *						out.write("<html>") => html (간편화, 나머지는 톰캣에 의해 자동으로 생성됨)
+ *						out.println("<html>") => html (간편화, 나머지는 톰캣에 의해 자동으로 생성됨)
  *					=> HTML 기반 => 필요한 자바 <% %> <%= %>
  *					=> 실행은 톰캣에 의하여 실행된다
  *					=> 실행과 동시에 저장
@@ -102,7 +104,18 @@ import javax.servlet.http.HttpServletResponse;
  *			destroy()
  */
 
-@WebServlet("/MyServlet")
+// @WebServlet("/MyServlet")
+// 구분자 => 인덱스
+// => 클래스 / 메소드 / 생성자 / 멤버 변수
+/*
+ * 	1. 웹 분석
+ * 		1) web.xml : 시작과 동시에 필요한 데이터를 넘겨준다
+ * 		2) server.xml : port 확인 / 파일 위치 확인
+ * 		============================================ AWS => tomcat
+ * 		3) 클래스 분석
+ * 			=> DAO : SQL
+ * 		4) JSP 분석 : 화면 출력
+ */
 public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -114,6 +127,8 @@ public class MyServlet extends HttpServlet {
 		// web.xml => 스프링은 라이브러리 => 환경 설정 => 등록
 		// => 서블릿 등록, 보안 설정, 에러 설정, 한글 처리
 		System.out.println("MyServlet:init(ServletConfig config) Call ...");
+		String path=config.getInitParameter("file_name");
+		System.out.println(path);
 	}
 
 
@@ -152,13 +167,36 @@ public class MyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		// 디폴트 => 메인 화면 => 화면 UI
+		// 1. 변환 => 브라우저에 알려주는 내용 (HTML, XML, JSON) => JSP (page 지시자)
+		response.setContentType("text/html;charset=UTF-8");
+		// response => 1. HTML, 2. Cookie
+		// => 한개의 메소드에서 1개만 전송이 가능
+		// 2. 요청된 브라우저를 찾는다 => 결과값을 보내준다
+		PrintWriter out=response.getWriter();
+		// 브라우저에서 HTML을 읽어가는 메모리 공간 => out => JSP에서는 내장 객체
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<center>");
+		out.println("<h1>Hello Servlet</h1>");
+		out.println("</center>");
+		out.println("</body>");
+		out.println("</html>");
 	}
+	/*
+	 * 	1. 요청 => URL 주소로 요청
+	 * 	2. 톰캣이 해당 서블릿 클래스 읽기
+	 * 	3. 메모리 할당
+	 * 	4. 실행
+	 * 		init()
+	 * 		doGet() / doPost()
+	 * 		destroy()
+	 */
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		// 사용자 요청에 대한 처리
 	}
 
 }
