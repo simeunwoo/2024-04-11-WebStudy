@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div class="row">
+		<h1 class="text-center">아이디찾기</h1>
+	</div>
 </body>
 </html>

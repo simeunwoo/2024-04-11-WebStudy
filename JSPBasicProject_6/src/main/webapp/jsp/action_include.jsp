@@ -1,5 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String mode=request.getParameter("mode");
+	String jsp="";
+	if(mode==null)
+		mode="0";
+	int index=Integer.parseInt(mode);
+	switch(index)
+	{
+	case 0:
+		jsp="home.jsp";
+		break;
+	case 1:
+		jsp="join.jsp";
+		break;
+	case 2:
+		jsp="idfind.jsp";
+		break;
+	case 3:
+		jsp="passwordfind.jsp";
+		break;
+	case 4:
+		jsp="send.jsp";
+		break;
+	case 5:
+		jsp="mypage.jsp";
+		break;
+	case 6:
+		jsp="recv.jsp";
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +50,7 @@
 <body>
 	<jsp:include page="nav.jsp"></jsp:include>
 	<div class="container">
-		<%-- <jsp:include page=""></jsp:include> --%>
+	<jsp:include page="<%=jsp %>"></jsp:include>
 	</div>
 </body>
 </html>
