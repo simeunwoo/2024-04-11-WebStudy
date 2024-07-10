@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div class="row">
+		<h1>DETAIL</h1>
+	</div>
 </body>
 </html>
