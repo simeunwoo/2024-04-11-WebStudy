@@ -16,7 +16,7 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">답변형게시판</a></li>
       <li><a href="#">자료실</a></li>
-      <li><a href="#">스토어</a></li>
+      <li><a href="../main/main.jsp?mode=2">스토어</a></li>
     </ul>
   </div>
 </nav>
