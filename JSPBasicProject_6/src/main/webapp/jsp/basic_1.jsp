@@ -179,6 +179,17 @@
 	======================================================================= High (고급)
 	
 	=> Front (JavaScript)
+	
+	public void _jspService(HttpServletRequest request,HttpServletResponse response)
+	
+	PageContext pageContext;
+    HttpSession session = null;
+    ServletContext application;
+    ServletConfig config;
+    JspWriter out = null;
+    Object page = this;
+	
+	// JSP 코딩
 --%>
 <!DOCTYPE html>
 <html>
