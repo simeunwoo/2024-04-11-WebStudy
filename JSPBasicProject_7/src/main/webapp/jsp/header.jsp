@@ -16,8 +16,8 @@
       <a class="navbar-brand" href="#">내부객체</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Request</a></li>
-      <li><a href="#">Response</a></li>
+      <li class="active"><a href="basic_2.jsp?mode=1">Request</a></li>
+      <li><a href="basic_2.jsp?mode=2">Response</a></li>
       <li><a href="#">Session</a></li>
       <li><a href="#">Application</a></li>
       <li><a href="#">Out</a></li>

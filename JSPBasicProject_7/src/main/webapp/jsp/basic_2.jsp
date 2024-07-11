@@ -13,6 +13,22 @@
 	
 	=> MVC => MV / MVC => Spring 형식 => 프로젝트
 --%>
+<%
+	String mode=request.getParameter("mode");
+	if(mode==null)
+		mode="1";
+	int index=Integer.parseInt(mode);
+	String jsp="";
+	switch(index)
+	{
+	case 1:
+		jsp="request.jsp";
+		break;
+	case 2:
+		jsp="response.jsp";
+		break;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +47,7 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-	
+		<jsp:include page="<%=jsp %>"></jsp:include>
 	</div>
 </body>
 </html>
