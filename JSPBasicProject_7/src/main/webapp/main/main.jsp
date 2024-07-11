@@ -12,15 +12,6 @@
 	}
 	int index=Integer.parseInt(mode);
 	String jsp=change.change(index);
-	
-	switch(index)
-	{
-	case 1:
-		jsp="../food/detail.jsp";
-		break;
-	case 2:
-		jsp="../goods/home_goods.jsp";
-	}
 %>
 <!DOCTYPE html>
 <html>
