@@ -117,16 +117,17 @@ public class ReplyDAO {
 		try
 		{
 			conn=dbConn.getConnection();
-			String sql="Update food_reply SET "
-					+ "msg=? "
-					+ "WHERE rno=?";
+			String sql="UPDATE food_reply SET "
+					  +"msg=? "
+					  +"WHERE rno=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, );
-			ps.setInt(2, );
+			ps.setString(1, vo.getMsg());
+			ps.setInt(2, vo.getRno());
+			
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
-			System.out.println("=========== replyDelete(int rno) 오류");
+			System.out.println("=========== replyUpdate(ReplyVO vo) 오류");
 			ex.printStackTrace();
 		}
 		finally

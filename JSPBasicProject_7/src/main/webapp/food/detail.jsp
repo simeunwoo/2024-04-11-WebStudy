@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="com.sist.dao.*,java.util.*"%>
 <jsp:useBean id="dao" class="com.sist.dao.FoodDAO"/>
-<jsp:useBean id="rDao" class=com.sist.dao.ReplyDAO"/>
+<jsp:useBean id="rDao" class="com.sist.dao.ReplyDAO"/>
 <%
     String id=(String)session.getAttribute("id");
     String fno=request.getParameter("fno");
@@ -19,8 +19,8 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-let u=0; // 전역 변수
-// 변수 =>
+let u=0; // 전역변수 
+// 변수 => var : let, const(상수형)
 $(function(){ // main => window.onload=function(){}
 	$('.updates').click(function(){
 		$('.ups').hide();
@@ -84,48 +84,49 @@ $(function(){ // main => window.onload=function(){}
       </table>
       <div style="height: 15px"></div>
       <table class="table">
-      	<tr>
-      		<td>
-      			<%
-      				for(ReplyVO rvo:list)
-      				{
-      			%>
-      					<table class="table">
-      						<tr>
-      							<td class="text-left">
-      							◑<%=rvo.getName() %>&nbsp;(<%=rvo.getDbday() %>)
-      							</td>
-      							<td class="text-right">
-      							<%
-      								if(rvo.getId().equals(id))
-      								{
-      							%>
-      									<span class="btn btn-danger btn-xs updates" data-no="<%=rvo.getRno() %>">수정</span>
-      			<a href="../reply/delete.jsp?rno=<%=rvo.getRno() %>&fno=<%=rvo.getFno() %>" class="btn btn-primary btn-xs">삭제</a>
-      							<%
-      								}
-      							%>
-      							</td>
-      						</tr>
-      						<tr>
-      			<td colspan="2"><pre style="white-space: pre-wrap;background-color:white;border:none"><%=rvo.getMsg() %></pre></td>
-      						</tr>
-      						<tr style="display: none" class="ups" id="ups<%=rvo.getRno()%>">
-					          <td>
-					           <form method="post" action="../reply/update.jsp">
-					            <input type="hidden" name=fno value="<%=vo.getFno()%>">
-					            <input type="hidden" name=rno value="<%=rvo.getRno()%>">
-					            <textarea rows="4" cols="55" name="msg" style="float: left" required><%rvo.getMsg() %></textarea>
-					            <button style="height: 82px;width: 120px;background-color: blue;color:white;float: left">댓글수정</button>
-					           </form>
-					          </td>
-					        </tr>
-      					</table>
-      			<%
-      				}
-      			%>
-      		</td>
-      	</tr>
+        <tr>
+         <td>
+           <%
+              for(ReplyVO rvo:list)
+              {
+           %>
+                 <table class="table">
+                  <tr>
+                    <td class="text-left">
+                    ◑<%=rvo.getName() %>&nbsp;(<%=rvo.getDbday() %>)
+                    </td>
+                    <td class="text-right">
+                      <%
+                         if(rvo.getId().equals(id))
+                         {
+                      %>
+                            <span class="btn btn-danger btn-xs updates" data-no="<%=rvo.getRno()%>">수정</span>
+                            <a href="../reply/delete.jsp?rno=<%=rvo.getRno() %>&fno=<%=rvo.getFno() %>" class="btn btn-primary btn-xs">삭제</a>
+                      <%
+                         }
+                      %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><pre style="white-space: pre-wrap;background-color: white;border:none"><%=rvo.getMsg() %></pre></td>
+                  </tr>
+                  
+                   <tr style="display: none" class="ups" id="ups<%=rvo.getRno()%>">
+			          <td>
+			           <form method="post" action="../reply/update.jsp">
+			            <input type="hidden" name=fno value="<%=vo.getFno()%>">
+			            <input type="hidden" name=rno value="<%=rvo.getRno()%>">
+			            <textarea rows="4" cols="45" name="msg" style="float: left" required><%=rvo.getMsg() %></textarea>
+			            <button style="height: 82px;width: 100px;background-color: blue;color:white;float: left">댓글수정</button>
+			           </form>
+			          </td>
+			        </tr>
+                 </table>
+           <%  	  
+              }
+           %>
+         </td>
+        </tr>
       </table>
       <%
          if(id!=null)
