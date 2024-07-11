@@ -24,7 +24,7 @@
        {
     %>
           <div class="col-sm-3">
-            <a href="../main/main.jsp?mode=1&fno=<%=vo.getFno()%>">
+            <a href="../food/detail_before.jsp?fno=<%=vo.getFno()%>">
               <div class="thumbnail">
                <img src="<%=vo.getPoster() %>" style="width: 240px;height: 200px">
                <p class="a"><%=vo.getName() %></p>
