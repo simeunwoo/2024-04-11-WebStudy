@@ -38,8 +38,9 @@ public class ReplyDAO {
 		{
 			conn=dbConn.getConnection();
 			String sql="INSERT INTO food_reply VALUES("
-					  +"fr_rno_seq.nextval,?,?,?,?,SYSDATE)";
+					  +"fr_rno_seq.nextval,?,?,?,?,?,SYSDATE)";
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getType());
 			ps.setInt(1, vo.getFno());
 			ps.setString(2, vo.getId());
 			ps.setString(3, vo.getName());
@@ -48,7 +49,6 @@ public class ReplyDAO {
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
-			System.out.println("=========== replyInsert(ReplyVO vo) 오류");
 			ex.printStackTrace();
 		}
 		finally
@@ -57,15 +57,15 @@ public class ReplyDAO {
 		}
 	}
 	// 2. 데이터 읽기 
-	public List<ReplyVO> replyListData(int fno)
+	public List<ReplyVO> replyListData(int fno,int type)
 	{
 		List<ReplyVO> list=new ArrayList<ReplyVO>();
 		try
 		{
 			conn=dbConn.getConnection();
-			String sql="SELECT /*+ INDEX_DESC(food_reply fr_rno_pk) */rno,fno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
-					+ "FROM food_reply "
-					+ "WHERE fno="+fno;
+			String sql="SELECT /*+ INDEX_DESC(food_reply fr_rno_pk)*/rno,fno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+					  +"FROM food_reply "
+					  +"WHERE fno="+fno+" and type="+type;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -82,7 +82,6 @@ public class ReplyDAO {
 			rs.close();
 		}catch(Exception ex)
 		{
-			System.out.println("=========== replyListData(int fno) 오류");
 			ex.printStackTrace();
 		}
 		finally
@@ -91,19 +90,18 @@ public class ReplyDAO {
 		}
 		return list;
 	}
-	// 댓글 삭제
+	// 댓글 삭제 
 	public void replyDelete(int rno)
 	{
 		try
 		{
 			conn=dbConn.getConnection();
 			String sql="DELETE FROM food_reply "
-					+ "WHERE rno="+rno;
+					  +"WHERE rno="+rno;
 			ps=conn.prepareStatement(sql);
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
-			System.out.println("=========== replyDelete(int rno) 오류");
 			ex.printStackTrace();
 		}
 		finally
@@ -111,7 +109,7 @@ public class ReplyDAO {
 			dbConn.disConnection(conn, ps);
 		}
 	}
-	
+	// 댓글 수정 
 	public void replyUpdate(ReplyVO vo)
 	{
 		try
@@ -127,7 +125,6 @@ public class ReplyDAO {
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
-			System.out.println("=========== replyUpdate(ReplyVO vo) 오류");
 			ex.printStackTrace();
 		}
 		finally

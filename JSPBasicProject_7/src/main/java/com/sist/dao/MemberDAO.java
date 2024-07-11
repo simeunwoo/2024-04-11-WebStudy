@@ -61,7 +61,6 @@ public class MemberDAO {
 		   
 	   }catch(Exception ex)
 	   {
-		   System.out.println("=========== isLogin(String id,String pwd) 오류");
 		   ex.printStackTrace();
 	   }
 	   finally

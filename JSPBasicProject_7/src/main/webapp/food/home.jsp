@@ -11,18 +11,19 @@
     List<FoodVO> list=dao.foodListData(curpage);
     int totalpage=dao.foodTotalPage();
     
-    // Cookie 읽기
+    
+    // Cookie 읽기 
     Cookie[] cookies=request.getCookies();
-    List<FoodVO> cList= new ArrayList<FoodVO>();
+    List<FoodVO> cList=new ArrayList<FoodVO>();
     if(cookies!=null)
     {
     	for(int i=cookies.length-1;i>=0;i--)
-    	{
-    		// getName() => key 갖고 오기
-    		// getValue() => 값 갖고 오기
+    	{ 
+    		// getName() => key
+    		// getValue() => 값
     		if(cookies[i].getName().startsWith("food_"))
     		{
-    			// 값 읽기
+    			// 값 읽기 
     			String fno=cookies[i].getValue();
     			FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
     			cList.add(vo);
@@ -62,10 +63,10 @@
       <a href="../main/main.jsp?page=<%=curpage<totalpage?curpage+1:curpage %>" class="btn btn-sm btn-primary">다음</a>
     </div>
   </div>
-    <div style="height: 20px"></div>
-    <h3>최신 방문 맛집</h3>
-    <hr>
-    <div class="row">
+  <div style="height: 20px"></div>
+  <h3>최신방문 맛집</h3>
+  <hr>
+  <div class="row">
     <%
        for(FoodVO vo:cList)
        {
@@ -74,7 +75,8 @@
             <a href="../main/main.jsp?mode=1&fno=<%=vo.getFno()%>">
               <div class="thumbnail">
                <img src="<%=vo.getPoster() %>" style="width: 130px;height: 80px"
-               title="<%=vo.getName()%>">
+                title="<%=vo.getName() %>"
+               >
               </div>
             </a>
           </div>
