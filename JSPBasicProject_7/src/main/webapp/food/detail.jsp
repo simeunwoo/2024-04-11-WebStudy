@@ -17,6 +17,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let u=0; // 전역 변수
+// 변수 =>
+$(function(){ // main => window.onload=function(){}
+	$('.updates').click(function(){
+		$('.ups').hide();
+		let rno=$(this).attr("data-no");
+		if(u==0)
+		{
+			u=1;
+			$(this).text("취소");
+			$('#ups'+rno).show(); // document.getElementById("ups"+rno)
+		}
+		else
+		{
+			u=0;
+			$(this).text("수정");
+			$('#ups'+rno).hide();
+		}
+	})
+})
+</script>
 </head>
 <body>
   <div class="row">
@@ -77,16 +100,26 @@
       								if(rvo.getId().equals(id))
       								{
       							%>
-      									<a href="#" class="btn btn-danger btn-xs">수정</a>
-      									<a href="#" class="btn btn-primary btn-xs">삭제</a>
+      									<span class="btn btn-danger btn-xs updates" data-no="<%=rvo.getRno() %>">수정</span>
+      			<a href="../reply/delete.jsp?rno=<%=rvo.getRno() %>&fno=<%=rvo.getFno() %>" class="btn btn-primary btn-xs">삭제</a>
       							<%
       								}
       							%>
       							</td>
       						</tr>
       						<tr>
-      							<td colspan="2"><pre style="white-space: pre-wrap;background-color:white;border:none"><%=rvo.getMsg() %></pre></td>
+      			<td colspan="2"><pre style="white-space: pre-wrap;background-color:white;border:none"><%=rvo.getMsg() %></pre></td>
       						</tr>
+      						<tr style="display: none" class="ups" id="ups<%=rvo.getRno()%>">
+					          <td>
+					           <form method="post" action="../reply/update.jsp">
+					            <input type="hidden" name=fno value="<%=vo.getFno()%>">
+					            <input type="hidden" name=rno value="<%=rvo.getRno()%>">
+					            <textarea rows="4" cols="55" name="msg" style="float: left" required><%rvo.getMsg() %></textarea>
+					            <button style="height: 82px;width: 120px;background-color: blue;color:white;float: left">댓글수정</button>
+					           </form>
+					          </td>
+					        </tr>
       					</table>
       			<%
       				}

@@ -48,6 +48,7 @@ public class FoodDAO {
 		   rs.close();
 	   }catch(Exception ex)
 	   {
+		   System.out.println("=========== foodListData(int page) 오류");
 		   ex.printStackTrace();
 	   }
 	   finally
@@ -70,6 +71,7 @@ public class FoodDAO {
 		   rs.close();
 	   }catch(Exception ex)
 	   {
+		   System.out.println("=========== foodTotalPage() 오류");
 		   ex.printStackTrace();
 	   }
 	   finally
@@ -109,6 +111,7 @@ public class FoodDAO {
 		   rs.close();
 	   }catch(Exception ex)
 	   {
+		   System.out.println("=========== foodDetailData(int fno) 오류");
 		   ex.printStackTrace();
 	   }
 	   finally

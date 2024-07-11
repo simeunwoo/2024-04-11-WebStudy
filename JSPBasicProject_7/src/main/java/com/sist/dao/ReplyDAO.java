@@ -48,6 +48,7 @@ public class ReplyDAO {
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
+			System.out.println("=========== replyInsert(ReplyVO vo) 오류");
 			ex.printStackTrace();
 		}
 		finally
@@ -81,6 +82,7 @@ public class ReplyDAO {
 			rs.close();
 		}catch(Exception ex)
 		{
+			System.out.println("=========== replyListData(int fno) 오류");
 			ex.printStackTrace();
 		}
 		finally
@@ -88,6 +90,49 @@ public class ReplyDAO {
 			dbConn.disConnection(conn, ps);
 		}
 		return list;
+	}
+	// 댓글 삭제
+	public void replyDelete(int rno)
+	{
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="DELETE FROM food_reply "
+					+ "WHERE rno="+rno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=========== replyDelete(int rno) 오류");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
+	}
+	
+	public void replyUpdate(ReplyVO vo)
+	{
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="Update food_reply SET "
+					+ "msg=? "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, );
+			ps.setInt(2, );
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=========== replyDelete(int rno) 오류");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps);
+		}
 	}
 	
 }
