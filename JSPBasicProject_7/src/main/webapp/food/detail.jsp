@@ -78,7 +78,7 @@ $(function(){ // main => window.onload=function(){}
             <a href="#" class="btn btn-xs btn-info">찜하기</a>
             <a href="#" class="btn btn-xs btn-success">좋아요</a>
             <a href="#" class="btn btn-xs btn-warning">예약</a>
-            <a href="javascript:history.back()" class="btn btn-xs btn-primary">목록</a>
+            <a href="../main/main.jsp" class="btn btn-xs btn-primary">목록</a>
           </td>
         </tr>
       </table>
