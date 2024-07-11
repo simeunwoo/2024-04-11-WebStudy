@@ -20,7 +20,6 @@
 		break;
 	case 2:
 		jsp="../goods/home_goods.jsp";
-		break;
 	}
 %>
 <!DOCTYPE html>

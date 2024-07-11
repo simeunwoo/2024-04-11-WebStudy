@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*" %>
-<jsp:useBean id="dao" class="com.sist.dao.GoodsDAO"></jsp:useBean>
+<jsp:useBean id="dao" class="com.sist.dao.GoodsDAO"/>
 <%
 	String strPage=request.getParameter("page");
 	if(strPage==null)
@@ -22,7 +22,7 @@
 			{
 		%>
 				<div class="col-sm-3">
-					<a href="#">
+					<a href="../main/main.jsp?no=<%=vo.getNo()%>&mode=3">
 						<div class="thumbnail">
 							<img src="<%=vo.getGoods_poster() %>" style="width: 240px;height: 200px">
 							<p class="a"><%=vo.getGoods_name() %></p>

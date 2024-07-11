@@ -79,5 +79,36 @@ public class GoodsDAO {
 		}
 		return total;
 	}
+	
+	public GoodsVO goodsDetailData(int no)
+	   {
+		   GoodsVO vo=new GoodsVO();
+		   try
+		   {
+			   conn=dbConn.getConnection();
+			   String sql="SELECT goods_name,goods_sub,goods_price,goods_first_price,goods_poster,goods_delivery,no "
+					     +"FROM goods_all "
+					     +"WHERE no="+no;
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setGoods_name(rs.getString(1));
+			   vo.setGoods_sub(rs.getString(2));
+			   vo.setGoods_price(rs.getString(3));
+			   vo.setGoods_first_price(rs.getString(4));
+			   vo.setGoods_poster(rs.getString(5).replace("https", "http"));
+			   vo.setGoods_delivery(rs.getString(6));
+			   vo.setNo(rs.getInt(7));
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   dbConn.disConnection(conn, ps);
+		   }
+		   return vo;
+	   }
 
 }
