@@ -40,8 +40,8 @@ h3{
 		</div>
 		<div class="row">
 			<%
-					pageContext.include("d.jsp");
-				%>
+				pageContext.include("d.jsp");
+			%>
 		</div>
 	</div>
 </body>
