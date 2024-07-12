@@ -21,7 +21,7 @@ public class BoardDAO {
 	{
 		try
 		{
-			
+			Context init=new InitialContext();
 		}catch(Exception ex) {}
 	}
 	// 사용 후에는 반드시 반환 => 재사용한다
