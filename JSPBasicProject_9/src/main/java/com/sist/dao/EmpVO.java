@@ -8,4 +8,6 @@ public class EmpVO {
 	private int empno,deptno,sal,comm,mgr;
 	private String ename,job;
 	private Date hiredate;
+	private DeptVO dvo=new DeptVO();
+	private SalGradeVO svo=new SalGradeVO();
 }
