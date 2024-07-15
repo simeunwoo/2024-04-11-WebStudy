@@ -141,6 +141,22 @@ public class DataBoardDAO {
 			ps.executeUpdate();
 			// 조회수 증가
 			// 실제 데이터를 읽어 온다 => 증가된 조회수 읽기
+			sql="SELECT no,name,subject,content,hit,TO_CHAR(regdate,'YYYY-MM-DD'),"
+					+ "filename,filesize "
+					+ "FROM databoard "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setHit(rs.getInt(5));
+			vo.setDbday(rs.getString(6));
+			vo.setFilename(rs.getString(7));
+			vo.setFilesize(rs.getInt(8));
+			rs.close();
 		}catch(Exception a)
 		{
 			System.out.println("=== databoardDetailData(int no) 오류 발생 ===");

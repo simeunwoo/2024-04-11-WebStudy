@@ -59,7 +59,7 @@ h3{
 			</table>
 			<table class="table table-hover">
 				<thead>
-					<tr>
+					<tr class=danger>
 						<th width=10% class="text-center">번호</th>
 						<th width=45% class="text-center">제목</th>
 						<th width=15% class="text-center">이름</th>
