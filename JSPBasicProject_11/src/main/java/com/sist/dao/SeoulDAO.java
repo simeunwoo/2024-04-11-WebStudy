@@ -49,15 +49,62 @@ public class SeoulDAO {
 		List<LocationVO> list=new ArrayList<LocationVO>();
 		try
 		{
-			
+			getConnection();
+			String sql="SELECT no,title,poster,num "
+					+ "FROM (SELECT no,title,poster,rownum as num "
+					+ "FROM (SELECT /*+ INDEX_ASC(seoul_location sl_no_pk)*/no,title,poster "
+					+ "FROM seoul_location)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			ps=conn.prepareStatement(sql);
+			int rowSize=12;
+			int start=(rowSize*page)-(rowSize-1);
+			int end=rowSize*page;
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				LocationVO vo=new LocationVO();
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
 		}catch(Exception ex)
 		{
-			
+			System.out.println("=== seoulLocationListData(int page) 오류 발생 ===");
+			ex.printStackTrace();
 		}
 		finally
 		{
-			
+			disConnection();
 		}
 		return list;
+	}
+	
+	public int seoulLocationTotalPage()
+	{
+		int total=0;
+		try
+		{
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/12.0) FROM seoul_location";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== seoulLocationTotalPage() 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		
+		return total;
 	}
 }
