@@ -53,7 +53,7 @@ h3{
 			<table class="table">
 				<tr>
 					<td>
-						<a href="#" class="btn btn-sm btn-primary">새글</a>
+						<a href="insert.jsp" class="btn btn-sm btn-primary">새글</a>
 					</td>
 				</tr>
 			</table>
@@ -73,9 +73,9 @@ h3{
 						{
 					%>
 							<tr>
-								<td width=10% class="text-center"><%=count-- %></td>
-								<td width=45%><%=vo.getSubject() %></td>
-									<%
+								
+								<td width=10% class="text-center">
+								<%
 										String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 										if(today.equals(vo.getDbday()))
 										{
@@ -84,6 +84,8 @@ h3{
 									<%		
 										}
 									%>
+								<%=count-- %></td>
+								<td width=45%><%=vo.getSubject() %></td>
 								<td width=15% class="text-center"><%=vo.getName() %></td>
 								<td width=20% class="text-center"><%=vo.getDbday() %></td>
 								<td width=10% class="text-center"><%=vo.getHit() %></td>

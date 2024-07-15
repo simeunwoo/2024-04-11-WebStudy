@@ -129,6 +129,32 @@ public class DataBoardDAO {
 	}
 	// 상세 보기 => 다운로드
 	// 글 쓰기 => 업로드
+	public void databoardInsert(DataBoardVO vo)
+	{
+		try
+		{
+			getConnection();
+			String sql="INSERT INTO databoard(no,name,subject,content,pwd,filename,filesize) "
+					+ "VALUES(db_no_seq.nextval,?,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.setString(5, vo.getFilename());
+			ps.setInt(6, vo.getFilesize());
+			// 실행
+			ps.executeUpdate();
+		}catch(Exception e)
+		{
+			System.out.println("=== databoardInsert(DataBoardVO vo) 오류 발생 ===");
+			e.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
 	// 수정 => 파일 변경 시 처리
 	// 삭제 => 파일 삭제
 }
