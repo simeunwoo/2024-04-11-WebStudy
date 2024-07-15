@@ -74,8 +74,15 @@ h3{
 					%>
 							<tr>
 								
-								<td width=10% class="text-center">
-								<%
+								<td width=10% class="text-center"><%=count-- %></td>
+								<td width=45%>
+									<%--
+										실제 게시물 번호를 전송 : 번호에 해당되는 데이터를 가지고 와서 출력 
+										상세 보기 => 무조건 Primary Key를 전송
+										Primary Key : ROW를 구분하는 구분자
+									--%>
+									<a href="detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a>
+									<%
 										String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 										if(today.equals(vo.getDbday()))
 										{
@@ -84,8 +91,7 @@ h3{
 									<%		
 										}
 									%>
-								<%=count-- %></td>
-								<td width=45%><%=vo.getSubject() %></td>
+								</td>
 								<td width=15% class="text-center"><%=vo.getName() %></td>
 								<td width=20% class="text-center"><%=vo.getDbday() %></td>
 								<td width=10% class="text-center"><%=vo.getHit() %></td>

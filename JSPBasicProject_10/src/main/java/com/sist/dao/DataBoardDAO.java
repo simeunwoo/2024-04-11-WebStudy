@@ -128,6 +128,30 @@ public class DataBoardDAO {
 		return count;
 	}
 	// 상세 보기 => 다운로드
+	public DataBoardVO databoardDetailData(int no)
+	{
+		DataBoardVO vo=new DataBoardVO();
+		try
+		{
+			getConnection();
+			String sql="UPDATE databoard SET "
+					+ "hit=hit+1"
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			// 조회수 증가
+			// 실제 데이터를 읽어 온다 => 증가된 조회수 읽기
+		}catch(Exception a)
+		{
+			System.out.println("=== databoardDetailData(int no) 오류 발생 ===");
+			a.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
+	}
 	// 글 쓰기 => 업로드
 	public void databoardInsert(DataBoardVO vo)
 	{
