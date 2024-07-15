@@ -115,12 +115,12 @@ $(function(){
 					<tr>
 						<td colspan=4 class="text-right">
 							<a href="update.jsp?no=<%=vo.getNo() %>" class="btn btn-xs btn-success">수정</a>
-							<span class="btn btn-xs btn-info" id=delclick>삭제</span>
+							<span class="btn btn-xs btn-info" id="delclick">삭제</span>
 							<a href="list.jsp" class="btn btn-xs btn-warning">목록</a>
 						</td>
 					</tr>
-					<tr <%-- style="display:none"--%>id=del>
-						<td colspan=4 class="text-right">
+					<tr style="display:none" id="del">
+						<td colspan="4" class="text-right">
 							비밀번호:<input type="password" name=pwd size=15 class="input-sm" id="pwd">
 							<button class="btn-sm btn-primary" data-no="<%=vo.getNo()%>">삭제</button>
 						</td>
