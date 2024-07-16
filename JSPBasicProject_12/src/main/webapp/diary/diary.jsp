@@ -11,6 +11,11 @@
 	String strMonth=st.nextToken();
 	String strDay=st.nextToken();
 	
+	// 오늘 날짜 저장
+	int tYear=Integer.parseInt(strYear);
+	int tMonth=Integer.parseInt(strMonth);
+	int tDay=Integer.parseInt(strDay);
+	
 	String sy=request.getParameter("year");
 	if(sy==null)
 		sy=strYear;
@@ -131,7 +136,24 @@ function change()
 					<%
 							}
 					%>
-							<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %></td>
+							<%
+								if(day<=i || tMonth!=month || tYear!=year)
+								{
+							%>
+									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %>
+										<a href="#"><%=i %></a>
+									</td>
+							<%
+								}
+								else
+								{
+							%>
+									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %>
+										<%=i %>
+									</td>
+							<%		
+								}
+							%>
 					<%
 							week++;
 							if(week>6)
