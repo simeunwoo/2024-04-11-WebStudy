@@ -92,7 +92,7 @@ function change()
 									<option <%=i==month?"selected":"" %>><%=i %></option>
 							<%		
 								}
-							%>
+							%>  
 						</select>&nbsp;월
 					</td>
 				</tr>
@@ -140,15 +140,15 @@ function change()
 								if(day<=i || tMonth!=month || tYear!=year)
 								{
 							%>
-									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %>
-										<a href="#"><%=i %></a>
+									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>>
+										<a href="input.jsp?year=<%=year%>&month=<%=month%>&day=<%=i%>"><%=i %></a>
 									</td>
 							<%
 								}
 								else
 								{
 							%>
-									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %>
+									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>>
 										<%=i %>
 									</td>
 							<%		
