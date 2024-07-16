@@ -6,14 +6,14 @@
 	{
 		for(int i=0;i<cookies.length;i++)
 		{
-			if(cookies[i].getName().startsWith("seoul_"))
+			if(cookies[i].getName().startsWith("food_"))
 			{
-				cookies[i].setPath("/"); // 저장 위치 확인
-				cookies[i].setMaxAge(0); // 삭제
+				cookies[i].setPath("/");
+				cookies[i].setMaxAge(0);
 				response.addCookie(cookies[i]);
 				break;	
 			}
 		}
 	}
-	response.sendRedirect("list.jsp");
+	response.sendRedirect("food_list.jsp");
 %>

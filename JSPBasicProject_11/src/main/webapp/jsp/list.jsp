@@ -106,7 +106,7 @@
 		// 가장 최근에 등록된 쿠키 데이터 읽기
 		for(int i=cookies.length-1;i>=0;i--)
 		{
-			if(cookies[i].getName().startsWith("seoul_no"))
+			if(cookies[i].getName().startsWith("seoul_"))
 			{
 				String no=cookies[i].getValue();
 				LocationVO vo=dao.seoulDetailData(Integer.parseInt(no));
