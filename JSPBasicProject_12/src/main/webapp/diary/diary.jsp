@@ -78,7 +78,7 @@ function change()
 							<%		
 								}
 							%>
-						</select>년도&nbsp;&nbsp;
+						</select>&nbsp;년도&nbsp;&nbsp;
 						<select class="input-sm" name=month onchange="change()">
 							<%
 								for(int i=1;i<=12;i++)
@@ -88,7 +88,7 @@ function change()
 							<%		
 								}
 							%>
-						</select>월
+						</select>&nbsp;월
 					</td>
 				</tr>
 			</table>
@@ -112,39 +112,39 @@ function change()
 					%>
 				</tr>
 				<%-- 달력 출력 --%>
-				<%
-					for(int i=1;i<=lastday;i++)
-					{
-						if(i==1)
+					<%
+						for(int i=1;i<=lastday;i++)
 						{
-							// 공백 출력
-				%>
-							<tr>
-							<%
-								for(int j=0;j<week;j++)
-								{
-							%>
-									<td width=100 height=100 valign=top>&nbsp;</td>
-							<%		
-								}
-							%>
-				<%
+							if(i==1)
+							{
+								// 공백 출력
+					%>
+								<tr>
+								<%
+									for(int j=0;j<week;j++)
+									{
+								%>
+										<td width=100 height=100 valign=top>&nbsp;</td>
+								<%		
+									}
+								%>
+					<%
+							}
+					%>
+							<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %></td>
+					<%
+							week++;
+							if(week>6)
+							{
+								week=0;
+					%>
+								</tr>
+								<tr>
+								
+					<%
+							}
 						}
-				%>
-						<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %></td>
-				<%
-						week++;
-						if(week>6)
-						{
-							week=0;
-				%>
-							</tr>
-							<tr>
-							
-				<%
-						}
-					}
-				%>
+					%>
 				</tr>
 			</table>
 		</form>
