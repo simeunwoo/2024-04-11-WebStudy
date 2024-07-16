@@ -1,5 +1,9 @@
 package com.sist.dao;
 
-public class MemberVO {
+import lombok.Data;
 
+@Data
+public class MemberVO {
+	private String id,sex,name,pwd;
+	
 }
