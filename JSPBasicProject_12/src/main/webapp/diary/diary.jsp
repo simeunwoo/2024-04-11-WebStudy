@@ -11,15 +11,23 @@
 	String strMonth=st.nextToken();
 	String strDay=st.nextToken();
 	
-	int year=Integer.parseInt(strYear);
-	int month=Integer.parseInt(strMonth);
+	String sy=request.getParameter("year");
+	if(sy==null)
+		sy=strYear;
+	
+	String sm=request.getParameter("month");
+	if(sm==null)
+		sm=strMonth;
+	
+	int year=Integer.parseInt(sy);
+	int month=Integer.parseInt(sm);
 	int day=Integer.parseInt(strDay);
 	
 	// 요일 구하기
 	Calendar cal=Calendar.getInstance();
 	cal.set(Calendar.YEAR,year);
 	cal.set(Calendar.MONTH,month-1); // month는 0번부터 시작
-	cal.set(Calendar.DATE,day); // day는 1번부터 시작
+	cal.set(Calendar.DATE,1); // day는 1번부터 시작
 	
 	int week=cal.get(Calendar.DAY_OF_WEEK); // week=1
 	week=week-1;
@@ -44,15 +52,24 @@ h3{
 	text-align: center;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+function change()
+{
+	let f=document.frm;
+	f.submit();
+}
+</script>
 </head>
 <body>
 	<div class=container>
-		<h3>일정 관리</h3>
+		<h3><%=session.getAttribute("name") %>님의 일정 관리</h3>
 		<div class=row>
+		<form method=post action="diary.jsp" name="frm">
 			<table class=table>
 				<tr>
 					<td>
-						<select id=year class="input-sm">
+						<select class="input-sm" name=year onchange="change()">
 							<%
 								for(int i=2024;i<=2030;i++)
 								{
@@ -62,7 +79,7 @@ h3{
 								}
 							%>
 						</select>년도&nbsp;&nbsp;
-						<select id=month class="input-sm">
+						<select class="input-sm" name=month onchange="change()">
 							<%
 								for(int i=1;i<=12;i++)
 								{
@@ -94,7 +111,43 @@ h3{
 						}
 					%>
 				</tr>
+				<%-- 달력 출력 --%>
+				<%
+					for(int i=1;i<=lastday;i++)
+					{
+						if(i==1)
+						{
+							// 공백 출력
+				%>
+							<tr>
+							<%
+								for(int j=0;j<week;j++)
+								{
+							%>
+									<td width=100 height=100 valign=top>&nbsp;</td>
+							<%		
+								}
+							%>
+				<%
+						}
+				%>
+						<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>><%=i %></td>
+				<%
+						week++;
+						if(week>6)
+						{
+							week=0;
+				%>
+							</tr>
+							<tr>
+							
+				<%
+						}
+					}
+				%>
+				</tr>
 			</table>
+		</form>
 		</div>
 	</div>
 </body>
