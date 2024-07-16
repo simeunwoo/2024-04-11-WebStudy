@@ -68,7 +68,7 @@ public class DiaryService {
 				conn.close();
 		}catch(Exception ex) {}
 	}
-	// 로그인 => 세션 사용 => 사용자 정보 저장
+	// 1. 로그인 => 세션 사용 => 사용자 정보 저장
 	// JSP => 변경이 많다 (일반 HTML => AJAX => VUE => REACT => REDUX => REDUX-QUERY)
 	// 자바> 변경이 없다 (스프링)
 	public MemberVO isLogin(String id,String pwd) // ajax
@@ -77,7 +77,7 @@ public class DiaryService {
 		try
 		{
 			getConnection();
-			// 1. 아이디 존재 여부 확인
+			// 1) 아이디 존재 여부 확인
 			String sql="SELECT COUNT(*) FROM member "
 					+ "WHERE id=?";
 			ps=conn.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class DiaryService {
 			}
 			else // 아이디가 있는 경우
 			{
-				// 2. 비밀 번호 확인
+				// 2) 비밀 번호 확인
 				sql="SELECT pwd,name,sex FROM member "
 						+ "WHERE id=?";
 				ps=conn.prepareStatement(sql);
