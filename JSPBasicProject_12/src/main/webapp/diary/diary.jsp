@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,java.text.*"%>
+    pageEncoding="UTF-8" import="java.util.*,java.text.*,com.sist.dao.*"%>
 <%
+	DiaryService dao=DiaryService.newInstance();	
+
 	String[] strWeek={"일","월","화","수","목","금","토"};
 	Date date=new Date();
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-M-d");
@@ -135,6 +137,9 @@ function change()
 								%>
 					<%
 							}
+							String id=(String)session.getAttribute("id");
+							int k=dao.diaryCheck(id, year, month, i);
+							System.out.println("i="+i+","+k);
 					%>
 							<%
 								if(day<=i || tMonth!=month || tYear!=year)
@@ -142,6 +147,17 @@ function change()
 							%>
 									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>>
 										<a href="input.jsp?year=<%=year%>&month=<%=month%>&day=<%=i%>"><%=i %></a>
+										<%
+											if(k>0)
+											{
+										%>
+												<center>
+													<img src="memo.png" title="일정이 <%=k%>개 있습니다" 
+													style="width:35px;height:35px">
+												</center>
+										<%		
+											}
+										%>
 									</td>
 							<%
 								}
@@ -150,6 +166,17 @@ function change()
 							%>
 									<td width=100 height=100 valign=top <%=i==day?"class=danger":"" %>>
 										<%=i %>
+										<%
+											if(k>0)
+											{
+										%>
+												<center>
+													<img src="memo.png" title="일정이 <%=k%>개 있습니다"
+													style="width:35px;height:35px">
+												</center>
+										<%		
+											}
+										%>
 									</td>
 							<%		
 								}

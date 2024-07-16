@@ -138,6 +138,84 @@ public class DiaryService {
 		   	=> 경우의 수 여러개 => String
 	 */
 	// 2. 일정 관리 => 아이디 별로
+	// 2-1. 일정 등록
+	public void diaryInsert(DiaryVO vo)
+	{
+		try
+		{
+			getConnection();
+			String sql="INSERT INTO diary VALUES("
+					+ "diary_no_seq.nextval,?,?,?,?,?,?,SYSDATE)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getMsg());
+			ps.setInt(4, vo.getYear());
+			ps.setInt(5, vo.getMonth());
+			ps.setInt(6, vo.getDay());
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryInsert(DiaryVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
+	// 2-2. 일정 출력
+	// 2-3. 달력에 일정 표시
+	public int diaryCheck(String id,int year,int month,int day)
+	{
+		int bCheck=0;
+		try
+		{
+			getConnection();
+			String sql="SELECT COUNT(*) FROM diary "
+					+ "WHERE id=? AND year=? AND month=? AND day=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setInt(2, year);
+			ps.setInt(3, month);
+			ps.setInt(4, day);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			bCheck=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryCheck(String id,int year,int month,int day) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return bCheck;
+	}
+	// 2-4. 일정 수정
+	// 2-5. 일정 취소
 	// 3. 장바구니 => 세션 => 제공하는 메소드 정리
+	// 3-1. 상품 출력
+	// 3-2. 장바구니 등록 => 세션 처리
+	// 3-3. 장바구니 상품 취소 => 세션 처리
+	// 3-4. 구매 => 데이터베이스에 저장
+	
+	public void a()
+	{
+		try
+		{
+			getConnection();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryInsert(DiaryVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
 	
 }
