@@ -319,20 +319,4 @@ public class DiaryService {
 	// 3-3. 장바구니 상품 취소 => 세션 처리
 	// 3-4. 구매 => 데이터베이스에 저장
 	
-	public void a()
-	{
-		try
-		{
-			getConnection();
-		}catch(Exception ex)
-		{
-			System.out.println("=== diaryInsert(DiaryVO vo) 오류 발생 ===");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			disConnection();
-		}
-	}
-	
 }
