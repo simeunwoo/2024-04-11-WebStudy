@@ -165,6 +165,48 @@ public class DiaryService {
 		}
 	}
 	// 2-2. 일정 출력
+	public List<DiaryVO> diaryListData(DiaryVO vo)
+	{
+		List<DiaryVO> list=new ArrayList<DiaryVO>();
+		try
+		{
+			getConnection();
+			String sql="SELECT no,subject,TO_CHAR(regdate,'YYYY-MM-DD'),msg,year,month,day "
+					+ "FROM diary "
+					+ "WHERE id=? AND year=? AND month=? AND day=? "
+					+ "ORDER BY no DESC";
+			// INDEX => 검색이 많은 경우, 데이터가 많은 경우
+			// => 수정, 삭제, 추가가 많은 경우에는 INDEX를 계속 rebuild를 하기 때문에 속도가 느려진다
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ps.setInt(2, vo.getYear());
+			ps.setInt(3, vo.getMonth());
+			ps.setInt(4, vo.getDay());
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				DiaryVO dvo=new DiaryVO();
+				dvo.setNo(rs.getInt(1));
+				dvo.setSubject(rs.getString(2));
+				dvo.setDbday(rs.getString(3));
+				dvo.setMsg(rs.getString(4));
+				dvo.setYear(rs.getInt(5));
+				dvo.setMonth(rs.getInt(6));
+				dvo.setDay(rs.getInt(7));
+				list.add(dvo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryListData(DiaryVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection(); // 반환 (재사용) => Connection을 관리하기 편리, 일정 개수 유지
+		}
+		return list;
+	}
 	// 2-3. 달력에 일정 표시
 	public int diaryCheck(String id,int year,int month,int day)
 	{
@@ -195,7 +237,82 @@ public class DiaryService {
 		return bCheck;
 	}
 	// 2-4. 일정 수정
+	public DiaryVO diaryUpdateData(int no)
+	{
+		DiaryVO vo=new DiaryVO();
+		try
+		{
+			getConnection();
+			String sql="SELECT no,subject,msg,year,month,day "
+					+ "FROM diary "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setSubject(rs.getString(2));
+			vo.setMsg(rs.getString(3));
+			vo.setYear(rs.getInt(4));
+			vo.setMonth(rs.getInt(5));
+			vo.setDay(rs.getInt(6));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryUpdateData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
+	}
+	
+	public void diaryUpdate(DiaryVO vo)
+	{
+		try
+		{
+			getConnection();
+			String sql="UPDATE diary SET "
+					+ "subject=?,msg=?,year=?,month=?,day=?,regdate=SYSDATE "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getSubject());
+			ps.setString(2, vo.getMsg());
+			ps.setInt(3, vo.getYear());
+			ps.setInt(4, vo.getMonth());
+			ps.setInt(5, vo.getDay());
+			ps.setInt(6, vo.getNo());
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryUpdate(DiaryVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
 	// 2-5. 일정 취소
+	public void diaryDelete(int no)
+	{
+		try
+		{
+			getConnection();
+			String sql="DELETE FROM diary WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=== diaryDelete(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
 	// 3. 장바구니 => 세션 => 제공하는 메소드 정리
 	// 3-1. 상품 출력
 	// 3-2. 장바구니 등록 => 세션 처리
