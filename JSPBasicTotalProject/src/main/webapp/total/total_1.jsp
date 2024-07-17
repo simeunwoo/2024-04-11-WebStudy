@@ -16,7 +16,7 @@
 			HttpSession session=null;
 			ServletConetxt application;
 			ServletConfig config;
-			JspWriter out=nulll
+			JspWriter out=null;
 			Object page=this;
 			============================ JSP의 소스 코딩 (내장 객체 관련)
 			<% %> => out.write(HTML)
