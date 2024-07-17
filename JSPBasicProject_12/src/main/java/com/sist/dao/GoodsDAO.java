@@ -84,6 +84,30 @@ public class GoodsDAO {
 		return list;
 	}
 	
+	public int goodsTotalPage()
+	{
+		int total=0;
+		try
+		{
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/12.0) FROM goods_all";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== goodsTotalPage() 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return total;
+	}
+	
 	public void a()
 	{
 		try
