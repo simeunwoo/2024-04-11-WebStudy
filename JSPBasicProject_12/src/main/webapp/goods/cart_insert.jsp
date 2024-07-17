@@ -30,7 +30,7 @@
 		if(cvo.getNo()==vo.getNo())
 		{
 			int acc=cvo.getAccount()+vo.getAccount();
-			vo.setAccount(acc); // 수량 증가
+			cvo.setAccount(acc); // 수량 증가
 			
 			bCheck=true;
 			break;

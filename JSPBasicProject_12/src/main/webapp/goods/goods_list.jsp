@@ -44,7 +44,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<a href="#" class="btn btn-sm btn-danger">장바구니 목록 보기</a>
+			<a href="cart_list.jsp" class="btn btn-sm btn-danger">장바구니 목록 보기</a>
 		</div>
 		<div style="height:20px"></div>
 		<div class="row">
