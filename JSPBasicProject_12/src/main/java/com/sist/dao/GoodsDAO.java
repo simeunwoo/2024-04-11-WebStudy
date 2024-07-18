@@ -108,19 +108,4 @@ public class GoodsDAO {
 		return total;
 	}
 	
-	public void a()
-	{
-		try
-		{
-			getConnection();
-		}catch(Exception ex)
-		{
-			System.out.println("=== diaryInsert(DiaryVO vo) 오류 발생 ===");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			disConnection();
-		}
-	}
 }
