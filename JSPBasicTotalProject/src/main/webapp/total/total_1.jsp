@@ -58,7 +58,30 @@
 	
 	JSP 액션 태그
 	
-	데이터베이스 연동  
+	데이터베이스 연동
+		
+		=> Oracle / MySQL, MariaDB
+		JDBC => DBCP => ORM(MyBatis/JPA:Dataset)
+		        ====
+		        
+	1. 드라이버 등록
+	2. 오라클 연결
+	3. SQL 문장 생성 => SQL 문장만 작성 => 자동 처리
+	4. 오라클로 SQL 문장 전송
+	5. SQL 문장 실행 요청 => 결과값
+	6. 오라클 연결 해제
+	======================================
+	DBCP : 데이터베이스 연결에 소모되는 시간을 줄인다
+		Connection의 객체 생성 개수를 조절
+		=> 미리 연결된 Connection을 POOL 안에 저장
+		   ====== 톰캣 => 톰캣에서 읽어가는 파일에 등록 => server.xml, web.xml
+		=> POOL 안에서 Connection의 주소를 얻어 온다
+		=> Connection 사용
+		=> POOL 안으로 반환
+		=> 웹 사이트 개발의 기본
+		=> MyBatis / JPA는 기본 설정
+	====================================== (12장, 13~19장) : 예제
+	(20장)
 --%>
 <!DOCTYPE html>
 <html>
