@@ -65,7 +65,7 @@ public class FoodDAO {
 			// SQL 문장을 오라클에 전송
 			ps=conn.prepareStatement(sql);
 			// ?에 값을 채운다
-			int rowSize=10;
+			int rowSize=12;
 			int start=(rowSize*page)-(rowSize-1);
 			int end=rowSize*page;
 			ps.setInt(1, start);
@@ -78,7 +78,7 @@ public class FoodDAO {
 				FoodVO vo=new FoodVO();
 				vo.setFno(rs.getInt(1));
 				vo.setName(rs.getString(2));
-				vo.setPoster(rs.getString(3));
+				vo.setPoster(rs.getString(3).replace("https", "http"));
 				list.add(vo);
 			}
 			rs.close();
@@ -88,5 +88,29 @@ public class FoodDAO {
 			ex.printStackTrace();
 		}
 		return list;
+	}
+	
+	public int foodTotalPage()
+	{
+		int total=0;
+		try
+		{
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/12.0) FROM food_house";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodTotalPage() 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return total;
 	}
 }
