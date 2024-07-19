@@ -44,6 +44,13 @@ h3{
 		<div class="row">
 			<table class="table">
 				<tr>
+					<td>
+						<a href="insert.jsp" class="btn btn-sm btn-warning">새글</a>
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr>
 					<th width="10%" class="text-center">번호</th>
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">이름</th>
@@ -53,7 +60,11 @@ h3{
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td width="10%" class="text-center">${vo.no }</td>
-						<td width="45%">${vo.subject }</td>
+						<td width="45%">${vo.subject }
+							<c:if test="${today==vo.dbday }">
+								<sup><img src="new.gif"></sup>
+							</c:if>
+						</td>
 						<td width="15%" class="text-center">${vo.name }</td>
 						<td width="20%" class="text-center">${vo.dbday }</td>
 						<td width="10%" class="text-center">${vo.hit }</td>

@@ -51,5 +51,7 @@ public class BoardModel {
 		request.setAttribute("list", list);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("curpage", curpage);
+		// 오늘 날짜 전송
+		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 	}
 }
