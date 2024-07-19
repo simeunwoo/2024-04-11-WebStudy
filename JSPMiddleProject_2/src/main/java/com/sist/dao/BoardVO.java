@@ -6,7 +6,7 @@ import lombok.Data;
 // => JSP(Bean), MyBatis(DTO), Spring(VO)
 // => 데이터 보호 : 자바(캡슐화) => 데이터는 메모리에 저장 => 읽기/쓰기 => 메소드 호출
 // => 시큐어 코딩 => Lombok
-/*
+/* 
  NO                                        NOT NULL NUMBER
  NAME                                      NOT NULL VARCHAR2(51)
  SUBJECT                                   NOT NULL VARCHAR2(4000)

@@ -40,7 +40,7 @@ h3{
 </head>
 <body>
 	<div class="container">
-		<h3>자유 게시판</h3>
+		<h3>자유 게시판</h3> 
 		<div class="row">
 			<table class="table">
 				<tr>
