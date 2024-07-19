@@ -78,7 +78,7 @@ public class BoardDAO {
 			ps.setInt(1, start);
 			ps.setInt(2, end);
 			// 실행 결과를 가지고 온다
-			ResultSet rs=ps.executeQuery();
+			ResultSet rs=ps.executeQuery(); 
 			// List에 첨부
 			while(rs.next())
 			{
