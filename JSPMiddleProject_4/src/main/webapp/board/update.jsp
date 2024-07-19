@@ -23,7 +23,7 @@ h3{
 	<div class="container">
 		<h3>수정하기</h3>
 		<div class="row">
-		<form method="post" action="update_ok.jsp">
+		<form method="post" action="update_ok.do">
 			<table class="table">
 				<tr>
 					<th width="20%" class="text-right">이름</th>

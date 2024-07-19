@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.dao.BoardDAO;
 import com.sist.dao.BoardVO;
 
-public class BoardInsertOkModel {
+public class BoardInsertOkModel implements Model {
 
 	public String execute(HttpServletRequest request)
 	{

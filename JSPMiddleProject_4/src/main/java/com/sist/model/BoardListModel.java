@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.sist.dao.BoardDAO;
 import com.sist.dao.BoardVO;
 
-public class BoardListModel {
+public class BoardListModel implements Model {
 
 	public String execute(HttpServletRequest request)
 	{

@@ -23,7 +23,7 @@ h3{
 	<div class="container">
 		<h3>삭제하기</h3>
 		<div class="row">
-		<form method="post" action="delete_ok.jsp">
+		<form method="post" action="delete_ok.do">
 			<table class="table">
 				<tr>
 					<td class="text-center">
