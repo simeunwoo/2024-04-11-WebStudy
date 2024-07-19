@@ -2,6 +2,7 @@ package com.sist.model;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.sist.dao.*;
 import java.text.*;
@@ -53,5 +54,33 @@ public class BoardModel {
 		request.setAttribute("curpage", curpage);
 		// 오늘 날짜 전송
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+	}
+	// 글 쓰기 처리
+	public void boardInsertOk(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		
+		BoardDAO dao=BoardDAO.newInstance();
+		dao.boardInsert(vo);
+		
+		// 화면 이동
+		try
+		{
+			response.sendRedirect("list.jsp");
+		}catch(Exception ex) {}
 	}
 }
