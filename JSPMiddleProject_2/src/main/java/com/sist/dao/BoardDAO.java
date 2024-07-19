@@ -188,6 +188,111 @@ public class BoardDAO {
 		}
 	}
 	// 4. 수정
+	public BoardVO boardUpdateData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		try
+		{
+			getConnection();
+			String sql="SELECT no,name,subject,content "
+					+ "FROM board "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardUpdateData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
+	}
+	
+	public boolean boardUpdate(BoardVO vo)
+	{
+		boolean bCheck=false;
+		try
+		{
+			getConnection();
+			// 비밀 번호 확인
+			String sql="SELECT pwd FROM board "
+					+ "WHERE no="+vo.getNo();
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd()))
+			{
+				bCheck=true;
+				// 수정
+				sql="UPDATE board SET "
+						+ "name=?,subject=?,content=? "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSubject());
+				ps.setString(3, vo.getContent());
+				ps.setInt(4, vo.getNo());
+				ps.executeUpdate();
+			}
+			else
+			{
+				bCheck=false;
+			}
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardUpdate(BoardVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return bCheck;
+	}
 	// 5. 삭제
+	public boolean boardDelete(int no,String pwd)
+	{
+		boolean bCheck=false;
+		try
+		{
+			getConnection();
+			// 비밀 번호 확인
+			String sql="SELECT pwd FROM board WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(pwd))
+			{
+				bCheck=true;
+				sql="DELETE FROM board WHERE no="+no;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+			}
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardDelete(int no,String pwd) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return bCheck;
+	}
 	// 6. => 답변
 }

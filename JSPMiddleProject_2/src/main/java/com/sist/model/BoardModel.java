@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sist.dao.*;
+
+import java.io.PrintWriter;
 import java.text.*;
 // 요청 처리 후에 결과값을 JSP로 전송 : Model
 // 오라클 연결 / 데이터를 모은다 / 전송
@@ -91,5 +93,82 @@ public class BoardModel {
 		BoardVO vo=dao.boardDetailData(Integer.parseInt(no));
 		
 		request.setAttribute("vo", vo);
+	}
+	// 수정하기
+	public void boardUpdateData(HttpServletRequest request)
+	{
+		// update.jsp?no=1
+		String no=request.getParameter("no");
+		BoardDAO dao=BoardDAO.newInstance();
+		BoardVO vo=dao.boardUpdateData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+	}
+	
+	public void boardUpdateOk(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
+		String no=request.getParameter("no");
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		vo.setNo(Integer.parseInt(no));
+		
+		BoardDAO dao=BoardDAO.newInstance();
+		boolean bCheck=dao.boardUpdate(vo);
+		
+		try
+		{
+			if(bCheck==true)
+			{
+				// 화면 이동
+				response.sendRedirect("detail.jsp?=no="+no);
+			}
+			else
+			{
+				// HTML 전송
+				PrintWriter out=response.getWriter();
+				out.write("<script>");
+				out.write("alert(\"비밀번호가 틀립니다\");");
+				out.write("history.back();");
+				out.write("</script>");
+			}
+		}catch(Exception ex) {}
+	}
+	
+	public void boardDeleteOk(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		
+		BoardDAO dao=BoardDAO.newInstance();
+		boolean bCheck=dao.boardDelete(Integer.parseInt(no), pwd);
+		
+		try
+		{
+			if(bCheck==true)
+			{
+				response.sendRedirect("list.jsp");
+			}
+			else
+			{
+				PrintWriter out=response.getWriter();
+				out.write("<script>");
+				out.write("alert(\"비밀번호가 틀립니다\");");
+				out.write("history.back();");
+				out.write("</script>");
+			}
+		}catch(Exception ex) {}
 	}
 }
