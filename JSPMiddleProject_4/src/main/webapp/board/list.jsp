@@ -13,7 +13,7 @@
 }
 .row{
 	margin: 0px auto;
-	width: 600px;
+	width: 800px;
 }
 h3{
 	text-align: center;
@@ -27,7 +27,7 @@ h3{
 			<table class="table">
 				<tr>
 					<td>
-						<a href="insert.jsp" class="btn btn-sm btn-warning">새글</a>
+						<a href="insert.do" class="btn btn-sm btn-warning">새글</a>
 					</td>
 				</tr>
 			</table>
@@ -42,7 +42,7 @@ h3{
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td width="10%" class="text-center">${vo.no }</td>
-						<td width="45%"><a href="detail.jsp?no=${vo.no }">${vo.subject }
+						<td width="45%"><a href="detail.do?no=${vo.no }">${vo.subject }
 							<c:if test="${today==vo.dbday }">
 								<sup><img src="new.gif"></sup>
 							</c:if>
@@ -54,9 +54,9 @@ h3{
 				</c:forEach>
 				<tr>
 					<td colspan="5" class="text-center">
-						<a href="list.jsp?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-success">이전</a>
+						<a href="list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-success">이전</a>
 							${curpage } page / ${totalpage } pages
-						<a href="list.jsp?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-info">다음</a>
+						<a href="list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-info">다음</a>
 					</td>
 				</tr>
 			</table>
