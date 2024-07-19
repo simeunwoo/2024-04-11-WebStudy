@@ -35,9 +35,15 @@ h3{
 				</td>
 			</tr>
 			<tr>
-				<th width="20%" class="text-right">이름</th>
+				<th width="20%" class="text-right">내용</th>
 				<td width="80%">
-					<input type="text" name="name" size="20" class="input-sm">
+					<textarea rows="10" cols="52" name="content"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th width="20%" class="text-right">비밀 번호</th>
+				<td width="80%">
+					<input type="password" name="pwd" size="10" class="input-sm">
 				</td>
 			</tr>
 		</table>
