@@ -83,4 +83,13 @@ public class BoardModel {
 			response.sendRedirect("list.jsp");
 		}catch(Exception ex) {}
 	}
+	// 상세 보기
+	public void boardDetailData(HttpServletRequest request)
+	{
+		String no=request.getParameter("no");
+		BoardDAO dao=BoardDAO.newInstance();
+		BoardVO vo=dao.boardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+	}
 }

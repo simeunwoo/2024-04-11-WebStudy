@@ -60,7 +60,7 @@ h3{
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td width="10%" class="text-center">${vo.no }</td>
-						<td width="45%">${vo.subject }
+						<td width="45%"><a href="detail.jsp?no=${vo.no }">${vo.subject }
 							<c:if test="${today==vo.dbday }">
 								<sup><img src="new.gif"></sup>
 							</c:if>

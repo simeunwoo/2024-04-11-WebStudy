@@ -127,6 +127,42 @@ public class BoardDAO {
 		return total;
 	}
 	// 2. 상세 보기
+	public BoardVO boardDetailData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		try
+		{
+			getConnection();
+			String sql="UPDATE board SET "
+					+ "hit=hit+1 "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			// 실제 데이터 읽기
+			sql="SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+					+ "FROM board "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setDbday(rs.getString(5));
+			vo.setHit(rs.getInt(6));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardDetailData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
+	}
 	// 3. 추가
 	public void boardInsert(BoardVO vo)
 	{
