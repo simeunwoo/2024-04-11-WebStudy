@@ -24,7 +24,9 @@ public class Controller extends HttpServlet {
 		clsMap.put("board/insert.do", new BoardInsertModel());
 		clsMap.put("board/insert_ok.do", new BoardInsertOkModel());
 		clsMap.put("board/update.do", new BoardUpdateModel());
+		clsMap.put("board/update_ok.do", new BoardUpdateOkModel());
 		clsMap.put("board/delete.do", new BoardDeleteModel());
+		clsMap.put("board/delete_ok.do", new BoardDeleteOkModel());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
