@@ -18,12 +18,16 @@ public class Controller extends HttpServlet {
 	
 	private String[] strCls= {
 		"com.sist.model.ListModel",
-		"com.sist.model.InsertModel"
+		"com.sist.model.InsertModel",
+		"com.sist.model.InsertOkModel",
+		"com.sist.model.DetailModel"
 	};
 	
 	private String[] strCmd= {
 		"list.do",
-		"insert.do"
+		"insert.do",
+		"insert_ok.do",
+		"detail.do"
 	};
 	
 	private Map clsMap=new HashMap();
@@ -56,10 +60,28 @@ public class Controller extends HttpServlet {
 		// => 요청 처리
 		String jsp=model.execute(request);
 		
-		// 3. JSP를 찾는다
-		// => JSP에 request를 전송
-		RequestDispatcher rd=request.getRequestDispatcher(jsp);
-		rd.forward(request, response);
+		// redirect:list.do
+		if(jsp.startsWith("redirect"))
+		{
+			String s=jsp.substring(jsp.indexOf(":")+1);
+			response.sendRedirect(s);
+			
+			// _ok => sendRedirect / _ok가 아니면 => forward
+			// => _ok는 화면 출력 부분이 아니기 때문 (_ok : 요청 처리 (데이터베이스 연동))
+			// 화면을 다른 jsp로 이동
+			/*
+			 * 	insert.jsp => insert_ok.jsp => list.jsp
+			 * 	update.jsp => update_ok.jsp => detail.jsp
+			 * 	delete.jsp => delete_ok.jsp => list.jsp
+			 */
+		}
+		else
+		{
+			// 3. JSP를 찾는다
+			// => JSP에 request를 전송 (JSP 사용 => JSP를 찾는다)
+			RequestDispatcher rd=request.getRequestDispatcher(jsp);
+			rd.forward(request, response);
+		}
 	}
 
 }

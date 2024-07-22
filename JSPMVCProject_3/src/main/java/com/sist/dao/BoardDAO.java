@@ -107,4 +107,30 @@ public class BoardDAO {
 		}
 		return total;
 	}
+	// 글 쓰기
+	public void boardInsert(BoardVO vo)
+	{
+		try
+		{
+			getConnection();
+			String sql="INSERT INTO replyboard(no,name,subject,content,pwd,group_id) "
+					+ "VALUES(rb_no_seq.nextval,?,?,?,?,"
+					+ "(SELECT NVL(MAX(group_id)+1,1) FROM replyboard))";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardInsert(BoardVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
+	// 관련된 기능을 한개의 클래스로 => 메소드화 => 응집성
 }

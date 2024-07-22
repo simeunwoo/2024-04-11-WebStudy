@@ -50,7 +50,16 @@ h3{
 								</c:forEach>
 								<img src="re.icon.png">
 							</c:if>
-							${vo.subject }
+							<%--
+								jsp 호출 => jsp가 화면에 출력, 그러나 데이터 없이 출력
+								do 호출 => Controller에서 출력에 필요한 데이터를 jsp로 전송
+								====== 패턴을 제작 (Controller를 호출 시에는 .do를 사용한다)
+								
+								.jsp
+								.do
+								==============> VueJS ~> Vuex / ReactJS ~> Redux
+							--%>
+							<a href="detail.do?no=${vo.no }">${vo.subject }</a>
 							&nbsp;
 							<c:if test="${vo.dbday==today }">
 								<sup><img src="new.gif"></sup>

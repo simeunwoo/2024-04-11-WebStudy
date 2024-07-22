@@ -23,7 +23,7 @@ h3{
 	<div class="container">
 		<h3>글쓰기</h3>
 		<div class="row">
-		<form method="post" action="insert_ok.jsp">
+		<form method="post" action="insert_ok.do">
 			<table class="table">
 				<tr>
 					<th width="20%" class="text-right">이름</th>
