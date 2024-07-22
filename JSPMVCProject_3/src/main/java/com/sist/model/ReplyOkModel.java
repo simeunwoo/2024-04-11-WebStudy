@@ -31,7 +31,7 @@ public class ReplyOkModel implements Model {
 		// BoardDAO로 전송 => 오라클 연결
 		BoardDAO dao=BoardDAO.newInstance();
 		// 답변 올리기
-		
+		dao.boardReplyInsert(Integer.parseInt(pno), vo);
 		
 		return "redirect:list.do";
 	}

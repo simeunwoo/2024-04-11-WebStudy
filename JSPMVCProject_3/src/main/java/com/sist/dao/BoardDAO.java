@@ -171,6 +171,17 @@ public class BoardDAO {
 		return vo;
 	}
 	// 답변 => 트랜잭션(Transaction) : 금융권, 공기업 ... => 일괄 처리
+	// => 최신 답변이 가장 위에 배치
+	// => 같은 값을 가지고 있는 경우 => 먼저 insert된 내용 => 먼저 출력한다
+	/*
+	 *                   no   group_id  group_step  group_tab   root   depth
+	 *  AAAAA            1        1          0          0        0       2
+	 *    => BBBBB       2        1          1=>2       1        1       1
+	 *      => CCCCC     3        1          2=>3       2        2       0
+	 *    => FFFFF       6        1          1          1        1       0
+	 *  DDDDD            4        2          0          0        0       1
+	 *    => EEEEE       5        2          1          1        4       0
+	 */
 	public void boardReplyInsert(int pno,BoardVO vo)
 	{
 		try
@@ -179,11 +190,49 @@ public class BoardDAO {
 			conn.setAutoCommit(false);
 			
 			// 답변 대상의 group_id, group_step, group_tab : SELECT
-			// group_step => 1씩 증가 : UPDATE
-			// insert : INSERT
-			// depth 증가 : UPDATE
+			String sql="SELECT group_id,group_step,group_tab "
+					+ "FROM replyboard "
+					+ "WHERE no="+pno;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int gi=rs.getInt(1);
+			int gs=rs.getInt(2);
+			int gt=rs.getInt(3);
+			rs.close();
 			
-			// 정상 수행일 경우
+			// *** group_step => 1씩 증가 : UPDATE (핵심 SQL 문장 : 대댓글 관련)
+			sql="UPDATE replyboard SET "
+					+ "group_step=group_step+1 "
+					+ "WHERE group_id=? AND group_step>?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, gi);
+			ps.setInt(2, gs);
+			ps.executeUpdate();
+			
+			// insert : INSERT
+			sql="INSERT INTO replyboard(no,name,subject,content,pwd,"
+					+ "group_id,group_step,group_tab,root) "
+					+ "VALUES(rb_no_seq.nextval,?,?,?,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.setInt(5, gi);
+			ps.setInt(6, gs+1);
+			ps.setInt(7, gt+1);
+			ps.setInt(8, pno);
+			ps.executeUpdate();
+			
+			// depth 증가 : UPDATE
+			sql="UPDATE replyboard SET "
+					+ "depth=depth+1 "
+					+ "WHERE no="+pno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			// 정상 수행일 경우 => SQL 문장이 전부 맞는 경우
 			conn.commit();
 		}catch(Exception ex)
 		{
@@ -191,7 +240,7 @@ public class BoardDAO {
 			
 			try
 			{
-				// 비정상 수행일 경우 => SQL 문장이 틀린 경우
+				// 비정상 수행일 경우 => SQL 문장이 한개라도 틀린 경우
 				conn.rollback();
 			}catch(Exception e) {}
 			
@@ -205,5 +254,34 @@ public class BoardDAO {
 				disConnection();
 			}catch(Exception ex) {}
 		}
+	}
+	
+	public BoardVO boardUpdateData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		try
+		{
+			getConnection();
+			String sql="SELECT no,name,subject,content "
+					+ "FROM replyboard "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardUpdateData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
 	}
 }

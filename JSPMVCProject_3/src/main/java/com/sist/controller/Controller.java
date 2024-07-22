@@ -23,6 +23,7 @@ public class Controller extends HttpServlet {
 		"com.sist.model.DetailModel",
 		"com.sist.model.ReplyModel",
 		"com.sist.model.ReplyOkModel",
+		"com.sist.model.UpdateModel",
 	};
 	
 	private String[] strCmd= {
@@ -31,7 +32,8 @@ public class Controller extends HttpServlet {
 		"insert_ok.do",
 		"detail.do",
 		"reply.do",
-		"reply_ok.do"
+		"reply_ok.do",
+		"update.do"
 	};
 	
 	private Map clsMap=new HashMap();
@@ -54,7 +56,7 @@ public class Controller extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 1. 사용자의 요청 정보를 읽어 온다 (URI)
-		String cmd=request.getRequestURI();
+		String cmd=request.getRequestURI(); // ? 앞까지가 URI (.do까지)
 	//	System.out.println("cmd="+cmd);
 		cmd=cmd.substring(cmd.lastIndexOf("/")+1);
 	//	System.out.println("cmd2="+cmd);
