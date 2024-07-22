@@ -17,11 +17,13 @@ public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private String[] strCls= {
-		"com.sist.model.ListModel"
+		"com.sist.model.ListModel",
+		"com.sist.model.InsertModel"
 	};
 	
 	private String[] strCmd= {
-		"list.do"
+		"list.do",
+		"insert.do"
 	};
 	
 	private Map clsMap=new HashMap();
