@@ -20,14 +20,18 @@ public class Controller extends HttpServlet {
 		"com.sist.model.ListModel",
 		"com.sist.model.InsertModel",
 		"com.sist.model.InsertOkModel",
-		"com.sist.model.DetailModel"
+		"com.sist.model.DetailModel",
+		"com.sist.model.ReplyModel",
+		"com.sist.model.ReplyOkModel",
 	};
 	
 	private String[] strCmd= {
 		"list.do",
 		"insert.do",
 		"insert_ok.do",
-		"detail.do"
+		"detail.do",
+		"reply.do",
+		"reply_ok.do"
 	};
 	
 	private Map clsMap=new HashMap();

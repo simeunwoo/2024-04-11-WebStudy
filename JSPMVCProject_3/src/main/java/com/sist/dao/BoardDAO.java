@@ -133,4 +133,77 @@ public class BoardDAO {
 		}
 	}
 	// 관련된 기능을 한개의 클래스로 => 메소드화 => 응집성
+	// DML이 여러개일 경우 => Transaction 활용 (정상 수행 : Commit / 비정상수행 : Rollback)
+	public BoardVO boardDetailData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		try
+		{
+			getConnection();
+			String sql="UPDATE replyboard SET "
+					+ "hit=hit+1 "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			sql="SELECT no,name,subject,content,hit,TO_CHAR(regdate,'YYYY-MM-DD') "
+					+ "FROM replyboard "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setHit(rs.getInt(5));
+			vo.setDbday(rs.getString(6));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardDetailData(int no) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return vo;
+	}
+	// 답변 => 트랜잭션(Transaction) : 금융권, 공기업 ... => 일괄 처리
+	public void boardReplyInsert(int pno,BoardVO vo)
+	{
+		try
+		{
+			getConnection();
+			conn.setAutoCommit(false);
+			
+			// 답변 대상의 group_id, group_step, group_tab : SELECT
+			// group_step => 1씩 증가 : UPDATE
+			// insert : INSERT
+			// depth 증가 : UPDATE
+			
+			// 정상 수행일 경우
+			conn.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardReplyInsert(int pno,BoardVO vo) 오류 발생 ===");
+			
+			try
+			{
+				// 비정상 수행일 경우 => SQL 문장이 틀린 경우
+				conn.rollback();
+			}catch(Exception e) {}
+			
+			ex.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				conn.setAutoCommit(true);
+				disConnection();
+			}catch(Exception ex) {}
+		}
+	}
 }
