@@ -58,4 +58,5 @@
 	<bean id="insert.do" class="com.sist.model.InsertModel"/>
 	<bean id="update.do" class="com.sist.model.UpdateModel"/>
 	<bean id="delete.do" class="com.sist.model.DeleteModel"/>
+	<bean id="find.do" class="com.sist.model.FindModel"/>
 </beans>

@@ -28,6 +28,7 @@ public class Controller extends HttpServlet {
 		clsMap.put("insert.do", new InsertModel());
 		clsMap.put("update.do", new UpdateModel());
 		clsMap.put("delete.do", new DeleteModel());
+		clsMap.put("find.do", new FindModel());
 		*/
 		try
 		{
@@ -57,7 +58,12 @@ public class Controller extends HttpServlet {
 				insert.do:com.sist.model.InsertModel
 				update.do:com.sist.model.UpdateModel
 				delete.do:com.sist.model.DeleteModel
+				find.do:com.sist.model.FindModel
 				 */
+				// 메모리 할당
+				Class clsName=Class.forName(cls);
+				Object obj=clsName.getDeclaredConstructor().newInstance();
+				clsMap.put(id, obj);
 			}
 		}catch(Exception ex) {}
 	}
