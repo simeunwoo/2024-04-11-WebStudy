@@ -1,6 +1,9 @@
 package com.sist.controller;
 
 import java.io.*;
+import java.lang.reflect.Method;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import java.net.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
 // DispatcherServlet => 스프링에서 제공하는 컨트롤러 이름
 /*
  * 	JSP       DispatcherServlet      Model(여러개)
@@ -73,11 +78,81 @@ public class DispatcherServlet extends HttpServlet {
 			String path=file.getPath();
 			path=path.replace("\\", File.separator);
 			// 리눅스, 맥 => /, 윈도우 \\ => 운영체제에 따라 자동 변경
+			path=path.substring(0,path.lastIndexOf(File.separator));
+			path=path+file.separator+"application.xml";
+			// XML 파싱
+			DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+			// MyBatis => XML, Annotation => SQL 저장
+			DocumentBuilder db=dbf.newDocumentBuilder(); // 파서기 => XML의 데이터 추출
+			// 파서된 데이터 저장
+			Document doc=db.parse(new File(path));
+			Element beans=doc.getDocumentElement(); // XML에서는 루트 (DB에서는 테이블)
+			// XML => 문서형 데이터베이스
+			/*
+			 * 	<beans> => Spring
+			 * 		<bean id="" class=""/>
+			 * 		<bean id="" class=""/>
+			 * 		<bean id="" class=""/>
+			 * 		<bean id="" class=""/>
+			 * 		<bean id="" class=""/>
+			 * 	</beans>
+			 */
+			NodeList list=beans.getElementsByTagName("bean");
+			for(int i=0;i<list.getLength();i++)
+			{
+				Element bean=(Element)list.item(i);
+				String id=bean.getAttribute("id");
+				String cls=bean.getAttribute("class");
+				System.out.println(id+":"+cls);
+				clsList.add(cls);
+			}
 		}catch(Exception ex) {}
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// 메소드를 찾아서 서비스 제공
+		String cmd=request.getRequestURI();
+		// /JSPMVCLastProject/food/food_list.do
+		cmd=cmd.substring(request.getContextPath().length()+1);
+		try
+		{
+			for(String cls:clsList)
+			{
+				Class clsName=Class.forName(cls);
+				Object obj=clsName.getDeclaredConstructor().newInstance();
+				// 선언된 모든 메소드를 가지고 온다
+				Method[] methods=clsName.getDeclaredMethods();
+				for(Method m:methods)
+				{
+					// System.out.println(m.getName());
+					RequestMapping rm=m.getAnnotation(RequestMapping.class);
+					if(rm.value().equals(cmd))
+					{
+						String jsp=(String)m.invoke(obj,request,response);
+						// 찾은 메소드를 호출한다
+						// invoke(부르다) => 메소드명을 몰라도 호출이 가능
+						if(jsp==null) // void => ajax(자바스크립트 연동)
+						{
+							return;
+						}
+						else if(jsp.startsWith("redirect"))
+						{
+							// sendRedirect()
+							jsp=jsp.substring(jsp.indexOf(":")+1);
+							response.sendRedirect(jsp);
+						}
+						else
+						{
+							// forward()
+							RequestDispatcher rd=request.getRequestDispatcher(jsp);
+							rd.forward(request, response);
+						}
+						return;
+					}
+				}
+			}
+		}catch(Exception ex) {}
 	}
 
 }
