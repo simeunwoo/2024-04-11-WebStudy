@@ -47,7 +47,7 @@
     <h2 class="sectiontitle">인기 맛집</h2>
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-      	<c:forEach var="vo" items="${vo.fList }">
+      	<c:forEach var="vo" items="${fList }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width:320px;height:185px">
             <figcaption><a href="#">${vo.name }</a></figcaption>
@@ -59,7 +59,7 @@
     <h2 class="sectiontitle">인기 명소</h2>
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-      	<c:forEach var="vo" items="${vo.sList }">
+      	<c:forEach var="vo" items="${sList }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width:320px;height:185px">
             <figcaption><a href="#">${vo.title }</a></figcaption>
@@ -71,7 +71,7 @@
     <h2 class="sectiontitle">인기 상품</h2>
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-      	<c:forEach var="vo" items="${vo.gList }">
+      	<c:forEach var="vo" items="${gList }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width:320px;height:185px">
             <figcaption style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><a href="#">${vo.name }</a></figcaption>
