@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="row">
-		<h3 class="text-center">HOME</h3>
-		<h4><a href="../food/detail.do">상세 보기</a></h4>
+	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container">
+		<jsp:include page="${main_jsp }"></jsp:include>
 	</div>
 </body>
 </html>

@@ -31,13 +31,9 @@
         </ul>
       </li>
       <li><a href="../goods/list.do">스토어</a></li>
-      <li><a href="#">뮤직</a></li>
+      <li><a href="../music/list.do">뮤직</a></li>
     </ul>
   </div>
 </nav>
-	<jsp:include page="header.jsp"></jsp:include>
-	<div class="container">
-		<jsp:include page="${main_jsp }"></jsp:include>
-	</div>
 </body>
 </html>
