@@ -10,7 +10,6 @@ import lombok.Data;
  POSTER                                    NOT NULL VARCHAR2(300)
  STATE                                              CHAR(12)
  IDCREMENT                                          NUMBER
- KEY                                                VARCHAR2(200)
  */
 /*
  * 	@RequestMapping() : GET/POST 동시 처리 => Spring 4
@@ -23,5 +22,5 @@ import lombok.Data;
 public class MusicVO {
 
 	private int mno,idcrement;
-	private String title,singer,album,poster,state,key;
+	private String title,singer,album,poster,state;
 }

@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div class="row">
-		<h3 class="text-center">HOME</h3>
-		<h4><a href="../food/detail.do">상세 보기</a></h4>
+		<h3>${vo.title }</h3>
+		<!-- <embed src="http://youtube.com/embed/${vo.key }" width="600" height="450"> -->
 	</div>
 </body>
 </html>
