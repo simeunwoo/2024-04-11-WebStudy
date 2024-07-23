@@ -9,7 +9,7 @@ public class FoodModel {
 	@RequestMapping("food/detail.do")
 	public String food_detail(HttpServletRequest request,HttpServletResponse response)
 	{
-		request.setAttribute("main_jsp", "../food/detail.jsp");
+		request.setAttribute("main_jsp", "../food/detail.jsp"); // include
 		return "../main/main.jsp";
 	}
 }
