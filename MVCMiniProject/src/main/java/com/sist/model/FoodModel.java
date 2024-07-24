@@ -1,6 +1,7 @@
 package com.sist.model;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +37,7 @@ public class FoodModel {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		// JSP에서 출력에 필요한 데이터 전송
-		request.setAttribute("list", list);
+		request.setAttribute("list", list); // List<FoodVO> list로부터
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);
@@ -45,10 +46,50 @@ public class FoodModel {
 		request.setAttribute("main_jsp", "../food/list.jsp");
 		return "../main/main.jsp"; // jsp 파일 지정 => include가 된 경우 : main.jsp로 이동
 	}
+	
+	@RequestMapping("food/before_detail.do")
+	public String food_before_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String fno=request.getParameter("fno");
+		// 1) Cookie 생성
+		Cookie cookie=new Cookie("food_"+fno,fno);
+		/*
+		 *	키가 중복되면 덮어 쓴다 => Map 방식
+		 *	쿠키의 단점 => 보얀 취약, 문자열만 저장 가능
+		 */
+		// 2) Cookie의 저장 기간
+		cookie.setMaxAge(60*60*24);
+		// 3) Cookie의 저장 위치
+		cookie.setPath("/");
+		// 4) response를 이용하여 브라우저로 전송
+		response.addCookie(cookie);
+		
+		return "redirect:../food/detail.do?fno="+fno;
+	}
 	// 2. 맛집 상세 보기
 	@RequestMapping("food/detail.do")
 	public String food_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		// food/detail.do?fno=1
+		// 사용자가 보내준 요청값을 받는다
+		String fno=request.getParameter("fno");
+		FoodDAO dao=FoodDAO.newInstance(); // Spring은 자체가 싱글턴
+		FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
+		
+		request.setAttribute("vo", vo); // FoodVO vo로부터
+		
+		// 명소 전송 => ex) 서울 용산구 이태원동 124-6 2층
+		String addr=vo.getAddress();
+		addr=addr.substring(addr.indexOf(" "));
+		System.out.println(addr);
+		String addr2=addr.trim();
+		addr2=addr2.substring(0,addr2.indexOf(" "));
+		System.out.println(addr2);
+		
+		List<LocationVO> sList=dao.foodLocationData(addr2);
+		
+		request.setAttribute("sList", sList);
+		
 		request.setAttribute("main_jsp", "../food/detail.jsp");
 		return "../main/main.jsp";
 	}

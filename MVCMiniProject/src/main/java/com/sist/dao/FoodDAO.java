@@ -125,4 +125,77 @@ public class FoodDAO {
 		}
 		return total;
 	}
+	// 상세 보기
+	/*
+	private int fno;
+	private String name,type,phone,address,theme,poster,content;
+	private double score;
+	 */
+	public FoodVO foodDetailData(int fno)
+	{
+		FoodVO vo=new FoodVO();
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT fno,name,type,phone,address,theme,poster,content,score "
+					+ "FROM food_house "
+					+ "WHERE fno="+fno;
+			ps=conn.prepareStatement(sql); // 오라클로 전송
+			ResultSet rs=ps.executeQuery(); // 실행 후에 결과값을 메모리에 저장
+			rs.next(); // 데이터가 있는 메모리 위치에 커서 이동
+			vo.setFno(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setType(rs.getString(3));
+			vo.setPhone(rs.getString(4));
+			vo.setAddress(rs.getString(5));
+			vo.setTheme(rs.getString(6));
+			vo.setPoster(rs.getString(7).replace("https", "http"));
+			vo.setContent(rs.getString(8));
+			vo.setScore(rs.getDouble(9));
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodDetailData(int fno) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn,ps);
+		}
+		return vo;
+	}
+	// seoul => 명소 => 6개
+	public List<LocationVO> foodLocationData(String addr)
+	{
+		List<LocationVO> list=new ArrayList<LocationVO>();
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT no,title,poster "
+					+ "FROM seoul_location "
+					+ "WHERE rownum<=6 AND "
+					+ "address LIKE '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				LocationVO vo=new LocationVO();
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodLocationData(String addr) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn,ps);
+		}
+		return list;
+	}
 }
