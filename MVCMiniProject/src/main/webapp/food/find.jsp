@@ -29,44 +29,32 @@
       <div id="gallery">
         <figure>
           <header class="heading">
-          	<form method="post" action="../food/find.do" class="inline">
-				<input type="text" name="fd" size="20" class="input-sm">
-				<input type="submit" value="검색" class="btn-sm btn-primary">
-			</form>
+          	<h3>${fd } 맛집은 총 <span style="color:orange">${count }</span>개 있습니다</h3>
 		  </header>
           <ul class="nospace clear">
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
+          	<c:forEach var="vo" items="${list }" varStatus="s">
+			    <li class="one_quarter ${s.index%4==0?'first':'' }">
+				    <a href="#">
+				    	<img src="${vo.poster }" title="${vo.address }">
+				    </a>
+			    </li>
+            </c:forEach>
           </ul>
-          <figcaption>Gallery Description Goes Here</figcaption>
         </figure>
       </div>
       <!-- ################################################################################################ --> 
       <!-- ################################################################################################ -->
       <nav class="pagination">
         <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
+        	<c:if test="${startPage>1 }">
+	          <li><a href="..food/find.do?page=${startPage-1 }&gu=${gu}">&laquo; Previous</a></li>
+	        </c:if>
+	        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+	          <li><a href="..food/find.do?page=${i }&gu=${gu}">${i }</a></li>
+	        </c:forEach>
+	        <c:if test="${endPage<totalpage }">
+	          <li><a href="..food/find.do?page=${endPage+1 }&gu=${gu}">Next &raquo;</a></li>
+        	</c:if>
         </ul>
       </nav>
       <!-- ################################################################################################ --> 

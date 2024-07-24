@@ -11,6 +11,11 @@ import com.sist.vo.*;
 // 맛집 관련된 모든 기능을 처리하는 클래스
 public class FoodModel {
 
+	private String[] guList = { "전체", "강서구", "양천구", "구로구", "마포구", "영등포구", "금천구",
+			"은평구", "서대문구", "동작구", "관악구", "종로구", "중구", "용산구", "서초구", "강북구",
+			"성북구", "도봉구", "동대문구", "성동구", "강남구", "노원구", "중랑구", "광진구", "송파구",
+			"강동구" };
+	
 	// 1. 목록 출력
 	@RequestMapping("food/list.do") // 어노테이션 : 밑에 있는 클래스, 변수, 메소드를 찾아주는 역할
 	public String food_list(HttpServletRequest request,HttpServletResponse response)
@@ -97,6 +102,36 @@ public class FoodModel {
 	@RequestMapping("food/find.do")
 	public String food_find(HttpServletRequest request,HttpServletResponse response)
 	{
+		String gu=request.getParameter("gu");
+		String page=request.getParameter("page");
+		if(gu==null)
+			gu="4";
+		if(page==null)
+			page="1";
+		
+		int curpage=Integer.parseInt(page);
+		FoodDAO dao=FoodDAO.newInstance();
+		List<FoodVO> list=dao.foodFindData(curpage,guList[Integer.parseInt(gu)]);
+		int totalpage=dao.foodFindTotalPage(guList[Integer.parseInt(gu)]);
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		int count=dao.foodFindCount(guList[Integer.parseInt(gu)]);
+		
+		request.setAttribute("list", list); // List<FoodVO> list로부터
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		request.setAttribute("gu", gu);
+		request.setAttribute("fd", guList[Integer.parseInt(gu)]);
+		
+		request.setAttribute("count", count);
+		
 		request.setAttribute("main_jsp", "../food/find.jsp");
 		return "../main/main.jsp";
 	}

@@ -206,4 +206,99 @@ public class FoodDAO {
 		}
 		return list;
 	}
+	
+	public List<FoodVO> foodFindData(int page,String addr)
+	{
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT fno,name,poster,address,num "
+					+ "FROM (SELECT fno,name,poster,address,rownum as num "
+					+ "FROM (SELECT fno,name,poster,address "
+					+ "FROM food_house "
+					+ "WHERE address LIKE '%'||?||'%')) "
+					+ "WHERE num BETWEEN ? AND ?";
+			ps=conn.prepareStatement(sql);
+			int start=(ROWSIZE*page)-(ROWSIZE-1);
+			int end=ROWSIZE*page;
+			ps.setString(1, addr);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				FoodVO vo=new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				vo.setAddress(rs.getString(4));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodFindData(int page,String addr) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn,ps);
+		}
+		return list;
+	}
+	
+	public int foodFindTotalPage(String addr)
+	{
+		int total=0;
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT CEIL(COUNT(*)/"+ROWSIZE+") FROM food_house "
+					+ "WHERE address LIKE '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
+			// selectOne()(MyBatis)
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodFindTotalPage(String addr) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn,ps);
+		}
+		return total;
+	}
+	
+	public int foodFindCount(String addr)
+	{
+		int total=0;
+		try
+		{
+			conn=dbConn.getConnection();
+			String sql="SELECT COUNT(*) FROM food_house "
+					+ "WHERE address LIKE '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
+			// selectOne()(MyBatis)
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== foodFindCount (String addr) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn,ps);
+		}
+		return total;
+	}
 }
