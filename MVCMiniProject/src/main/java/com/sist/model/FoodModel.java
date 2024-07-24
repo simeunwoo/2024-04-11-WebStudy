@@ -94,6 +94,7 @@ public class FoodModel {
 		List<FoodVO> sList=dao.foodLocationData(addr2);
 		
 		request.setAttribute("sList", sList);
+		request.setAttribute("addr", addr2);
 		
 		request.setAttribute("main_jsp", "../food/detail.jsp");
 		return "../main/main.jsp";
