@@ -86,7 +86,7 @@ public class FoodModel {
 		addr2=addr2.substring(0,addr2.indexOf(" "));
 		System.out.println(addr2);
 		
-		List<LocationVO> sList=dao.foodLocationData(addr2);
+		List<FoodVO> sList=dao.foodLocationData(addr2);
 		
 		request.setAttribute("sList", sList);
 		
@@ -94,6 +94,12 @@ public class FoodModel {
 		return "../main/main.jsp";
 	}
 	// 3. 맛집 검색
+	@RequestMapping("food/find.do")
+	public String food_find(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../food/find.jsp");
+		return "../main/main.jsp";
+	}
 	// 4. 맛집 예약
 	// 5. 맛집 추천
 }

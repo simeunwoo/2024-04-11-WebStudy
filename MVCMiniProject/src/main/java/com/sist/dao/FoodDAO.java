@@ -130,6 +130,7 @@ public class FoodDAO {
 	private int fno;
 	private String name,type,phone,address,theme,poster,content;
 	private double score;
+	private int hit,jjimcount,likecount;
 	 */
 	public FoodVO foodDetailData(int fno)
 	{
@@ -137,7 +138,13 @@ public class FoodDAO {
 		try
 		{
 			conn=dbConn.getConnection();
-			String sql="SELECT fno,name,type,phone,address,theme,poster,content,score "
+			String sql="UPDATE food_house SET "
+					+ "hit=hit+1 "
+					+ "WHERE fno="+fno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			sql="SELECT fno,name,type,phone,address,theme,poster,content,score "
 					+ "FROM food_house "
 					+ "WHERE fno="+fno;
 			ps=conn.prepareStatement(sql); // 오라클로 전송
@@ -164,15 +171,15 @@ public class FoodDAO {
 		}
 		return vo;
 	}
-	// seoul => 명소 => 6개
-	public List<LocationVO> foodLocationData(String addr)
+
+	public List<FoodVO> foodLocationData(String addr)
 	{
-		List<LocationVO> list=new ArrayList<LocationVO>();
+		List<FoodVO> list=new ArrayList<FoodVO>();
 		try
 		{
 			conn=dbConn.getConnection();
-			String sql="SELECT no,title,poster "
-					+ "FROM seoul_location "
+			String sql="SELECT fno,name,poster,address,rownum "
+					+ "FROM food_house "
 					+ "WHERE rownum<=6 AND "
 					+ "address LIKE '%'||?||'%'";
 			ps=conn.prepareStatement(sql);
@@ -180,10 +187,11 @@ public class FoodDAO {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				LocationVO vo=new LocationVO();
-				vo.setNo(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
+				FoodVO vo=new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setName(rs.getString(2));
 				vo.setPoster(rs.getString(3));
+				vo.setAddress(rs.getString(4));
 				list.add(vo);
 			}
 			rs.close();
