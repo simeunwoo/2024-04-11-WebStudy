@@ -49,8 +49,8 @@
     </div>
     <div class="fl_right">
       <ul class="inline">
-        <li><i class="fa fa-phone"></i><input type="text" class="input-sm" placeholder="아이디"></li>
-        <li><i class="fa fa-envelope-o"></i><input type="password" class="input-sm" placeholder="비밀번호"></li>
+        <li><i class="fa fa-user"></i><input type="text" class="input-sm" placeholder="아이디"></li>
+        <li><i class="fa fa-unlock-alt"></i><input type="password" class="input-sm" placeholder="비밀번호"></li>
       </ul>
     </div>
   </header>
@@ -77,7 +77,7 @@
       </li>
       <li><a class="drop" href="#">서울 여행</a>
         <ul>
-          <li><a href="pages/gallery.html">명소</a></li>
+          <li><a href="../seoul/list.do">명소</a></li>
           <li><a href="pages/full-width.html">자연 & 관광</a></li>
           <li><a href="pages/sidebar-left.html">쇼핑</a></li>
           <li><a href="pages/sidebar-left.html">호텔</a></li>

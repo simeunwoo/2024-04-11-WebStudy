@@ -45,7 +45,14 @@ public class FoodModel {
 		request.setAttribute("main_jsp", "../food/list.jsp");
 		return "../main/main.jsp"; // jsp 파일 지정 => include가 된 경우 : main.jsp로 이동
 	}
-	// 2. 맛집 검색
-	// 3. 맛집 예약
-	// 4. 맛집 추천
+	// 2. 맛집 상세 보기
+	@RequestMapping("food/detail.do")
+	public String food_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../food/detail.jsp");
+		return "../main/main.jsp";
+	}
+	// 3. 맛집 검색
+	// 4. 맛집 예약
+	// 5. 맛집 추천
 }
