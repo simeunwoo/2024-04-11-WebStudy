@@ -1,5 +1,6 @@
 package com.sist.model;
 import java.util.*;
+import java.io.PrintWriter;
 import java.text.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,6 +57,7 @@ public class BoardModel {
 	 * 	private BoardDAO dao;
 	 */
 	private BoardDAO dao=BoardDAO.newInstance();
+	// 전역 변수로 활용 => 코딩이 간편해진다
 
 	@RequestMapping("board/list.do")
 	// @RequestMapping() : 중복이 되면 오류 발생
@@ -145,5 +147,58 @@ public class BoardModel {
 		
 		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/update.do")
+	public String board_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		// board/update.do?no=${vo.no }
+		String no=request.getParameter("no");
+		BoardVO vo=dao.boardUpdateData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("main_jsp", "../board/update.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/update_ok.do")
+	public void board_update_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(request.getParameter("name"));
+		vo.setSubject(request.getParameter("subject"));
+		vo.setContent(request.getParameter("content"));
+		vo.setPwd(request.getParameter("pwd"));
+		
+		String no=request.getParameter("no");
+		vo.setNo(Integer.parseInt(no));
+		
+		boolean bCheck=dao.boardUpdate(vo);
+		
+		try
+		{
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			
+			if(bCheck==true) // 비밀 번호가 맞는 경우
+			{
+				out.write("<script>");
+				out.write("location.href=\"../board/detail.do?no="+no+"\"");
+				out.write("</script>");
+			}
+			else
+			{
+				out.write("<script>");
+				out.write("alert(\"비밀 번호 다시 쓰세요\");");
+				out.write("history.back();");
+				out.write("</script>");
+			}
+		}catch(Exception ex) {}
 	}
 }
