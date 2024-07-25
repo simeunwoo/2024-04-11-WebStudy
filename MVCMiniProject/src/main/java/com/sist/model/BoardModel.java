@@ -183,6 +183,7 @@ public class BoardModel {
 		
 		try
 		{
+			// Ajax 처리
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out=response.getWriter();
 			
@@ -192,7 +193,47 @@ public class BoardModel {
 				out.write("location.href=\"../board/detail.do?no="+no+"\"");
 				out.write("</script>");
 			}
-			else
+			else // 비밀 번호가 틀린 경우
+			{
+				out.write("<script>");
+				out.write("alert(\"비밀 번호 다시 쓰세요\");");
+				out.write("history.back();");
+				out.write("</script>");
+			}
+		}catch(Exception ex) {}
+	}
+	
+	@RequestMapping("board/delete.do")
+	public String board_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("no", request.getParameter("no"));
+		
+		request.setAttribute("main_jsp", "../board/delete.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/delete_ok.do")
+	public void board_delete_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		
+		// DAO 연동
+		boolean bCheck=dao.boardDelete(Integer.parseInt(no), pwd);
+		// => 이동
+		try
+		{
+			// Ajax 처리
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			
+			if(bCheck==true) // 비밀 번호가 맞는 경우
+			{
+				out.write("<script>");
+				out.write("location.href=\"../board/list.do\"");
+				out.write("</script>");
+			}
+			else // 비밀 번호가 틀린 경우
 			{
 				out.write("<script>");
 				out.write("alert(\"비밀 번호 다시 쓰세요\");");

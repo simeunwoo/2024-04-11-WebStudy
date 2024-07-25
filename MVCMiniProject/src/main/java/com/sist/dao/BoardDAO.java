@@ -195,7 +195,6 @@ public class BoardDAO {
 		try
 		{
 			conn=dbConn.getConnection();
-			
 			// 비밀 번호 검색
 			String sql="SELECT pwd FROM board WHERE no="+vo.getNo();
 			ps=conn.prepareStatement(sql);
@@ -217,12 +216,42 @@ public class BoardDAO {
 			}
 			// else를 굳이 안붙여도 된다
 			rs.close();
-			
-			// 수정
-			sql="";
 		}catch(Exception ex)
 		{
 			System.out.println("=== boardUpdate(BoardVO vo) 오류 발생 ===");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbConn.disConnection(conn, ps); // 반환 => 재사용
+		}
+		return bCheck;
+	}
+	
+	public boolean boardDelete(int no,String pwd)
+	{
+		boolean bCheck=false;
+		try
+		{
+			conn=dbConn.getConnection();
+			// 비밀 번호 검색
+			String sql="SELECT pwd FROM board WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			if(db_pwd.equals(pwd))
+			{
+				bCheck=true;
+				sql="DELETE FROM board WHERE no="+no;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+			}
+			// else를 굳이 안붙여도 된다
+			rs.close();
+		}catch(Exception ex)
+		{
+			System.out.println("=== boardDelete(int no,String pwd) 오류 발생 ===");
 			ex.printStackTrace();
 		}
 		finally
