@@ -45,7 +45,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear">
     <div id="logo" class="fl_left">
-      <h1><a href="index.html">맛집 AND 서울 여행</a></h1>
+      <h1><a href="../main/main.do">맛집 AND 서울 여행</a></h1>
     </div>
     <div class="fl_right">
       <ul class="inline">

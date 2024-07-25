@@ -1,5 +1,6 @@
 package com.sist.model;
 import java.util.*;
+import java.text.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,6 +58,9 @@ public class BoardModel {
 	private BoardDAO dao=BoardDAO.newInstance();
 
 	@RequestMapping("board/list.do")
+	// @RequestMapping() : 중복이 되면 오류 발생
+	// => @GetMapping(), @PostMapping() => 오류 412
+	// => @RequestMapping() : GET/POST 통합
 	public String board_list(HttpServletRequest request,HttpServletResponse response)
 	{
 		// page => 받기
@@ -79,14 +83,67 @@ public class BoardModel {
 		// 총 페이지
 		int totalpage=(int)(Math.ceil(count/10.0));
 		count=count-((curpage*10)-10);
+		
 		// list.jsp로 출력 데이터 전송
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("count", count);
 		
+		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String today=sdf.format(date);
+		// new SimpleDateFormat("yyyy-MM-dd").format(new Date())
+		
+		request.setAttribute("today", today);
+		
 		// main.jsp에 include되는 파일 지정
 		request.setAttribute("main_jsp", "../board/list.jsp");
+		return "../main/main.jsp";
+	}
+	/*
+	 * 	JSP <a> => Controller => Model => JSP
+	 * 
+	 * 	MVVM : VueJS
+	 * 	       ===== ReactJS (Dev) => Docker / MSA (Ops)
+	 */
+	@RequestMapping("board/insert.do")
+	public String board_insert(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../board/insert.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/insert_ok.do")
+	public String board_insert_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(request.getParameter("name"));
+		vo.setSubject(request.getParameter("subject"));
+		vo.setContent(request.getParameter("content"));
+		vo.setPwd(request.getParameter("pwd"));
+		
+		// 데이터베이스 연동 => DAO 호출
+		dao.boardInsert(vo);
+		
+		return "redirect:../board/list.do"; // sendRedirect 관련
+	}
+	
+	@RequestMapping("board/detail.do")
+	public String board_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		// DAO에서 상세 보기에 출력할 데이터 읽기
+		BoardVO vo=dao.boardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
 	}
 }
