@@ -15,6 +15,5 @@ public class CommonsModel {
 		List<FoodVO> foodList=fDao.foodFooterData();
 		
 		request.setAttribute("foodList", foodList);
-		CommonsModel.commonsData(request);
 	}
 }

@@ -136,7 +136,6 @@ public class BoardModel {
 		// 데이터베이스 연동 => DAO 호출
 		dao.boardInsert(vo);
 		
-		CommonsModel.commonsData(request);
 		return "redirect:../board/list.do"; // sendRedirect 관련
 	}
 	
@@ -207,8 +206,6 @@ public class BoardModel {
 				out.write("</script>");
 			}
 		}catch(Exception ex) {}
-		
-		CommonsModel.commonsData(request);
 	}
 	
 	@RequestMapping("board/delete.do")
@@ -250,7 +247,5 @@ public class BoardModel {
 				out.write("</script>");
 			}
 		}catch(Exception ex) {}
-		
-		CommonsModel.commonsData(request);
 	}
 }

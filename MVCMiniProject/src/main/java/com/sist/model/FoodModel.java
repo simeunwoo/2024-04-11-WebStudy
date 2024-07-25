@@ -71,7 +71,6 @@ public class FoodModel {
 		// 4) response를 이용하여 브라우저로 전송
 		response.addCookie(cookie);
 		
-		CommonsModel.commonsData(request);
 		return "redirect:../food/detail.do?fno="+fno;
 	}
 	// 2. 맛집 상세 보기
