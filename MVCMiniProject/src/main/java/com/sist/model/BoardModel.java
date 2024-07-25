@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.*;
 import com.sist.dao.*;
+import com.sist.vo.*;
 /*
  * 	MVC
  *            HTTP 요청 (URL)      웹 컨테이너 (톰캣)
@@ -58,6 +59,34 @@ public class BoardModel {
 	@RequestMapping("board/list.do")
 	public String board_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		// page => 받기
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		/*
+		 * 	URL
+		 * 	===
+		 * 	list.do ==============> null => if(page==null)
+		 * 	list.do?page= ========> ""   => if(page.equals(""))
+		 * 	list.do?page=1 =======> "1"
+		 * 	list.do? page = 1 ====> 오류 발생 (String input "")
+		 */
+		// 정수형 변환 => 처리 가능
+		int curpage=Integer.parseInt(page);
+		List<BoardVO> list=dao.boardListData(curpage);
+		// 총 게시물 개수
+		int count=dao.boardRowCount();
+		// 총 페이지
+		int totalpage=(int)(Math.ceil(count/10.0));
+		count=count-((curpage*10)-10);
+		// list.jsp로 출력 데이터 전송
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("count", count);
+		
+		// main.jsp에 include되는 파일 지정
+		request.setAttribute("main_jsp", "../board/list.jsp");
 		return "../main/main.jsp";
 	}
 }
