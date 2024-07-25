@@ -6,6 +6,7 @@ import java.text.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -101,6 +102,7 @@ public class BoardModel {
 		
 		// main.jsp에 include되는 파일 지정
 		request.setAttribute("main_jsp", "../board/list.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	/*
@@ -113,6 +115,7 @@ public class BoardModel {
 	public String board_insert(HttpServletRequest request,HttpServletResponse response)
 	{
 		request.setAttribute("main_jsp", "../board/insert.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -133,6 +136,7 @@ public class BoardModel {
 		// 데이터베이스 연동 => DAO 호출
 		dao.boardInsert(vo);
 		
+		CommonsModel.commonsData(request);
 		return "redirect:../board/list.do"; // sendRedirect 관련
 	}
 	
@@ -146,6 +150,7 @@ public class BoardModel {
 		request.setAttribute("vo", vo);
 		
 		request.setAttribute("main_jsp", "../board/detail.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -159,6 +164,7 @@ public class BoardModel {
 		request.setAttribute("vo", vo);
 		
 		request.setAttribute("main_jsp", "../board/update.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -201,6 +207,8 @@ public class BoardModel {
 				out.write("</script>");
 			}
 		}catch(Exception ex) {}
+		
+		CommonsModel.commonsData(request);
 	}
 	
 	@RequestMapping("board/delete.do")
@@ -209,6 +217,7 @@ public class BoardModel {
 		request.setAttribute("no", request.getParameter("no"));
 		
 		request.setAttribute("main_jsp", "../board/delete.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -241,5 +250,7 @@ public class BoardModel {
 				out.write("</script>");
 			}
 		}catch(Exception ex) {}
+		
+		CommonsModel.commonsData(request);
 	}
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -41,12 +42,16 @@ public class MainModel {
 			}
 		}
 		
+		List<FoodVO> foodList=fDao.foodFooterData();
+		
 		request.setAttribute("fList", fList);
 		request.setAttribute("sList", sList);
 		request.setAttribute("gList", gList);
 		request.setAttribute("cList", cList);
+		request.setAttribute("foodList", foodList);
 		
 		request.setAttribute("main_jsp","../main/home.jsp");
+		CommonsModel.commonsData(request);
 		return "../main/main.jsp";
 	}
 }
