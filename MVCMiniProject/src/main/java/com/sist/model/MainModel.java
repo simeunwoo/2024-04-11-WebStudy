@@ -17,11 +17,11 @@ public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(HttpServletRequest request,HttpServletResponse response)
 	{
-		HttpSession session=request.getSession();
+	/*	HttpSession session=request.getSession();
 		
 		session.setAttribute("id", "admin");
 		session.setAttribute("name", "홍길동");
-		session.setAttribute("admin", "n");
+		session.setAttribute("admin", "n"); */
 		
 		FoodDAO fDao=FoodDAO.newInstance();
 		List<FoodVO> fList=fDao.foodTop12();
