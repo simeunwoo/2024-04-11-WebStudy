@@ -2,6 +2,8 @@ package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+import com.sist.manager.*;
 
 public class MovieListModel implements Model {
 
@@ -27,7 +29,12 @@ public class MovieListModel implements Model {
 			title="좌석 점유율";
 		}
 
+		MovieManager mm=new MovieManager();
+		List<MovieVO> list=mm.movieListData(index);
+		
+		request.setAttribute("list", list);
 		request.setAttribute("title", title);
+		
 		return "../movie/list.jsp";
 	}
 
