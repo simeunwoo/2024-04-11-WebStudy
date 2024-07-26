@@ -53,7 +53,7 @@ $(function(){ // main => window.onload=function(){}
 		</div>
 		<div class="col-sm-8">
 			<table class="table">
-				<tr class="dataTr" data-poster="${vo.poster }">
+				<tr>
 					<th class="text-center">순위</th>
 					<th class="text-center">영화명</th>
 					<th class="text-center">감독</th>
@@ -61,7 +61,7 @@ $(function(){ // main => window.onload=function(){}
 					<th class="text-center">등급</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
-					<tr>
+					<tr class="dataTr" data-poster="${vo.poster }">
 						<td class="text-center">${vo.rank }</td>
 						<td>${vo.title }</td>
 						<td>${vo.director }</td>
