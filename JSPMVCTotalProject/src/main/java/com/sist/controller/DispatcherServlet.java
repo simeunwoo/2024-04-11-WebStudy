@@ -1,12 +1,17 @@
 package com.sist.controller;
 
 import java.io.IOException;
+import java.util.*;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sist.model.Model;
 /*
  * 	1. JSP / Servlet => Model 1 방식
  * 		= 장점
@@ -52,16 +57,78 @@ import javax.servlet.http.HttpServletResponse;
  * 		=> 구분자(어노테이션) => 스프링
  * 
  */
-@WebServlet("/DispatcherServlet")
+// Controller는 고정 => 추가, 수정 (파일 => XML)
+@WebServlet("*.do")
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private String[] strCls= {
+		"com.sist.model.MovieListModel",
+		"com.sist.model.MovieDetailModel"
+	};
+	private String[] strCmd= {
+		"list.do",
+		"detail.do"
+	};
+	private Map clsMap=new HashMap();
+	/*
+	 * 	Map
+	 * 	1. 클래스 등록 => Spring
+	 * 	2. SQL 문장 등록 => MyBatis
+	 * 	3. 클라이언트 정보 등록 => WebSocket(채팅 관련)
+	 * 	=> 웹은 거의 대부분이 Map 방식 사용
+	 * 	=> request / session / cookie => 키, 값
+	 * 	=> JSON => JavaScript 객체 표현법
+	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		try
+		{
+			for(int i=0;i<strCls.length;i++)
+			{
+				Class clsName=Class.forName(strCls[i]); // 클래스 정보 읽기
+				// => 제어 : 리플렉션
+				Object obj=clsName.getDeclaredConstructor().newInstance();
+				// 클래스 메모리 할당
+				// new => 결합성이 높다 (new 사용을 자제 필요) => 스프링에서는 new를 사용하지 않는다
+				clsMap.put(strCmd[i], obj);
+				System.out.println(strCmd[i]+":"+obj);
+				// 시작과 동시에 => 클래스 메모리 저장 => 변경이 없다 (싱글턴)
+			}
+		}catch(Exception ex) {}
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// 사용자 요청 사항
+		// http://localhost:8080/JSPMVCTotalProject/movie/list.do
+		String cmd=request.getRequestURI(); // cmd => http://localhost:8080/JSPMVCTotalProject/movie/list.do
+		// 해당 Model 찾기 => 기능별로 나눠서 작업
+		cmd=cmd.substring(cmd.lastIndexOf("/")+1); // cmd => list.do
+		Model model=(Model)clsMap.get(cmd);
+		// JSP에 전송할 데이터를 가지고 온다
+		String jsp=model.execute(request, response);
+		// JSP에 request를 전송
+		RequestDispatcher rd=request.getRequestDispatcher(jsp);
+		rd.forward(request, response);
+		
+/*		Model model1=(Model)clsMap.get("list.do");
+		Model model2=(Model)clsMap.get("list.do");
+		Model model3=(Model)clsMap.get("list.do");
+		Model model4=(Model)clsMap.get("list.do");
+		Model model5=(Model)clsMap.get("list.do");
+		System.out.println("model1="+model1);
+		System.out.println("model2="+model2);
+		System.out.println("model3="+model3);
+		System.out.println("model4="+model4);
+		System.out.println("model5="+model5); */
+		// model1 ~ model5 : 메모리 주소가 모두 같다 (싱글턴)
+		/*
+		model1=com.sist.model.MovieListModel@3ff534e7
+		model2=com.sist.model.MovieListModel@3ff534e7
+		model3=com.sist.model.MovieListModel@3ff534e7
+		model4=com.sist.model.MovieListModel@3ff534e7
+		model5=com.sist.model.MovieListModel@3ff534e7
+		 */
 	}
 
 }
