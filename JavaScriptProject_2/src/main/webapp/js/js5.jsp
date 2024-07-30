@@ -11,6 +11,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+window.onload=()=>{
+	let sawon={
+			"sabun":1,
+			"name":"노홍철",
+			"dept":"개발부"
+	}
+	document.write("사번 : "+sawon.sabun+"<br>")
+	document.write("이름 : "+sawon.name+"<br>")
+	document.write("부서 : "+sawon.dept+"<br>")
+}
+</script>
 </head>
 <body>
 
