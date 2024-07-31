@@ -26,6 +26,7 @@ public class EmpDAO {
 	public static List<EmpVO> empListData()
 	{
 		List<EmpVO> list=new ArrayList<EmpVO>();
+		
 		SqlSession session=null;
 		try
 		{
