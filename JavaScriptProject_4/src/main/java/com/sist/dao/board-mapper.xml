@@ -40,6 +40,10 @@
 			table명, column명 => ${name} => 따옴표 없음
 		-->
 	</select>
+	<!-- 총 페이지 -->
+	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
 	<!-- 상세 보기 <select> -->
 	<!-- 추가 <insert> -->
 	<!-- 수정 <update> -->

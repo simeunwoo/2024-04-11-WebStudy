@@ -47,7 +47,7 @@ public class BoardDAO {
 		List<BoardVO> list=new ArrayList<BoardVO>();
 		
 		SqlSession session=null;
-		try
+		try // 나중에 오류 잡을 실력이 되면 => 굳이 예외 처리 안해도 됨
 		{
 			session=ssf.openSession();
 			list=session.selectList("boardListData", map); // selectList : 여러 행
@@ -63,5 +63,19 @@ public class BoardDAO {
 		}
 		
 		return list;
+	}
+	
+	/*
+	 * 	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*) FROM board
+		</select>
+	 */
+	public static int boardRowCount()
+	{
+		SqlSession session=ssf.openSession();
+		int count=session.selectOne("boardRowCount");
+		session.close();
+		
+		return count;
 	}
 }
