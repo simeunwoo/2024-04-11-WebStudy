@@ -49,6 +49,9 @@
 					<td>성과급</td>
 					<td>${vo.comm }</td>
 				</tr>
+				<tr>
+					<td colspan="2"><a href="list.do" class="btn btn-sm btn-danger">목록</a></td>
+				</tr>
 			</table>
 		</div>
 	</div>

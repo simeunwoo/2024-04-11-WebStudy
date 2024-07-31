@@ -30,7 +30,7 @@ public class EmpDAO {
 		try
 		{
 			session=ssf.openSession();
-			list=session.selectList("empListData");
+			list=session.selectList("empListData"); // selectList : 여러 행
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -41,12 +41,28 @@ public class EmpDAO {
 				session.close(); // connection 반환
 		}
 		
-		return ssf.openSession().selectList("empListData"); // selectList : 여러 행
+		return list;
 	}
 	
 	// <select id="empDetailData" resultType="EmpVO" parameterType="int">
 	public static EmpVO empDetailData(int empno)
 	{
-		return ssf.openSession().selectOne("empDetailData", empno); // selectOne : 단일 행
+		SqlSession session=null;
+		EmpVO vo=new EmpVO();
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("empDetailData", empno); // selectOne : 단일 행
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); // connection 반환
+		}
+		
+		return vo;
 	}
 }
