@@ -55,6 +55,36 @@ public class BoardModel {
 	@RequestMapping("board/insert_ok.do")
 	public String board_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	{
-		return "redirect:list.do";
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		
+		// DAO 연동
+		BoardDAO.boardInsert(vo);
+		
+		return "redirect:list.do"; // sendRedirect : request 초기화
+	}
+	
+	@RequestMapping("board/detail.do") // => if를 추가 => 찾기만 가능, 기능은 없다
+	// 어노테이션 => 메소드, 클래스, 멤버 변수, 매개 변수, 생성자 => 모든 명칭을 자유롭게 사용 가능
+	public String board_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		return "detail.jsp"; // forward : request 초기화 X
 	}
 }

@@ -44,8 +44,23 @@
 	<select id="boardRowCount" resultType="int">
 		SELECT COUNT(*) FROM board
 	</select>
-	<!-- 상세 보기 <select> -->
+	<!-- 상세 보기 <select>, <update> -->
+	<update id="hitIncrement" parameterType="int">
+		UPDATE board SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="boardDetailData" resultType="boardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+		FROM board
+		WHERE no=#{no}
+	</select>
 	<!-- 추가 <insert> -->
+	<insert id="boardInsert" parameterType="BoardVO">
+		INSERT INTO board VALUES(
+			board_no_seq.nextval,#{name},#{subject},#{content},#{pwd},SYSDATE,0
+		)
+	</insert>
 	<!-- 수정 <update> -->
 	<!-- 삭제 <delete> -->
 	<!-- 

@@ -78,4 +78,69 @@ public class BoardDAO {
 		
 		return count;
 	}
+	
+	/*
+	<insert id="boardInsert" parameterType="BoardVO">
+		INSERT INTO board VALUES(
+			board_no_seq.nextval,#{name},#{subject},#{content},#{pwd},SYSDATE,0
+		)
+	</insert>
+	 */
+	public static void boardInsert(BoardVO vo)
+	{
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(true);
+			session.insert("boardInsert", vo);
+//			session.commit();
+			// insert 시에 반드시 사용 => 없으면 실행 불가 (단, ssf.openSession()에 true를 넣으면 가능)
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	
+	/*
+	<update id="hitIncrement" parameterType="int">
+		UPDATE board SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="boardDetailData" resultType="boardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+		FROM board
+		WHERE no=#{no}
+	</select>
+	 */
+	// 상세 보기
+	public static BoardVO boardDetailData(int no)
+	{
+		SqlSession session=null;
+		BoardVO vo=new BoardVO();
+		try
+		{
+			session=ssf.openSession();
+			session.update("hitIncrement", no);
+			session.commit();
+			
+			vo=session.selectOne("boardDetailData", no);
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }
