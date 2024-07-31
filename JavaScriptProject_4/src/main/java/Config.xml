@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Connection 관련 -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--
+	(properties?, settings?, typeAliases?, typeHandlers?, 
+	objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, 
+	environments?, databaseIdProvider?, mappers?)
+
+	xml 태그는 MyBatis에서만 사용 가능
+	======= 사용자 정의 태그
+
+ 	settings? => 사용할 수도 있고 사용하지 않아도 된다
+	settings => 반드시 1번 사용
+	settings* => 0번 이상 사용
+	settings+ => 1번 이상 사용
+
+	properties? : properties 파일을 읽기 => 오라클 정보
+	settings? : 캐쉬 메모리 => 자주 사용하는 SQL을 저장하여 사용
+	typeAliases? : VO를 등록
+	environments? : 오라클을 연결하는 정보 전송
+	mappers? : SQL 문장 처리
+
+	MyBatis : Mapper(데이터베이스만 연결) = 실무(DAO => 35%만 코딩해도 나옴)
+	1) 대소문자 구분
+	2) 최상위 태그가 존재 ex) !DOCTYPE configuration에서 configuration은 최상위 태그
+	3) 속성값 = "" => 속성은 지정된 속성만 사용 가능
+	4) 여는 태그/닫는 태그가 동일
+	5) 태그 사용의 순서가 존재 ex) Content Model의 순서가 존재
+-->
+<configuration>
+	<typeAliases><!-- VO 등록 -->
+		<typeAlias type="com.sist.dao.EmpVO" alias="EmpVO"/>
+	</typeAliases>
+	<!--
+		Connection
+		(environment+) => 1번 이상 사용
+	-->
+	<environments default="development">
+		 <environment id="development">
+		 <!-- (transactionManager,dataSource) => 반드시 1번 사용 -->
+		 	<transactionManager type="JDBC"/>
+		 	<!--
+		 		COMMIT / ROLLBACK
+		 		JDBC = AutoCommit 사용 = JNDI
+		 		catch = Rollback
+		 	-->
+		 	<dataSource type="POOLED">
+		 	<!--
+		 		POOLED = DBCP
+		 			=> default : maxActive=8, maxIdle=8
+		 		UNPOOLED = 일반 JDBC
+		 	-->
+		 		<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+		 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		 		<property name="username" value="hr"/>
+		 		<property name="password" value="happy"/>
+		 	</dataSource>
+		 </environment>
+	</environments>
+	<mappers><!-- SQL 문장 읽기 -->
+		<mapper resource="com/sist/dao/emp-mapper.xml"/>
+		<!-- mapper는 테이블마다 한개씩 생성 -->
+	</mappers>
+</configuration>

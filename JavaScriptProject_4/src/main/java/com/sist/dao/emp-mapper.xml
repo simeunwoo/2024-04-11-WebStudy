@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	PreparedStatement, ResultSet 관련
+		= SQL 문장 등록
+-->
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	(resultMap* | parameterMap* | sql* | insert* | update* | delete* | select*)+
+	
+	resultMap : 결과값 읽기 : 컬럼명 = VO 변수명이 일치
+	parameterMap : PROCEDURE
+	sql : 공통 기반
+-->
+<mapper namespace="com.sist.dao.emp-mapper">
+	<sql id="select-sql"><!-- sql : SQL 문장 중에서 중복 문장을 통합 => include로 활용 -->
+		SELECT * FROM emp
+	</sql>
+	<select id="empListData" resultType="EmpVO">
+	<!-- id는 중복할 수 없다 : Primary Key -->
+	<!-- SelectList -->
+		<include refid="select-sql"/>
+	</select>
+	<select id="empDetailData" resultType="EmpVO" parameterType="int">
+	<!-- id : 메소드명 / resultType : 리턴형 / parameterType : 매개 변수 -->
+	<!-- SelectOne -->
+		<include refid="select-sql"/>
+		WHERE empno=#{empno}
+	</select>
+</mapper>
