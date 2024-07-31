@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,5 +87,39 @@ public class BoardModel {
 		
 		request.setAttribute("vo", vo);
 		return "detail.jsp"; // forward : request 초기화 X
+	}
+	
+	@RequestMapping("board/delete.do")
+	public void board_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		
+		boolean bCheck=BoardDAO.boardDelete(Integer.parseInt(no), pwd);
+		String result="";
+		if(bCheck==true)
+		{
+			result="yes";
+		}
+		else
+		{
+			result="no";
+		}
+		
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
+	}
+	
+	@RequestMapping("board/update.do")
+	public String board_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		return "update.jsp";
 	}
 }

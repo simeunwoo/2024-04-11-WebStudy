@@ -26,6 +26,7 @@ public class BoardDAO {
 			ssf=new SqlSessionFactoryBuilder().build(reader);
 		}catch(Exception ex)
 		{
+			System.out.println("오류 1");
 			ex.printStackTrace();
 		}
 	}
@@ -54,6 +55,7 @@ public class BoardDAO {
 			//           ---------- => SQL 문장 / VO
 		}catch(Exception ex)
 		{
+			System.out.println("오류 2");
 			ex.printStackTrace();
 		}
 		finally
@@ -95,8 +97,10 @@ public class BoardDAO {
 			session.insert("boardInsert", vo);
 //			session.commit();
 			// insert 시에 반드시 사용 => 없으면 실행 불가 (단, ssf.openSession()에 true를 넣으면 가능)
+			// update, delete도 반드시 사용
 		}catch(Exception ex)
 		{
+			System.out.println("오류 3");
 			ex.printStackTrace();
 		}
 		finally
@@ -132,6 +136,73 @@ public class BoardDAO {
 			vo=session.selectOne("boardDetailData", no);
 		}catch(Exception ex)
 		{
+			System.out.println("오류 4");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	
+	/*
+	<select id="boardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd
+		FROM board
+		WHERE no=#{no}
+	</select>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM board
+		WHERE no=#{no}
+	</delete>
+	 */
+	public static boolean boardDelete(int no,String pwd)
+	{
+		boolean bCheck=false;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("boardGetPassword", no);
+			if(db_pwd.equals(pwd))
+			{
+				bCheck=true;
+				session.delete("boardDelete", no);
+				session.commit();
+			}
+			else
+			{
+				bCheck=false; // 리턴(return)
+			}
+		}catch(Exception ex)
+		{
+			System.out.println("오류 5");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return bCheck;
+	}
+	
+	public static BoardVO boardUpdateData(int no)
+	{
+		SqlSession session=null;
+		BoardVO vo=new BoardVO();
+		try
+		{
+			session=ssf.openSession();			
+			vo=session.selectOne("boardUpdateData", no);
+		}catch(Exception ex)
+		{
+			System.out.println("오류 6");
 			ex.printStackTrace();
 		}
 		finally

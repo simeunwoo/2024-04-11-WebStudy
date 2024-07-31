@@ -17,27 +17,38 @@
 </style>
 </head>
 <body>
+<%--
+	JSP ====================== Model ====================> DAO
+	.do                     @RequestMapping() <===========
+	= <a>                        |
+	= <form>                     | request
+	= axios.get()                |
+	서버에 요청                     JSP
+	
+	(.do와 @RequestMapping()은 같다)
+--%>
 		<div class="container">
 			<div class="row">
-				<h3 class="text-center">글 쓰기</h3>
-				<form method="post" action="../board/insert_ok.do">
+				<h3 class="text-center">수정하기</h3>
+				<form method="post" action="../board/update_ok.do">
 					<table class="table">
 						<tr>
 							<th width="15%" class="text-right">이름</th>
 							<td width="85%">
-								<input type="text" name="name" size="20" class="input-sm">
+								<input type="text" name="name" size="20" class="input-sm" value="${vo.name }">
+								<input type="hidden" name="no" value="${vo.no }">
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">제목</th>
 							<td width="85%">
-								<input type="text" name="subject" size="60" class="input-sm">
+								<input type="text" name="subject" size="60" class="input-sm" value="${vo.subject }">
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">내용</th>
 							<td width="85%">
-								<textarea rows="10" cols="60" name="content"></textarea>
+								<textarea rows="10" cols="60" name="content">${vo.content }</textarea>
 							</td>
 						</tr>
 						<tr>
@@ -48,7 +59,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" class="text-center inline">
-								<button class="btn-danger btn-sm">글쓰기</button>
+								<button class="btn-danger btn-sm">수정</button>
 								<input type="button" value="취소" class="btn-primary btn-sm"
 									onclick="javascript:history.back()">
 							</td>

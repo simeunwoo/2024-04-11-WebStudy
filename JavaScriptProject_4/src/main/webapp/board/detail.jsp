@@ -15,6 +15,7 @@
 	width:600px;
 }
 </style>
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
 /*
  * 	브라우저 자체에서 처리 : JavaScript
@@ -29,7 +30,7 @@
  */
 let bCheck=false
 function boardDelete(){
-	if(bCheck==false)
+	if(bCheck===false)
 	{
 		let btn=document.querySelector("#delBtn")
 		btn.value='취소'
@@ -45,6 +46,38 @@ function boardDelete(){
 		tr.style.display='none'
 		bCheck=false
 	}
+}
+
+let boardRealDelete=(no)=>{
+	let pwd=document.querySelector("#pwd")
+	if(pwd.value.trim()==="")
+	{
+		alert("비밀 번호를 입력하세요")
+		pwd.focus()
+		return
+	}
+	// 서버로 삭제 요청
+	// delete.do?no=1&pwd=1234
+	axios.get('delete.do',{
+		params:{
+			no:no,
+			pwd:pwd.value
+		}
+	}).then(function(response){
+		// 서버에서 결과값을 받을 수 있다 => response : 결과값
+		// yes/no
+		if(response.data==='no')
+		{
+			alert("비밀 번호 틀렸어요\n다시 쓰세요")
+			pwd.value=''
+			pwd.focus()
+		}
+		else
+		{
+			// 삭제가 된 상태
+			location.href="list.do" // 자바스크립트에서 이동
+		}
+	})
 }
 </script>
 </head>
@@ -78,7 +111,7 @@ ${vo.content }
 					</tr>
 					<tr>
 						<td colspan="4" class="text-right">
-							<input type="button" class="btn btn-xs btn-info" value="수정">
+							<a href="update.do?no=${vo.no }" class="btn btn-xs btn-info">수정</a>
 							<input type="button" class="btn btn-xs btn-success" value="삭제"
 								onclick="boardDelete()" id="delBtn">
 							<a href="../board/list.do" class="btn btn-xs btn-danger">목록</a>
@@ -87,7 +120,8 @@ ${vo.content }
 					<tr id="delTr" style="display:none">
 						<td colspan="4" class="text-right">
 							비밀 번호 : <input type="password" id="pwd" size="15" class="input-sm">
-							<input type="button" value="삭제" class="btn btn-sm btn-warning">
+							<input type="button" value="삭제" class="btn btn-sm btn-warning"
+								onclick="boardRealDelete(${vo.no})">
 						</td>
 					</tr>					
 				</table>
