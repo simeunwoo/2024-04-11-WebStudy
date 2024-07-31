@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.board-mapper">
+	<!-- 목록 <select> -->
+	<!-- 상세 보기 <select> -->
+	<!-- 추가 <insert> -->
+	<!-- 수정 <update> -->
+	<!-- 삭제 <delete> -->
+	<!-- 
+		태그 안에 sql 문장은 1개만 실행된다 (2개부터는 오류 발생)
+			=> 2개 쓰는 방법 : <statement>, <sql>
+	-->
+</mapper>

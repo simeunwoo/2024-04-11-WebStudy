@@ -28,10 +28,18 @@
 	3) 속성값 = "" => 속성은 지정된 속성만 사용 가능
 	4) 여는 태그/닫는 태그가 동일
 	5) 태그 사용의 순서가 존재 ex) Content Model의 순서가 존재
+	
+	프로젝트 패키지
+	1> com.sist.model => ~Model
+	2> com.sist.dao => ~DAO
+	3> com.sist.vo => ~VO
+	4> com.sist.mapper => xml 코드만 저장하면 된다
+	5> com.sist.manager => ~Manager
 -->
 <configuration>
 	<typeAliases><!-- VO 등록 -->
 		<typeAlias type="com.sist.dao.EmpVO" alias="EmpVO"/>
+		<typeAlias type="com.sist.dao.BoardVO" alias="BoardVO"/>
 	</typeAliases>
 	<!--
 		Connection
@@ -61,6 +69,7 @@
 	</environments>
 	<mappers><!-- SQL 문장 읽기 -->
 		<mapper resource="com/sist/dao/emp-mapper.xml"/>
+		<mapper resource="com/sist/dao/board-mapper.xml"/>
 		<!-- mapper는 테이블마다 한개씩 생성 -->
 	</mappers>
 </configuration>
