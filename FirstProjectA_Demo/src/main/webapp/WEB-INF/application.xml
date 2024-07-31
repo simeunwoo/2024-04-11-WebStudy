@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="user" class="com.sist.model.UserModel"/>
+	<bean id="camp" class="com.sist.model.CampModel"/>
+	<bean id="goods" class="com.sist.model.GoodsModel"/>
+	<bean id="food" class="com.sist.model.FoodModel"/>
+	<bean id="recipe" class="com.sist.model.RecipeModel"/>
+</beans>
