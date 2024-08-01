@@ -18,6 +18,7 @@ public class JoinModel {
 	@RequestMapping("member/post.do")
 	public String member_post(HttpServletRequest request,HttpServletResponse response)
 	{
+		request.setAttribute("count", 0);
 		return "post.jsp";
 	}
 	
