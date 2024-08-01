@@ -2,6 +2,7 @@ package com.sist.dao;
 import java.util.*;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -28,7 +29,7 @@ import java.io.*;
  * 			= go
  * 			= forward()
  * 		= Date / String / Math / Array => 라이브러리 : jQuery / Vue / React / Next
- * 		                                  => 변수 / 상수 / 제어문 / 연산자 / 배열 ...은 미리 알고 있어야 한다
+ * 		                                  => 변수 / 상수 / 제어문 / 연산자 / 배열 ... 은 미리 알고 있어야 한다
  * 		                                  => 객체(JSON)
  * 
  *  이벤트 처리
@@ -55,5 +56,46 @@ public class MemberDAO {
 	}
 	
 	// 기능 설정
+	// => 표준화
+	public static List<ZipcodeVO> postFind(String dong)
+	{
+		List<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); // getConnection이 된 상태 / session : 커넥션 
+			list=session.selectList("postFind", dong);
+		}catch(Exception ex)
+		{
+			System.out.println("오류 1");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); // 반환
+		}
+		return list;
+	}
 	
+	public static int postFindCount(String dong)
+	{
+		int count=0;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); // getConnection이 된 상태 / session : 커넥션 
+			count=session.selectOne("postFindCount", dong);
+		}catch(Exception ex)
+		{
+			System.out.println("오류 2");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); // 반환
+		}
+		return count;
+	}
 }
