@@ -149,6 +149,27 @@ public class BoardDAO {
 		return vo;
 	}
 	
+	public static BoardVO boardUpdateData(int no)
+	   {
+		   SqlSession session=null;
+		   BoardVO vo=new BoardVO();
+		   try
+		   {
+			   session=ssf.openSession();
+			   vo=session.selectOne("boardDetailData",no);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   // connection 반환 (DBCP) => 재사용 
+			   if(session!=null)
+				   session.close();
+		   }
+		   return vo;
+	   }
+	
 	/*
 	<select id="boardGetPassword" resultType="string" parameterType="int">
 		SELECT pwd
@@ -192,14 +213,24 @@ public class BoardDAO {
 		return bCheck;
 	}
 	
-	public static BoardVO boardUpdateData(int no)
+	public static boolean boardUpdate(BoardVO vo)
 	{
+		boolean bCheck=false;
 		SqlSession session=null;
-		BoardVO vo=new BoardVO();
 		try
 		{
-			session=ssf.openSession();			
-			vo=session.selectOne("boardUpdateData", no);
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("boardGetPassword", vo.getNo());
+			if(db_pwd.equals(vo.getPwd()))
+			{
+				bCheck=true;
+				session.update("boardUpdate", vo);
+				session.commit();
+			}
+			else
+			{
+				bCheck=false; // 리턴(return)
+			}
 		}catch(Exception ex)
 		{
 			System.out.println("오류 6");
@@ -207,11 +238,10 @@ public class BoardDAO {
 		}
 		finally
 		{
-			// connection 반환 (DBCP) => 재사용(반환 시 가능)
 			if(session!=null)
 				session.close();
 		}
 		
-		return vo;
+		return bCheck;
 	}
 }

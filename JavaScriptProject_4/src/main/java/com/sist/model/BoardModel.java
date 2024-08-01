@@ -114,12 +114,49 @@ public class BoardModel {
 	}
 	
 	@RequestMapping("board/update.do")
-	public String board_update(HttpServletRequest request,HttpServletResponse response)
+	  public String board_update(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String no=request.getParameter("no");
+		  BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
+		  
+		  request.setAttribute("vo", vo);
+		  return "update.jsp";
+	  }
+	
+	@RequestMapping("board/update_ok.do")
+	public void board_update_ok(HttpServletRequest request,HttpServletResponse response)
+	// void 사용의 이유 => 화면 이동을 안한다 (자바스크립트에서 이미 화면 이동 처리가 되어 있다 : spring)
 	{
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
 		String no=request.getParameter("no");
-		BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
 		
-		request.setAttribute("vo", vo);
-		return "update.jsp";
+		BoardVO vo=new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		vo.setNo(Integer.parseInt(no));
+		
+		// 데이터베이스 연동
+		boolean bCheck=BoardDAO.boardUpdate(vo);
+		// 자바스크립트에 데이터 전송 => yes/no
+		String result="";
+		if(bCheck==true)
+		{
+			result="yes";
+		}
+		else
+		{
+			result="no";
+		}
+		
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
 	}
 }
