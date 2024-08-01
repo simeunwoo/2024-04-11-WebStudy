@@ -20,7 +20,7 @@ function postfind(){
 	window.open("post.do","postfind","width=500,height=400,scrollbars=yes")
 }
 function idcheck(){
-	window.open("idcheck.do","idcheck","width=350,height=200,scrollbars=yes")
+	window.open("idcheck.do","idcheck","width=380,height=300,scrollbars=yes")
 }
 </script>
 </head>
@@ -35,7 +35,7 @@ function idcheck(){
 						<td width="80%">
 							<input type="text" name="id" class="input-sm" size="15" readonly>
 							<input type="button" value="아이디 중복 체크" class="btn-sm btn-primary"
-								id="idCheckBtn" onclick="idcheck()">
+								onclick="idcheck()">
 						</td>
 					</tr>
 					<tr>

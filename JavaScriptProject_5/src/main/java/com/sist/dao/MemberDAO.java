@@ -98,4 +98,32 @@ public class MemberDAO {
 		}
 		return count;
 	}
+	
+	/*
+	<select id="idcheck" resultType="int" parameterType="string">
+		SELECT COUNT(*)
+		FROM member
+		WHERE id=#{id}
+	</select>
+	 */
+	public static int idcheck(String id)
+	{
+		int count=0;
+		SqlSession session=null; // connection
+		try
+		{
+			session=ssf.openSession();
+			count=session.selectOne("idcheck", id);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("오류 3");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return count;
+	}
 }

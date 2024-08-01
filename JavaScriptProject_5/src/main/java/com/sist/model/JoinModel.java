@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,5 +38,25 @@ public class JoinModel {
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		return "post.jsp";
+	}
+	
+	@RequestMapping("member/idcheck.do")
+	public String member_idcheck(HttpServletRequest request,HttpServletResponse response)
+	{
+		return "idcheck.jsp";
+	}
+	
+	@RequestMapping("member/idcheck_ok.do")
+	public void member_idcheck_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		// void => 자바스크립트로 전송
+		String id=request.getParameter("id");
+		int count=MemberDAO.idcheck(id);
+		
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(String.valueOf(count));
+		}catch(Exception ex) {}
 	}
 }

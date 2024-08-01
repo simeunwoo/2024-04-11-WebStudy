@@ -26,6 +26,11 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+<style type="text/css">
+.footer {
+    background:#48AAAD;
+}
+</style>
 </head>
 <body>
 <!-- Footer Start -->

@@ -17,8 +17,13 @@
 		-->
 	</select>
 	<select id="postFindCount" resultType="int" parameterType="string">
-		SELECT count(*)
+		SELECT COUNT(*)
 		FROM zipcode
 		WHERE dong LIKE '%'||#{dong}||'%'
+	</select>
+	<select id="idcheck" resultType="int" parameterType="string">
+		SELECT COUNT(*)
+		FROM member
+		WHERE id=#{id}
 	</select>
 </mapper>
