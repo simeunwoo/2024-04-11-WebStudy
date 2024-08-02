@@ -56,16 +56,16 @@ public class MainClass {
 				   {
 					System.out.println(link.get(j).attr("href"));
 					System.out.println("번호:"+ k++);
-					String url="https://www.5gcamp.com"+link.get(j).attr("href");// 링크
+					String url="http://www.5gcamp.com"+link.get(j).attr("href");// 링크
 					// 상세보기로 이동 
 					// <li class="aa bb cc dd">
 					Document doc2=Jsoup.connect(url).get();
 					
 					Element camp_price=doc2.selectFirst("h4.chead price f17 td.td3");
 					System.out.println(camp_price.attr("src"));
-				/*	Element name=doc2.selectFirst("div.areaBasic dd.name");
+					Element camp_name=doc2.selectFirst("div.viewheader h3.camp_subject");
 					System.out.println(name.text().substring(0,name.text().indexOf("[")));
-					Element type=doc2.selectFirst("div.areaBasic dd.type");
+					/*	Element type=doc2.selectFirst("div.areaBasic dd.type");
 					System.out.println(type.text());
 					Element phone=doc2.selectFirst("div.areaBasic dd.tel1");
 					System.out.println(phone.text());
