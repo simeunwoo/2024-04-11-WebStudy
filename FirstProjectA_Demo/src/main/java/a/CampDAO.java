@@ -53,7 +53,7 @@ public class CampDAO {
  CAMP_STORE                                         VARCHAR2(30)
  CAMP_ANIMAL                                        VARCHAR2(30)    
     */
-   public void foodInsert(CampVO vo)
+   public void campInsert(CampVO vo)
    {
 	   try
 	   {
