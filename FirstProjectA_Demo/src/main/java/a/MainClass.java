@@ -69,9 +69,14 @@ public class MainClass {
 					
 					Element camp_addr=doc2.selectFirst("div.tse-scroll-content div.tse-content div.content h4.chead a.clipboardCopy");
 					System.out.println(camp_addr.text());
-				/*	Element phone=doc2.selectFirst("div.areaBasic dd.tel1");
-					System.out.println(phone.text());
-					Element address=doc2.selectFirst("div.areaBasic dd.add1");
+					Element camp_phone=doc2.selectFirst("div.tse-scroll-content div#camping_view div#vContent h4.chead_tel_fblack");
+					System.out.println(camp_phone.text());
+					Elements phoneElements = doc.select("h4:matches(\\d{3}-\\d{4}-\\d{4})");
+
+		            for (Element phoneElement : phoneElements) {
+		                String phoneNumber = phoneElement.text();
+		                System.out.println("전화번호: " + phoneNumber);
+				/*	Element address=doc2.selectFirst("div.areaBasic dd.add1");
 					System.out.println(address.text());
 					Element score=doc2.selectFirst("div.areaBasic span.total");
 					System.out.println(score.text());
@@ -85,8 +90,8 @@ public class MainClass {
 					//vo.setCamp_price(camp_price.text());
 					vo.setCamp_name(camp_name.text());
 					vo.setCamp_addr(camp_addr.text());
-					/*		vo.setAddress(address.text());
-					vo.setTheme(theme.text());
+					vo.setCamp_phone(camp_phone.text());
+				/*	vo.setTheme(theme.text());
 					vo.setPoster(poster.attr("src"));
 					vo.setContent(content.text());
 					vo.setScore(Double.parseDouble(score.text())); */
