@@ -7,26 +7,30 @@
 <meta charset="utf-8">
 <title>TJ Camping</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet"> 
-
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-        <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
+<!-- Owl Carousel 초기화 -->
+<script>
+$(document).ready(function(){
+  $(".packages-carousel").owlCarousel({
+    loop: true, // 슬라이더 반복 여부
+    margin: 10, // 슬라이더 아이템 간의 간격
+    nav: true, // 내비게이션 화살표 추가
+    responsive:{
+        0:{
+            items:1 // 화면이 좁을 때는 1개의 아이템만 보여줌
+        },
+        600:{
+            items:2 // 중간 크기의 화면에서는 2개의 아이템
+        },
+        1000:{
+            items:3 // 큰 화면에서는 3개의 아이템을 보여줌
+        }
+    }
+  });
+});
+</script>
 </head>
 <body>
 <!-- Packages Start -->

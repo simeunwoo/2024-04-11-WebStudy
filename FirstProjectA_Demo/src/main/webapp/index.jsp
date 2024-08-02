@@ -15,7 +15,7 @@
 </head>
 <body>
 <script type="text/javascript">
-location.href="main/main.do"
+location.href="main/main1.do"
 </script>
 </body>
 </html>
