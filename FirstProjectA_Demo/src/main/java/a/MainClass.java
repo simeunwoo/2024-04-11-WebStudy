@@ -63,25 +63,15 @@ public class MainClass {
                             }
                         }
 
-                        String priceText;
                         Integer campPriceValue = null;
-                        if (prices.isEmpty()) {
-                            priceText = "해당 사항 없음";
-                            System.out.println("가장 싼 가격: " + priceText);
-                        } else {
+                        if (!prices.isEmpty()) {
                             prices.sort(Integer::compareTo);
                             int minPrice = prices.get(0);
-                            int nextPrice = (prices.size() > 1) ? prices.get(1) : minPrice;
-
-                            if (minPrice == 0) {
-                                campPriceValue = nextPrice;
-                                priceText = Integer.toString(nextPrice);
-                            } else {
-                                campPriceValue = minPrice;
-                                priceText = Integer.toString(minPrice);
-                            }
-                            System.out.println("가장 싼 가격: " + priceText);
+                            campPriceValue = (minPrice == 0 && prices.size() > 1) ? prices.get(1) : minPrice;
                         }
+
+                        String priceText = (campPriceValue != null) ? Integer.toString(campPriceValue) : "해당 사항 없음";
+                        System.out.println("가장 싼 가격: " + priceText);
 
                         // 상세 내용
                         Element camp_content = doc2.selectFirst("div.short_cont");
@@ -115,7 +105,7 @@ public class MainClass {
                         vo.setCamp_name(campNameText);
                         vo.setCamp_addr(campAddrText);
                         vo.setCamp_phone(campPhoneText);
-                        vo.setCamp_price(campPriceValue);  // 여기서 null이 가능하므로, 필요 시 int로 강제 변환하지 않음
+                        vo.setCamp_price((campPriceValue != null) ? campPriceValue : 0);  // null이면 0으로 저장
                         vo.setCamp_content(campContentText);
                         vo.setCamp_image(camp_image);
                         vo.setCamp_wifi(camp_wifi);
@@ -124,7 +114,7 @@ public class MainClass {
                         dao.campInsert(vo);
                         /*
                   		   ps.setInt(1, vo.getCamp_no());
-						   ps.setInt(2, vo.getCamp_price());
+						   ps.setInt(2, vo.getCamp_price());  // 0으로 처리된 campPriceValue를 저장
 						   ps.setString(3, vo.getCamp_name());
 						   ps.setString(4, vo.getCamp_addr());
 						   ps.setString(5, vo.getCamp_phone());

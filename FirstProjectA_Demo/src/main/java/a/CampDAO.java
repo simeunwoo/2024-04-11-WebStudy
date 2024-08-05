@@ -62,16 +62,15 @@ public class CampDAO {
 		   		+ ",camp_phone,camp_content,camp_image,camp_wifi,camp_store,camp_animal) "
 				     +"VALUES(camp_no_seq.nextval,?,?,?,?,?,?,?,?,?)";
 		   ps=conn.prepareStatement(sql);
-		   ps.setInt(1, vo.getCamp_no());
-		   ps.setInt(2, vo.getCamp_price());
-		   ps.setString(3, vo.getCamp_name());
-		   ps.setString(4, vo.getCamp_addr());
-		   ps.setString(5, vo.getCamp_phone());
-		   ps.setString(6, vo.getCamp_content());
-		   ps.setString(7, "http://www.5gcamp.com"+vo.getCamp_image());
-		   ps.setString(8, vo.getCamp_wifi());
-		   ps.setString(9, vo.getCamp_store());
-		   ps.setString(10, vo.getCamp_animal());
+		   ps.setInt(1, vo.getCamp_price());
+		   ps.setString(2, vo.getCamp_name());
+		   ps.setString(3, vo.getCamp_addr());
+		   ps.setString(4, vo.getCamp_phone());
+		   ps.setString(5, vo.getCamp_content());
+		   ps.setString(6, "http://www.5gcamp.com"+vo.getCamp_image());
+		   ps.setString(7, vo.getCamp_wifi());
+		   ps.setString(8, vo.getCamp_store());
+		   ps.setString(9, vo.getCamp_animal());
 		   
 		   ps.executeUpdate();
 	   }catch(Exception ex)
