@@ -87,6 +87,11 @@ public class MainClass {
                         Element camp_content = doc2.selectFirst("div.short_cont");
                         String campContentText = (camp_content != null) ? camp_content.text() : "해당 사항 없음";
                         System.out.println("상세 내용: " + campContentText);
+                        
+                        // 캠핑장 이미지: 첫 번째 이미지 링크만 추출
+                        Element firstImageElement = doc2.selectFirst("div.photos div.timg a");
+                        String camp_image = (firstImageElement != null) ? firstImageElement.attr("href") : "해당 사항 없음";
+                        System.out.println("캠핑장 이미지: " + camp_image);
 
                         // 와이파이 여부
                         Element wifiElement = doc2.selectFirst("p.f_name:contains(와이파이)");
@@ -103,11 +108,6 @@ public class MainClass {
                         String camp_animal = (animalElement != null && animalElement.hasClass("no")) ? "n" : "y";
                         System.out.println("반려동물 동반 여부: " + camp_animal);
 
-                        // 캠핑장 이미지: 첫 번째 이미지 링크만 추출
-                        Element firstImageElement = doc2.selectFirst("div.photos div.timg a");
-                        String camp_image = (firstImageElement != null) ? firstImageElement.attr("href") : "해당 사항 없음";
-                        System.out.println("캠핑장 이미지: " + camp_image);
-
                         System.out.println("==============================================");
 
                         // 데이터베이스에 저장
@@ -117,11 +117,23 @@ public class MainClass {
                         vo.setCamp_phone(campPhoneText);
                         vo.setCamp_price(campPriceValue);  // 여기서 null이 가능하므로, 필요 시 int로 강제 변환하지 않음
                         vo.setCamp_content(campContentText);
+                        vo.setCamp_image(camp_image);
                         vo.setCamp_wifi(camp_wifi);
                         vo.setCamp_store(camp_store);
                         vo.setCamp_animal(camp_animal);
-                        vo.setCamp_image(camp_image);
                         dao.campInsert(vo);
+                        /*
+                  		   ps.setInt(1, vo.getCamp_no());
+						   ps.setInt(2, vo.getCamp_price());
+						   ps.setString(3, vo.getCamp_name());
+						   ps.setString(4, vo.getCamp_addr());
+						   ps.setString(5, vo.getCamp_phone());
+						   ps.setString(6, vo.getCamp_content());
+						   ps.setString(7, "http://www.5gcamp.com"+vo.getCamp_image());
+						   ps.setString(8, vo.getCamp_wifi());
+						   ps.setString(9, vo.getCamp_store());
+						   ps.setString(10, vo.getCamp_animal());
+                         */
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

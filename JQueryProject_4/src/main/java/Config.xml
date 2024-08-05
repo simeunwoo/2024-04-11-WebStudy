@@ -1,1 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis에 정보를 넘겨주는 과정 (데이터베이스 정보 전송) : Connection -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--
+		configuration 내의 태그 순서
+			(properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, 
+	 		reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)
+	 		=> XML : 지정된 순서로 태그 사용, 지정된 태그나 속성만 이용한다
+	 		=> MyBatis에서만 사용 가능
+	 		=> 속성값은 반드시 "" 사용
+	 		=> 대소문자 구분
+	 		=> 태그의 열고 닫기가 명확해야 한다
+	 	
+	 	단점
+	 	= 파일이 다르기 때문에 개발자가 부담을 가진다
+	 		= 파일을 공유 => XML을 대체 (어노테이션 = 각자 개발)
+	 	
+	 	1. MyBatis : XML 버전 / 어노테이션 버전 (순수하게 자바만 이용)
+	 	2. Spring : XML 버전 / 어노테이션 버전 (순수하게 자바만 이용)
+	-->
+	<properties resource="db.properties"/>
+	<!-- properties : 파일 읽기 : VO를 등록하여 MyBatis에서 값을 저장 -->
+	<typeAliases>
+	<!-- typeAliases : connection 관련 : getConnection / disConnection -->
+	<typeAlias type="com.sist.dao.MusicVO" alias="MusicVO"/>
+	</typeAliases>
+	<environments default="development">
+	<!-- environments : 환경 설정 관련 -->
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<!-- transactionManager : COMMIT / ROLLBACK 관련 -->
+			<dataSource type="POOLED">
+			<!-- dataSource : DBCP : maxActive : 8 / maxIdle : 8 -->
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/sist/dao/music-mapper.xml"/>
+	</mappers>
+</configuration>
