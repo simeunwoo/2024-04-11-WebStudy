@@ -30,8 +30,25 @@ public class CampModel {
 		map.put("end", end);
 		List<CampVO> list=CampDAO.campListData(map);
 		
+		int count=CampDAO.campRowCount();
+		int totalpage=(int)(Math.ceil(count/10.0));
+		count=count-((rowSize*curpage)-rowSize);
 		
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
 		
 		return "list.jsp";
+	}
+	
+	@RequestMapping("camp/detail.do")
+	public String camp_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		CampVO vo=CampDAO.campDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		return "detail.jsp";
 	}
 }

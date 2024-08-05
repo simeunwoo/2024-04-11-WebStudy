@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
 </head>
 <body>
  <div class="container-fluid" style="background-color: rgb(37, 103, 75); padding: 0 20px; display: none; display: block;">
@@ -45,7 +45,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="#" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
-                        <a href="about.html" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
+                        <a href="../camp/list.do" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
                         
                         <a href="about.html" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;캠핑용품&nbsp;&nbsp;&nbsp;</a>
                         

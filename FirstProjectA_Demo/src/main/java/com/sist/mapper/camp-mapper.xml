@@ -30,4 +30,10 @@
 		FROM board
 		WHERE no=#{no}
 	</select> -->
+	<select id="campDetailData" resultType="CampVO" parameterType="int">
+		SELECT camp_no,camp_price,camp_name,camp_addr,camp_phone,
+		  camp_content,camp_image,camp_wifi,camp_store,camp_animal
+		FROM camp
+		WHERE camp_no=#{camp_no}
+	</select>
 </mapper>
