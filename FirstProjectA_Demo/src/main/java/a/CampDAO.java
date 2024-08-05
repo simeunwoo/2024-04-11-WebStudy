@@ -67,7 +67,7 @@ public class CampDAO {
 		   ps.setString(3, vo.getCamp_addr());
 		   ps.setString(4, vo.getCamp_phone());
 		   ps.setString(5, vo.getCamp_content());
-		   ps.setString(6, "http://www.5gcamp.com"+vo.getCamp_image());
+		   ps.setString(6, vo.getCamp_image());
 		   ps.setString(7, vo.getCamp_wifi());
 		   ps.setString(8, vo.getCamp_store());
 		   ps.setString(9, vo.getCamp_animal());
