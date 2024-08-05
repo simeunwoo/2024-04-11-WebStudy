@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
- <div class="container-fluid bg-primary px-5 d-none d-lg-block">
+ <div class="container-fluid" style="background-color: rgb(37, 103, 75); padding: 0 20px; display: none; display: block;">
+
             <div class="row gx-0">
                  <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
@@ -44,15 +45,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="#" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            &nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="#" class="dropdown-item">캠핑장 목록</a>
-                                <a href="#" class="dropdown-item">근처 맛집 목록</a>
-                            </div>
-                        </div>
-                        
+                        <a href="about.html" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
                         
                         <a href="about.html" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;캠핑용품&nbsp;&nbsp;&nbsp;</a>
                         

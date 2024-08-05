@@ -102,7 +102,7 @@ public class FoodModel {
 					obj.put("totalpage", totalpage);
 					obj.put("type", type);
 				}
-				arr.add(vo);
+				arr.add(obj);
 				i++;
 			}
 			

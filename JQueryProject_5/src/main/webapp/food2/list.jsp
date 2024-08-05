@@ -27,12 +27,90 @@ $(function(){
 	$.ajax({
 		type:'post',
 		url:'food.do',
-		success:function(json)
+		success:function(result)
 		{
-			console.log(json)	
+			let json=JSON.parse(result)
+		//	console.log(json)
+			foodPrint(json) // 반복 구간 => 함수로 간단히
+		}
+	})
+	
+	$('#prev').click(function(){
+		let no=$(this).attr("data-type")
+		let cpage=$('#cpage').text()
+		let curpage=parseInt(cpage)
+		if(curpage>1)
+		{
+			curpage--
+			$.ajax({
+				type:'post',
+				url:'food.do',
+				data:{"type":no,"page":curpage},
+				success:function(result)
+				{
+					let json=JSON.parse(result)
+					foodPrint(json)
+				}
+			})
+		}
+	})
+	
+	$('#next').click(function(){
+		let no=$(this).attr("data-type")
+		let cpage=$('#cpage').text()
+		let tpage=$('#tpgae').text()
+		let curpage=parseInt(cpage)
+		let totalpage=parseInt(tpage)
+		if(curpage<totalpage)
+		{
+			curpage++
+			$.ajax({
+				type:'post',
+				url:'food.do',
+				data:{"type":no,"page":curpage},
+				success:function(result)
+				{
+					let json=JSON.parse(result)
+					foodPrint(json)
+				}
+			})
 		}
 	})
 })
+function change(no){
+	$.ajax({
+		type:'post',
+		url:'food.do',
+		data:{"type":no},
+		success:function(result)
+		{
+			let json=JSON.parse(result)
+			//	console.log(json)
+			foodPrint(json) // 반복 구간 => 함수로 간단히
+		}	
+	})
+}
+function foodPrint(json){
+	$('#cpage').text(json[0].curpage)
+	$('#tpage').text(json[0].totalpage)
+	
+	let html='';
+	json.map((food)=>{
+		html+='<div class="col-sm-3">'
+			+'<a href="#">'
+			+'<div class="thumbnail">'
+			+'<img src="'+food.poster'" style="width: 100%">'
+			+'<p class="a">'+food.name+'</p>'
+			+'</div>'
+			+'</a>'
+			+'</div>'
+	})
+	
+	$('#prev').attr("data-type",json[0].type)
+	$('#next').attr("data-type",json[0].type)
+	
+	$('#print').html(html)
+}
 </script>
 </head>
 <body>
@@ -51,9 +129,9 @@ $(function(){
 		<div style="height:10px"></div>
 		<div class="row" id="print">
 			<div class="text-center">
-				<input type="button" class="btn btn-sm btn-success" value="이전">
+				<input type="button" class="btn btn-sm btn-success" value="이전" id="prev" data-type="">
 				<span id="cpage"></span> page / <span id="tpage"></span> pages
-				<input type="button" class="btn btn-sm btn-success" value="다음">
+				<input type="button" class="btn btn-sm btn-success" value="다음" id="next" data-type="">
 			</div>
 		</div>
 	</div>

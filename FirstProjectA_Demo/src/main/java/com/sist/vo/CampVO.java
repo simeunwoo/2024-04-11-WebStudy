@@ -1,5 +1,16 @@
 package com.sist.vo;
-
+/*
+ CAMP_NO                                   NOT NULL NUMBER
+ CAMP_PRICE                                         NUMBER
+ CAMP_NAME                                 NOT NULL VARCHAR2(4000)
+ CAMP_ADDR                                          VARCHAR2(4000)
+ CAMP_PHONE                                         VARCHAR2(4000)
+ CAMP_CONTENT                                       CLOB
+ CAMP_IMAGE                                         VARCHAR2(4000)
+ CAMP_WIFI                                          VARCHAR2(4000)
+ CAMP_STORE                                         VARCHAR2(4000)
+ CAMP_ANIMAL                                        VARCHAR2(4000)
+ */
 public class CampVO {
 
 	private int camp_no,camp_price;
