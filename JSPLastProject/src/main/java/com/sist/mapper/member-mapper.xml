@@ -5,12 +5,12 @@
 <mapper namespace="com.sist.mapper.member-mapper">
 	<select id="memberIdCountData" resultType="int" parameterType="string">
 		SELECT COUNT(*)
-		FROM member
+		FROM project_member
 		WHERE id=#{id}
 	</select>
 	<select id="memberInfoData" resultType="MemberVO" parameterType="string">
 		SELECT *
-		FROM member
+		FROM project_member
 		WHERE id=#{id}
 	</select>
 </mapper>

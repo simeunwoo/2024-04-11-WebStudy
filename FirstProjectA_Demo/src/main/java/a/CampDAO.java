@@ -21,7 +21,7 @@ public class CampDAO {
    {
 	   try
 	   {
-		   conn=DriverManager.getConnection(URL,"hr","happy");
+		   conn=DriverManager.getConnection(URL,"hr2","happy");
 	   }catch(Exception ex) {}
    }
    // 해제 
