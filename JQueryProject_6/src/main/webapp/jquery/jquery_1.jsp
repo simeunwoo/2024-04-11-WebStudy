@@ -125,9 +125,9 @@
 	window : 브라우저 제어 => open(), close(), scrollbar
 	|
 	==================================
-	|           |          |         |
-	location    document   history   event
-	: 화면 이동    : 화면 제어   : 기록 정보  : 이벤트 처리
+	|          |          |          |
+	location   document   history    event
+	: 화면 이동   : 화면 제어   : 기록 정보   : 이벤트 처리
 	
 	= location : 화면 이동
 		href
@@ -145,6 +145,91 @@
 		대부분이 브라우저에서만 사용 가능 (호환성이 좋다)
 		HTML(DOM = 트리 형태)을 쉽게 조작 가능
 		간단하게 CSS 적용 가능
+		
+		예)
+		let a=document.querySelector("a")
+		a.style.background='red'
+		
+		$('a').css('background','red')
+		======
+		document.querySelector("a")
+	
+		오픈 소스 : 사용이 자유롭다
+		속도가 늦다 => 가상 돔(가상 메모리)
+	
+	문법 형식)
+	= JavaScript
+		main : window.onload=function()
+	= jQuery
+		main : $(function(){}), $(document).ready(function(){})
+	= Vue3
+		main : new Vue({
+					mounted:function(){}
+				})
+	= React : class Main extends Component
+			{
+				componentDidMount(){}
+			}
+			=> HOOKS
+			function main()
+			{
+				useEffect(()=>{
+				
+				})
+			}
+	= React-Query : ******* 서버 연결
+	
+	=====================================================
+	
+	jQuery : 태그를 제어하는 프로그램 (태그를 가지고 오는 방법)
+		값, 속성, CSS, 이벤트 제어
+		$('태그명').처리
+		$('아이디명').처리
+		... 선택자
+	1) 값을 읽기 (태그)
+		val() / val(값) : input, select, textarea
+		text() / text(값) : 모든 태그 => <태그>값</태그> : 문자열만 취급
+		html() / html() : HTML 적용 => 단일(한번만 사용)
+		append() / append() : 여러개를 동시에 사용
+	2) 제어 (이벤트)
+		click
+		change
+		hover
+		keyup
+		keydown
+	3) Ajax
+		브라우저 : HttpXMLRequest가 존재
+			HttpXMLRequest : 서버 연결 => 서버 응답
+		=> if(httpRequest.readyState==4)
+			{
+				if(httpRequest.status==200)
+				{
+				}
+			}
+			=> success:function()
+				{
+				}
+		=> $.ajax({
+			type: // => get/post
+			url: // => 실행할 JSP를 지정
+			data: // => ? => {키:값}
+			success:function()
+			{
+				// 정상 수행
+			}
+			error:function(e)
+			{
+				// 서버에서 오류 발생
+			}
+		})
+		=> axios.get('url'{ // => Vue, React
+			params:{
+				키:값
+			}
+		}).then(res=>{
+			결과값 받기
+		})
+		=> axios.post()
 --%>
 <!DOCTYPE html>
 <html>
