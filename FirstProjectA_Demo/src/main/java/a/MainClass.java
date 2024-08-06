@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainClass {
+public class MainClasss {
 
     public static void main(String[] args) {
         // MainClass 인스턴스 생성 및 메서드 호출
