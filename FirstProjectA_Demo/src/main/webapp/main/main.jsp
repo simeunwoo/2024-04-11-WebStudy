@@ -4,8 +4,8 @@
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">  
-        <title>TJ camp</title>
+        <meta charset="utf-8">
+        <title>TJ camping</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -57,7 +57,7 @@
         <script src="../lib/lightbox/js/lightbox.min.js"></script>
         
 
-        <!-- Template Javascript -->
+        <!— Template Javascript —>
         <script src="../js/main.js"></script>
     </body>
 
