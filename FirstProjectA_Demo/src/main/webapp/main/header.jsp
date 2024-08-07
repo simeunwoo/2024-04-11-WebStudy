@@ -49,7 +49,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             &nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
-                                <a href="#" class="dropdown-item">캠핑장 목록</a>
+                                <a href="../camp/list.do" class="dropdown-item">캠핑장 목록</a>
                                 <a href="#" class="dropdown-item">지역별 캠핑장</a>
                                 <a href="#" class="dropdown-item">With Pet 캠핑장</a>
                                 <a href="#" class="dropdown-item">근처 맛집</a>

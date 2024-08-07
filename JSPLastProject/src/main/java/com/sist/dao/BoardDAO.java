@@ -169,4 +169,80 @@ public class BoardDAO {
 		
 		return vo;
 	}
+	
+	/*
+	<select id="boardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd
+		FROM project_board
+		WHERE no=#{no}
+	</select>
+	<update id="boardUpdate" parameterType="BoardVO">
+		UPDATE project_board SET
+		name=#{name},subject=#{subject},content=#{content}
+		WHERE no=#{no}
+	</update>
+	 */
+	public static String boardUpdate(BoardVO vo)
+	{
+		String result="no";
+		SqlSession session=null;		
+		
+		try
+		{
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("boardGetPassword",vo.getNo());
+			if(db_pwd.equals(vo.getPwd()))
+			{
+				result="yes";
+				session.update("boardUpdate",vo);
+				session.commit();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 6");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return result;
+	}
+	
+	/*
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM project_board
+		WHERE no=#{no}
+	</delete>
+	 */
+	public static String boardDelete(int no,String pwd)
+	{
+		String result="no";
+		SqlSession session=null;		
+		
+		try
+		{
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("boardGetPassword",no);
+			if(db_pwd.equals(pwd))
+			{
+				result="yes";
+				session.delete("boardDelete",no);
+				session.commit();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 7");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return result;
+	}
 }

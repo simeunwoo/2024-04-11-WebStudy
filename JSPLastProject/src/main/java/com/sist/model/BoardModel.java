@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -153,7 +154,30 @@ public class BoardModel {
 		vo.setNo(Integer.parseInt(no));
 		
 		// 데이터베이스 연동
+		String result=BoardDAO.boardUpdate(vo);
 		
 		// Ajax로 값을 전송 => yes/no
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
+	}
+	
+	@RequestMapping("board/delete.do")
+	public void board_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		
+		// 데이터베이스 연동
+		String result=BoardDAO.boardDelete(Integer.parseInt(no), pwd);
+		
+		// Ajax로 결과값 전송 => yes/no
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
 	}
 }

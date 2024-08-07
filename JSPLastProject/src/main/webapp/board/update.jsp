@@ -16,28 +16,28 @@
 <script type="text/javascript">
 $(function(){
 	$('#updateBtn').on('click',()=>{
-		let name=$('name').val()
+		let name=$('#name').val()
 		if(name.trim()==="")
 		{
 			$('#name').focus()
 			return
 		}
-		let subject=$('subject').val()
+		let subject=$('#subject').val()
 		if(subject.trim()==="")
 		{
 			$('#subject').focus()
 			return
 		}
-		let content=$('content').val()
+		let content=$('#content').val()
 		if(content.trim()==="")
 		{
 			$('#content').focus()
 			return
 		}
-		let pwd=$('pwd').val()
+		let pwd=$('#pwd1').val()
 		if(pwd.trim()==="")
 		{
-			$('#pwd').focus()
+			$('#pwd1').focus()
 			return
 		}
 		///////////////////////////////// 유효성 검사
@@ -59,8 +59,8 @@ $(function(){
 				else
 				{
 					alert("비밀 번호가 틀렸어요")
-					$('#pwd').val("")
-					$('#pwd').focus
+					$('#pwd1').val("")
+					$('#pwd1').focus
 				}
 			},
 			error:function(request,status,error)
@@ -100,7 +100,7 @@ $(function(){
 					<tr>
 						<th width="15%" class="text-right">비밀 번호</th>
 						<td width="85%">
-							<input type="password" id="pwd" size="10" class="input-sm">
+							<input type="password" id="pwd1" size="10" class="input-sm">
 						</td>
 					</tr>
 					<tr>

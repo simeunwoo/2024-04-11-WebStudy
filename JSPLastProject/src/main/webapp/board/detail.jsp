@@ -55,6 +55,40 @@
 				$('#delTr').hide("fast")
 			}
 		})
+		
+		$('#deleteBtn').click(function(){
+			let pwd=$('#del_pwd').val()
+			if(pwd.trim()==="")
+			{
+				$('#del_pwd').focus()
+				return
+			}
+			let no=$('.del_no').text()
+			$.ajax({
+				type:'post',
+				url:'../board/delete.do',
+				data:{"no":no,"pwd":pwd},
+				success:function(result)
+				{
+					if(result==='yes')
+					{
+						// 비밀 번호가 맞는 경우
+						location href="../board/list.do"
+					}
+					else
+					{
+						// 비밀 번호가 틀린 경우
+						alert("비밀 번호가 틀립니다")
+						$('#del_pwd').val("")
+						$('#del_pwd').focus()
+					}
+				},
+				error:function(request,status,error)
+				{
+					console.log(error)
+				}
+			})
+		})
 	})
     </script>
 </head>
@@ -66,7 +100,7 @@
 				<table class="table">
 					<tr>
 						<th width="20%" class="text-center">번호</th>
-						<td width="30%" class="text-center">${vo.no }</td>
+						<td width="30%" class="text-center del_no">${vo.no }</td>
 						<th width="20%" class="text-center">작성일</th>
 						<td width="30%" class="text-center">${vo.dbday }</td>
 					</tr>
@@ -94,7 +128,7 @@
 					</tr>
 					<tr id="delTr" style="display: none">
 						<td colspan="4" class="text-right inline">
-							비밀 번호 : <input type="password" id="pwd" class="input-sm" size="10">
+							비밀 번호 : <input type="password" id="del_pwd" class="input-sm" size="10">
 							<input type="button" value="삭제" class="btn-warning btn-sm" id="deleteBtn">
 						</td>
 					</tr>

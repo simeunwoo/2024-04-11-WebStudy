@@ -71,4 +71,8 @@
 		WHERE no=#{no}
 	</update>
 	<!-- 삭제 -->
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM project_board
+		WHERE no=#{no}
+	</delete>
 </mapper>

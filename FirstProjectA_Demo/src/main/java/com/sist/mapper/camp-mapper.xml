@@ -16,9 +16,9 @@
 -->
 <mapper namespace="com.sist.mapper.camp-mapper">
 	<select id="campListData" resultType="CampVO" parameterType="hashmap">
-		SELECT camp_no,camp_name,camp_price,camp_poster,num
-		FROM (SELECT camp_no,camp_name,camp_price,camp_poster,rownum as num
-		FROM (SELECT camp_no,camp_name,camp_price,camp_poster
+		SELECT camp_no,camp_name,camp_price,camp_image,num
+		FROM (SELECT camp_no,camp_name,camp_price,camp_image,rownum as num
+		FROM (SELECT camp_no,camp_name,camp_price,camp_image
 		FROM camp ORDER BY camp_no ASC))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
