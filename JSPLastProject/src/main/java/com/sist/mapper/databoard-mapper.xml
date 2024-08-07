@@ -3,5 +3,34 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.databoard-mapper">
-
+<!--
+	<sql> = <include>
+		: SQL 문장의 중복 제거
+	<select id="" resultType="" parameterType="" resultMap="">
+	<insert id="" parameterType=""> = <selectKey>
+		: 자동 증가 번호
+		id : 구분자
+		resultType : 결과값(SQL => 담는 변수)
+		parameterType : ?에 값을 채운다
+		resultMap : 컬럼명이 다른 경우 처리 (실무에서 자주 사용 => 보안 때문)
+			=> 컬럼명 / VO의 변수명
+				ex)
+				컬럼명 : board_no, board_name, board_subject ...
+				VO의 변수명 : no, name, subject ...
+				===> 번거로워질 수 있어 컬럼명과 VO의 변수명의 통일을 권장
+				===> 다를 경우 => SELECT board_no as no,board_name as name... 이런식으로 해야 됨
+	<update id="" parameterType="">
+	<delete id="" parameterType="">
+	
+	= id(구분자)는 중복이 되면 안된다
+	  ================ HTML/CSS = JavaScript(<jsp:include>)
+	  
+	/////////////////////////////////////////////////////////////////////////////////////////
+	
+	<resultMap id="" type="BoardVO">
+		<result column="board_no" property="no"/>
+	</resultMap>
+	===> JOIN을 활용할 때 반드시 나온다 ex) vo.getDvo().setName()
+		<result column="board_name" property="dvo.name"/>
+-->
 </mapper>
