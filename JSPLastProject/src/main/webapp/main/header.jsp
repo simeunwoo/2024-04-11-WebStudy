@@ -62,7 +62,7 @@ $(function(){
 	$('#logoutBtn').click(function(){
 		$.ajax({
 			type:'post',
-			url:'../member.logOut.do',
+			url:'../member/logout.do',
 			success:function(result)
 			{
 				location.href="../main/main.do"
@@ -83,7 +83,7 @@ $(function(){
   <header id="header" class="clear"> 
       
     <div id="logo" class="fl_left">
-      <h1><a href="../main.main/do">Siuuuuuuuuuuuuu</a></h1>
+      <h1><a href="../main/main.do">Siuuuuuuuuuuuuu</a></h1>
     </div>
     <div class="fl_right">
     	<c:if test="${sessionScope.id==null }">
@@ -157,12 +157,13 @@ $(function(){
         <ul>
           <li><a href="../board/list.do">자유 게시판</a></li>
           <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->
-          	<li><a href="pages/full-width.html">묻고 답하기</a></li>
+          	<li><a href="../replyboard/list.do">묻고 답하기</a></li>
           </c:if>
-          <li><a href="pages/sidebar-left.html">공지 사항</a></li>
+          <li><a href="../notice/list.do">공지 사항</a></li>
           <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->
-          	<li><a href="pages/sidebar-left.html">실시간 채팅</a></li>
+          	<li><a href="../chat/chat.do">실시간 채팅</a></li>
           </c:if>
+          <li><a href="../databoard/list.do">자료실</a></li>
         </ul>
       </li>
       <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->

@@ -32,7 +32,7 @@
           title: '사용자 데이터 분석'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
 
         chart.draw(data, options);
       }
@@ -73,7 +73,7 @@
 					if(result==='yes')
 					{
 						// 비밀 번호가 맞는 경우
-						location href="../board/list.do"
+						location.href="../board/list.do"
 					}
 					else
 					{
@@ -135,7 +135,7 @@
 				</table>
 			</div>
 			<div style="height: 30px"></div>
-			<div id="piechart" style="width: 900px; height: 500px;"></div>
+			<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 		</main>
 	</div>
 </body>
