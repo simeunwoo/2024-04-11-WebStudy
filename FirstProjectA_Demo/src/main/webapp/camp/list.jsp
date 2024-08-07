@@ -29,6 +29,11 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <style>
+        .bg-breadcrumb {
+    background-image: url('camp_list.jpg');
+}
+        </style>
     </head>
 
     <body>
@@ -42,11 +47,8 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Tour Category</h1>
+                <h3 class="text-white display-3 mb-4">캠핑장 목록</h3>
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-white">Category</li>
                 </ol>    
             </div>
         </div>
