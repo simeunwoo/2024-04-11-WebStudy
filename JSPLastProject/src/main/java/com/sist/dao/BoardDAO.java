@@ -146,4 +146,27 @@ public class BoardDAO {
 		
 		return vo;
 	}
+	
+	public static BoardVO boardUpdateData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("boardDetailData",no); // boardDetailData로 사용해야 한다
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 5");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }

@@ -109,4 +109,51 @@ public class BoardModel {
 		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	/*
+	 * 	@RequestMapping("board/update.do")
+	 * 		=> GET/POST (동시에 사용)
+	 * 	@GetMapping("")
+	 * 	@PostMapping("")
+	 */
+	@RequestMapping("board/update.do")
+	public String board_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		
+		// 데이터베이스 연동
+		BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("main_jsp", "../board/update.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/update_ok.do")
+	public void board_update_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		// Ajax => URL을 변경하지 않는 상태에서 처리
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String pwd=request.getParameter("pwd");
+		String no=request.getParameter("no");
+		
+		BoardVO vo=new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setPwd(pwd);
+		vo.setNo(Integer.parseInt(no));
+		
+		// 데이터베이스 연동
+		
+		// Ajax로 값을 전송 => yes/no
+	}
 }

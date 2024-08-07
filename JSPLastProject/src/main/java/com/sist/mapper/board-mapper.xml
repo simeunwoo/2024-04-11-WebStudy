@@ -60,5 +60,15 @@
 		WHERE no=#{no}
 	</select>
 	<!-- 수정 -->
+	<select id="boardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd
+		FROM project_board
+		WHERE no=#{no}
+	</select>
+	<update id="boardUpdate" parameterType="BoardVO">
+		UPDATE project_board SET
+		name=#{name},subject=#{subject},content=#{content}
+		WHERE no=#{no}
+	</update>
 	<!-- 삭제 -->
 </mapper>

@@ -13,6 +13,7 @@
 	width: 960px;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -35,6 +36,26 @@
 
         chart.draw(data, options);
       }
+      
+    //////////////////////////////////////////////////////////////////////////////////////////
+    
+	let bCheck=true
+	$(function(){
+		$('#delBtn').on('click',function(){
+			if(bCheck===true)
+			{
+				bCheck=false
+				$('#delBtn').text("취소")
+				$('#delTr').show("slow")
+			}
+			else
+			{
+				bCheck=true
+				$('#delBtn').text("삭제")
+				$('#delTr').hide("fast")
+			}
+		})
+	})
     </script>
 </head>
 <body>
@@ -66,9 +87,15 @@
 					</tr>
 					<tr>
 						<td colspan="4" class="text-right">
-							<a href="#" class="btn btn-xs btn-success">수정</a>
+							<a href="../board/update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
 							<a href="../board/list.do" class="btn btn-xs btn-warning">목록</a>
-							<a href="#" class="btn btn-xs btn-danger">삭제</a>
+							<span class="btn btn-xs btn-danger" id="delBtn">삭제</span>
+						</td>
+					</tr>
+					<tr id="delTr" style="display: none">
+						<td colspan="4" class="text-right inline">
+							비밀 번호 : <input type="password" id="pwd" class="input-sm" size="10">
+							<input type="button" value="삭제" class="btn-warning btn-sm" id="deleteBtn">
 						</td>
 					</tr>
 				</table>

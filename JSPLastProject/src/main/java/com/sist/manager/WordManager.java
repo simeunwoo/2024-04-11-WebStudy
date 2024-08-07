@@ -19,7 +19,7 @@ public class WordManager {
 		{
 			WordVO vo=new WordVO();
 			Keyword kw=kList.get(i);
-			if(kw.getString().length()>1)
+			if(kw.getString().length()>1 && kw.getCnt()>2)
 			{
 				vo.setWord(kw.getString());
 				vo.setCount(kw.getCnt());
