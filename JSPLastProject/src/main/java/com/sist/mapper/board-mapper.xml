@@ -33,8 +33,15 @@
 			map
 				#{start} key값
 				=
-				map.put("start",10) / map.get("start")
+				map.put("start",10)
+				
+				map.get("start")
 		-->
+	</select>
+	<!-- 총 페이지 -->
+	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*)
+		FROM project_board	
 	</select>
 	<!-- 상세 보기 -->
 	<!-- 수정 -->

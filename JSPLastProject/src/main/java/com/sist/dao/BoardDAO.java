@@ -66,7 +66,7 @@ public class BoardDAO {
 		try
 		{
 			session=ssf.openSession();
-			list=session.selectOne("boardListData",map);
+			list=session.selectList("boardListData",map);
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("BoardDAO 오류 2");
@@ -79,5 +79,34 @@ public class BoardDAO {
 		}
 		
 		return list;
+	}
+	
+	/*
+	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*)
+		FROM project_board	
+	</select>
+	 */
+	public static int boardRowCount()
+	{
+		int count=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			count=session.selectOne("boardRowCount");
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 3");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return count;
 	}
 }

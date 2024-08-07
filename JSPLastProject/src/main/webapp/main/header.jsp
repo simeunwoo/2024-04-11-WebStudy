@@ -83,7 +83,7 @@ $(function(){
   <header id="header" class="clear"> 
       
     <div id="logo" class="fl_left">
-      <h1><a href="../main.main/do">Food & Recipe</a></h1>
+      <h1><a href="../main.main/do">Siuuuuuuuuuuuuu</a></h1>
     </div>
     <div class="fl_right">
     	<c:if test="${sessionScope.id==null }">
@@ -155,7 +155,7 @@ $(function(){
       </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
-          <li><a href="pages/gallery.html">자유 게시판</a></li>
+          <li><a href="../board/list.do">자유 게시판</a></li>
           <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->
           	<li><a href="pages/full-width.html">묻고 답하기</a></li>
           </c:if>
