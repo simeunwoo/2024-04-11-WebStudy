@@ -25,7 +25,8 @@
 	<!-- properties : 파일 읽기 : VO를 등록하여 MyBatis에서 값을 저장 -->
 	<typeAliases>
 	<!-- typeAliases : connection 관련 : getConnection / disConnection -->
-	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -43,5 +44,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/sist/mapper/member-mapper.xml"/>
+		<mapper resource="com/sist/mapper/board-mapper.xml"/>
 	</mappers>
 </configuration>
