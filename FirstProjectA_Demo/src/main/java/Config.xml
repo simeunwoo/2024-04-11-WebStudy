@@ -8,6 +8,7 @@
 	<typeAliases>
 	<!-- typeAliases : connection 관련 : getConnection / disConnection -->
 	<typeAlias type="com.sist.vo.CampVO" alias="CampVO"/>
+	<typeAlias type="com.sist.vo.UserVO" alias="UserVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -25,5 +26,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/sist/mapper/camp-mapper.xml"/>
+		<mapper resource="com/sist/mapper/user-mapper.xml"/>
 	</mappers>
 </configuration>

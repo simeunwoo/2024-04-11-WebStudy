@@ -13,8 +13,28 @@
 </script>
 </head>
 <body>
-<div class="wrapper row3">
-  <div class="tab-content">
+<div class="container-fluid ExploreTour py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Explore Tour</h5>
+                    <h1 class="mb-4">The World</h1>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+                    </p>
+                </div>
+                <div class="tab-class text-center">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                        <li class="nav-item">
+                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#NationalTab-1">
+                                <span class="text-dark" style="width: 250px;">National Tour Category</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#InternationalTab-2">
+                                <span class="text-dark" style="width: 250px;">International tour Category</span>
+                            </a>
+                        </li>
+                    </ul>
+  					<div class="tab-content">
                         <div id="NationalTab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                                 <div class="col-md-6 col-lg-4">
@@ -105,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-<!-- 
+<!--
   <main class="container clear"> 
     <div class="content"> 
       <div id="gallery">
@@ -137,7 +157,10 @@
       </nav>
     </div>
     <div class="clear"></div>
-  </main>
-</div> -->
+  </main>  -->
+  </div>
+  </div>
+  </div>
+</div>
 </body>
 </html>

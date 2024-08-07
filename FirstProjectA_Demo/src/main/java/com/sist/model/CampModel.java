@@ -39,16 +39,19 @@ public class CampModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		
-		return "list.jsp";
+		request.setAttribute("main_jsp", "../camp/list.jsp");
+		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("camp/detail.do")
 	public String camp_detail(HttpServletRequest request,HttpServletResponse response)
 	{
-		String no=request.getParameter("no");
-		CampVO vo=CampDAO.campDetailData(Integer.parseInt(no));
+		String camp_no=request.getParameter("camp_no");
+		CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
 		
 		request.setAttribute("vo", vo);
-		return "detail.jsp";
+		
+		request.setAttribute("main_jsp", "../camp/detail.jsp");
+		return "../main/main.jsp";
 	}
 }

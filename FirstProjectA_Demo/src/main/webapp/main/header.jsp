@@ -22,7 +22,7 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
                     	<a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a>
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
+                        <a href="../login/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>마이페이지</small></a>
                     </div>

@@ -5,7 +5,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>TJ camping</title>
+        <title>TJ Camping</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -40,7 +40,7 @@
         <!-- Topbar Start -->
        <jsp:include page="header.jsp"></jsp:include>
 
-       <jsp:include page="home.jsp"></jsp:include>
+       <jsp:include page="${main_jsp }"></jsp:include>
 
         <!-- Footer Start -->
         <jsp:include page="footer.jsp"></jsp:include>
