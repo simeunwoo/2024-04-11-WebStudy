@@ -23,7 +23,7 @@
         var data = google.visualization.arrayToDataTable([
           ['사용 단어', '단어 횟수'],
           <c:forEach var="vo" items="${list}">
-          	[<c:out value="${vo.word}"/>,<c:out value="${vo.count}"/>],
+          	['<c:out value="${vo.word}"/>',<c:out value="${vo.count}"/>],
           </c:forEach>
         ]);
 
@@ -77,8 +77,5 @@
 			<div id="piechart" style="width: 900px; height: 500px;"></div>
 		</main>
 	</div>
-</head>
-<body>
-
 </body>
 </html>
