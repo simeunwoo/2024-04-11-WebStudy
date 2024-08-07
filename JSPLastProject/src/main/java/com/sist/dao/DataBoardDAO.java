@@ -20,7 +20,7 @@ public class DataBoardDAO {
 		
 		try
 		{
-			session=ssf.openSession();
+			session=ssf.openSession(true);
 			session.insert("databoardInsert",vo);
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -68,7 +68,7 @@ public class DataBoardDAO {
 			count=session.selectOne("databoardRowCount");
 		}catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("BoardDAO 오류 2");
+			System.out.println("BoardDAO 오류 3");
 			e.printStackTrace();
 		}
 		finally
