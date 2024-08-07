@@ -44,6 +44,21 @@
 		FROM project_board	
 	</select>
 	<!-- 상세 보기 -->
+	<update id="hitIncrement" parameterType="int">
+		UPDATE project_board SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<!--
+		parameterType="int" => 인식 못할 경우 => parameterType="java.lang.Integer"
+		parameterType="string" => 인식 못할 경우 => parameterType="java.lang.String"
+		parameterType="hashmap" => 인식 못할 경우 => parameterType="java.util.Map"
+	-->
+	<select id="boardDetailData" resultType="BoardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,hit
+		FROM project_board
+		WHERE no=#{no}
+	</select>
 	<!-- 수정 -->
 	<!-- 삭제 -->
 </mapper>

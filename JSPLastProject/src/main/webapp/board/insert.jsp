@@ -9,7 +9,7 @@
 <style type="text/css">
 .row1{
 	margin: 0px auto;
-	width: 600px;
+	width: 960px;
 }
 </style>
 </head>

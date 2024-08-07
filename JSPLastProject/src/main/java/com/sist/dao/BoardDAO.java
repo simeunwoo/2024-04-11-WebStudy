@@ -109,4 +109,41 @@ public class BoardDAO {
 		
 		return count;
 	}
+	
+	/*
+	<update id="hitIncrement" parameterType="int">
+		UPDATE project_board SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="boardDetailData" resultType="BoardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,hit
+		FROM project_board
+		WHERE no=#{no}
+	</select>
+	 */
+	public static BoardVO boardDetailData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("hitIncrement",no);
+			session.commit(); // autoCommit()이 안되었으므로 직접 설정
+			vo=session.selectOne("boardDetailData",no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 4");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }

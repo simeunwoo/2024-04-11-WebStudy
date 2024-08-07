@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -6,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
+import com.sist.manager.WordManager;
 import com.sist.vo.*;
 /*
  * 	1. mapper.xml
@@ -82,8 +84,29 @@ public class BoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
+		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		
 		request.setAttribute("main_jsp", "../board/list.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("board/detail.do")
+	public String board_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		
+		// 데이터베이스에서 값을 가지고 온다
+		BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		WordManager wm=new WordManager();
+		List<WordVO> list=wm.wordCountData(vo.getContent());
+		
+		request.setAttribute("vo", vo);
+		request.setAttribute("list", list);
+		
+		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
 	}
 }
