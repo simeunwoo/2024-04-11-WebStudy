@@ -44,6 +44,17 @@
 		#{name},#{subject},#{content},#{pwd},SYSDATE,0,#{filename},#{filesize})
 	</insert>
 	<!-- 목록 -->
+	<select id="databoardListData" parameterType="hashmap" resultType="DataBoardVO">
+		SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,num
+		FROM (SELECT no,subject,name,regdate,hit,rownum as num
+		FROM (SELECT /*+ INDEX_DESC(project_databoard pd_no_pk)*/no,subject,name,regdate,hit
+		FROM project_databoard))
+		WHERE num BETWEEN #{start} AND #{end} 
+	</select>
+	<select id="databoardRowCount" resultType="int">
+		SELECT COUNT(*)
+		FROM project_databoard
+	</select>
 	<!-- 상세 보기 -->
 	<!-- 수정 -->
 	<!-- 삭제 -->
