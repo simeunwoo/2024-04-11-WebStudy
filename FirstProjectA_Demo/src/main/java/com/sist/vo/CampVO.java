@@ -1,4 +1,7 @@
 package com.sist.vo;
+
+import lombok.Data;
+
 /*
  CAMP_NO                                   NOT NULL NUMBER
  CAMP_PRICE                                         NUMBER
@@ -11,6 +14,8 @@ package com.sist.vo;
  CAMP_STORE                                         VARCHAR2(4000)
  CAMP_ANIMAL                                        VARCHAR2(4000)
  */
+
+@Data
 public class CampVO {
 
 	private int camp_no,camp_price;

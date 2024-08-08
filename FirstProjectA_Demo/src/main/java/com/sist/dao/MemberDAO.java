@@ -10,7 +10,7 @@ import java.io.*;
 import com.sist.vo.*;
 import lombok.Locked.Read;
 
-public class UserDAO {
+public class MemberDAO {
 
 	private static SqlSessionFactory ssf;
 	static

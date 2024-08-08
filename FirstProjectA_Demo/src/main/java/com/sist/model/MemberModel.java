@@ -1,5 +1,5 @@
 package com.sist.model;
 
-public class UserModel {
+public class MemberModel {
 
 }

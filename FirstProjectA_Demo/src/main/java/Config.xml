@@ -8,7 +8,7 @@
 	<typeAliases>
 	<!-- typeAliases : connection 관련 : getConnection / disConnection -->
 	<typeAlias type="com.sist.vo.CampVO" alias="CampVO"/>
-	<typeAlias type="com.sist.vo.UserVO" alias="UserVO"/>
+	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -19,13 +19,13 @@
 			<!-- dataSource : DBCP : maxActive : 8 / maxIdle : 8 -->
 				<property name="driver" value="${driver}"/>
 				<property name="url" value="${url}"/>
-				<property name="username" value="${username}"/>
+				<property name="Membername" value="${Membername}"/>
 				<property name="password" value="${password}"/>
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
 		<mapper resource="com/sist/mapper/camp-mapper.xml"/>
-		<mapper resource="com/sist/mapper/user-mapper.xml"/>
+		<mapper resource="com/sist/mapper/member-mapper.xml"/>
 	</mappers>
 </configuration>
