@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<bean id="member" class="com.sist.model.MemberModel"/>
-	<bean id="camp" class="com.sist.model.CampModel"/>
-	<bean id="goods" class="com.sist.model.GoodsModel"/>
-	<bean id="food" class="com.sist.model.FoodModel"/>
-	<bean id="recipe" class="com.sist.model.RecipeModel"/>
-	<bean id="main" class="com.sist.model.MainModel"/>
-</beans>
+   <bean id="main" class="com.sist.model.MainModel"/>
+   <bean id="camp" class="com.sist.model.CampModel"/>
+   <bean id="member" class="com.sist.model.MemberModel"/>
+</beans> 

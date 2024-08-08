@@ -18,26 +18,42 @@ public class MemberDAO {
 		ssf=CreateSqlSessionFactory.getSsf();
 	}
 	
-	public String userLogin(String id,String pwd)
+	public static MemberVO isLogin(String id,String pwd)
 	{
-		String result="";
+		MemberVO vo=new MemberVO();
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			result=session.selectOne("userLogin",id);
+			int count=session.selectOne("memberIdCountData",id); // id => #{id}
+			if(count==0)
+			{
+				vo.setMsg("NOID");
+			}
+			else
+			{
+				vo=session.selectOne("memberInfoData",id);
+				if(pwd.equals(vo.getPwd())) // 로그인
+				{
+					vo.setMsg("OK");
+				}
+				else // 비밀 번호가 틀린 상태
+				{
+					vo.setMsg("NOPWD");
+				}
+			}
 		}catch(Exception ex)
 		{
-			System.out.println("UserDAO 오류 1");
+			System.out.println("MemberDAO 오류 1");
 			ex.printStackTrace();
 		}
 		finally
 		{
 			if(session!=null)
-				session.close();
+				session.close(); // DBCP => POOL 안으로 반환 => 재사용
 		}
 		
-		return result;
+		return vo;
 	}
 }
