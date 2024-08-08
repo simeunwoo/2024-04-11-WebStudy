@@ -5,6 +5,5 @@ import lombok.Data;
 @Data
 public class MemberVO {
 
-	private int no,post;
-	private String id,pwd,name,sex,birth,phone,email,addr,addr2,admin;
+	private String id,pwd,name,sex,birth,email,phone,addr1,addr2,admin;
 }
