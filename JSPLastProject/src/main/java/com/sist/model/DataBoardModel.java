@@ -182,4 +182,11 @@ public class DataBoardModel {
 			out.write(result);
 		}catch(Exception ex) {}
 	}
+	
+	@RequestMapping("databoard/update.do")
+	public String databoard_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../databoard/update.jsp");
+		return "../main/main.jsp";
+	}
 }
