@@ -3,6 +3,14 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--
+	MyBatis
+		Config.xml은 세팅이 이미 설정됨
+		mapper.xml
+		==========
+		1) CRUD : SELECT / INSERT / UPDATE / DELETE
+		2) JOIN
+		3) 동적 쿼리
+
 	<sql> = <include>
 		: SQL 문장의 중복 제거
 	<select id="" resultType="" parameterType="" resultMap="">
@@ -68,6 +76,12 @@
 		WHERE no=#{no}
 	</select>
 	<!-- 수정 -->
+	<update id="databoardUpdate" parameterType="DataBoardVO">
+		UPDATE project_databoard SET
+		name=#{name},subject=#{subject},content=#{content},
+			filename=#{filename},filesize=#{filesize}
+		WHERE no=#{no}
+	</update>
 	<!-- 삭제 -->
 	<select id="databoardGetPassword" resultType="string" parameterType="int">
 		SELECT pwd

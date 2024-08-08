@@ -12,6 +12,37 @@
 	width: 960px;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#up_pwd').keyup(function(){
+		let no=$('input[type="hidden"]'.val())
+		let pwd=$('#up_').val()
+		$.ajax({
+			type:'POST',
+			url:'../databoard/password_check.do',
+			data:{"no":no,"pwd":pwd},
+			success:function(result)
+			{
+				if(result==='yes')
+				{
+					$('#result').text("비밀 번호가 맞습니다")
+					$('input[type="submit"]').show()
+					$('#up_pwd').attr("disabled",true)
+				}
+				else
+				{
+					$('#result').text("비밀 번호가 틀립니다")
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 	<div class="wrapper row3">
@@ -23,31 +54,33 @@
 						<tr>
 							<th width="15%" class="text-right">이름</th>
 							<td width="85%">
-								<input type="text" name="name" size="20" class="input-sm" required>
+								<input type="text" name="name" size="20" class="input-sm" required
+								  value="${vo.name }">
+								<input type="hidden" id="no" value="${vo.no }">
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">제목</th>
 							<td width="85%">
-								<input type="text" name="subject" size="50" class="input-sm" required>
+								<input type="text" name="subject" size="50" class="input-sm" required value="${vo.subject }">
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">내용</th>
 							<td width="85%">
-								<textarea rows="10" cols="50" name="content" required></textarea>
+								<textarea rows="10" cols="50" name="content" required>${vo.content }</textarea>
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">첨부 파일</th>
 							<td width="85%">
-								<input type="file" name="upload" size="30" class="input-sm">
+								<input type="file" name="upload" size="30" class="input-sm" value="${vo.filename }">
 							</td>
 						</tr>
 						<tr>
 							<th width="15%" class="text-right">비밀 번호</th>
 							<td width="85%">
-								<input type="password" name="pwd" size="10" class="input-sm" required>
+								<input type="password" name="pwd" size="10" class="input-sm" required id="up_pwd">
 							</td>
 						</tr>
 						<tr>

@@ -182,7 +182,7 @@ public class DataBoardDAO {
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("BoardDAO 오류 4");
+			System.out.println("BoardDAO 오류 6");
 			e.printStackTrace();
 		}
 		finally
@@ -192,5 +192,79 @@ public class DataBoardDAO {
 		}
 		
 		return result;
+	}
+	
+	public static DataBoardVO databoardUpdateData(int no)
+	{
+		DataBoardVO vo=new DataBoardVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("databoardDetailData",no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 7");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	
+	public static String databoardGetPassword(int no)
+	{
+		String pwd="";
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			pwd=session.selectOne("databoardGetPassword",no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 8");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return pwd;
+	}
+	
+	/*
+	<update id="databoardUpdate" parameterType="DataBoardVO">
+		UPDATE project_databoard SET
+		name=#{name},subject=#{subject},content=#{content},
+			filename=#{filename},filesize=#{filesize}
+		WHERE no=#{no}
+	</update>
+	 */
+	public static void databoardUpdate(DataBoardVO vo)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("databoardUpdate",vo);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 9");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
 	}
 }
