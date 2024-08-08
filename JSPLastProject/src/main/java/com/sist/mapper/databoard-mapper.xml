@@ -9,7 +9,9 @@
 		==========
 		1) CRUD : SELECT / INSERT / UPDATE / DELETE
 		2) JOIN
-		3) 동적 쿼리
+		3) 동적 쿼리 => 검색
+	
+	Spring : XML 대신 Annotation
 
 	<sql> = <include>
 		: SQL 문장의 중복 제거
