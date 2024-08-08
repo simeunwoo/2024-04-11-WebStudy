@@ -3,6 +3,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -147,6 +148,38 @@ public class DataBoardModel {
 			}
 			bis.close();
 			bos.close();
+		}catch(Exception ex) {}
+	}
+	
+	// Model => 사용자 요청 처리 => 결과값 / 화면 이동
+	@RequestMapping("databoard/delete.do") // => if문과 동일
+	public void databoard_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		// data:{"no":no,"pwd":pwd} => delete.do?no=1&pwd=1234
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		
+		//////////////////////////////////////////////////////////////////////
+		
+		// 데이터베이스 연동
+		DataBoardVO vo=DataBoardDAO.databoardFileInfoData(Integer.parseInt(no));
+		String result=DataBoardDAO.databoardDelete(Integer.parseInt(no), pwd);
+		
+		// 파일 삭제
+		try
+		{
+			if(vo.getFilesize()>0)
+			{
+				File file=new File("c:\\project_upload\\"+vo.getFilename());
+				file.delete();
+			}
+		}catch(Exception ex) {}
+		
+		// 결과값을 받아서 Ajax로 전송
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
 		}catch(Exception ex) {}
 	}
 }

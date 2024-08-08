@@ -54,7 +54,28 @@ $(function(){ // window.onload => 모든 프로그램은 시작점이 있다 => 
 			에러 수행 => error:
 		*/
 		$.ajax({
-			
+			type:'post',
+			url:'../databoard/delete.do',
+			data:{"no":no,"pwd":pwd},
+			success:function(result)
+			{
+				// yes/no
+				if(result==='yes')
+				{
+					// 이동
+					location.href="../databoard/list.do"
+				}
+				else
+				{
+					alert("비밀 번호가 틀립니다")
+					$('#del_pwd').val("")
+					$('#del_pwd').focus()
+				}
+			},
+			error:function(response,status,error)
+			{
+				console.log(error)
+			}
 		})
 	})
 	

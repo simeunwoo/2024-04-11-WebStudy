@@ -69,5 +69,19 @@
 	</select>
 	<!-- 수정 -->
 	<!-- 삭제 -->
+	<select id="databoardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd
+		FROM project_databoard
+		WHERE no=#{no}
+	</select>
+	<select id="databoardFileInfoData" resultType="DataBoardVO" parameterType="int">
+		SELECT filename,filesize
+		FROM project_databoard
+		WHERE no=#{no}
+	</select>
+	<delete id="databoardDelete" parameterType="int">
+		DELETE FROM project_databoard
+		WHERE no=#{no}
+	</delete>
 	<!-- *** 동적 쿼리 -->
 </mapper>

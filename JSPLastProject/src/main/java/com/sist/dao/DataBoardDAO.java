@@ -123,4 +123,74 @@ public class DataBoardDAO {
 		
 		return vo;
 	}
+	
+	/*
+	<select id="databoardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd
+		FROM databoard
+		WHERE no=#{no}
+	</select>
+	<select id="databoardFileInfoData" resultType="DataBoardVO" parameterType="int">
+		SELECT filename,filesize
+		FROM databoard
+		WHERE no=#{no}
+	</select>
+	<delete id="databoardDelete" parameterType="int">
+		DELETE FROM databoard
+		WHERE no=#{no}
+	</delete>
+	 */
+	public static DataBoardVO databoardFileInfoData(int no)
+	{
+		// 폴더에서 파일 삭제
+		DataBoardVO vo=new DataBoardVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("databoardFileInfoData",no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 5");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	
+	// 실제 삭제
+	public static String databoardDelete(int no,String pwd)
+	{
+		String result="no";
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("databoardGetPassword", no);
+			if(db_pwd.equals(pwd))
+			{
+				result="yes";
+				session.delete("databoardDelete",no);
+				session.commit();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 4");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return result;
+	}
 }
