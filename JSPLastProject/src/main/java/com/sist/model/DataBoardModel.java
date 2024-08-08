@@ -1,5 +1,9 @@
 package com.sist.model;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -97,5 +101,52 @@ public class DataBoardModel {
 		
 		request.setAttribute("main_jsp", "../databoard/list.jsp");
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("databoard/detail.do")
+	public String databoard_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		
+		//////////////////////////////////////////////////////////////////////
+		
+		DataBoardVO vo=DataBoardDAO.databoardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("main_jsp", "../databoard/detail.jsp");
+		return "../main/main.jsp";
+		// Ajax(void), _ok => 리턴 시에 redirect 설정
+	}
+	
+	@RequestMapping("databoard/download.do")
+	public void databoard_download(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			String fn=request.getParameter("fn");
+			
+			File file=new File("c:\\project_upload");
+			
+			// header => 전송 : 파일명, 파일 크기
+			response.setHeader("Content-Disposition", "attachment;filename="
+					+URLEncoder.encode(fn,"UTF-8"));
+			response.setContentLength((int)file.length());
+			
+			// 서버에서 파일 읽기
+			BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+			// 다운로드를 요청한 클라이언트
+			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+			// 파일 저장 공간
+			byte[] buffer=new byte[1024];
+			// 읽은 바이트 수
+			int i=0;
+			while((i=bis.read(buffer,0,1024))!=-1)
+			{
+				bos.write(buffer,0,i);
+			}
+			bis.close();
+			bos.close();
+		}catch(Exception ex) {}
 	}
 }

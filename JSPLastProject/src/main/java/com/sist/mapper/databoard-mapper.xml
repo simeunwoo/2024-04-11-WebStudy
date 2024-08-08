@@ -56,6 +56,17 @@
 		FROM project_databoard
 	</select>
 	<!-- 상세 보기 -->
+	<update id="databoardHitIncrement" parameterType="int">
+		UPDATE project_databoard SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="databoardDetailData" resultType="DataBoardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,
+			hit,filename,filesize
+		FROM project_databoard
+		WHERE no=#{no}
+	</select>
 	<!-- 수정 -->
 	<!-- 삭제 -->
 	<!-- *** 동적 쿼리 -->

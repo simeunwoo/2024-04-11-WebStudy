@@ -13,6 +13,53 @@
 	width: 960px;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+// jQuery => 자바스크립트 기반 : 태그 읽기가 편리해진다 => $
+let bCheck=true; // 전역 변수
+$(function(){ // window.onload => 모든 프로그램은 시작점이 있다 => 일반 프로그램 : main()
+	// Vue : mounted(), React : componentDidMount()
+	// jQuery : 서버 연결 => Ajax
+	// Vue / React / Next / Nuxt : 서버 연결 => axios
+	// 변수 => 지역 변수
+	$('#delBtn').click(function(){
+		if(bCheck===true)
+		{
+			$('#delBtn').text("취소")
+			$('#delTr').show() // display:'' => show()
+			bCheck=false
+		}
+		else
+		{
+			$('#delBtn').text("수정")
+			$('#delTr').hide() // display:none => hide()
+			bCheck=true
+		}
+	})
+	
+	$('#deleteBtn').on('click',()=>{
+		let no=$('.del_no').text()
+		let pwd=$('#del_pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#del_pwd').focus()
+			return
+		}
+		// 서버로 요청 => 결과값 => Ajax
+		/*
+			전송 방식 : GET/POST => type:
+			URL 주소 => url:
+			보내는 데이터 => data:
+			정상 수행 => success:
+			에러 수행 => error:
+		*/
+		$.ajax({
+			
+		})
+	})
+	
+})
+</script>
 </head>
 <body>
 	<div class="wrapper row3">
@@ -39,7 +86,11 @@
 					<c:if test="${vo.filesize>0 }">
 						<tr>
 							<th width="20%" class="text-center">첨부 파일</th>
-							<td colspan="3">${vo.filename }(${vo.filesize }Bytes)</td>
+							<td colspan="3">
+								<a href="../databoard/download.do?fn=${vo.filename }">
+									${vo.filename }
+								</a>(${vo.filesize }Bytes)
+							</td>
 						</tr>
 					</c:if>
 					<%--

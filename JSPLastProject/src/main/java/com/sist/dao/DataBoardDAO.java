@@ -79,4 +79,48 @@ public class DataBoardDAO {
 		
 		return count;
 	}
+	
+	/*
+	<update id="databoardHitIncrement" parameterType="int">
+		UPDATE project_databoard SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="databoardDetailData" resultType="DataBoardVO" parameterType="int">
+		SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,
+			hit,filename,filesize
+		FROM project_databoard
+		WHERE no=#{no}
+	</select>
+	 */
+	public static DataBoardVO databoardDetailData(int no)
+	{
+		DataBoardVO vo=new DataBoardVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("databoardHitIncrement",no);
+			session.commit();
+			/*
+			 * 	insert, update, delete 시에
+			 * 		(1) openSession(true)으로 커밋
+			 * 		or
+			 * 		(2) session.commit()으로 커밋
+			 */
+			vo=session.selectOne("databoardDetailData",no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 4");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }
