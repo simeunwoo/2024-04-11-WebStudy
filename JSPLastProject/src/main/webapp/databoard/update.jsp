@@ -16,10 +16,10 @@
 <script type="text/javascript">
 $(function(){
 	$('#up_pwd').keyup(function(){
-		let no=$('input[type="hidden"]'.val())
-		let pwd=$('#up_').val()
+		let no=$('input[type="hidden"]'.val()
+		let pwd=$('#up_pwd').val()
 		$.ajax({
-			type:'POST',
+			type:'post',
 			url:'../databoard/password_check.do',
 			data:{"no":no,"pwd":pwd},
 			success:function(result)

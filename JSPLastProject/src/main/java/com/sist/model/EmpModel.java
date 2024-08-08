@@ -19,4 +19,30 @@ public class EmpModel {
 		
 		return "list.jsp";
 	}
+	
+	@RequestMapping("emp/find.do")
+	public String emp_find(HttpServletRequest request,HttpServletResponse response)
+	{
+		List<String> list=EmpDAO.empEnameList();
+		
+		request.setAttribute("list", list);
+		
+		return "find.jsp";
+	}
+	
+	@RequestMapping("emp/find_ok.do")
+	public String emp_find_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String[] names=request.getParameterValues("names");
+		
+		Map map=new HashMap();
+		map.put("nameArr", names);
+		
+		// 데이터베이스 연동
+		List<EmpVO> list=EmpDAO.empFindData(map);
+		// 결과값 전송
+		request.setAttribute("list", list);
+		
+		return "find_ok.jsp";
+	}
 }
