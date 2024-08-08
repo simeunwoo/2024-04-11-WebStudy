@@ -7,7 +7,9 @@ import com.sist.controller.RequestMapping;
 
 public class MainModel {
 	@RequestMapping("main/main.do")
-	public String main(HttpServletRequest request, HttpServletResponse response) {
+	public String main(HttpServletRequest request, HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../main/home.jsp");
 		return "../main/main.jsp";
 	}
 }

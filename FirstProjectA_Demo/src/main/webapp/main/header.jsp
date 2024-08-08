@@ -43,7 +43,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="#" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
+                        <a href="../main/main.do" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
