@@ -57,9 +57,16 @@
 				<table class="table">
 					<tr>
 						<td class="text-left inline">
-							<input type="checkbox" value="N">&nbsp;이름&nbsp;
+					<!-- 		<input type="checkbox" value="N">&nbsp;이름&nbsp;
 							<input type="checkbox" value="S">&nbsp;제목&nbsp;
-							<input type="checkbox" value="C">&nbsp;내용&nbsp;
+							<input type="checkbox" value="C">&nbsp;내용&nbsp;  -->
+							<form method="post" action="../databoard/find.do">
+								Search : <select name="fs">
+									<option value="name">이름</option>
+									<option value="name">제목</option>
+									<option value="name">내용</option>
+								</select>
+							</form>
 							<input type="text" name="ss" size="15" class="input-sm">
 							<input type="submit" value="검색" class="btn-sm btn-success">
 						</td>

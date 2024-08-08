@@ -281,4 +281,28 @@ public class DataBoardModel {
 		
 		return "redirect:../databoard/list.do";
 	}
+	
+	@RequestMapping("databoard/find.do")
+	public String databoard_find(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String fs=request.getParameter("fs");
+		String ss=request.getParameter("ss");
+		
+		// 데이터베이스 연동
+		Map map=new HashMap();
+		map.put("fs", fs);
+		map.put("ss", ss);
+		// 데이터 전송 (결과값)
+		List<DataBoardVO> list=DataBoardDAO.databoardFindData(map);
+		
+		request.setAttribute("list", list);
+		
+		request.setAttribute("main_jsp", "../databoard/find.jsp");
+		return "../main/main.jsp";
+	}
 }

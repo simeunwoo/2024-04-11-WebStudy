@@ -267,4 +267,34 @@ public class DataBoardDAO {
 				session.close();
 		}
 	}
+	
+	/*
+	<select id="databoardFindData" resultType="DataBoardVO" parameterType="hashmap">
+		SELECT no,name,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+		FROM project_databoard
+		WHERE ${fs} LIKE '%'||#{ss}||'%'
+	</select>
+	 */
+	public static List<DataBoardVO> databoardFindData(Map map)
+	{
+		List<DataBoardVO> list=new ArrayList<DataBoardVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			list=session.selectList("databoardFindData",map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 10");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
 }

@@ -99,5 +99,16 @@
 		DELETE FROM project_databoard
 		WHERE no=#{no}
 	</delete>
-	<!-- *** 동적 쿼리 -->
+	<!-- *** 동적 쿼리 : 검색 -->
+	<!--
+		${} => 문자열 => 컬럼/테이블명 지정 => ''를 사용하지 않는다
+		#{} => 문자열 => 일반 데이터 => ''를 사용한다
+		
+		WHERE name='홍길동'
+	-->
+	<select id="databoardFindData" resultType="DataBoardVO" parameterType="hashmap">
+		SELECT no,name,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+		FROM project_databoard
+		WHERE ${fs} LIKE '%'||#{ss}||'%'
+	</select>
 </mapper>
