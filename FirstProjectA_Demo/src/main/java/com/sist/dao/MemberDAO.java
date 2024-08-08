@@ -15,14 +15,7 @@ public class MemberDAO {
 	private static SqlSessionFactory ssf;
 	static
 	{
-		try
-		{
-			Reader reader=Resources.getResourceAsReader("Config.xml");
-			ssf=new SqlSessionFactoryBuilder().build(reader);
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		ssf=CreateSqlSessionFactory.getSsf();
 	}
 	
 	public String userLogin(String id,String pwd)
