@@ -63,6 +63,49 @@
 			</if>
 			
 			IN 연산자 = <foreach>
+			
+			동적 쿼리
+			
+				<trim> : 추가 / 제거
+					WHERE ename (추가)
+					<trim prefix="LIKE"> : 앞에 "LIKE"를 추가
+					WHERE ename LIKE '%'||#{name}||'%' OR
+					<trim suffixOverrides="OR"> : 뒤에 "OR"를 제거
+					
+				<foreach> : IN(여기에 들어가는 데이터)
+					<foreach collection="nameArr" item="name" close=")" separator="," open="(">
+					         ==================== =========== ========= =============
+					          1                    2           3         4
+						1 : 배열/List => Map => 키명
+						2 : 값 읽기
+						3 : 끝나면 ")" 사용
+						4 : 데이터, 데이터 ...
+						for(String name:배열)
+						    =========== ===
+						    item        collection
+						    
+				<if> : 조건문
+					<if test="조건문">
+						수행할 SQL 문장
+					</if>
+					
+				<choose> : 다중 조건문
+					<choose>
+						<when test="조건문">SQL</when>
+						<when test="조건문">SQL</when>
+						<when test="조건문">SQL</when>
+						<when test="조건문">SQL</when>
+						<when test="조건문">SQL</when>
+						<otherwise>기타</otherwise>
+					</choose>
+				 
+				<where> : where 문장 => WHERE
+				
+				<set> : UPDATE
+				
+			FROM emp WHERE ename IN('',''...)
+			동적 쿼리 => 사용자의 요청에 따라 SQL 문장 변경
+			*** MyBatis의 핵심
 		-->
 		<trim prefix="WHERE ename IN(" suffix=")" suffixOverrides=")">
 			<foreach collection="nameArr" item="name" close=")" separator=",">

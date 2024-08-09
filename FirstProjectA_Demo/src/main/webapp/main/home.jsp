@@ -28,25 +28,12 @@
 							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
 								printing and typesetting industry. Lorem Ipsum has been the
 								industry's standard dummy text ever since the 1500s,</p>
-							<div class="container-fluid search-bar position-relative"
-								style="top: -50%; transform: translateY(-50%);">
-								<div class="container">
-									<div class="position-relative rounded-pill w-70 mx-auto "
-										style="background: rgba(19, 53, 123, 0.8);">
-										<input
-											class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5"
-											type="text" placeholder="예시 : 서울">
-										<button type="button"
-											class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Search</button>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="carousel-item">
 					<img src="../img/carousel-1.jpg" class="img-fluid" alt="Image">
-					<div class="carousel-caption">
+					<div class="carousel-caption">i
 						<div class="p-3" style="max-width: 900px;">
 							<h4 class="text-white text-uppercase fw-bold mb-4"
 								style="letter-spacing: 3px;">Explore The World</h4>
@@ -55,19 +42,6 @@
 							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
 								printing and typesetting industry. Lorem Ipsum has been the
 								industry's standard dummy text ever since the 1500s,</p>
-							<div class="container-fluid search-bar position-relative"
-								style="top: -50%; transform: translateY(-50%);">
-								<div class="container">
-									<div class="position-relative rounded-pill w-70 mx-auto "
-										style="background: rgba(19, 53, 123, 0.8);">
-										<input
-											class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5"
-											type="text" placeholder="예시 : 강원도">
-										<button type="button"
-											class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Search</button>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -82,19 +56,6 @@
 							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
 								printing and typesetting industry. Lorem Ipsum has been the
 								industry's standard dummy text ever since the 1500s,</p>
-							<div class="container-fluid search-bar position-relative"
-								style="top: -50%; transform: translateY(-50%);">
-								<div class="container">
-									<div class="position-relative rounded-pill w-70 mx-auto "
-										style="background: rgba(19, 53, 123, 0.8);">
-										<input
-											class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5"
-											type="text" placeholder="예시 : 전라도">
-										<button type="button"
-											class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Search</button>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -113,10 +74,12 @@
 	</div>
 	<!-- 롤링배너 End -->
 	
-	<div class="container-fluid search-bar position-relative"
+	
+	<!-- Navbar & Hero End -->	
+	 <div class="container-fluid search-bar position-relative"
 		style="top: -50%; transform: translateY(-50%);">
 		<div class="container">
-			<div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+			<div class="position-relative rounded-pill w-100 mx-auto p-4" style="background: rgba(37, 103, 75,0.8);">
 				<input
 					class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
 					type="text" placeholder="지역명">
@@ -126,20 +89,15 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
 	<!-- Navbar & Hero End -->
+
 
 	<!-- About Start -->
 	<div class="container-fluid about py-5">
 		<div class="container py-5">
 			<div class="row g-5 align-items-center">
 				<div class="col-lg-5">
-					<div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
+					<div class="h-100" style="border: 10px solid;">
 						<img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
 					</div>
 				</div>
@@ -147,7 +105,7 @@
 					style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8));">
 					<h5 class="section-about-title"></h5>
 					<h1 class="mb-4">
-						Welcome to <span class="text-primary">TJ camping!</span>
+						Welcome to <span class="text-primary">TJ Camping!</span>
 					</h1>
 					<p class="mb-4">
 						TJ캠핑은 캠핑에 관련된 모든 서비스를 제공하는 전문 캠핑 플랫폼입니다.<br>
@@ -195,11 +153,12 @@
 	</div>
 	<!-- About End -->
 
+
 	<!-- Explore Tour Start -->
 	<div class="container-fluid ExploreTour py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">퀵 메뉴</h5>
+				<h5 class="section-title px-3">quick menu</h5>
 				<h1 class="mb-4">바로가기</h1>
 				<!--<p class="mb-0">Lorem ipsum dolor sit amet consectetur
 					adipisicing elit. Laborum tempore nam, architecto doloremque velit
@@ -226,7 +185,7 @@
 						<div class="row g-4">
 							<div class="col-md-6 col-lg-4">
 								<div class="national-item">
-									<img src="../img/explore-tour-1.jpeg"
+									<img src="../img/explore-tour-1.jpg"
 										class="img-fluid w-100 rounded" alt="Image">
 									<div class="national-content">
 										<div class="national-info">
@@ -295,7 +254,7 @@
 							</div>
 							<div class="col-md-6 col-lg-4">
 								<div class="national-item">
-									<img src="../img/explore-tour-5.avif"
+									<img src="../img/explore-tour-5.jpg"
 										class="img-fluid w-100 rounded" alt="Image">
 									<div class="national-content">
 										<div class="national-info">
@@ -433,7 +392,7 @@
 	<div class="container-fluid destination py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">Destination</h5>
+				<h5 class="section-title px-3">campsite map</h5>
 				<h1 class="mb-0">캠핑장</h1>
 			</div>
 			<div class="tab-class text-center">
@@ -842,7 +801,7 @@
         <div class="container-fluid packages py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Packages</h5>
+                    <h5 class="section-title px-3">Camping Tools</h5>
                     <h1 class="mb-0">캠핑용품</h1>
                 </div>
                 <div class="packages-carousel owl-carousel">
@@ -850,16 +809,16 @@
                         <div class="packages-img">
                             <img src="../img/packages-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
                             <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Venice - Italy</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
+                                <a href="https://example.com" class="flex-fill text-center border-end py-2 text-decoration-none"><i class="fa fa-map-marker-alt me-2"></i>찜하기</a>
+                                <a href="https://example.com" class="flex-fill text-center border-end py-2 text-decoration-none"><i class="fa fa-map-marker-alt me-2"></i>장바구니</a>
+                                <a href="https://example.com" class="flex-fill text-center border-end py-2 text-decoration-none"><i class="fa fa-map-marker-alt me-2"></i>구매하기</a>
                             </div>
-                            <div class="packages-price py-2 px-4">인기상품</div>
+                            <div class="text-center packages-price py-2 px-4">Best</div>
                         </div>
                         <div class="packages-content bg-light">
                             <div class="p-4 pb-0">
                                 <h5 class="mb-0">노스피크 A9 에어텐트 (올리브그레이)</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
+                                <small class="text-uppercase">텐트</small>
                                 <div class="mb-3">
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
@@ -867,14 +826,14 @@
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
                                 </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
+                                <p class="mb-4"></p>
                             </div>
                             <div class="row bg-primary rounded-bottom mx-0">
                                 <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">♥ 3</a>
                                 </div>
                                 <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">1,987,100원</a>
                                 </div>
                             </div>
                         </div>
@@ -887,12 +846,12 @@
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
                             </div>
-                            <div class="packages-price py-2 px-4">인기상품</div>
+                            <div class="text-center packages-price py-2 px-4">Best</div>
                         </div>
                         <div class="packages-content bg-light">
                             <div class="p-4 pb-0">
-                                <h5 class="mb-0">The New California</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
+                                <h5 class="mb-0">스노우라인 와일드롤테이블 블랙</h5>
+                                <small class="text-uppercase">테이블/의자</small>
                                 <div class="mb-3">
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
@@ -900,14 +859,14 @@
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
                                 </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
+                                <p class="mb-4"></p>
                             </div>
                             <div class="row bg-primary rounded-bottom mx-0">
                                 <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">♥ 3</a>
                                 </div>
                                 <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">380,000원</a>
                                 </div>
                             </div>
                         </div>
@@ -920,12 +879,12 @@
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
                             </div>
-                            <div class="packages-price py-2 px-4">인기상품</div>
+                            <div class="text-center packages-price py-2 px-4">Best</div>
                         </div>
                         <div class="packages-content bg-light">
                             <div class="p-4 pb-0">
-                                <h5 class="mb-0">Discover Japan</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
+                                <h5 class="mb-0">스노우라인 화로그릴세트L</h5>
+                                <small class="text-uppercase">바베큐/화로</small>
                                 <div class="mb-3">
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
@@ -933,32 +892,32 @@
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
                                 </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
+                                <p class="mb-4"></p>
                             </div>
                             <div class="row bg-primary rounded-bottom mx-0">
                                 <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">♥ 3</a>
                                 </div>
                                 <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">154,000원</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="packages-item">
                         <div class="packages-img">
-                            <img src="../img/packages-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                            <img src="../img/packages-1.png" class="img-fluid w-100 rounded-top" alt="Image">
                             <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Thayland</small>
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
                             </div>
-                            <div class="packages-price py-2 px-4">인기상품</div>
+                            <div class=" text-center packages-price py-2 px-4">Best</div>
                         </div>
                         <div class="packages-content bg-light">
                             <div class="p-4 pb-0">
-                                <h5 class="mb-0">Thayland Trip</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
+                                <h5 class="mb-0">코베아 팬텀 롱 토치</h5>
+                                <small class="text-uppercase">토치</small>
                                 <div class="mb-3">
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
@@ -966,14 +925,14 @@
                                     <small class="fa fa-star text-primary"></small>
                                     <small class="fa fa-star text-primary"></small>
                                 </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
+                                <p class="mb-4"></p>
                             </div>
                             <div class="row bg-primary rounded-bottom mx-0">
                                 <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">♥ 3</a>
                                 </div>
                                 <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">54,000원</a>
                                 </div>
                             </div>
                         </div>
@@ -988,7 +947,7 @@
 	<div class="container-fluid destination py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">Destination</h5>
+				<h5 class="section-title px-3">foodie map</h5>
 				<h1 class="mb-0">맛집</h1>
 			</div>
 			<div class="tab-class text-center">
@@ -1032,7 +991,7 @@
 									<div class="col-lg-6">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="../img/destination-1.jpg" alt="">
+												src="../img/1.jpg" alt="">
 											<div class="destination-overlay p-4">
 												<a href="#"
 													class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1043,7 +1002,7 @@
 												</a>
 											</div>
 											<div class="search-icon">
-												<a href="../img/destination-1.jpg"
+												<a href="../img/1.jpg"
 													data-lightbox="destination-1"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 											</div>
@@ -1052,7 +1011,7 @@
 									<div class="col-lg-6">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="../img/destination-2.jpg" alt="">
+												src="../img/2.jpg" alt="">
 											<div class="destination-overlay p-4">
 												<a href="#"
 													class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1063,7 +1022,7 @@
 												</a>
 											</div>
 											<div class="search-icon">
-												<a href="../img/destination-2.jpg"
+												<a href="../img/2.jpg"
 													data-lightbox="destination-2"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 											</div>
@@ -1072,7 +1031,7 @@
 									<div class="col-lg-6">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="../img/destination-7.jpg" alt="">
+												src="../img/7.jpg" alt="">
 											<div class="destination-overlay p-4">
 												<a href="#"
 													class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1083,7 +1042,7 @@
 												</a>
 											</div>
 											<div class="search-icon">
-												<a href="../img/destination-7.jpg"
+												<a href="../img/7.jpg"
 													data-lightbox="destination-7"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 											</div>
@@ -1092,7 +1051,7 @@
 									<div class="col-lg-6">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="../img/destination-8.jpg" alt="">
+												src="../img/8.jpg" alt="">
 											<div class="destination-overlay p-4">
 												<a href="#"
 													class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1103,7 +1062,7 @@
 												</a>
 											</div>
 											<div class="search-icon">
-												<a href="../img/destination-8.jpg"
+												<a href="../img/8.jpg"
 													data-lightbox="destination-8"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 											</div>
@@ -1114,7 +1073,7 @@
 							<div class="col-xl-4">
 								<div class="destination-img h-100">
 									<img class="img-fluid rounded w-100 h-100"
-										src="../img/destination-9.jpg"
+										src="../img/9.jpg"
 										style="object-fit: cover; min-height: 300px;" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
@@ -1125,7 +1084,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-9.jpg" data-lightbox="destination-4"><i
+										<a href="../img/9.jpg" data-lightbox="destination-4"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1133,7 +1092,7 @@
 							<div class="col-lg-4">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-4.jpg" alt="">
+										src="../img/4.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1143,7 +1102,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-4.jpg" data-lightbox="destination-4"><i
+										<a href="../img/4.jpg" data-lightbox="destination-4"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1151,7 +1110,7 @@
 							<div class="col-lg-4">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1161,7 +1120,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1169,7 +1128,7 @@
 							<div class="col-lg-4">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1179,7 +1138,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1191,7 +1150,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1201,7 +1160,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1209,7 +1168,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1219,7 +1178,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1231,7 +1190,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1241,7 +1200,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1249,7 +1208,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1259,7 +1218,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1271,7 +1230,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1281,7 +1240,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1289,7 +1248,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1299,7 +1258,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1311,7 +1270,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1321,7 +1280,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1329,7 +1288,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1339,7 +1298,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1351,7 +1310,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-5.jpg" alt="">
+										src="../img/5.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1361,7 +1320,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-5.jpg" data-lightbox="destination-5"><i
+										<a href="../img/5.jpg" data-lightbox="destination-5"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1369,7 +1328,7 @@
 							<div class="col-lg-6">
 								<div class="destination-img">
 									<img class="img-fluid rounded w-100"
-										src="../img/destination-6.jpg" alt="">
+										src="../img/6.jpg" alt="">
 									<div class="destination-overlay p-4">
 										<a href="#"
 											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
@@ -1379,7 +1338,7 @@
 											class="fa fa-arrow-right ms-2"></i></a>
 									</div>
 									<div class="search-icon">
-										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
+										<a href="../img/6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div>
 								</div>
@@ -1398,7 +1357,7 @@
 	<div class="container-fluid destination py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">Destination</h5>
+				<h5 class="section-title px-3">camping recipes</h5>
 				<h1 class="mb-0">레시피</h1>
 			</div>
 			<div class="tab-class text-center">
@@ -1803,158 +1762,11 @@
 	<!-- 레시피 End -->
 
 
-	<!-- Packages Start 
-        <div class="container-fluid packages py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Packages</h5>
-                    <h1 class="mb-0">Awesome Packages</h1>
-                </div>
-                <div class="packages-carousel owl-carousel">
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="../img/packages-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Venice - Italy</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">$349.00</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Venice - Italy</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="../img/packages-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Venice - Italy</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">$449.00</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">The New California</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="../img/packages-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Venice - Italy</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">$549.00</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Discover Japan</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="../img/packages-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt me-2"></i>Thayland</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>2 Person</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">$649.00</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Thayland Trip</h5>
-                                <small class="text-uppercase">Hotel Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        Packages End -->
-
-
-
-	<!-- Testimonial Start -->
+	<!-- 후기 Start -->
 	<div class="container-fluid testimonial py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">캠핑 후기</h5>
+				<h5 class="section-title px-3">review</h5>
 				<h1 class="mb-0">후기</h1>
 			</div>
 			<div class="testimonial-carousel owl-carousel">
@@ -2053,7 +1865,8 @@
 			</div>
 		</div>
 	</div>
-	<!— Testimonial End —>
+
+	<!-- 후기 End -->
 
 
 </body>

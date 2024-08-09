@@ -45,4 +45,29 @@ public class EmpModel {
 		
 		return "find_ok.jsp";
 	}
+	
+	@RequestMapping("emp/emp_list.do")
+	public String emp_list2(HttpServletRequest request,HttpServletResponse response)
+	{
+		List<String> list=EmpDAO.empEnameList();
+		
+		request.setAttribute("list", list);
+		
+		return "emp_list.jsp";
+	}
+	
+	@RequestMapping("emp/emp_find.do")
+	public String emp_find2(HttpServletRequest request,HttpServletResponse response)
+	{
+		String[] names=request.getParameterValues("names[]");
+		
+		// Ajax에서 배열로 보낸 경우 처리
+		Map map=new HashMap();
+		map.put("nameArr", names);
+		List<EmpVO> list=EmpDAO.empFindData(map);
+		
+		request.setAttribute("list", list);
+		
+		return "emp_find.jsp";
+	}
 }

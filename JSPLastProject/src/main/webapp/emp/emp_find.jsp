@@ -6,14 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-	<h1>사원 목록</h1>
-	<ul>
+	<table class="table">
+		<tr>
+			<th>사번</th>
+			<th>이름</th>
+			<th>직위</th>
+			<th>입사일</th>
+			<th>급여</th>
+		</tr>
 		<c:forEach var="vo" items="${list }">
-			<li>${vo.empno }-${vo.ename }-${vo.deptno }-${vo.dbday }-${vo.job }-${vo.dvo.dname }-${vo.dvo.loc }-${vo.svo.grade }</li>
+			<tr>
+				<td>${vo.empno }</td>
+				<td>${vo.ename }</td>
+				<td>${vo.job }</td>
+				<td>${vo.dbday }</td>
+				<td>${vo.sal }</td>
+			</tr>
 		</c:forEach>
-	</ul>
+	</table>
 </body>
 </html>

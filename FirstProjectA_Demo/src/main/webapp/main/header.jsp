@@ -128,7 +128,7 @@ $(function(){
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="../main/main.do" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>&nbsp;&nbsp;TJ Camping</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -137,7 +137,7 @@ $(function(){
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="../main/main.do" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
+                        <a href="../main/main.do" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
