@@ -21,4 +21,9 @@
 		WHERE ${column} LIKE '%'||#{ss}||'%'
 		ORDER BY mno ASC
 	</select>
+	<select id="musicDetailData" resultType="String" parameterType="int">
+		SELECT key
+		FROM genie_music
+		WHERE mno=#{mno}
+	</select>
 </mapper>

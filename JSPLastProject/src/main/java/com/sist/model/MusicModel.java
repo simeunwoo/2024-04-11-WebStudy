@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,5 +36,19 @@ public class MusicModel {
 		request.setAttribute("list", list);
 		
 		return "list.jsp";
+	}
+	
+	@RequestMapping("music/detail.do")
+	public void music_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String mno=request.getParameter("mno");
+		// 데이터베이스 연동
+		String key=MusicDAO.musicDetailData(Integer.parseInt(mno));
+		// Ajax로 값 전송
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(key);
+		}catch(Exception ex) {}
 	}
 }

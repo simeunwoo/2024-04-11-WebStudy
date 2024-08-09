@@ -30,12 +30,25 @@ $(function(){
 		let mno=$(this).attr("data-mno")
 		// alert("선택된 번호:"+mno)
 		// Ajax => 데이터를 읽어 온다
-		$('#dialog').dialog({
-			autoOpen:false,
-			modal:true,
-			width:500,
-			height:500
-		}).dialog("open")
+		$.ajax({
+			type:'post',
+			url:'../music/detail.do',
+			data:{"mno":mno},
+			success:function(result)
+			{
+				$('#movie').attr("src",result)
+				$('#dialog').dialog({
+					autoOpen:false,
+					modal:true,
+					width:500,
+					height:500
+				}).dialog("open")
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
 	})
 })
 </script>
@@ -84,7 +97,8 @@ $(function(){
 			</table>
 		</div>
 		<div id="dialog" title="동영상" style="display: none">
-			
+			<img src="" style="width: 420px;height: 420px;" id="movie">
+			<%-- <embed src=""...> --%>
 		</div>
 	</div>
 </body>

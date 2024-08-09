@@ -62,4 +62,35 @@ public class MusicDAO {
 		
 		return list;
 	}
+	
+	/*
+	<select id="musicDetailData" resultType="String" parameterType="int">
+		SELECT key
+		FROM genie_music
+		WHERE mno=#{mno}
+	</select>
+	 */
+	public static String musicDetailData(int mno)
+	{
+		String key="";
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(); // Connection 주소 얻기
+			// MyBatis => DBCP(maxActive=8, maxIdle=8)
+			key=session.selectOne("musicDetailData",mno);
+		}catch(Exception ex)
+		{
+			System.out.println("MusicDAO 오류 3");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); // POOL 반환 => 재사용
+		}
+		
+		return key;
+	}
 }

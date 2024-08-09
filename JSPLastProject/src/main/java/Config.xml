@@ -30,6 +30,7 @@
 		<typeAlias type="com.sist.vo.DataBoardVO" alias="DataBoardVO"/>
 		<typeAlias type="com.sist.vo.EmpVO" alias="EmpVO"/>
 		<typeAlias type="com.sist.vo.MusicVO" alias="MusicVO"/>
+		<typeAlias type="com.sist.vo.BoardReplyVO" alias="BoardReplyVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -51,5 +52,6 @@
 		<mapper resource="com/sist/mapper/databoard-mapper.xml"/>
 		<mapper resource="com/sist/mapper/emp-mapper.xml"/>
 		<mapper resource="com/sist/mapper/music-mapper.xml"/>
+		<mapper resource="com/sist/mapper/reply-mapper.xml"/>
 	</mappers>
 </configuration>
