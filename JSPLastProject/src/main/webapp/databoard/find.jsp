@@ -17,14 +17,7 @@
 	<div class="wrapper row3">
 		<main class="container clear">
 			<h2 class="sectiontitle">검색 결과</h2>
-			<div class="row row1">
-				<table class="table">
-					<tr>
-						<td>
-							<a href="../databoard/insert.do" class="btn btn-sm btn-primary">새 글</a>
-						</td>
-					</tr>
-				</table>
+			<div class="row1">
 				<table class="table">
 					<tr>
 						<th width="10%" class="text-center">번호</th>

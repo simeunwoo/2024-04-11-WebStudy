@@ -61,14 +61,14 @@
 						 		<input type="checkbox" value="N" name="fs">&nbsp;이름&nbsp;
 								<input type="checkbox" value="S" name="fs">&nbsp;제목&nbsp;
 								<input type="checkbox" value="C" name="fs">&nbsp;내용&nbsp;
-					<!--			Search : <select name="fs">
+						<!--	Search : <select name="fs">
 									<option value="name">이름</option>
 									<option value="subject">제목</option>
 									<option value="content">내용</option>
 								</select> -->
+								<input type="text" name="ss" size="15" class="input-sm">
+								<input type="submit" value="검색" class="btn btn-sm btn-success">
 							</form>
-							<input type="text" name="ss" size="15" class="input-sm">
-							<input type="submit" value="검색" class="btn-sm btn-success">
 						</td>
 						<td class="text-right">
 							<a href="#" class="btn btn-sm btn-success">이전</a>
