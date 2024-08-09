@@ -98,4 +98,31 @@ public class BoardReplyDAO {
 				session.close();
 		}
 	}
+	
+	/*
+	<update id="replyUpdate" parameterType="BoardReplyVO">
+		UPDATE project_board_reply SET
+		msg=#{msg}
+		WHERE rno=#{rno}
+	</update>
+	 */
+	public static void replyUpdate(BoardReplyVO vo)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("replyUpdate",vo);
+		}catch(Exception ex)
+		{
+			System.out.println("BoardReplyDAO 오류 4");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

@@ -154,7 +154,9 @@ $(function(){ // window.onload => 모든 프로그램은 시작점이 있다 => 
 				if(result==='OK')
 				{
 					let bno=$('.del_no').text()
+					replyList(bno)
 				}
+				$('#m'+rno).hide()
 			},
 			error:function(request,status,error)
 			{

@@ -177,6 +177,7 @@ public class DataBoardDAO {
 			if(db_pwd.equals(pwd))
 			{
 				result="yes";
+				session.delete("databoardReplyDelete",no);
 				session.delete("databoardDelete",no);
 				session.commit();
 			}

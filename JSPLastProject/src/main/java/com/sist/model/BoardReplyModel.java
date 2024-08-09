@@ -87,4 +87,29 @@ public class BoardReplyModel {
 		}catch(Exception ex) {}
 	
 	}
+	
+	@RequestMapping("reply/reply_update.do")
+	public void reply_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String rno=request.getParameter("rno");
+		String msg=request.getParameter("msg");
+		
+		// 데이터베이스 연동
+		BoardReplyVO vo=new BoardReplyVO();
+		vo.setMsg(msg);
+		vo.setRno(Integer.parseInt(rno));
+		BoardReplyDAO.replyUpdate(vo);
+		
+		// Ajax 전송
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write("OK");
+		}catch(Exception ex) {}
+	}
 }

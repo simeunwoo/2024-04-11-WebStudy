@@ -16,4 +16,9 @@
 		DELETE FROM project_board_reply
 		WHERE rno=#{rno}
 	</delete>
+	<update id="replyUpdate" parameterType="BoardReplyVO">
+		UPDATE project_board_reply SET
+		msg=#{msg}
+		WHERE rno=#{rno}
+	</update>
 </mapper>
