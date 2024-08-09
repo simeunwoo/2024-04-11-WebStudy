@@ -10,5 +10,15 @@
  IDCREMENT                                          NUMBER
 -->
 <mapper namespace="com.sist.mapper.music-mapper">
-
+	<select id="musicListData" resultType="MusicVO">
+		SELECT mno,title,singer,poster,album,state,idcrement
+		FROM genie_music
+		ORDER BY mno ASC
+	</select>
+	<select id="musicFindData" resultType="MusicVO" parameterType="hashmap">
+		SELECT mno,title,singer,poster,album,state,idcrement
+		FROM genie_music
+		WHERE ${column} LIKE '%'||#{ss}||'%'
+		ORDER BY mno ASC
+	</select>
 </mapper>
