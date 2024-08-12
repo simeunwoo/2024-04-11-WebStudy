@@ -55,73 +55,56 @@
       
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-        <li>
-	        <c:forEach var="vo" items="${hitList }">
+        <c:forEach var="vo" items="${hitList }">
+	        <li>
 	          <figure>
 	          	<img class="radius-10 btmspace-10" src="http://menupan.com${vo.poster }" style="width:320px;height:185px">
 	            <figcaption><a href="#">${vo.name }</a></figcaption>
 	          </figure>
-          </c:forEach>
-        </li>
+	        </li>
+        </c:forEach>
       </ul>
     </div>
     <h2 class="sectiontitle">좋아요가 많은 맛집</h2>
       
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-       <li>
-	        <c:forEach var="vo" items="${likeList }">
+      <c:forEach var="vo" items="${likeList }">
+	        <li>
 	          <figure>
 	          	<img class="radius-10 btmspace-10" src="http://menupan.com${vo.poster }" style="width:320px;height:185px">
 	            <figcaption><a href="#">${vo.name }</a></figcaption>
 	          </figure>
-          </c:forEach>
-        </li>
+	        </li>
+        </c:forEach>
       </ul>
     </div>
     <h2 class="sectiontitle">찜이 많은 맛집</h2>
       
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-        <li>
-	        <c:forEach var="vo" items="${jjimList }">
+       <c:forEach var="vo" items="${jjimList }">
+	        <li>
 	          <figure>
 	          	<img class="radius-10 btmspace-10" src="http://menupan.com${vo.poster }" style="width:320px;height:185px">
 	            <figcaption><a href="#">${vo.name }</a></figcaption>
 	          </figure>
-          </c:forEach>
-        </li>
+	        </li>
+        </c:forEach>
       </ul>
     </div>
     <h2 class="sectiontitle">최근 방문 맛집</h2>
       
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
+        <c:forEach var="vo" items="${cookieList }">
+	        <li>
+	          <figure>
+	          	<img class="radius-10 btmspace-10" src="http://menupan.com${vo.poster }" style="width:320px;height:185px">
+	            <figcaption><a href="#">${vo.name }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:forEach>
       </ul>
     </div>
       

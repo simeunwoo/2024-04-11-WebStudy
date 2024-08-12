@@ -77,6 +77,20 @@
                         </li>
                     </ul> -->
                     
+                    <!--
+                    ****************************************************************
+                     <ul class="nospace clear">
+			          	<c:forEach var="vo" items="${fList }" varStatus="s">
+				            <li class="one_quarter ${s.index%4==0?'first':'' }">
+				            	<a href="../food/detail.do?fno=${vo.fno }&type=1">
+				            		<img src="http://menupan.com${vo.poster }" title="${vo.name }">
+				            	</a>
+				            </li>
+			            </c:forEach>
+			          </ul>
+                    ****************************************************************
+                    -->
+                    
                     <div class="tab-content">
                         <div id="NationalTab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
@@ -104,13 +118,6 @@
                             </div>
                             </div>
                             </div>
-        <!--                  <c:forEach var="vo" items="${list }" varStatus="s">
-								<li class="one_quarter ${s.index%4==0?'first':'' }">
-									<a href="../food/before_detail.do?fno=${vo.fno }">
-										<img src="${vo.poster }" title="${vo.name }">
-									</a>
-								</li>
-					          </c:forEach> -->
                                 
                                 
                    <!--         <div class="col-md-6 col-lg-3">

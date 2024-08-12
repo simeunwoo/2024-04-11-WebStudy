@@ -20,7 +20,7 @@
           <ul class="nospace clear">
           	<c:forEach var="vo" items="${fList }" varStatus="s">
 	            <li class="one_quarter ${s.index%4==0?'first':'' }">
-	            	<a href="../food/detail.do?fno=${vo.fno }&type=1">
+	            	<a href="../food/detail_before.do?fno=${vo.fno }&type=1">
 	            		<img src="http://menupan.com${vo.poster }" title="${vo.name }">
 	            	</a>
 	            </li>
