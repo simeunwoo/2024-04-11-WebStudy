@@ -61,7 +61,7 @@
 		    				<a href="" class="btn btn-xs btn-warning">찜하기</a>
 		    				<a href="" class="btn btn-xs btn-info">예약</a>
 		    			</c:if>
-		    			<a href="../food/list.do" class="btn btn-xs btn-danger">목록</a>
+		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
 	    			</td>
 	    		</tr>
 	    	</table>
@@ -112,6 +112,24 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
     } 
 });    
 </script>
+
+<div style="height:20px"></div>
+
+<h2 class="sectiontitle">인근 맛집</h2>
+      
+    <div class="flexslider carousel basiccarousel btmspace-80">
+      <ul class="slides">
+        <c:forEach var="rvo" items="${rList }">
+	        <li>
+	          <figure>
+	          	<img class="radius-10 btmspace-10" src="http://menupan.com${rvo.poster }" style="width:320px;height:185px"
+	          	  title="${rvo.address }">
+	            <figcaption><a href="#">${rvo.name }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:forEach>
+      </ul>
+    </div>
 	</main>
 </div>
 </body>

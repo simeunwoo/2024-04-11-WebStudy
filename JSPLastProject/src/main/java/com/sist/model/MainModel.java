@@ -22,7 +22,8 @@ public class MainModel {
 		List<FoodVO> cookieList=new ArrayList<FoodVO>();
 		if(cookies!=null)
 		{
-			for(int i=0;i<cookies.length;i++)
+		//	for(int i=0;i<cookies.length;i++) // 최신일수록 가장 뒤로
+			for(int i=cookies.length-1;i>=0;i--) // 최신일수록 가장 앞으로
 			{
 				if(cookies[i].getName().startsWith("food_"))
 				{

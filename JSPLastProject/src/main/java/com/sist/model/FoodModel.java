@@ -80,8 +80,15 @@ public class FoodModel {
 		// DB 연동
 		FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
 		
+		String addr=vo.getAddress(); // 서울 종로구 명륜2가 21-14
+		String addr1=addr.substring(addr.indexOf(" ")+1); // 종로구 명륜2가 21-14
+		String addr2=addr1.substring(0,addr1.indexOf(" ")); // 종로구
+		
+		List<FoodVO> rList=FoodDAO.foodNearListData(addr2);
+		
 		request.setAttribute("vo", vo);
 		request.setAttribute("type", type);
+		request.setAttribute("rList", rList);
 		
 		request.setAttribute("main_jsp", "../food/detail.jsp");
 		return "../main/main.jsp";

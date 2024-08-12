@@ -286,4 +286,40 @@ public class FoodDAO {
 		
 		return total;
 	}
+	
+	// 인근 맛집
+	/*
+	<select id="foodNearListData" resultType="FoodVO" parameterType="string">
+		SELECT fno,name,poster,rownum
+		FROM (SELECT fno,name,poster
+		FROM project_food_house
+		WHERE address LIKE '%'||#{ss}||'%'
+		ORDER BY fno ASC)
+		WHERE rownum&lt;=6
+	</select>
+	 */
+	public static List<FoodVO> foodNearListData(String ss)
+	{
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("foodNearListData",ss);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 10");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+		
+	}
+	
 }

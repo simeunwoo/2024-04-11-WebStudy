@@ -52,7 +52,6 @@
     </ul>
       
     <h2 class="sectiontitle">인기 맛집 Top 9</h2>
-      
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <c:forEach var="vo" items="${hitList }">
@@ -65,8 +64,8 @@
         </c:forEach>
       </ul>
     </div>
+    
     <h2 class="sectiontitle">좋아요가 많은 맛집</h2>
-      
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
       <c:forEach var="vo" items="${likeList }">
@@ -79,8 +78,8 @@
         </c:forEach>
       </ul>
     </div>
+    
     <h2 class="sectiontitle">찜이 많은 맛집</h2>
-      
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
        <c:forEach var="vo" items="${jjimList }">
@@ -93,8 +92,8 @@
         </c:forEach>
       </ul>
     </div>
+    
     <h2 class="sectiontitle">최근 방문 맛집</h2>
-      
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <c:forEach var="vo" items="${cookieList }">
