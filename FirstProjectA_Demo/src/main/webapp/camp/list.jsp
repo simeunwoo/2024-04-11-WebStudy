@@ -64,7 +64,7 @@
                     </p>
                 </div>
                 <div class="tab-class text-center">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+             <!--   <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                         <li class="nav-item">
                             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#NationalTab-1">
                                 <span class="text-dark" style="width: 250px;">National Tour Category</span>
@@ -75,11 +75,45 @@
                                 <span class="text-dark" style="width: 250px;">International tour Category</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
+                    
                     <div class="tab-content">
                         <div id="NationalTab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
-                                <div class="col-md-6 col-lg-4">
+                            <c:forEach var="vo" items="${list }" varStatus="s">
+                            <div class="col-md-6 col-lg-3">
+                            <!-- 이거부터 시작
+                            
+                                     <div class="national-item">
+                                        <img src="camp_list.jpg" class="img-fluid w-100 rounded" alt="${vo.camp_name }">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">이름</h5>
+                                                <a href="../camp/detail.do?camp_no=${vo.camp_no }" class="btn-hover text-white">가격 <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                               </c:forEach>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+        <!--                  <c:forEach var="vo" items="${list }" varStatus="s">
+								<li class="one_quarter ${s.index%4==0?'first':'' }">
+									<a href="../food/before_detail.do?fno=${vo.fno }">
+										<img src="${vo.poster }" title="${vo.name }">
+									</a>
+								</li>
+					          </c:forEach> -->
+                                
+                                
+                   <!--         <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -93,7 +127,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                
+                                <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-2.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -107,7 +142,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                
+                                <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -122,7 +158,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                
+                                <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -136,7 +173,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                
+                                <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -151,7 +189,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                
+                                <div class="col-md-6 col-lg-3">
                                     <div class="national-item">
                                         <img src="img/explore-tour-6.jpg" class="img-fluid w-100 rounded" alt="Image">
                                         <div class="national-content">
@@ -165,9 +204,168 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+
+            
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Weekend Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-2.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Holiday Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Road Trip</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-offer bg-info">15% Off</div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Historical Trip</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Family Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-offer bg-warning">50% Off</div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-6.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Beach Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Road Trip</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-offer bg-info">15% Off</div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Historical Trip</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Family Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-offer bg-warning">50% Off</div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="national-item">
+                                        <img src="img/explore-tour-6.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                        <div class="national-content">
+                                            <div class="national-info">
+                                                <h5 class="text-white text-uppercase mb-2">Beach Tour</h5>
+                                                <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="national-plus-icon">
+                                            <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                
                             </div>
-                        </div>
-                        <div id="InternationalTab-2" class="tab-pane fade show p-0">
+                        </div>  -->
+               <!--     <div id="InternationalTab-2" class="tab-pane fade show p-0">
                             <div class="InternationalTour-carousel owl-carousel">
                                 <div class="international-item">
                                     <img src="img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image">
@@ -237,6 +435,8 @@
                                         <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
                                     </div>
                                 </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -246,7 +446,19 @@
         <!-- Explore Tour Start -->
 
         
-
+<nav class="pagination">
+        <ul>
+        <c:if test="${startPage>1 }">
+          <a href="../camp/list.do?page=${startPage-1 }">&laquo; 이전</a>
+        </c:if>
+        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+          <li ${curpage==i?"class=current":"" }><a href="../camp/list.do?page=${i }">${i }</a></li>
+        </c:forEach>
+        <c:if test="${endPage<totalpage }">
+          <a href="../camp/list.do?page=${endPage+1 }">다음 &raquo;</a>
+        </c:if>
+        </ul>
+      </nav>
         
         
         <!-- Copyright Start -->

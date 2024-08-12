@@ -38,8 +38,25 @@ $(function(){
 	})*/
 })
 </script>
+<style>
+        .bg-breadcrumb {
+    background-color: white;
+}
+	main{
+    margin-top : 50px;
+}
+        </style>
 </head>
 <body>
+<!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4">회원 가입</h3>
+                <ol class="breadcrumb justify-content-center mb-0">
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
 <div class="wrapper row3">
   <main class="container clear">
    <h2 class="sectiontitle">회원 가입</h2>
