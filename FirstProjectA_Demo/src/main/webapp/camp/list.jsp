@@ -82,7 +82,7 @@
 			          	<c:forEach var="vo" items="${list }" varStatus="s">
 				            <li class="one_third ${s.index%3==0?'first':'' }">
 				            	<a href="../camp/list.do?no=${vo.camp_no }">
-				            		<img src="http://menupan.com${vo.camp_image }" title="${vo.camp_name }">
+				            		<img src="${vo.camp_image }" title="${vo.camp_name }">
 				            	</a>
 				            </li>
 			            </c:forEach>

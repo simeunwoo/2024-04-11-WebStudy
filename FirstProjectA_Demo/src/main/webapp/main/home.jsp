@@ -93,11 +93,11 @@
 
 
 	<!-- About Start -->
-	<div class="container-fluid about py-5">
+	<div class="container-fluid about py-5 style="margin-left: 75px;">
 		<div class="container py-5">
 			<div class="row g-5 align-items-center">
 				<div class="col-lg-5">
-					<div class="h-100" style="border: 10px solid;">
+					<div class="h-100" style="border: 10px solid rgb(37, 103, 75);">
 						<img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
 					</div>
 				</div>
@@ -180,6 +180,8 @@
 								Category</span>
 					</a></li>
 				</ul>-->
+				
+		
 				<div class="tab-content">
 					<div id="NationalTab-1" class="tab-pane fade show p-0 active">
 						<div class="row g-4">
@@ -388,6 +390,23 @@
 	<!-- Explore Tour End -->
 
 
+
+
+<!-- LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
+<!--
+	<div class="flexslider carousel basiccarousel btmspace-80">
+      <ul class="slides">
+        <c:forEach var="vo" items="${hitList }">
+	        <li>
+	          <figure>
+	          	<img class="radius-10 btmspace-10" src="http://menupan.com${vo.poster }" style="width:320px;height:185px">
+	            <figcaption><a href="#">${vo.name }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:forEach>
+      </ul>
+    </div> -->
+
 	<!-- 캠핑장 추천 Start -->
 	<div class="container-fluid destination py-5">
 		<div class="container py-5">
@@ -396,53 +415,21 @@
 				<h1 class="mb-0">캠핑장</h1>
 			</div>
 			<div class="tab-class text-center">
-				<ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active"
-						data-bs-toggle="pill" href="#tab-1"> <span class="text-dark"
-							style="width: 150px;">전국</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-2"> <span class="text-dark"
-							style="width: 150px;">서울 / 경기</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-3"> <span class="text-dark"
-							style="width: 150px;">강원도</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-4"> <span class="text-dark"
-							style="width: 150px;">충청도</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-5"> <span class="text-dark"
-							style="width: 150px;">경상도</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-6"> <span class="text-dark"
-							style="width: 150px;">제주도</span>
-					</a></li>
-				</ul>
 				<div class="tab-content">
 					<div id="tab-1" class="tab-pane fade show p-0 active">
-						<div class="row g-4">
-							<div class="col-xl-8">
-								<div class="row g-4">
-									<div class="col-lg-6">
+						
+							<div class="flexslider carousel basiccarousel btmspace-80"> <!-- col-xl-8 -->
+							<ul class="slides"><!-- <div class="row g-4"> -->
+					<!--			<div class="row g-4"> -->
+								<c:forEach var="campvo" items="${cList }">
+									<div class="col-lg-3">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="../img/destination-1.jpg" alt="">
+												src="camp_list.jpg">
 											<div class="destination-overlay p-4">
-												<a href="#"
-													class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-													Photos</a>
 												<h4 class="text-white mb-2 mt-3">New York City</h4>
-												<a href="#" class="btn-hover text-white">View All Place
+												<a href="../camp/detail.do?camp_no=${cvo.camp_no }"
+													class="btn-hover text-white">자세히 보기
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
 											</div>
@@ -453,7 +440,12 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-6">
+								</c:forEach>
+									
+									
+									
+									
+						<!-- 	<div class="col-lg-6">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
 												src="../img/destination-2.jpg" alt="">
@@ -785,16 +777,21 @@
 									<div class="search-icon">
 										<a href="../img/destination-6.jpg" data-lightbox="destination-6"><i
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
+									</div> -->
+<!-- 							</div>-->
+								</ul>
 							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 캠핑장 추천 End -->
+	
+	
+	
+<!-- LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
 
 
 <!-- 캠핑용품 Start -->

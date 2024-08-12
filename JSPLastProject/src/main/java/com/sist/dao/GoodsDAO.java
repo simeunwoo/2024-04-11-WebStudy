@@ -72,4 +72,41 @@ public class GoodsDAO {
 		
 		return total;
 	}
+	
+	/*
+	<update id="goodsHitIncrement" parameterType="hashmap">
+		UPDATE HIT ${table_name} SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="goodsDetailData" parameterType="hashmap" resultType="GoodsVO">
+		SELECT *
+		FROM ${table_name}
+		WHERE no=#{no}
+	</select>
+	 */
+	public static GoodsVO goodsDetailData(Map map)
+	{
+		GoodsVO vo=new GoodsVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("goodsHitIncrement",map);
+			session.commit();
+			vo=session.selectOne("goodsDetailData",map);
+		}catch(Exception ex)
+		{
+			System.out.println("GoodsDAO 오류 3");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }

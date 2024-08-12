@@ -41,7 +41,7 @@ public class CampDAO {
 		return list;
 	}
 	
-	public static int campTotalPage(Map map)
+	public static int campTotalPage()
 	{
 		int total=0;
 		SqlSession session=null;
@@ -49,10 +49,7 @@ public class CampDAO {
 		try
 		{
 			session=ssf.openSession();
-			session.update("hitIncrement", no);
-			session.commit();
-			
-			vo=session.selectOne("campDetailData", no);
+			total=session.selectOne("campTotalPage");
 		}catch(Exception ex)
 		{
 			System.out.println("CampDAO 오류 2");
@@ -93,5 +90,28 @@ public class CampDAO {
 		}
 		
 		return vo;
+	}
+	
+	public static List<CampVO> campNoTopData()
+	{
+		List<CampVO> list=new ArrayList<CampVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("campNoTopData");
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 4");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
 	}
 }

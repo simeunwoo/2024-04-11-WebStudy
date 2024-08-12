@@ -7,6 +7,8 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 public class GoodsModel {
 	
 	private String[] tables={"","goods_all","goods_best","goods_new","goods_special"};
@@ -55,6 +57,21 @@ public class GoodsModel {
 	@RequestMapping("goods/detail.do")
 	public String goods_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		String cno=request.getParameter("cno");
+		String no=request.getParameter("no");
+		
+		Map map=new HashMap();
+		map.put("table_name", tables[Integer.parseInt(cno)]);
+		map.put("no", no);
+		
+		GoodsVO vo=GoodsDAO.goodsDetailData(map);
+		
+		String price=vo.getGoods_price();
+		price=price.replaceAll("[^0-9]", "");
+		vo.setPrice(Integer.parseInt(price));
+		
+		request.setAttribute("vo", vo);
+		
 		request.setAttribute("main_jsp", "../goods/detail.jsp");
 		return "../main/main.jsp";
 	}

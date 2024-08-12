@@ -12,4 +12,14 @@
 		SELECT CEIL(COUNT(*)/20.0)
 		FROM ${table_name}
 	</select>
+	<update id="goodsHitIncrement" parameterType="hashmap">
+		UPDATE HIT ${table_name} SET
+		hit=hit+1
+		WHERE no=#{no}
+	</update>
+	<select id="goodsDetailData" parameterType="hashmap" resultType="GoodsVO">
+		SELECT *
+		FROM ${table_name}
+		WHERE no=#{no}
+	</select>
 </mapper>

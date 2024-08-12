@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-   <bean id="main" class="com.sist.model.MainModel"/>
    <bean id="camp" class="com.sist.model.CampModel"/>
    <bean id="member" class="com.sist.model.MemberModel"/>
+   <bean id="main" class="com.sist.model.MainModel"/>
 </beans> 
