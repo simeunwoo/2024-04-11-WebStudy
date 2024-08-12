@@ -42,6 +42,6 @@
 		SELECT camp_no,camp_name,camp_image,rownum
 		FROM (SELECT camp_no,camp_name,camp_image
 		FROM camp ORDER BY camp_no DESC)
-		WHERE rownum&lt;=12
+		WHERE rownum&lt;=16
 	</select>
 </mapper>

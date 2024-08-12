@@ -65,18 +65,16 @@ public class CampDAO {
 		return total;
 	}
 	
-	public static CampVO campDetailData(int no)
+	public static CampVO campDetailData(int camp_no)
 	{
-		SqlSession session=null;
+		
 		CampVO vo=new CampVO();
+		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			session.update("hitIncrement", no);
-			session.commit();
-			
-			vo=session.selectOne("campDetailData", no);
+			vo=session.selectOne("campDetailData", camp_no);
 		}catch(Exception ex)
 		{
 			System.out.println("CampDAO 오류 3");

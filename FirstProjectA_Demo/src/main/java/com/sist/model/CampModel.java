@@ -29,7 +29,7 @@ public class CampModel {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<CampVO> cList=CampDAO.campListData(map);
+		List<CampVO> list=CampDAO.campListData(map);
 		int totalpage=CampDAO.campTotalPage();
 		
 		final int BLOCK=10;
@@ -38,7 +38,7 @@ public class CampModel {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
-		request.setAttribute("cList", cList);
+		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);

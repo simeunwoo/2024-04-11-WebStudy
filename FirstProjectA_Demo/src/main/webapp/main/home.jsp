@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,8 +209,8 @@
 										class="img-fluid w-100 rounded" alt="Image">
 									<div class="national-content">
 										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑장 예약 </h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<h3 class="text-white text-uppercase mb-2">캠핑장</h3>
+											<a href="../food/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
@@ -419,15 +420,15 @@
 					<div id="tab-1" class="tab-pane fade show p-0 active">
 						
 							<div class="flexslider carousel basiccarousel btmspace-80"> <!-- col-xl-8 -->
-							<ul class="slides"><!-- <div class="row g-4"> -->
-					<!--			<div class="row g-4"> -->
-								<c:forEach var="campvo" items="${cList }">
+							<div class="slides"><!-- <div class="row g-4"> -->
+					<div class="row g-4">
+								<c:forEach var="cvo" items="${cList }">
 									<div class="col-lg-3">
 										<div class="destination-img">
 											<img class="img-fluid rounded w-100"
-												src="camp_list.jpg">
+												src="${cvo.camp_image }" alt="${cvo.camp_name}">
 											<div class="destination-overlay p-4">
-												<h4 class="text-white mb-2 mt-3">New York City</h4>
+												<h4 class="text-white mb-2 mt-3">${cvo.camp_name }</h4>
 												<a href="../camp/detail.do?camp_no=${cvo.camp_no }"
 													class="btn-hover text-white">자세히 보기
 													<i class="fa fa-arrow-right ms-2"></i>
@@ -437,10 +438,11 @@
 												<a href="../img/destination-1.jpg"
 													data-lightbox="destination-1"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-											</div>
+											</div></div></div>
+										</c:forEach>
 										</div>
-									</div>
-								</c:forEach>
+									
+									
 									
 									
 									
@@ -779,9 +781,9 @@
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div> -->
 <!-- 							</div>-->
-								</ul>
+								</div>
+							
 							</div>
-						
 					</div>
 				</div>
 			</div>
