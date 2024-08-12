@@ -122,6 +122,7 @@ $(function(){
       </c:if>
       <li><a class="drop" href="#">맛집</a>
         <ul>
+          <li><a href="../food/list.do">맛집 목록</a></li>
           <li><a href="pages/gallery.html">맛집 찾기</a></li>
           <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->
           	<li><a href="pages/full-width.html">맛집 예약</a></li>
