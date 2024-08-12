@@ -128,4 +128,101 @@ public class FoodDAO {
 		
 		return count;
 	}
+	
+	/*
+	<select id="foodListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno,name,poster,num
+		FROM (SELECT fno,name,poster,rownum as num
+		FROM (SELECT *+ INDEX_ASC(project_food_house fh_fno_pk)*fno,name,poster
+		FROM project_food_house))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="foodTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/20.0) FROM project_food_house
+	</select>
+	 */
+	public static List<FoodVO> foodListData(Map map)
+	{
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		SqlSession session=null;
+
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("foodListData",map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("FoodDAO 오류 5");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
+	
+	public static int foodTotalPage()
+	{
+		int total=0;
+		SqlSession session=null;
+
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("foodTotalPage");
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("FoodDAO 오류 6");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+	
+	/*
+	<update id="foodHitIncrement" parameterType="int">
+		UPDATE project_food_house SET
+		hit=hit+1
+		WHERE fno=#{fno}
+	</update>
+	<select id="foodDetailData" resultType="FoodVO" parameterType="int">
+		SELECT fno,name,type,phone,address,score,theme,poster,images,time,parking,content
+		FROM project_food_house
+		WHERE fno=#{fno}
+	</select>
+	 */
+	public static FoodVO foodDetailData(int fno)
+	{
+		FoodVO vo=new FoodVO();
+		SqlSession session=null;
+
+		try
+		{
+			session=ssf.openSession();
+			// 조회수 증가
+			session.update("foodHitIncrement",fno);
+			session.commit();
+			// 데이터 읽기
+			vo=session.selectOne("foodDetailData",fno);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("FoodDAO 오류 7");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }
