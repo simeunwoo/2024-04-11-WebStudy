@@ -138,7 +138,8 @@ public class FoodDAO {
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	<select id="foodTotalPage" resultType="int">
-		SELECT CEIL(COUNT(*)/20.0) FROM project_food_house
+		SELECT CEIL(COUNT(*)/20.0)
+		FROM project_food_house
 	</select>
 	 */
 	public static List<FoodVO> foodListData(Map map)
@@ -224,5 +225,65 @@ public class FoodDAO {
 		}
 		
 		return vo;
+	}
+	
+	/*
+	<select id="foodFindListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno,name,poster,num
+		FROM (SELECT fno,name,poster,rownum as num
+		FROM (SELECT *+ INDEX_ASC(project_food_house fh_fno_pk)*fno,name,poster
+		FROM project_food_house WHERE LIKE '%'||#{ss}||'%'))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="foodFindTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/20.0)
+		FROM project_food_house
+		WHERE LIKE '%'||#{ss}||'%'
+	</select>
+	 */
+	public static List<FoodVO> foodFindListData(Map map)
+	{
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		SqlSession session=null;
+
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("foodFindListData",map);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("FoodDAO 오류 8");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
+	
+	public static int foodFindTotalPage(String ss)
+	{
+		int total=0;
+		SqlSession session=null;
+
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("foodFindTotalPage",ss);
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("FoodDAO 오류 9");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
 	}
 }

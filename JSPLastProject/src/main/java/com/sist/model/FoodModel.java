@@ -94,6 +94,47 @@ public class FoodModel {
 	@RequestMapping("food/find.do")
 	public String food_find(HttpServletRequest request,HttpServletResponse response)
 	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String ss=request.getParameter("ss"); // ss : 주소
+		if(ss==null)
+			ss="마포";
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		int rowSize=20;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		
+		Map map=new HashMap();
+		map.put("ss", ss);
+		map.put("start", start);
+		map.put("end", end);
+		
+		// DB 연동 => 데이터 읽기
+		List<FoodVO> fList=FoodDAO.foodFindListData(map);
+		
+		// 총 페이지 읽기
+		int totalpage=FoodDAO.foodFindTotalPage(ss);
+		
+		// BLOCK 별 처리
+		final int BLOCK=10;		
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		request.setAttribute("ss", ss);
+		request.setAttribute("fList", fList);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
 		request.setAttribute("main_jsp", "../food/find.jsp");
 		return "../main/main.jsp";
 	}

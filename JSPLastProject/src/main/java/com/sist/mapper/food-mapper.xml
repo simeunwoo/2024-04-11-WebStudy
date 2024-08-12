@@ -31,7 +31,8 @@
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	<select id="foodTotalPage" resultType="int">
-		SELECT CEIL(COUNT(*)/20.0) FROM project_food_house
+		SELECT CEIL(COUNT(*)/20.0)
+		FROM project_food_house
 	</select>
 	<!-- 맛집 상세 보기 -->
 	<update id="foodHitIncrement" parameterType="int">
@@ -49,4 +50,17 @@
 	<!-- 예약 -->
 	<!-- 댓글 -->
 	<!-- 인근 맛집 출력 -->
+	<!-- 맛집 찾기 -->
+	<select id="foodFindListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno,name,poster,num
+		FROM (SELECT fno,name,poster,rownum as num
+		FROM (SELECT /*+ INDEX_ASC(project_food_house fh_fno_pk)*/fno,name,poster
+		FROM project_food_house WHERE LIKE '%'||#{ss}||'%'))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="foodFindTotalPage" resultType="int" parameterType="string">
+		SELECT CEIL(COUNT(*)/20.0)
+		FROM project_food_house
+		WHERE LIKE '%'||#{ss}||'%'
+	</select>
 </mapper>
