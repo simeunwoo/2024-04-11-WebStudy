@@ -139,10 +139,11 @@ $(function(){
       </li>
       <li><a class="drop" href="#">스토어</a>
         <ul>
-          <li><a href="pages/gallery.html">전체 상품</a></li>
-          <li><a href="pages/full-width.html">베스트 상품</a></li>
-          <li><a href="pages/sidebar-left.html">특가 상품</a></li>
-          <li><a href="pages/sidebar-left.html">가격 비교</a></li>
+          <li><a href="../goods/list.do">전체 상품</a></li>
+          <li><a href="../goods/list.do?cno=2">베스트 상품</a></li>
+          <li><a href="../goods/list.do?cno=3">신상품</a></li>
+          <li><a href="../goods/list.do?cno=4">특가 상품</a></li>
+          <li><a href="#">가격 비교</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">여행</a>

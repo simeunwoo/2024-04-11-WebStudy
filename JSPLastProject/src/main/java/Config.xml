@@ -32,6 +32,7 @@
 		<typeAlias type="com.sist.vo.MusicVO" alias="MusicVO"/>
 		<typeAlias type="com.sist.vo.BoardReplyVO" alias="BoardReplyVO"/>
 		<typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
+		<typeAlias type="com.sist.vo.GoodsVO" alias="GoodsVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -55,5 +56,6 @@
 		<mapper resource="com/sist/mapper/music-mapper.xml"/>
 		<mapper resource="com/sist/mapper/reply-mapper.xml"/>
 		<mapper resource="com/sist/mapper/food-mapper.xml"/>
+		<mapper resource="com/sist/mapper/goods-mapper.xml"/>
 	</mappers>
 </configuration>

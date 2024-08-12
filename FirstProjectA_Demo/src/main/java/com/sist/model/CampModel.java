@@ -30,14 +30,14 @@ public class CampModel {
 		map.put("end", end);
 		List<CampVO> list=CampDAO.campListData(map);
 		
-		int count=CampDAO.campRowCount();
-		int totalpage=(int)(Math.ceil(count/10.0));
-		count=count-((rowSize*curpage)-rowSize);
+		if(endPage>totalpage)
+			endPage=totalpage;
 		
 		request.setAttribute("list", list);
-		request.setAttribute("count", count);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		
 		request.setAttribute("main_jsp", "../camp/list.jsp");
 		return "../main/main.jsp";

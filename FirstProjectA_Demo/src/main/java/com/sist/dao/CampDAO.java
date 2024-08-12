@@ -41,19 +41,11 @@ public class CampDAO {
 		return list;
 	}
 	
-	public static int campRowCount()
+	public static int campTotalPage(Map map)
 	{
-		SqlSession session=ssf.openSession();
-		int count=session.selectOne("campRowCount");
-		session.close();
-		
-		return count;
-	}
-	
-	public static CampVO campDetailData(int no)
-	{
+		int total=0;
 		SqlSession session=null;
-		CampVO vo=new CampVO();
+		
 		try
 		{
 			session=ssf.openSession();
@@ -64,6 +56,33 @@ public class CampDAO {
 		}catch(Exception ex)
 		{
 			System.out.println("CampDAO 오류 2");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+	
+	public static CampVO campDetailData(int no)
+	{
+		SqlSession session=null;
+		CampVO vo=new CampVO();
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("hitIncrement", no);
+			session.commit();
+			
+			vo=session.selectOne("campDetailData", no);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 3");
 			ex.printStackTrace();
 		}
 		finally
