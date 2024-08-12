@@ -86,4 +86,15 @@ public class FoodModel {
 		request.setAttribute("main_jsp", "../food/detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	// 검색
+	// _ok.do => redirect : 이전에 존재하는 화면으로 이동
+	// ajax => void : 자체 파일에서 처리
+	// 일반 => main.jsp
+	@RequestMapping("food/find.do")
+	public String food_find(HttpServletRequest request,HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../food/find.jsp");
+		return "../main/main.jsp";
+	}
 }
