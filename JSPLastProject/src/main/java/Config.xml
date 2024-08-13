@@ -33,6 +33,9 @@
 		<typeAlias type="com.sist.vo.BoardReplyVO" alias="BoardReplyVO"/>
 		<typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
 		<typeAlias type="com.sist.vo.GoodsVO" alias="GoodsVO"/>
+		<typeAlias type="com.sist.vo.SeoulLocationVO" alias="SeoulLocationVO"/>
+		<typeAlias type="com.sist.vo.SeoulNatureVO" alias="SeoulNatureVO"/>
+		<typeAlias type="com.sist.vo.SeoulShopVO" alias="SeoulShopVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -57,5 +60,6 @@
 		<mapper resource="com/sist/mapper/reply-mapper.xml"/>
 		<mapper resource="com/sist/mapper/food-mapper.xml"/>
 		<mapper resource="com/sist/mapper/goods-mapper.xml"/>
+		<mapper resource="com/sist/mapper/seoul-mapper.xml"/>
 	</mappers>
 </configuration>

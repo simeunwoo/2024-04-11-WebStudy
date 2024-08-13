@@ -9,4 +9,5 @@
 	<bean id="reply" class="com.sist.model.BoardReplyModel"/>
 	<bean id="food" class="com.sist.model.FoodModel"/>
 	<bean id="goods" class="com.sist.model.GoodsModel"/>
+	<bean id="seoul" class="com.sist.model.SeoulModel"/>
 </beans>
