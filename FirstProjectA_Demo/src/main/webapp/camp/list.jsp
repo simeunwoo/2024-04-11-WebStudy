@@ -65,15 +65,31 @@
         <!-- Header End -->
 
         <!-- Explore Tour Start -->
-        <div class="container-fluid ExploreTour py-5">
+        
+<!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+ <!--       <div class="container-fluid ExploreTour py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h5 class="section-title px-3">Explore Tour</h5>
                     <h1 class="mb-4">The World</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+                    <p class="mb-0">안녕
                     </p>
                 </div>
                 <div class="tab-class text-center">
+                <ul class="nospace clear">
+			          	<c:forEach var="vo" items="${list }" varStatus="s">
+				            <li class="one_third ${s.index%3==0?'first':'' }">
+				            	<a href="../camp/list.do?no=${vo.camp_no }">
+				            		<img src="${vo.camp_image }" title="${vo.camp_name }">
+				            	</a>
+				            </li>
+			            </c:forEach>
+			          </ul>
+			          </div>
+                            </div>
+                            </div> -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+                            
              <!--   <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                         <li class="nav-item">
                             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#NationalTab-1">
@@ -88,15 +104,7 @@
                     </ul> -->
                     
                     
-                     <ul class="nospace clear">
-			          	<c:forEach var="vo" items="${list }" varStatus="s">
-				            <li class="one_third ${s.index%3==0?'first':'' }">
-				            	<a href="../camp/list.do?no=${vo.camp_no }">
-				            		<img src="${vo.camp_image }" title="${vo.camp_name }">
-				            	</a>
-				            </li>
-			            </c:forEach>
-			          </ul>
+                     
                    
                   
                     
@@ -124,9 +132,7 @@
                             </div>
                             </div>
                             </div>-->
-                            </div>
-                            </div>
-                            </div>
+                            
                             
                                 
                                 
@@ -461,6 +467,49 @@
             </div>
         </div>
         <!-- Explore Tour Start -->
+        
+        <div class="container-fluid destination py-5">
+		<div class="container py-5">
+			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
+				<h5 class="section-title px-3">campsite map</h5>
+				<h1 class="mb-0">캠핑장</h1>
+			</div>
+			<div class="tab-class text-center">
+				<div class="tab-content">
+					<div id="tab-1" class="tab-pane fade show p-0 active">
+						
+							<div class="flexslider carousel basiccarousel btmspace-80"> <!-- col-xl-8 -->
+							<div class="slides"><!-- <div class="row g-4"> -->
+					<div class="row g-4">
+								<c:forEach var="cvo" items="${cList }">
+									<div class="col-lg-3">
+										<div class="destination-img">
+										<!-- class="img-fluid rounded w-100" -->
+											<img class="rounded w-100" style="width:250px;height:200px;object-fit:cover"
+												src="${cvo.camp_image }" alt="${cvo.camp_name}">
+											<div class="destination-overlay p-4">
+												<h4 class="text-white mb-2 mt-3">${cvo.camp_name }</h4>
+												<a href="../camp/detail.do?camp_no=${cvo.camp_no }"
+													class="btn-hover text-white">자세히 보기
+													<i class="fa fa-arrow-right ms-2"></i>
+												</a>
+											</div>
+											<div class="search-icon">
+												<a href="../img/destination-1.jpg"
+													data-lightbox="destination-1"><i
+													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+											</div></div></div>
+										</c:forEach>
+										</div>
+									
+									</div>
+							
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
         
 <nav class="pagination">

@@ -46,7 +46,28 @@ $(function(){
 // 	let bCheck=false;
 	$('#jjimBtn').on('click',function(){
 		let cno=$(this).attr("data-cno")
-		// Ajax 이용
+		
+		// ajax 이용, type=1
+		$.ajax({
+			type:'post',
+			url:'../all_jjim/insert.do',
+			data:{"cno":cno,"type":1},
+			success:function(result)
+			{
+				if(result==='OK')
+				{
+					location.href="../food/detail.do?fno="+cno+"&type=1"
+				}
+				else
+				{
+					alert(result)
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
 	})
 })
 // 삭제
@@ -205,10 +226,15 @@ html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+rep
 	    		<tr>
 	    			<td colspan="3" class="text-right">
 	    				<c:if test="${sessionScope.id!=null }">
-		    				<a href="" class="btn btn-xs btn-success">좋아요</a>
-		    				<input type="button" class="btn btn-xs btn-warning" value="찜하기"
-		    				  id="jjimBtn" data-cno="${vo.fno }">
-		    				<a href="" class="btn btn-xs btn-info">예약</a>
+		    				<a href="#" class="btn btn-xs btn-success">좋아요</a>
+		    				<c:if test="${check==false }">
+		    					<input type="button" class="btn btn-xs btn-warning" value="찜하기"
+		    					  id="jjimBtn" data-cno="${vo.fno }">
+		    				</c:if>
+		    				<c:if test="${check==true }">
+		    					<span class="btn btn-xs btn-default">찜하기</span>
+		    				</c:if>
+		    				<a href="#" class="btn btn-xs btn-info">예약</a>
 		    			</c:if>
 		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
 	    			</td>

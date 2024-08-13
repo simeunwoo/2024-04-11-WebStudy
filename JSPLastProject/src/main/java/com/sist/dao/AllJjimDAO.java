@@ -28,7 +28,7 @@ public class AllJjimDAO {
 		
 		try
 		{
-			session=ssf.openSession();
+			session=ssf.openSession(true);
 			session.insert("allJjimInsert",map);
 		}catch(Exception ex)
 		{
@@ -56,8 +56,8 @@ public class AllJjimDAO {
 		
 		try
 		{
-			session=ssf.openSession();
-			session.selectOne("allJjimCheck",map);
+			session=ssf.openSession(true);
+			count=session.selectOne("allJjimCheck",map);
 		}catch(Exception ex)
 		{
 			System.out.println("AllJjimDAO 오류 2");

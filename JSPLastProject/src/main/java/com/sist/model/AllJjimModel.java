@@ -36,7 +36,7 @@ public class AllJjimModel {
 			result=ex.getMessage();
 		}
 		
-		// Ajax로 전송
+		// Ajax로 이동
 		try
 		{
 			PrintWriter out=response.getWriter();

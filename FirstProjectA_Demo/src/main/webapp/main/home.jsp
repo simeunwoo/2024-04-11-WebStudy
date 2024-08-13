@@ -443,7 +443,14 @@
 										</c:forEach>
 										</div>
 									
-									
+									</div>
+							
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 									
 									
 									
@@ -782,14 +789,7 @@
 											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 									</div> -->
 <!-- 							</div>-->
-								</div>
-							
-							</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+								
 	<!-- 캠핑장 추천 End -->
 	
 	
