@@ -7,6 +7,85 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#writeBtn').on('click',function(){
+		let msg=$('#msg').val()
+		if(msg.trim()==="") // 댓글 내용이 없는 경우
+		{
+			$('#msg').focus() // 댓글을 써라
+			return
+		}
+		let cno=$(this).attr("data-cno")
+		
+		$.ajax({
+			type:'post',
+			url:'../all_reply/insert.do',
+			data:{"cno":cno,"type":1,"msg":msg},
+			success:function(result)
+			{
+				if(result==='OK')
+				{
+					replyList(cno)
+				}
+				else
+				{
+					alert(result)
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+})
+function replyList()
+{
+	$.ajax({
+		type:'post',
+		url:'../all_reply/list.do',
+		data:{"cno":cno,"type":1},
+		success:function(json)
+		{
+			json=JSON.parse(json)
+			let html=''
+			json.map(function(reply){
+				html+='<table class="table">'
+					html+='<tr>'
+					html+='<td class="text-left">◑'+reply.name+'('+reply.dbday+')</td>'
+					html+='<td class="text-right">'
+					if(reply.id===reply.sessionId)
+					{
+						html+='<span class="btn btn-xs btn-success ups" onclick="replyUpdate('+reply.rno+')">수정</span>&nbsp;'
+html+='<input type="button" class="btn btn-xs btn-warning" value="삭제" onclick="replyDelete('+reply.rno+','+reply.cno+')">'
+					}
+					html+='</td>'
+					html+='</tr>'
+					html+='<tr>'
+					html+='<td colspan="2">'
+					html+='<pre style="white-space:pre-wrap;border:none;background:white">'+reply.msg+'</pre>'
+					html+='</td>'
+					html+='</tr>'					
+					html+='<tr class="updates" id="m'+reply.rno+'" style="display:none">'
+					html+='<td>'
+					html+='<textarea rows="4" cols="70" id="msg'+reply.rno+'" style="float: left">'+reply.msg+'</textarea>'
+html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+reply.rno+')" style="width: 100px;height: 85px;background-color: green;color: black" class="updateBtns">'
+					html+='</td>'
+					html+='</tr>'
+					html+='</table>'
+			})
+			console.log(html)
+			$('#reply').html(html)
+		},
+		error:function(request,status,error)
+		{
+			console.log(error)
+		}
+	})
+}
+</script>
 </head>
 <body>
 <div class="wrapper row3">
@@ -130,6 +209,24 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
         </c:forEach>
       </ul>
     </div>
+    <div style="height:20px"></div>
+    <h2 class="sectiontitle">댓글</h2>
+    <table class="table">
+    	<tbody class="table" id="reply_table">
+    		<%-- 댓글 출력 --%>
+    	</tbody>
+    </table>
+    <c:if test="${sessionScope.id!=null }">
+    	<table class="table">
+			<tr>
+				<td>
+					<textarea rows="4" cols="70" id="msg" style="float: left"></textarea>
+					<input type="button" value="댓글 쓰기" id="writeBtn" data-cno="${vo.fno }"
+					  style="width: 100px;height: 85px;background-color: green;color: black">
+				</td>
+			</tr>
+		</table>
+    </c:if>
 	</main>
 </div>
 </body>
