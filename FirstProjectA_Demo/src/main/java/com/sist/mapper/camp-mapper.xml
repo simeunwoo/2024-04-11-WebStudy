@@ -23,7 +23,7 @@
 		ORDER BY camp_no ASC))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
-	<select id="campTotalPage" resultType="int" parameterType="hashmap">
+	<select id="campTotalPage" resultType="int">
 		SELECT CEIL(COUNT(*)/12.0)
 		FROM camp
 	</select>

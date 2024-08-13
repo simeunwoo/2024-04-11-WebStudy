@@ -52,6 +52,7 @@ public class CampModel {
 	public String camp_detail(HttpServletRequest request,HttpServletResponse response)
 	{
 		String camp_no=request.getParameter("camp_no");
+		
 		CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
 		
 		request.setAttribute("vo", vo);
