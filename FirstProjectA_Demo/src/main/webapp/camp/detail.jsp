@@ -169,10 +169,10 @@
 			와이파이
 			</div>
 			<div class="col-lg-4 text-center" style="font-size:20px">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;매점
+			매점
 			</div>
 			<div class="col-lg-4 text-center" style="font-size:20px">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;반려동물
+			반려동물
 			</div>
 		</table>
 	    	
