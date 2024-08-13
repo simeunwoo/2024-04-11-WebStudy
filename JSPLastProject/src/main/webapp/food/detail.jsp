@@ -42,6 +42,12 @@ $(function(){
 			}
 		})
 	})
+	
+// 	let bCheck=false;
+	$('#jjimBtn').on('click',function(){
+		let cno=$(this).attr("data-cno")
+		// Ajax 이용
+	})
 })
 // 삭제
 function replyDelete(rno,cno)
@@ -60,6 +66,42 @@ function replyDelete(rno,cno)
 			{
 				alert(result)
 			}
+		},
+		error:function(request,status,error)
+		{
+			console.log(error)
+		}
+	})
+}
+// 수정
+function replyUpdate(rno)
+{
+	$('.updates').hide()
+	$('#m'+rno).show()
+}
+function replyUpdateData(rno,cno)
+{
+	let msg=$('#msg'+rno).val()
+	if(msg.trim()==="")
+	{
+		$('#msg'+rno).focus()
+		return
+	}
+	$.ajax({
+		type:'post',
+		url:'../all_reply/update.do',
+		data:{"rno":rno,"msg":msg},
+		success:function(result)
+		{
+			if(result==='OK')
+			{
+				replyList(cno)
+			}
+			else
+			{
+				alert(result)
+			}
+			$('#m'+rno).hide()
 		},
 		error:function(request,status,error)
 		{
@@ -97,7 +139,7 @@ html+='<input type="button" class="btn btn-xs btn-warning" value="삭제" onclic
 					html+='<tr class="updates" id="m'+reply.rno+'" style="display:none">'
 					html+='<td>'
 					html+='<textarea rows="4" cols="70" id="msg'+reply.rno+'" style="float: left">'+reply.msg+'</textarea>'
-html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+reply.rno+')" style="width: 100px;height: 85px;background-color: green;color: black" class="updateBtns">'
+html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+reply.rno+','+reply.cno+')" style="width: 100px;height: 85px;background-color: green;color: black" class="updateBtns">'
 					html+='</td>'
 					html+='</tr>'
 					html+='</table>'
@@ -164,7 +206,8 @@ html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+rep
 	    			<td colspan="3" class="text-right">
 	    				<c:if test="${sessionScope.id!=null }">
 		    				<a href="" class="btn btn-xs btn-success">좋아요</a>
-		    				<a href="" class="btn btn-xs btn-warning">찜하기</a>
+		    				<input type="button" class="btn btn-xs btn-warning" value="찜하기"
+		    				  id="jjimBtn" data-cno="${vo.fno }">
 		    				<a href="" class="btn btn-xs btn-info">예약</a>
 		    			</c:if>
 		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">

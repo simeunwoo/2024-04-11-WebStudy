@@ -101,4 +101,31 @@ public class AllReplyDAO {
 				session.close();
 		}
 	}
+	
+	/*
+	<update id="allReplyUpdate" parameterType="hashmap">
+		UPDATE all_reply SET
+		msg=#{msg}
+		WHERE rno=#{rno}
+	</update>
+	 */
+	public static void allReplyUpdate(Map map)
+	{
+SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("allReplyUpdate",map);
+		}catch(Exception ex)
+		{
+			System.out.println("AllReplyDAO 오류 4");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

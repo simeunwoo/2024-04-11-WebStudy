@@ -426,7 +426,7 @@
 									<div class="col-lg-3">
 										<div class="destination-img">
 										<!-- class="img-fluid rounded w-100" -->
-											<img style="width:200px;height:100px"
+											<img class="rounded w-100" style="width:250px;height:200px;object-fit:cover"
 												src="${cvo.camp_image }" alt="${cvo.camp_name}">
 											<div class="destination-overlay p-4">
 												<h4 class="text-white mb-2 mt-3">${cvo.camp_name }</h4>
