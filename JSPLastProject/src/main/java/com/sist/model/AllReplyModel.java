@@ -51,7 +51,7 @@ public class AllReplyModel {
 			arr.add(obj);
 		}
 		
-		// JavaScript로 전송
+		// JavaScript-Ajax로 전송
 		try
 		{
 			response.setContentType("text/plain;charset=UTF-8");
@@ -93,6 +93,29 @@ public class AllReplyModel {
 			result=ex.getMessage();
 		}
 		
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
+	}
+	
+	@RequestMapping("all_reply/delete.do")
+	public void all_reply_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String rno=request.getParameter("rno");
+		
+		String result="";
+		try
+		{
+			AllReplyDAO.allReplyDelete(Integer.parseInt(rno));
+			result="OK";
+		}catch(Exception ex)
+		{
+			result=ex.getMessage();
+		}
+		
+		// JavaScript-Ajax로 전송
 		try
 		{
 			PrintWriter out=response.getWriter();

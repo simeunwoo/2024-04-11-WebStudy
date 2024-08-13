@@ -74,4 +74,31 @@ public class AllReplyDAO {
 		
 		return list;
 	}
+	
+	// 삭제
+	/*
+	<delete id="allReplyDelete" parameterType="int">
+		DELETE FROM all_reply
+		WHERE rno=#{rno}
+	</delete>
+	 */
+	public static void allReplyDelete(int rno)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.delete("allReplyDelete",rno);
+		}catch(Exception ex)
+		{
+			System.out.println("AllReplyDAO 오류 3");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

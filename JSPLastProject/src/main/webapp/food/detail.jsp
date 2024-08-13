@@ -10,6 +10,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	replyList(${param.fno})
+	
 	$('#writeBtn').on('click',function(){
 		let msg=$('#msg').val()
 		if(msg.trim()==="") // 댓글 내용이 없는 경우
@@ -41,7 +43,31 @@ $(function(){
 		})
 	})
 })
-function replyList()
+// 삭제
+function replyDelete(rno,cno)
+{
+	$.ajax({
+		type:'post',
+		url:'../all_reply/delete.do',
+		data:{"rno":rno},
+		success:function(result)
+		{
+			if(result==="OK")
+			{
+				replyList(cno)
+			}
+			else
+			{
+				alert(result)
+			}
+		},
+		error:function(request,status,error)
+		{
+			console.log(error)
+		}
+	})
+}
+function replyList(cno)
 {
 	$.ajax({
 		type:'post',
@@ -78,6 +104,7 @@ html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+rep
 			})
 			console.log(html)
 			$('#reply').html(html)
+			$('#msg').val("")
 		},
 		error:function(request,status,error)
 		{
@@ -214,6 +241,9 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
     <table class="table">
     	<tbody class="table" id="reply_table">
     		<%-- 댓글 출력 --%>
+    		<tr>
+    			<td id="reply"></td>
+    		</tr>
     	</tbody>
     </table>
     <c:if test="${sessionScope.id!=null }">
