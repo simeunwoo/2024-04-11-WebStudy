@@ -34,8 +34,6 @@
 		<typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
 		<typeAlias type="com.sist.vo.GoodsVO" alias="GoodsVO"/>
 		<typeAlias type="com.sist.vo.SeoulLocationVO" alias="SeoulLocationVO"/>
-		<typeAlias type="com.sist.vo.SeoulNatureVO" alias="SeoulNatureVO"/>
-		<typeAlias type="com.sist.vo.SeoulShopVO" alias="SeoulShopVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
