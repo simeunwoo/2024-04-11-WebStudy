@@ -1,4 +1,4 @@
-package a;
+package b;
 import java.util.*;
 import java.sql.*;
 public class CampImageDAO {
@@ -58,18 +58,30 @@ public class CampImageDAO {
 	   try
 	   {
 		   getConnection();
-		   String sql="INSERT INTO image_camp(image1,image2,image3) "
-				     +"VALUES(camp_no_seq.nextval,?,?,?,?,?,?,?,?,?)";
+		   String sql="INSERT INTO image_camp(no,image1,image2,image3,image4,image5,image6,image7,image8,image9,image10,"
+		   		+ "image1s,image2s,image3s,image4s,image5s,image6s,image7s,image8s,image9s,image10s) "
+				     +"VALUES(no_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		   ps=conn.prepareStatement(sql);
-		   ps.setInt(1, vo.getCamp_price());
-		   ps.setString(2, vo.getCamp_name());
-		   ps.setString(3, vo.getCamp_addr());
-		   ps.setString(4, vo.getCamp_phone());
-		   ps.setString(5, vo.getCamp_content());
-		   ps.setString(6, vo.getCamp_image());
-		   ps.setString(7, vo.getCamp_wifi());
-		   ps.setString(8, vo.getCamp_store());
-		   ps.setString(9, vo.getCamp_animal());
+		   ps.setString(1, vo.getImage1());
+		   ps.setString(2, vo.getImage2());
+		   ps.setString(3, vo.getImage3());
+		   ps.setString(4, vo.getImage4());
+		   ps.setString(5, vo.getImage5());
+		   ps.setString(6, vo.getImage6());
+		   ps.setString(7, vo.getImage7());
+		   ps.setString(8, vo.getImage8());
+		   ps.setString(9, vo.getImage9());
+		   ps.setString(10, vo.getImage10());
+		   ps.setString(11, vo.getImage1s());
+		   ps.setString(12, vo.getImage2s());
+		   ps.setString(13, vo.getImage3s());
+		   ps.setString(14, vo.getImage4s());
+		   ps.setString(15, vo.getImage5s());
+		   ps.setString(16, vo.getImage6s());
+		   ps.setString(17, vo.getImage7s());
+		   ps.setString(18, vo.getImage8s());
+		   ps.setString(19, vo.getImage9s());
+		   ps.setString(20, vo.getImage10s());
 		   
 		   ps.executeUpdate();
 	   }catch(Exception ex)
