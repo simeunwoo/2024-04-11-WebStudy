@@ -65,5 +65,6 @@
 		<mapper resource="com/sist/mapper/allreply-mapper.xml"/>
 		<mapper resource="com/sist/mapper/alljjim-mapper.xml"/>
 		<mapper resource="com/sist/mapper/notice-mapper.xml"/>
+		<mapper resource="com/sist/mapper/admin-mapper.xml"/>
 	</mappers>
 </configuration>

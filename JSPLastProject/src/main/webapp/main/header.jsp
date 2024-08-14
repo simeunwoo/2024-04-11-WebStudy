@@ -169,10 +169,10 @@ $(function(){
       </li>
       <c:if test="${sessionScope.id!=null }"><!-- 로그인이 된 경우 -->
       	<c:if test="${sessionScope.admin=='n' }"><!-- 관리자가 아닌 경우 -->
-	  	    <li><a href="#">마이페이지</a></li>
+	  	    <li><a href="../mypage/mypage_main.do">마이페이지</a></li>
 	  	 </c:if>
       	<c:if test="${sessionScope.admin=='y' }"><!-- 관리자인 경우 -->
-	  	    <li><a href="#">관리자페이지</a></li>
+	  	    <li><a href="../adminpage/adminpage_main.do">관리자페이지</a></li>
 	  	 </c:if>
 	  </c:if>
     </ul>
