@@ -24,6 +24,11 @@
 		FROM notice
 	</select>
 	<!-- 공지 상세 보기 : admin/user -->
+	<update id="noticeHitIncrement" parameterMap="int">
+		UPDATE notice SET
+		hit=hit+1
+		WHERE no={#no}
+	</update>
 	<!-- 공지 수정 : admin -->
 	<select id="noticeUpdateData" resultType="NoticeVO" parameterType="int">
 		SELECT no,type,hit,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
@@ -36,6 +41,10 @@
 		WHERE no=#{no}
 	</update>
 	<!-- 공지 삭제 : admin -->
+	<delete id="noticeDelete" parameterType="int">
+		DELETE FROM notice
+		WHERE no=#{no}
+	</delete>
 	<select id="noticeTop5Data" resultType="NoticeVO">
 		SELECT no,type,subject,rownum
 		FROM (SELECT no,type,subject

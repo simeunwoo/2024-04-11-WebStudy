@@ -48,4 +48,21 @@ public class NoticeModel {
 		request.setAttribute("main_jsp", "../notice/list.jsp");
 		return "../main/main.jsp";
 	}
+	
+	// 상세 보기
+	@RequestMapping("notice/detail.do")
+	public String notice_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		CommonsModel.footerPrint(request);
+		
+		String no=request.getParameter("no");
+		
+		NoticeVO vo=NoticeDAO.noticeDetailData(Integer.parseInt(no));
+		vo.setNotice_type(types[vo.getType()]);
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("main_jsp", "../notice/detail.jsp");
+		return "../main/main.jsp";
+	}
 }

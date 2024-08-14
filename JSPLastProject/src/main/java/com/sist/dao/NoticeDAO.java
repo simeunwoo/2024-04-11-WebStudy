@@ -46,7 +46,7 @@ public class NoticeDAO {
 		try
 		{
 			session=ssf.openSession(true);
-			session.insert("noticeInser",vo);
+			session.insert("noticeInsert",vo);
 		}catch(Exception ex)
 		{
 			System.out.println("NoticeDAO 오류 2");
@@ -165,5 +165,63 @@ public class NoticeDAO {
 			if(session!=null)
 				session.close();
 		}
+	}
+	
+	// 삭제
+	/*
+	<delete id="noticeDelete" parameterType="int">
+		DELETE FROM notice
+		WHERE no=#{no}
+	</delete>
+	 */
+	public static void noticeDelete(int no)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.delete("noticeDelete",no);
+		}catch(Exception ex)
+		{
+			System.out.println("NoticeDAO 오류 7");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	
+	/*
+	<update id="noticeHitIncrement" parameterMap="int">
+		UPDATE notice SET
+		hit=hit+1
+		WHERE no={#no}
+	</update>
+	 */
+	public static NoticeVO noticeDetailData(int no)
+	{
+		NoticeVO vo=new NoticeVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("noticeHitImcrement",no);
+			vo=session.selectOne("noticeUpdateData",no);
+		}catch(Exception ex)
+		{
+			System.out.println("NoticeDAO 오류 8");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
 	}
 }

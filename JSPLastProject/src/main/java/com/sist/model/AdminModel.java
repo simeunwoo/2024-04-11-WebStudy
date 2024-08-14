@@ -83,6 +83,8 @@ public class AdminModel {
 	@RequestMapping("adminpage/notice_insert_ok.do")
 	public String notice_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	{
+		System.out.println("insert_ok");
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");
@@ -135,7 +137,20 @@ public class AdminModel {
 		vo.setSubject(subject);
 		vo.setContent(content);
 		vo.setNo(Integer.parseInt(no));
+		
 		// DB 연동
+		NoticeDAO.noticeUpdate(vo);
+		
+		return "redirect:../adminpage/notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_delete.do")
+	public String notice_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		
+		// DB 연동
+		NoticeDAO.noticeDelete(Integer.parseInt(no));
 		
 		return "redirect:../adminpage/notice_list.do";
 	}
