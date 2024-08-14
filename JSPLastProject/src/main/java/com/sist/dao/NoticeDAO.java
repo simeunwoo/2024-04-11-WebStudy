@@ -138,4 +138,32 @@ public class NoticeDAO {
 		
 		return vo;
 	}
+	
+	// 수정
+	/*
+	<update id="noticeUpdate" parameterType="NoticeVO">
+		UPDATE notice SET
+		type=#{type},subject=#{subject},content=#{content}
+		WHERE no=#{no}
+	</update>
+	 */
+	public static void noticeUpdate(NoticeVO vo)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("noticeUpdate",vo);
+		}catch(Exception ex)
+		{
+			System.out.println("NoticeDAO 오류 6");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

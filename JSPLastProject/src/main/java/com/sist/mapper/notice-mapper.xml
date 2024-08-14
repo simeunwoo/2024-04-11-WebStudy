@@ -30,6 +30,11 @@
 		FROM notice
 		WHERE no=#{no}
 	</select>
+	<update id="noticeUpdate" parameterType="NoticeVO">
+		UPDATE notice SET
+		type=#{type},subject=#{subject},content=#{content}
+		WHERE no=#{no}
+	</update>
 	<!-- 공지 삭제 : admin -->
 	<select id="noticeTop5Data" resultType="NoticeVO">
 		SELECT no,type,subject,rownum

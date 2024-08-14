@@ -117,6 +117,29 @@ public class AdminModel {
 		return "../main/main.jsp";
 	}
 	
+	@RequestMapping("adminpage/notice_update_ok.do")
+	public String notice_update_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String type=request.getParameter("type");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		String no=request.getParameter("no");
+		
+		NoticeVO vo=new NoticeVO();
+		vo.setType(Integer.parseInt(type));
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setNo(Integer.parseInt(no));
+		// DB 연동
+		
+		return "redirect:../adminpage/notice_list.do";
+	}
+	
 	@RequestMapping("adminpage/reply_list.do")
 	public String reply_list(HttpServletRequest request,HttpServletResponse response)
 	{
