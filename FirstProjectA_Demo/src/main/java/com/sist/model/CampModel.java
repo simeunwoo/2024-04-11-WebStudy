@@ -17,6 +17,7 @@ public class CampModel {
 	@RequestMapping("camp/list.do")
 	public String camp_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		String no=request.getParameter("no");		
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
@@ -29,6 +30,7 @@ public class CampModel {
 		map.put("start", start);
 		map.put("end", end);
 		
+		List<CampImageVO> list=campimagedao.
 		List<CampVO> list=CampDAO.campListData(map);
 		int totalpage=CampDAO.campTotalPage();
 		
@@ -52,11 +54,11 @@ public class CampModel {
 	public String camp_detail(HttpServletRequest request,HttpServletResponse response)
 	{
 		String camp_no=request.getParameter("camp_no");
-		
+			
 		CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
-		
+				
 		request.setAttribute("vo", vo);
-		
+				
 		request.setAttribute("main_jsp", "../camp/detail.jsp");
 		return "../main/main.jsp";
 	}
