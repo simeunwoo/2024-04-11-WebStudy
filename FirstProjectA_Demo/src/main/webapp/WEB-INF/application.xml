@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
    <bean id="camp" class="com.sist.model.CampModel"/>
+   <bean id="campimage" class="com.sist.model.CampImageModel"/>
    <bean id="member" class="com.sist.model.MemberModel"/>
    <bean id="main" class="com.sist.model.MainModel"/>
-   <bean id="campimage" class="com.sist.model.CampImageModel"/>
 </beans> 

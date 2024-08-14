@@ -16,8 +16,7 @@ public class CampModel {
 
 	@RequestMapping("camp/list.do")
 	public String camp_list(HttpServletRequest request,HttpServletResponse response)
-	{
-		String no=request.getParameter("no");		
+	{		
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
@@ -30,7 +29,6 @@ public class CampModel {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<CampImageVO> list=campimagedao.
 		List<CampVO> list=CampDAO.campListData(map);
 		int totalpage=CampDAO.campTotalPage();
 		
@@ -56,6 +54,11 @@ public class CampModel {
 		String camp_no=request.getParameter("camp_no");
 			
 		CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
+		
+		String addr=vo.getCamp_addr(); // 충남 서천군 서면 춘장대길8번길 7-7
+		String addr1=addr.substring(0,addr.indexOf(" "));
+		
+		List<CampVO> nList=campdao.campNearListData(addr1);
 				
 		request.setAttribute("vo", vo);
 				

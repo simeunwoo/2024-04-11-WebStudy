@@ -112,4 +112,28 @@ public class CampDAO {
 		
 		return list;
 	}
+	
+	public static List<CampVO> campNearListData(String ss)
+	{
+		List<CampVO> list=new ArrayList<CampVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("campNearListData",ss);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 5");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+		
+	}
 }

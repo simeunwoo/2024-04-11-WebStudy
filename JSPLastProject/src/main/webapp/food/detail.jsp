@@ -248,7 +248,7 @@ html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+rep
 	    	<div style="height:10px"></div>
 	    	<div id="map" style="width:100%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2100547b99b89b69ae8e165041f60249&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6051fd0240c1e74e12904150ec495217&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {

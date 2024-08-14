@@ -44,4 +44,12 @@
 		FROM camp ORDER BY camp_no DESC)
 		WHERE rownum&lt;=16
 	</select>
+	<select id="campNearListData" resultType="CampVO" parameterType="string">
+		SELECT camp_no,camp_name,camp_image,camp_addr,rownum
+		FROM (SELECT camp_no,camp_name,camp_poster,camp_addr
+		FROM camp
+		WHERE camp_addr LIKE '%'||#{ss}||'%'
+		ORDER BY camp_no ASC)
+		WHERE rownum&lt;=6
+	</select>
 </mapper>
