@@ -99,7 +99,7 @@ public class NoticeDAO {
 		
 		try
 		{
-			session=ssf.openSession();
+			session=ssf.openSession(true);
 			list=session.selectList("noticeTop5Data");
 		}catch(Exception ex)
 		{
@@ -209,7 +209,7 @@ public class NoticeDAO {
 		try
 		{
 			session=ssf.openSession(true);
-			session.update("noticeHitImcrement",no);
+			session.update("noticeHitIncrement",no);
 			vo=session.selectOne("noticeUpdateData",no);
 		}catch(Exception ex)
 		{

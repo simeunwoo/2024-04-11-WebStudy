@@ -24,10 +24,10 @@
 		FROM notice
 	</select>
 	<!-- 공지 상세 보기 : admin/user -->
-	<update id="noticeHitIncrement" parameterMap="int">
+	<update id="noticeHitIncrement" parameterType="int">
 		UPDATE notice SET
 		hit=hit+1
-		WHERE no={#no}
+		WHERE no=#{no}
 	</update>
 	<!-- 공지 수정 : admin -->
 	<select id="noticeUpdateData" resultType="NoticeVO" parameterType="int">
