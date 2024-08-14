@@ -244,7 +244,8 @@ html+='<input type="button" value="댓글 수정" onclick="replyUpdateData('+rep
 	    		<tr>
 	    			<td>${vo.content }</td>
 	    		</tr>
-	    	</table>
+	    	</table>	
+	    	
 	    	<div style="height:10px"></div>
 	    	<div id="map" style="width:100%;height:350px;"></div>
 
@@ -297,9 +298,9 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
         <c:forEach var="rvo" items="${rList }">
 	        <li>
 	          <figure>
-	          	<img class="radius-10 btmspace-10" src="http://menupan.com${rvo.poster }" style="width:320px;height:185px"
-	          	  title="${rvo.address }">
-	            <figcaption><a href="#">${rvo.name }</a></figcaption>
+	          	<img class="radius-10 btmspace-10" src="${rvo.camp_image }" style="width:320px;height:185px"
+	          	  title="${rvo.camp_addr }">
+	            <figcaption><a href="#">${rvo.camp_name }</a></figcaption>
 	          </figure>
 	        </li>
         </c:forEach>
@@ -320,7 +321,7 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
 			<tr>
 				<td>
 					<textarea rows="4" cols="70" id="msg" style="float: left"></textarea>
-					<input type="button" value="댓글 쓰기" id="writeBtn" data-cno="${vo.fno }"
+					<input type="button" value="댓글 쓰기" id="writeBtn" data-cno="${vo.camp_no }"
 					  style="width: 100px;height: 85px;background-color: green;color: black">
 				</td>
 			</tr>

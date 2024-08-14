@@ -58,9 +58,10 @@ public class CampModel {
 		String addr=vo.getCamp_addr(); // 충남 서천군 서면 춘장대길8번길 7-7
 		String addr1=addr.substring(0,addr.indexOf(" "));
 		
-		List<CampVO> nList=campdao.campNearListData(addr1);
+		List<CampVO> nList=CampDAO.campNearListData(addr1);
 				
 		request.setAttribute("vo", vo);
+		request.setAttribute("nList", nList);
 				
 		request.setAttribute("main_jsp", "../camp/detail.jsp");
 		return "../main/main.jsp";
