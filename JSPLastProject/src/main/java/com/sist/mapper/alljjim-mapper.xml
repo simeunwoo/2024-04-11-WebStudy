@@ -18,4 +18,9 @@ REGDATE          DATE
 		FROM all_jjim
 		WHERE cno=#{cno} AND type=#{type} AND id=#{id}
 	</select>
+	<update id="JjimCountIncrement" parameterType="hashmap">
+		UPDATE project_food_house SET
+		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
+		WHERE fno=#{cno}
+	</update>
 </mapper>

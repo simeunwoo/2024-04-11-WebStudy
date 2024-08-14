@@ -111,7 +111,31 @@ public class NoticeDAO {
 			if(session!=null)
 				session.close();
 		}
-				
+		
 		return list;
+	}
+	
+	// 수정
+	public static NoticeVO noticeUpdateData(int no)
+	{
+		NoticeVO vo=new NoticeVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("noticeUpdateData",no);
+		}catch(Exception ex)
+		{
+			System.out.println("NoticeDAO 오류 5");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
 	}
 }

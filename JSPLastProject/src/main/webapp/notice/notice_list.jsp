@@ -25,7 +25,7 @@
 			<th width="10%" class="text-center">조회수</th>
 			<th width="25%" class="text-center"></th>
 		</tr>
-		<c:set var="count" value=${count }/>
+		<c:set var="count" value="${count }"/>
 		<c:forEach var="vo" items="${nList }">
 			<tr>
 				<td width="10%" class="text-center">${count }</td>
@@ -34,11 +34,11 @@
 				<td width="15%" class="text-center">${vo.dbday }</td>
 				<td width="10%" class="text-center">${vo.hit }</td>
 				<td width="25%" class="text-center">
-					<a href="#" class="btn btn-sm btn-success">수정</a>
-					<a href="#" class="btn btn-sm btn-info">삭제</a>
+					<a href="../adminpage/notice_update.do?no=${vo.no }" class="btn btn-sm btn-success">수정</a>
+					<a href="../adminpage/notice_delete.do?no=${vo.no }" class="btn btn-sm btn-info">삭제</a>
 				</td>
 			</tr>
-		<c:set var="count" value=${count }/>
+		<c:set var="count" value="${count-1 }"/>
 		</c:forEach>
 		<tr>
 			<td colspan="6" class="text-center">

@@ -35,10 +35,16 @@ public class ImageCrawler {
                         Elements imgElements = doc.select("div.photos div.timg a");
 
                         // Create SQL insert statement
-                        String insertSQL = "INSERT INTO image_camp (no, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image1s, image2s, image3s, image4s, image5s, image6s, image7s, image8s, image9s, image10s) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        String insertSQL = "INSERT INTO image_camp (no, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image1s, image2s, image3s, image4s, image5s, image6s, image7s, image8s, image9s, image10s) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                         PreparedStatement insertStmt = conn.prepareStatement(insertSQL);
                         insertStmt.setInt(1, campNo);
+
+                        // Initialize all images to null
+                        for (int k = 2; k <= 21; k++) {
+                            insertStmt.setNull(k, java.sql.Types.VARCHAR);
+                        }
 
                         int imgCount = imgElements.size();
                         for (int j = 0; j < imgCount; j++) {
@@ -46,20 +52,11 @@ public class ImageCrawler {
                             String largeImageUrl = imgElement.attr("href");
                             String smallImageUrl = imgElement.select("img").attr("src");
 
-                            // Set values for the SQL insert statement
-                            if (j < 5) {
+                            if (j < 10) {
+                                // Set large and small image URLs
                                 insertStmt.setString(2 + j * 2, largeImageUrl);
-                                insertStmt.setString(2 + j * 2 + 1, smallImageUrl);
-                            } else if (j < 10) {
-                                insertStmt.setString(7 + (j - 5) * 2, largeImageUrl);
-                                insertStmt.setString(7 + (j - 5) * 2 + 1, smallImageUrl);
+                                insertStmt.setString(3 + j * 2, smallImageUrl);
                             }
-                        }
-
-                        // Fill in nulls for any missing images
-                        for (int k = imgCount; k < 10; k++) {
-                            insertStmt.setNull(2 + k * 2, java.sql.Types.VARCHAR);
-                            insertStmt.setNull(2 + k * 2 + 1, java.sql.Types.VARCHAR);
                         }
 
                         insertStmt.executeUpdate();

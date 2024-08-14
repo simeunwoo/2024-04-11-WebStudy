@@ -65,7 +65,7 @@ public class AdminModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 				
-		request.setAttribute("admin_jsp", "../adminpage/notice_list.jsp"); // 이중 include
+		request.setAttribute("admin_jsp", "../notice/notice_list.jsp"); // 이중 include
 		request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp"); // 이중 include
 		return "../main/main.jsp";
 	}
@@ -99,6 +99,22 @@ public class AdminModel {
 		NoticeDAO.noticeInsert(vo);
 		
 		return "redirect:../adminpage/notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_update.do")
+	public String notice_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		CommonsModel.footerPrint(request);
+		
+		String no=request.getParameter("no");
+		
+		NoticeVO vo=NoticeDAO.noticeUpdateData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
+		request.setAttribute("admin_jsp", "../notice/notice_update.jsp");
+		request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("adminpage/reply_list.do")
