@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.manager.WordManager;
@@ -21,6 +22,8 @@ public class BoardModel {
 	@RequestMapping("board/insert.do")
 	public String board_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		request.setAttribute("main_jsp", "../board/insert.jsp");
 		// 입력 창만 보여준다
 		return "../main/main.jsp";
@@ -66,6 +69,8 @@ public class BoardModel {
 	@RequestMapping("board/list.do")
 	public String board_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
@@ -94,6 +99,8 @@ public class BoardModel {
 	@RequestMapping("board/detail.do")
 	public String board_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String no=request.getParameter("no");
 		
 		// 데이터베이스에서 값을 가지고 온다
@@ -120,6 +127,8 @@ public class BoardModel {
 	@RequestMapping("board/update.do")
 	public String board_update(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String no=request.getParameter("no");
 		
 		// 데이터베이스 연동
@@ -167,6 +176,8 @@ public class BoardModel {
 	@RequestMapping("board/delete.do")
 	public void board_delete(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String no=request.getParameter("no");
 		String pwd=request.getParameter("pwd");
 		

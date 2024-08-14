@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -18,6 +19,8 @@ public class AllReplyModel {
 	@RequestMapping("all_reply/list.do") // void => ajax로 전송
 	public void all_reply_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String cno=request.getParameter("cno");
 		String type=request.getParameter("type");
 		
@@ -63,6 +66,8 @@ public class AllReplyModel {
 	@RequestMapping("all_reply/insert.do")
 	public void all_reply_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");
@@ -103,6 +108,8 @@ public class AllReplyModel {
 	@RequestMapping("all_reply/delete.do")
 	public void all_reply_delete(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String rno=request.getParameter("rno");
 		
 		String result="";
@@ -126,6 +133,8 @@ public class AllReplyModel {
 	@RequestMapping("all_reply/update.do")
 	public void all_reply_update(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -15,6 +16,8 @@ public class FoodModel {
 	@RequestMapping("food/list.do")
 	public String food_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// 사용자 요청값 받기
 		String page=request.getParameter("page");
 		if(page==null)
@@ -71,6 +74,8 @@ public class FoodModel {
 	@RequestMapping("food/detail.do")
 	public String food_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// 사용자 요청 데이터 받기 => fno, type(좋아요/찜/댓글)
 		/*
 		 * 	맛집(1) / 레시피(2) / 서울 여행(3) / 상품(4)
@@ -121,6 +126,8 @@ public class FoodModel {
 	@RequestMapping("food/find.do")
 	public String food_find(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");

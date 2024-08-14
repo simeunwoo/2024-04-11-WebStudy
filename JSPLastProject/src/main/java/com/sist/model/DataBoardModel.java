@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.vo.*;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -22,6 +23,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/insert.do")
 	public String databoard_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		request.setAttribute("main_jsp", "../databoard/insert.jsp");
 		return "../main/main.jsp";
 	}
@@ -73,6 +76,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/list.do")
 	public String databoard_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
@@ -107,6 +112,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/detail.do")
 	public String databoard_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String no=request.getParameter("no");
 		
 		//////////////////////////////////////////////////////////////////////
@@ -123,6 +130,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/download.do")
 	public void databoard_download(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			String fn=request.getParameter("fn");
@@ -155,6 +164,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/delete.do") // => if문과 동일
 	public void databoard_delete(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// data:{"no":no,"pwd":pwd} => delete.do?no=1&pwd=1234
 		String no=request.getParameter("no");
 		String pwd=request.getParameter("pwd");
@@ -197,6 +208,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/update.do")
 	public String databoard_update(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String no=request.getParameter("no");
 		
 		//////////////////////////////////////////////////////////////////////
@@ -322,6 +335,8 @@ public class DataBoardModel {
 	@RequestMapping("databoard/find.do")
 	public String databoard_find(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");

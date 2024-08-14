@@ -4,54 +4,81 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ImageCrawler {
-    
+
+    private static final String DB_URL = "jdbc:oracle:thin:@211.238.142.124:1521:XE";
+    private static final String DB_USER = "hr2";
+    private static final String DB_PASSWORD = "happy";
+
     public static void main(String[] args) {
-        final String baseUrl = "https://www.5gcamp.com/?c=camp&p=";
-        final int startPage = 1;  // 시작 페이지 번호
-        final int endPage = 235;    // 끝 페이지 번호
-        List<String> imageUrls = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-        for (int i = startPage; i <= endPage; i++) {
-            String url = baseUrl + i;
-            System.out.println("Crawling page: " + url);
+            // Get valid camp_no values
+            String query = "SELECT camp_no FROM camp";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
 
-            try {
-                Document doc = Jsoup.connect(url).get();
-                Elements imgElements = doc.select("img"); // 모든 <img> 태그 선택
+            while (rs.next()) {
+                int campNo = rs.getInt("camp_no");
 
-                for (Element img : imgElements) {
-                    String imgSrc = img.absUrl("src"); // 이미지 URL
-                    // 이미지 URL이 빈 문자열이 아닌 경우만 추가
-                    if (!imgSrc.isEmpty() && !imgSrc.contains("small")) {
-                        imageUrls.add(imgSrc);
-                        System.out.println("Found image: " + imgSrc);
+                for (int i = 1; i <= 316; i++) {
+                    String url = "https://www.5gcamp.com/?c=camp&p=" + i;
+                    try {
+                        Document doc = Jsoup.connect(url).get();
+                        Elements imgElements = doc.select("div.photos div.timg a");
+
+                        // Create SQL insert statement
+                        String insertSQL = "INSERT INTO image_camp (no, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image1s, image2s, image3s, image4s, image5s, image6s, image7s, image8s, image9s, image10s) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                        PreparedStatement insertStmt = conn.prepareStatement(insertSQL);
+                        insertStmt.setInt(1, campNo);
+
+                        int imgCount = imgElements.size();
+                        for (int j = 0; j < imgCount; j++) {
+                            Element imgElement = imgElements.get(j);
+                            String largeImageUrl = imgElement.attr("href");
+                            String smallImageUrl = imgElement.select("img").attr("src");
+
+                            // Set values for the SQL insert statement
+                            if (j < 5) {
+                                insertStmt.setString(2 + j * 2, largeImageUrl);
+                                insertStmt.setString(2 + j * 2 + 1, smallImageUrl);
+                            } else if (j < 10) {
+                                insertStmt.setString(7 + (j - 5) * 2, largeImageUrl);
+                                insertStmt.setString(7 + (j - 5) * 2 + 1, smallImageUrl);
+                            }
+                        }
+
+                        // Fill in nulls for any missing images
+                        for (int k = imgCount; k < 10; k++) {
+                            insertStmt.setNull(2 + k * 2, java.sql.Types.VARCHAR);
+                            insertStmt.setNull(2 + k * 2 + 1, java.sql.Types.VARCHAR);
+                        }
+
+                        insertStmt.executeUpdate();
+                        insertStmt.close();
+
+                    } catch (Exception e) {
+                        // Skip URLs that cause exceptions
+                        System.out.println("Error processing URL: " + url);
+                        e.printStackTrace();
                     }
                 }
-
-            } catch (IOException e) {
-                System.err.println("Error connecting to " + url);
-                e.printStackTrace();
             }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        // 크롤링된 이미지 URL을 출력
-        System.out.println("Crawled image URLs:");
-        for (String imageUrl : imageUrls) {
-            System.out.println(imageUrl);
-        }
-
-        // 예: 데이터베이스에 저장 등의 후처리 작업
-        // storeImageUrlsInDatabase(imageUrls);
-    }
-
-    // 데이터베이스에 이미지 URL을 저장하는 예시 메서드
-    private static void storeImageUrlsInDatabase(List<String> imageUrls) {
-        // 데이터베이스 연결 및 저장 로직 구현
-        // 예: JDBC를 사용하여 이미지 URL을 데이터베이스에 저장
     }
 }

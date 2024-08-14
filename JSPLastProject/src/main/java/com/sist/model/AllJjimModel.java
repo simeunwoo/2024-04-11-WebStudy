@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -15,6 +16,8 @@ public class AllJjimModel {
 	@RequestMapping("all_jjim/insert.do")
 	public void all_jjim_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String cno=request.getParameter("cno");
 		String type=request.getParameter("type");
 		

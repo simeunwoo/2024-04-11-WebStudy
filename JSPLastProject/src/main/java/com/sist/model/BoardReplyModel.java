@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -18,6 +19,8 @@ public class BoardReplyModel {
 	@RequestMapping("reply/reply_list.do")
 	public void reply_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String bno=request.getParameter("bno");
 		List<BoardReplyVO> list=BoardReplyDAO.replyListData(Integer.parseInt(bno));
 		HttpSession session=request.getSession();
@@ -49,6 +52,8 @@ public class BoardReplyModel {
 	@RequestMapping("reply/reply_insert.do")
 	public void reply_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");
@@ -77,6 +82,8 @@ public class BoardReplyModel {
 	@RequestMapping("reply/reply_delete.do")
 	public void reply_delete(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String rno=request.getParameter("rno");
 		BoardReplyDAO.replyDelete(Integer.parseInt(rno));
 		
@@ -91,6 +98,8 @@ public class BoardReplyModel {
 	@RequestMapping("reply/reply_update.do")
 	public void reply_update(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		try
 		{
 			request.setCharacterEncoding("UTF-8");

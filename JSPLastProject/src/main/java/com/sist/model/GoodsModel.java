@@ -1,4 +1,5 @@
 package com.sist.model;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -17,6 +18,8 @@ public class GoodsModel {
 	@RequestMapping("goods/list.do")
 	public String goods_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String cno=request.getParameter("cno"); // cno : tables 배열과 관련
 		if(cno==null)
 			cno="1"; // cno=1 => tables 배열에서 ""이 해당
@@ -57,6 +60,8 @@ public class GoodsModel {
 	@RequestMapping("goods/detail.do")
 	public String goods_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		String cno=request.getParameter("cno");
 		String no=request.getParameter("no");
 		

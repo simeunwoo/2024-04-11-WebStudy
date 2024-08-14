@@ -4,6 +4,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -14,6 +15,8 @@ public class SeoulModel {
 	// _ok => redirect / ajax => void (화면 변경이 없다)
 	public String seoul_location(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// 1) 사용자 요청 받기 => getParameter(), getParameterValues()
 		String page=request.getParameter("page");
 		if(page==null)
@@ -48,6 +51,8 @@ public class SeoulModel {
 	// _ok => redirect / ajax => void (화면 변경이 없다)
 	public String seoul_nature(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// 1) 사용자 요청 받기 => getParameter(), getParameterValues()
 		String page=request.getParameter("page");
 		if(page==null)
@@ -81,6 +86,8 @@ public class SeoulModel {
 	// _ok => redirect / ajax => void (화면 변경이 없다)
 	public String seoul_shop(HttpServletRequest request,HttpServletResponse response)
 	{
+		CommonsModel.footerPrint(request);
+		
 		// 1) 사용자 요청 받기 => getParameter(), getParameterValues()
 		String page=request.getParameter("page");
 		if(page==null)
