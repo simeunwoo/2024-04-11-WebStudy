@@ -41,7 +41,7 @@
         
         <style>
         .bg-breadcrumb {
-    background-image: url('camp_list.jpg');
+    background-image: url('camp_map.jpg');
 }
 .pagination {
   display: flex;
@@ -80,7 +80,89 @@
   color: white;
   border: 1px solid #007bff;
 }
+#aTr {
+            display: none;
+        }
         </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+$(function(){
+	let bCheck = true;
+    $('#aBtn').on('click', function(){
+        if (bCheck) {
+            bCheck = false;
+            $('#aTr').show("fast");  // #aTr 요소를 빠르게 보이게 함
+        } else {
+            bCheck = true;
+            $('#aTr').hide("fast");   // #aTr 요소를 빠르게 숨김
+        }
+        
+        $.ajax({
+			type:'post',
+			url:'../board/delete.do',
+			data:{"no":no,"pwd":pwd},
+			success:function(result)
+			{
+				if(result==='yes')
+				{
+					// 비밀 번호가 맞는 경우
+					location.href="../board/list.do"
+				}
+				else
+				{
+					// 비밀 번호가 틀린 경우
+					alert("비밀 번호가 틀립니다")
+					$('#del_pwd').val("")
+					$('#del_pwd').focus()
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+    });
+});
+
+
+	
+/*	$('#deleteBtn').click(function(){
+		let pwd=$('#del_pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#del_pwd').focus()
+			return
+		}
+		let no=$('.del_no').text()
+		$.ajax({
+			type:'post',
+			url:'../board/delete.do',
+			data:{"no":no,"pwd":pwd},
+			success:function(result)
+			{
+				if(result==='yes')
+				{
+					// 비밀 번호가 맞는 경우
+					location.href="../board/list.do"
+				}
+				else
+				{
+					// 비밀 번호가 틀린 경우
+					alert("비밀 번호가 틀립니다")
+					$('#del_pwd').val("")
+					$('#del_pwd').focus()
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	}) */
+})
+</script>
+
     </head>
 
     <body>
@@ -111,6 +193,71 @@
 		
 		<!-- 여기다가 검색 기능 넣으세요^^ -->
 		
+		<!-- 
+					<tr>
+						<td colspan="4" class="text-right">
+							<a href="../board/update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
+							<a href="../board/list.do" class="btn btn-xs btn-warning">목록</a>
+							<span class="btn btn-xs btn-danger" id="delBtn">삭제</span>
+						</td>
+					</tr>
+					<tr id="delTr" style="display: none">
+						<td colspan="4" class="text-right inline">
+							비밀 번호 : <input type="password" id="del_pwd" class="input-sm" size="10">
+							<input type="button" value="삭제" class="btn-warning btn-sm" id="deleteBtn">
+						</td>
+					</tr>
+		 -->
+		
+<div class="tab-class text-center">
+    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+                <span class="text-dark" style="width: 150px;">전국</span>
+            </a>
+        </li>
+        <li id="aBtn" class="nav-item">
+            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                <span class="text-dark" style="width: 150px;">경기</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                <span class="text-dark" style="width: 150px;">충북</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                <span class="text-dark" style="width: 150px;">충남</span>
+            </a>
+        </li>
+    </ul>
+    <ul id="aTr" class="nav nav-pills d-inline-flex justify-content-center mb-5">
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+                <span class="text-dark" style="width: 150px;">의정부</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+                <span class="text-dark" style="width: 150px;">고양</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+                <span class="text-dark" style="width: 150px;">안양</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+                <span class="text-dark" style="width: 150px;">평택</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+	
+	<!-- 
 		<div class="tab-class text-center">
 				<ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
 					<li class="nav-item"><a

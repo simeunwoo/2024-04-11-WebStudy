@@ -41,7 +41,7 @@
         
         <style>
         .bg-breadcrumb {
-    background-image: url('camp_list.jpg');
+    background-image: url('camp_list.png');
 }
 .pagination {
   display: flex;

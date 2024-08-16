@@ -136,4 +136,32 @@ public class CampDAO {
 		return list;
 		
 	}
+	
+/*	public static String campMapMap(int camp_no)
+	{
+		String result="no";
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			if(db_pwd.equals(pwd))
+			{
+				result="yes";
+				session.delete("boardDelete",no);
+				session.commit();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("BoardDAO 오류 7");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return result;
+	} */
 }

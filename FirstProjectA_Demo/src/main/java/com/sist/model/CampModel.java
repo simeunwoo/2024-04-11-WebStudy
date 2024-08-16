@@ -100,4 +100,20 @@ public class CampModel {
 		request.setAttribute("main_jsp", "../camp/map.jsp");
 		return "../main/main.jsp";
 	}
+	
+/*	@RequestMapping("camp/map_map.do")
+	public void camp_map_map(HttpServletRequest request,HttpServletResponse response)
+	{
+		String camp_no=request.getParameter("camp_no");
+		
+		// 데이터베이스 연동
+		String result=CampDAO.campMapMap(Integer.parseInt(camp_no));
+		
+		// Ajax로 결과값 전송 => yes/no
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(result);
+		}catch(Exception ex) {}
+	} */
 }
