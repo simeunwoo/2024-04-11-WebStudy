@@ -298,9 +298,9 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
         <c:forEach var="rvo" items="${rList }">
 	        <li>
 	          <figure>
-	          	<img class="radius-10 btmspace-10" src="${rvo.camp_image }" style="width:320px;height:185px"
-	          	  title="${rvo.camp_addr }">
-	            <figcaption><a href="#">${rvo.camp_name }</a></figcaption>
+	          	<img class="radius-10 btmspace-10" src="${rvo.poster }" style="width:320px;height:185px"
+	          	  title="${rvo.addr }">
+	            <figcaption><a href="#">${rvo.name }</a></figcaption>
 	          </figure>
 	        </li>
         </c:forEach>

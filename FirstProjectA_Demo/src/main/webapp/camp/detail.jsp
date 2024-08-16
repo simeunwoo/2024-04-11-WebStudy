@@ -444,7 +444,19 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 });    
 </script>
 
-
+<div class="flexslider carousel basiccarousel btmspace-80">
+	      <ul class="slides">
+	       <c:forEach var="rvo" items="${rList }">
+		        <li>
+		          <figure><img class="radius-10 btmspace-10"
+		            src="${rvo.camp_image }" style="width: 320px;height: 185px"
+		            title="${rvo.camp_addr }">
+		            <figcaption><a href="#">${rvo.camp_name }</a></figcaption>
+		          </figure>
+		        </li>
+	        </c:forEach>
+	      </ul>
+	    </div>
 
 
 <!-- main_jsp End -->
