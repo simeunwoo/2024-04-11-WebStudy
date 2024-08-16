@@ -88,4 +88,67 @@ public class ReplyBoardDAO {
 	  }
 	  return count;
   }
+  
+  public static List<ReplyBoardVO> adminReplyBoardListData(Map map)
+  {
+	  List<ReplyBoardVO> list=new ArrayList<ReplyBoardVO>();
+	  SqlSession session=null;
+	  try
+	  {
+		  session=ssf.openSession();
+		  list=session.selectList("adnubReplyBoardListData", map);
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  if(session!=null)
+			  session.close();
+	  }
+	  return list;
+  }
+  
+  public static void adminReplyBoardInsert(ReplyBoardVO vo,int no)
+  {
+	  SqlSession session=null;
+	  try
+	  {
+		  session=ssf.openSession();
+		  session.insert("adminReplyBoardInsert",vo);
+		  session.update("adminReplyUpdate",no);
+		  session.commit();
+	  }catch(Exception ex)
+	  {
+		  session.rollback(); // 트랜잭션 / insert/update/delete 2개 중 1개라도 오류 나면 => 취소 : rollback()
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  if(session!=null)
+			  session.close();
+	  }
+  }
+  
+  public static ReplyBoardVO adminReplyInfoData(int no)
+  {
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  SqlSession session=null;
+	  
+	  try
+	  {
+		  session=ssf.openSession(true);
+		  vo=session.selectOne("adminReplyInfoData",no);
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  if(session!=null)
+			  session.close();
+	  }
+	  
+	  return vo;
+  }
 }
