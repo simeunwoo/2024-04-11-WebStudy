@@ -124,7 +124,7 @@
 										<div class="destination-img">
 										<!-- class="img-fluid rounded w-100" -->
 											<img class="rounded w-100" style="width:300px;height:240px;object-fit:cover"
-												src="${vo.camp_image }" alt="${vo.camp_name}">
+												src="${vo.image1 }" alt="${vo.camp_name}">
 											<div class="destination-overlay p-4">
 												<h4 class="mb-2 mt-3"
 								  style="color:white;background-color:rgb(37,105,73);font-size:23px;font-family:'휴먼모음T'">
@@ -134,6 +134,11 @@
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
 											</div>
+								<!-- 		<div class="search-icon">
+												<a href="${vo.image1 }"
+													data-lightbox="destination-1"><i
+													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+											</div>  -->
 											</div>
 											</div>
 										</c:forEach>

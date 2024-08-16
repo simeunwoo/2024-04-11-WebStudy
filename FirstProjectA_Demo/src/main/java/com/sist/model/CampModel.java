@@ -66,4 +66,38 @@ public class CampModel {
 		request.setAttribute("main_jsp", "../camp/detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("camp/map.do")
+	public String camp_map(HttpServletRequest request,HttpServletResponse response)
+	{
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		
+		Map map=new HashMap();
+		int rowSize=12;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<CampVO> list=CampDAO.campListData(map);
+		int totalpage=CampDAO.campTotalPage();
+		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		request.setAttribute("main_jsp", "../camp/map.jsp");
+		return "../main/main.jsp";
+	}
 }

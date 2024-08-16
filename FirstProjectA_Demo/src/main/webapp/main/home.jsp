@@ -423,11 +423,11 @@
 							<div class="slides"><!-- <div class="row g-4"> -->
 					<div class="row g-4">
 								<c:forEach var="cvo" items="${cList }">
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 										<div class="destination-img">
 										<!-- class="img-fluid rounded w-100" -->
-											<img class="rounded w-100" style="width:250px;height:200px;object-fit:cover"
-												src="${cvo.camp_image }" alt="${cvo.camp_name}">
+											<img class="rounded w-100" style="height:270px;object-fit:cover"
+												src="${cvo.image1 }" alt="${cvo.camp_name}">
 											<div class="destination-overlay p-4">
 												<h4 class="text-white mb-2 mt-3">${cvo.camp_name }</h4>
 												<a href="../camp/detail.do?camp_no=${cvo.camp_no }"
@@ -436,7 +436,7 @@
 												</a>
 											</div>
 											<div class="search-icon">
-												<a href="../img/destination-1.jpg"
+												<a href="${cvo.image1 }"
 													data-lightbox="destination-1"><i
 													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
 											</div></div></div>

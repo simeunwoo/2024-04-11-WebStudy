@@ -9,11 +9,13 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-
+        
+        
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+         
 
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
@@ -56,12 +58,27 @@
 .animal{
 	position: absolute;
 }
-.photos .big{
-	display: inline-block;
-	margin: 10px;
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 300px); /* 4개의 컬럼 */
+    gap: 10px; /* 이미지 사이의 간격 */
+    justify-content: center; /* 그리드를 가운데 정렬 */
+    padding: 20px; /* 그리드와 컨테이너 사이에 패딩 추가 */
 }
-.photos img{
-	border-radius: 8px;
+.destination-img {
+    position: relative; /* 부모 요소의 상대적 위치 설정 */
+}
+.search-icon {
+    position: absolute; /* 부모 요소를 기준으로 위치 설정 */
+    top: 10px; /* 상단에서 10px 떨어지게 설정 */
+    right: 10px; /* 오른쪽에서 10px 떨어지게 설정 */
+    border-radius: 50%; /* 원형으로 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    z-index: 10; /* 다른 요소들보다 위에 표시 */
+    opacity: 0;
+}
+.destination-img:hover .search-icon {
+    opacity: 1; /* 마우스 오버 시 아이콘 표시 */
 }
 </style>        
 
@@ -90,7 +107,7 @@
                     <div class="col-lg-8">
                         <div class="h-100"
                         style="border: 50px solid; border-color: transparent rgb(37,105,73) transparent rgb(37,105,73);">
-                            <img src="${vo.camp_image }" class="img-fluid" style="width: 750px; height: 500px;">
+                            <img src="${vo.image1 }" class="img-fluid" style="width: 750px; height: 500px;">
                         </div>
                     </div>
                     <div class="col-lg-4"
@@ -189,219 +206,95 @@
 	</div>
 </div>
 <div style="height:70px"></div>
+
+<h2 class="text-center">* 갤러리 *</h2>
 <div class="container">
-	<h2>갤러리</h2>
-	
-</div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="grid-container">
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image1 }">
+                	<div class="search-icon">
+						<a href="${vo.image1 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image2 }">
+                	<div class="search-icon">
+						<a href="${vo.image2 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image3 }">
+                	<div class="search-icon">
+						<a href="${vo.image3 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image4 }">
+                	<div class="search-icon">
+						<a href="${vo.image4 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image5 }">
+                	<div class="search-icon">
+						<a href="${vo.image5 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image6 }">
+                	<div class="search-icon">
+						<a href="${vo.image6 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image7 }">
+                	<div class="search-icon">
+						<a href="${vo.image7 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                <div class="destination-img">
+                    <img class="rounded w-100" style="width:200px;height:270px; object-fit:cover" src="${vo.image8 }">
+                	<div class="search-icon">
+						<a href="${vo.image8 }"
+						data-lightbox="destination-1">
+						<i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+					</div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
 
 
-<!--
-<div class="photos">
-	<div class="big">
-		<a href="${ivo.image1 }" data-fancybox="images">
-			<img src="${ivo.image1s }"  width="220" height="138" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image2 }" data-fancybox="images">
-			<img src="${ivo.image2s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image3 }" data-fancybox="images">
-			<img src="${ivo.image3s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image4 }" data-fancybox="images">
-			<img src="${ivo.image4s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image5 }" data-fancybox="images">
-			<img src="${ivo.image5s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image6 }" data-fancybox="images">
-			<img src="${ivo.image6s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image7 }" data-fancybox="images">
-			<img src="${ivo.image7s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image8 }" data-fancybox="images">
-			<img src="${ivo.image8s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image9 }" data-fancybox="images">
-			<img src="${ivo.image9s }"  width="110" height="66" class="small">
-		</a>
-	</div>
-	<div class="big">
-		<a href="${ivo.image10 }" data-fancybox="images">
-			<img src="${ivo.image10s }"  width="110" height="66" class="small">
-		</a>
-	</div>																							
-</div>
--->
 
-<!-- 
-<div class="tab-content">
-                    <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-2">
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="${ivo.image1 }" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="${ivo.image1s }" data-lightbox="gallery-1" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-4.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-4.jpg" data-lightbox="gallery-4" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-5.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-5.jpg" data-lightbox="gallery-5" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-6.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-6.jpg" data-lightbox="gallery-6" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-7.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-7.jpg" data-lightbox="gallery-7" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-8.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-8.jpg" data-lightbox="gallery-8" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-9.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-9.jpg" data-lightbox="gallery-9" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
-                                <div class="gallery-item h-100">
-                                    <img src="img/gallery-10.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
-                                    <div class="gallery-content">
-                                        <div class="gallery-info">
-                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-plus-icon">
-                                        <a href="img/gallery-10.jpg" data-lightbox="gallery-10" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                    
+
+
+
+
+
+<div style="height:50px"></div>                 
                     
                     
 <!-- 지도 -->
-
+<h2 class="text-center">* 오시는 길 *</h2>
+<div style="height:30px"></div>  
 <div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6051fd0240c1e74e12904150ec495217&libraries=services"></script>
@@ -446,17 +339,36 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 
 <div class="flexslider carousel basiccarousel btmspace-80">
 	      <ul class="slides">
-	       <c:forEach var="nvo" items="${nList }">
+	       <c:forEach var="vo" items="${nList }">
 		        <li>
 		          <figure><img class="radius-10 btmspace-10"
-		            src="${nvo.camp_image }" style="width: 320px;height: 185px"
-		            title="${nvo.camp_addr }">
-		            <figcaption><a href="#">${nvo.camp_name }</a></figcaption>
+		            src="${vo.image1 }" style="width: 320px;height: 185px"
+		            title="${vo.camp_addr }">
+		            <figcaption><a href="#">${vo.camp_name }</a></figcaption>
 		          </figure>
 		        </li>
 	        </c:forEach>
 	      </ul>
 	    </div>
+	    <div>
+	    <tr>
+	    			<td colspan="3" class="text-right">
+	    				<c:if test="${sessionScope.id!=null }">
+		    				<c:if test="${check==false }">
+		    					<input type="button" class="btn btn-xs btn-warning" value="찜하기"
+		    					  id="jjimBtn" data-cno="${vo.camp_no }">
+		    				</c:if>
+		    				<c:if test="${check==true }">
+		    					<span class="btn btn-xs btn-default">찜하기</span>
+		    				</c:if>
+		    				<a href="#" class="btn btn-xs btn-info">예약</a>
+		    			</c:if>
+		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
+	    			</td>
+	    		</tr>
+	    </div>
+
+</div>
 
 
 <!-- main_jsp End -->
