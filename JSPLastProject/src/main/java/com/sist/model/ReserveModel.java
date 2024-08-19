@@ -151,7 +151,7 @@ public class ReserveModel {
 		return "../reserve/inwon_info.jsp";
 	}
 	
-	@RequestMapping("reserve/mypage_reserve.do")
+	@RequestMapping("mypage/mypage_reserve.do")
 	public String mypage_reserve(HttpServletRequest request,HttpServletResponse response)
 	{
 		HttpSession session=request.getSession();

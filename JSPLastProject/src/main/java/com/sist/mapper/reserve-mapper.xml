@@ -32,7 +32,7 @@
 		<result property="fvo.phone" column="phone"/>
 	</resultMap>
 	<select id="reserveMyPageData" resultMap="reserveMap" parameterType="string">
-		SELECT rno,pr.fno,day,time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
+		SELECT rno,pr.fno,day,pr.time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
 			TO_CHAR(regdate,'YYYY-MM-DD') as dbday
 		FROM project_reserve pr,project_food_house pf
 		WHERE pr.fno=pf.fno
