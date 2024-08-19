@@ -14,35 +14,44 @@ $(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
 		$.ajax({
-		type:'post',
-		url:'../reserve/date_info.do',
-		data:{"year":year,"month":month},
-		success:function(result)
-		{
-			$('#rdate').html(result)
-		},
-		error:function(request,status,error)
-		{
-			console.log(error)
-		}
+			type:'post',
+			url:'../reserve/date_info.do',
+			data:{"year":year,"month":month},
+			success:function(result)
+			{
+				$('#rdate').html(result)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
 	   })
 	})
+	
 	$('#month').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
 		$.ajax({
-		type:'post',
-		url:'../reserve/date_info.do',
-		data:{"year":year,"month":month},
-		success:function(result)
-		{
-			$('#rdate').html(result)
-		},
-		error:function(request,status,error)
-		{
-			console.log(error)
-		}
+			type:'post',
+			url:'../reserve/date_info.do',
+			data:{"year":year,"month":month},
+			success:function(result)
+			{
+				$('#rdate').html(result)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
 	   })
+	})
+	
+	$('.rday_can').click(function(){
+		let year=$(this).attr("data-year")
+		let month=$(this).attr("data-month")
+		let day=$(this).attr("data-day")
+		let rday=year+"년 "+month+"월 "+day+"일"
+		$('#food_day').text(rday)
 	})
 })
 </script>
@@ -100,7 +109,10 @@ $(function(){
       </c:if>
       <c:if test="${rday[i]==1 }">
 	      <td class="text-center success ${day==i?'danger':'' }" height="35">
-	      	<span class="rday_can" style="font-weight:bold">${i }</span>
+	      	<span class="rday_can" style="font-weight:bold"
+	      	  data-year="${year }"
+	      	  data-month="${month }"
+	      	  data-day="${i }">${i }</span>
 	      </td>
       </c:if>
       <c:if test="${rday[i]==0 }">

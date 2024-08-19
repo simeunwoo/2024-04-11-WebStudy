@@ -9,15 +9,15 @@
 </head>
 <body>
 <div class="wrapper row4">
-  <footer id="footer" class="clear"> 
-      
+  <footer id="footer" class="clear">
     <div class="one_third first">
     	<h6 class="title">공지사항</h6>
     	<ul class="nospace linklist">
     		<c:forEach var="vo" items="${foodNList }">
-    			<li><a href="#">Home Page</a></li>
+    			<li><a href="#">${vo.subject }</a></li>
     		</c:forEach>
-    	</div>
+    	</ul>
+    </div>
     <div class="one_third">
       <h6 class="title">이벤트</h6>
       <ul class="nospace linklist">

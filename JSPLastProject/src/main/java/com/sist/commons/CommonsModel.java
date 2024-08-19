@@ -13,7 +13,7 @@ public class CommonsModel {
 	{
 		// 1. 공지 사항
 		List<NoticeVO> footNList=NoticeDAO.noticeTop5Data();
-		request.setAttribute("footList", footNList);
+		request.setAttribute("footNList", footNList);
 		// 2. 인기 맛집
 		// 3. 뉴스
 	}

@@ -28,6 +28,9 @@ $(function(){
 	
 	$('.dataTr').click(function(){
 		let fno=$(this).attr("data-fno")
+		let poster=$(this).attr("data-poster")
+		let name=$(this).attr("data-name")
+		let phone=$(this).attr("data-phone")
 		$.ajax({
 			type:'post',
 			url:'../reserve/date_info.do',
@@ -35,6 +38,9 @@ $(function(){
 			success:function(result)
 			{
 				$('#rdate').html(result)
+				$('#food_poster').attr("src",poster)
+				$('#food_name').text(name)
+				$('#food_phone').text(phone)
 			},
 			error:function(request,status,error)
 			{
@@ -72,7 +78,11 @@ $(function(){
 				<th class="text-center">업체명</th>
 			</tr>
 			<c:forEach var="vo" items="${fList }">
-				<tr class="dataTr" data-fno="${vo.fno }">
+				<tr class="dataTr"
+				  data-fno="${vo.fno }"
+				  data-poster="http://menupan.com${vo.poster }"
+				  data-name="${vo.name }"
+				  data-phone="${vo.phone }">
 					<td class="text-center">
 						<img src="http://menupan.com${vo.poster }" style="width:30px;height:30px">
 					</td>
