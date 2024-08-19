@@ -1,14 +1,14 @@
 package a;
 import java.util.*;
 import java.sql.*;
-public class CampDAO {
+public class CampaDAO {
    private Connection conn;
    private PreparedStatement ps;
-   private static CampDAO dao;
+   private static CampaDAO dao;
    private final String URL="jdbc:oracle:thin:@211.238.142.124:1521:XE";
    
    // 드라이버 등록 
-   public CampDAO()
+   public CampaDAO()
    {
 	   try
 	   {
@@ -34,10 +34,10 @@ public class CampDAO {
 	   }catch(Exception ex) {}
    }
    // 싱글턴
-   public static CampDAO newInstance()
+   public static CampaDAO newInstance()
    {
 	   if(dao==null)
-		   dao=new CampDAO();
+		   dao=new CampaDAO();
 	   return dao;
    }
    // 기능 
@@ -53,7 +53,7 @@ public class CampDAO {
  CAMP_STORE                                         VARCHAR2(30)
  CAMP_ANIMAL                                        VARCHAR2(30)    
     */
-   public void campInsert(CampVO vo)
+   public void campInsert(CampaVO vo)
    {
 	   try
 	   {

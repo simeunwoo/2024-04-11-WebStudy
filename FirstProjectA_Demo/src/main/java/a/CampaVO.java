@@ -3,7 +3,7 @@ package a;
 import lombok.Data;
 
 @Data
-public class CampVO {
+public class CampaVO {
 
 	private int camp_no,camp_price;
 	private String camp_name,camp_addr,camp_phone,camp_content,

@@ -17,7 +17,7 @@ public class MainClasss {
     }
 
     public void campData() {
-        CampDAO dao = CampDAO.newInstance();
+        CampaDAO dao = CampaDAO.newInstance();
         try {
             int k = 1;
             for (int i = 1; i <= 200; i++) {
@@ -101,7 +101,7 @@ public class MainClasss {
                         System.out.println("==============================================");
 
                         // 데이터베이스에 저장
-                        CampVO vo = new CampVO();
+                        CampaVO vo = new CampaVO();
                         vo.setCamp_name(campNameText);
                         vo.setCamp_addr(campAddrText);
                         vo.setCamp_phone(campPhoneText);

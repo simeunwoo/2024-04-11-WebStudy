@@ -16,9 +16,9 @@
 -->
 <mapper namespace="com.sist.mapper.camp-mapper">
 	<select id="campListData" resultType="CampVO" parameterType="hashmap">
-		SELECT camp_no,camp_name,camp_price,image1,num
-		FROM (SELECT camp_no,camp_name,camp_price,image1,rownum as num
-		FROM (SELECT camp_no,camp_name,camp_price,image1
+		SELECT camp_no,camp_name,image1,num
+		FROM (SELECT camp_no,camp_name,image1,rownum as num
+		FROM (SELECT camp_no,camp_name,image1
 		FROM camp
 		ORDER BY camp_no ASC))
 		WHERE num BETWEEN #{start} AND #{end}
@@ -35,14 +35,14 @@
 	<select id="campDetailData" resultType="CampVO" parameterType="int">
 		SELECT camp_no,camp_price,camp_name,camp_addr,camp_phone,
 		  camp_content,camp_wifi,camp_store,camp_animal,
-		  image1,image2,image3,image4,image5,image6,image7,image8,image9,image10,
-		  image1s,image2s,image3s,image4s,image5s,image6s,image7s,image8s,image9s,image10s
+		  image1,image2,image3,image4,image5,image6,image7,image8,
+		  image1s,image2s,image3s,image4s,image5s,image6s,image7s,image8s
 		FROM camp
 		WHERE camp_no=#{camp_no}
 	</select>
 	<select id="campNoTopData" resultType="CampVO">
-		SELECT camp_no,camp_name,image1,rownum
-		FROM (SELECT camp_no,camp_name,image1
+		SELECT camp_no,camp_name,camp_price,image1,rownum
+		FROM (SELECT camp_no,camp_name,camp_price,image1
 		FROM camp ORDER BY camp_no DESC)
 		WHERE rownum&lt;=12
 	</select>
@@ -53,5 +53,23 @@
 		WHERE camp_addr LIKE '%'||#{ss}||'%'
 		ORDER BY camp_no ASC)
 		WHERE rownum&lt;=6
+	</select>
+	<select id="campFindData" resultType="CampVO" parameterType="hashmap">
+		SELECT camp_no,camp_name,image1,num
+		FROM (SELECT camp_no,camp_name,image1,rownum as num)
+		FROM (SELECT camp_no,camp_name,image1)
+		FROM camp
+		WHERE camp_addr LIKE '%'||?||'%'))
+		WHERE num BETWEEN ? AND ?
+	</select>
+	<select id="campFindTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/12.0)
+		FROM camp
+		WHERE camp_addr LIKE '%'||?||'%'
+	</select>
+	<select id="campFindCount" resultType="int" parameterType="string">
+		SELECT COUNT(*)
+		FROM camp
+		WHERE camp_addr LIKE '%'||?||'%'
 	</select>
 </mapper>

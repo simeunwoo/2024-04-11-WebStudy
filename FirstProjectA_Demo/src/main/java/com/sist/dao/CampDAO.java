@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.*;
+import java.sql.ResultSet;
+
 import com.sist.vo.*;
 import lombok.Locked.Read;
 
@@ -137,24 +139,19 @@ public class CampDAO {
 		
 	}
 	
-/*	public static String campMapMap(int camp_no)
+	public static List<CampVO> campFindData(Map map)
 	{
-		String result="no";
+		List<CampVO> list=new ArrayList<CampVO>();
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			if(db_pwd.equals(pwd))
-			{
-				result="yes";
-				session.delete("boardDelete",no);
-				session.commit();
-			}
-		}catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("BoardDAO 오류 7");
-			e.printStackTrace();
+			list=session.selectList("campFindData",map);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 6");
+			ex.printStackTrace();
 		}
 		finally
 		{
@@ -162,6 +159,58 @@ public class CampDAO {
 				session.close();
 		}
 		
-		return result;
-	} */
+		return list;
+	}
+	
+	public static int campFindTotalPage()
+	{
+		int total=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("campFindTotalPage");
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 7");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+	
+	public static int campFindCount(String camp_addr)
+	{
+		int total=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("campFindCount",camp_addr);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 8");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+
+
+
+	
 }

@@ -80,6 +80,13 @@
 .destination-img:hover .search-icon {
     opacity: 1; /* 마우스 오버 시 아이콘 표시 */
 }
+
+  .flexslider .slides li {
+    display: inline-flex;
+  }
+  .flexslider {
+    justify-content: center;
+  }
 </style>        
 
 </head>
@@ -337,6 +344,41 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 });    
 </script>
 
+<div style="height:100px"></div>
+
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Campsite Map</h5>
+            <h1 class="mb-0">캠핑장</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            <c:forEach var="nvo" items="${nList}" varStatus="s">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="${nvo.image1}" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="text-center packages-price py-2 px-4">Best</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0 truncate-text">${nvo.camp_name}</h5>
+                            <p class="mb-4"></p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="col-6 text-start px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4"></a>
+                            </div>
+                            <div class="col-6 text-end px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">${nvo.camp_price}원</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
 <div class="flexslider carousel basiccarousel btmspace-80">
 	      <ul class="slides">
 	       <c:forEach var="vo" items="${nList }">
@@ -344,7 +386,7 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 		          <figure><img class="radius-10 btmspace-10"
 		            src="${vo.image1 }" style="width: 320px;height: 185px"
 		            title="${vo.camp_addr }">
-		            <figcaption><a href="#">${vo.camp_name }</a></figcaption>
+		            <figcaption><a href="../camp/detail.do?camp_no=${vo.camp_no }">${vo.camp_name }</a></figcaption>
 		          </figure>
 		        </li>
 	        </c:forEach>
