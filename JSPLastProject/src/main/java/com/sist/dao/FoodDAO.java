@@ -322,4 +322,34 @@ public class FoodDAO {
 		
 	}
 	
+	/*
+	<select id="foodTypeAllData" resultType="FoodVO" parameterType="string">
+		SELECT fno,poster,name
+		FROM project_food_house
+		WHERE type LIKE '%'||#{type}||'%'
+		ORDER BY fno ASC
+	</select>
+	 */
+	public static List<FoodVO> foodTypeAllData(String type)
+	{
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("foodTypeAllData",type);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 11");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
 }

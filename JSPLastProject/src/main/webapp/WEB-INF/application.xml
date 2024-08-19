@@ -7,6 +7,7 @@
 	<bean id="emp" class="com.sist.model.EmpModel"/>
 	<bean id="music" class="com.sist.model.MusicModel"/>
 	<bean id="reply" class="com.sist.model.ReplyBoardModel"/>
+	<bean id="reply" class="com.sist.model.BoardReplyModel"/>
 	<bean id="food" class="com.sist.model.FoodModel"/>
 	<bean id="goods" class="com.sist.model.GoodsModel"/>
 	<bean id="seoul" class="com.sist.model.SeoulModel"/>
@@ -15,4 +16,5 @@
 	<bean id="notice" class="com.sist.model.NoticeModel"/>
 	<bean id="admin" class="com.sist.model.AdminModel"/>
 	<bean id="mypage" class="com.sist.model.MyPageModel"/>
+	<bean id="reserve" class="com.sist.model.ReserveModel"/>
 </beans>
