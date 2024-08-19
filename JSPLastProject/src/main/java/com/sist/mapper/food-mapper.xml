@@ -79,4 +79,9 @@
 		WHERE type LIKE '%'||#{type}||'%'
 		ORDER BY fno ASC
 	</select>
+	<select id="foodReserveDayData" resultType="string" parameterType="int">
+		SELECT rdays
+		FROM project_food_house
+		WHERE fno=#{fno}
+	</select>
 </mapper>

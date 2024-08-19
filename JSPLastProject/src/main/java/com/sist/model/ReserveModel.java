@@ -25,6 +25,7 @@ public class ReserveModel {
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
 		String strDay="";
+		String strFno=request.getParameter("fno");
 		
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-M-d");
@@ -60,6 +61,23 @@ public class ReserveModel {
 		int lastday=cal.getActualMaximum(Calendar.DATE);
 		
 		String[] weeks={"일","월","화","수","목","금","토"};
+		
+		// 예약 가능한 날
+		if(strFno!=null)
+		{
+			String rdays=FoodDAO.foodReserveDayData(Integer.parseInt(strFno));
+			st=new StringTokenizer(rdays,",");
+			int[] reserveDays=new int[32];
+			while(st.hasMoreTokens())
+			{
+				int d=Integer.parseInt(st.nextToken());
+				if(d>=day)
+				{
+					reserveDays[d]=1;
+				}
+			}
+			request.setAttribute("rday", reserveDays);
+		}
 		
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);

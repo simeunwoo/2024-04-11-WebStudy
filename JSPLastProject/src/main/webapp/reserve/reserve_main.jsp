@@ -9,19 +9,20 @@
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){	
 	$.ajax({
 		type:'post',
-		url:'../reserve/date_info.do',
+		url:'../reserve/food_info.do',
 		success:function(result)
 		{
-			$('#rdate').html(result)
+			$('#food_list').html(result)
 		},
 		error:function(request,status,error)
 		{
 			console.log(error)
 		}
 	})
+	// https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5R6QRNst_kdWB8R08hMQMSDNVflcIzrZwQQ&s
 })
 </script>
 <body>
@@ -33,6 +34,11 @@ $(function(){
       <td width=30% class="danger" height="400">
        <table class="table">
         <caption><h4 class="text-center">맛집 정보</h4></caption>
+        <tr>
+        	<td>
+        		<div id="food_list" style="height:400px;overflow-y:scroll"></div>
+        	</td>
+        </tr>
        </table>
       </td>
       <td width=30% class="info" height="400">

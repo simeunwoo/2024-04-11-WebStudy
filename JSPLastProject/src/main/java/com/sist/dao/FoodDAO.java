@@ -352,4 +352,34 @@ public class FoodDAO {
 		
 		return list;
 	}
+	
+	/*
+	<select id="foodReserveDayData" resultType="String" parameterType="int">
+		SELECT rdays
+		FROM project_food_house
+		WHERE fno=#{fno}
+	</select>
+	 */
+	public static String foodReserveDayData(int fno)
+	{
+		String rdays="";
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			rdays=session.selectOne("foodReserveDayData",fno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 12");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return rdays;
+	}
 }
