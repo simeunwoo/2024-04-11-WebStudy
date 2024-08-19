@@ -13,6 +13,7 @@ $(function(){
 	$('#year').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
+		let fno=${fno}
 		
 		$.ajax({
 			type:'post',
@@ -32,6 +33,7 @@ $(function(){
 	$('#month').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
+		let fno=${fno}
 		
 		$.ajax({
 			type:'post',

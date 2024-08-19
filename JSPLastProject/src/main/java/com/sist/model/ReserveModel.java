@@ -68,7 +68,7 @@ public class ReserveModel {
 		
 		String[] weeks={"일","월","화","수","목","금","토"};
 		
-		// 예약 가능한 날
+		// 예약 가능한 날 ex) 1, 2, 5, 17, 24, 25, 27 ...
 		if(strFno!=null)
 		{
 			String rdays=FoodDAO.foodReserveDayData(Integer.parseInt(strFno));
@@ -131,7 +131,7 @@ public class ReserveModel {
 		String day=request.getParameter("day");
 		
 		// 데이터베이스 연동
-		String times=FoodDAO.foodReserveDayData(Integer.parseInt(day));
+		String times=FoodDAO.foodReserveTimeData(Integer.parseInt(day));
 		List<String> tList=new ArrayList<String>();
 		StringTokenizer st=new StringTokenizer(times,",");
 		while(st.hasMoreTokens())
