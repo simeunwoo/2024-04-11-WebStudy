@@ -35,6 +35,11 @@ public class ReserveModel {
 		String sy=st.nextToken();
 		String sm=st.nextToken();
 		strDay=st.nextToken();
+		/////////////////////////// 오늘 날짜만 저장
+		String tday=strDay;
+		String tyear=sy;
+		String tmonth=sm;
+		///////////////////////////
 		
 		if(strYear==null)
 		{
@@ -66,13 +71,27 @@ public class ReserveModel {
 		if(strFno!=null)
 		{
 			String rdays=FoodDAO.foodReserveDayData(Integer.parseInt(strFno));
-			st=new StringTokenizer(rdays,",");
 			int[] reserveDays=new int[32];
-			while(st.hasMoreTokens())
+			
+			if(month==Integer.parseInt(tmonth) && year==Integer.parseInt(tyear))
 			{
-				int d=Integer.parseInt(st.nextToken());
-				if(d>=day)
+				st=new StringTokenizer(rdays,",");
+				while(st.hasMoreTokens())
 				{
+					int d=Integer.parseInt(st.nextToken());
+					if(d>=day)
+					{
+						reserveDays[d]=1;
+					}
+				}
+			}
+			else
+			{
+				st=new StringTokenizer(rdays,",");
+				
+				while(st.hasMoreTokens())
+				{
+					int d=Integer.parseInt(st.nextToken());
 					reserveDays[d]=1;
 				}
 			}
@@ -83,8 +102,9 @@ public class ReserveModel {
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
 		request.setAttribute("week", week);
-		request.setAttribute("lastday", lastday);
 		request.setAttribute("weeks", weeks);
+		request.setAttribute("lastday", lastday);
+		request.setAttribute("fno", strFno);
 		
 		return "../reserve/date_info.jsp";
 	}
@@ -102,5 +122,54 @@ public class ReserveModel {
 		request.setAttribute("fList", list);
 		
 		return "../reserve/food_info.jsp";
+	}
+	
+	@RequestMapping("reserve/time_info.do")
+	public String reserve_time_info(HttpServletRequest request,HttpServletResponse response)
+	{
+		String day=request.getParameter("day");
+		
+		// 데이터베이스 연동
+		String times=FoodDAO.foodReserveDayData(Integer.parseInt(day));
+		List<String> tList=new ArrayList<String>();
+		StringTokenizer st=new StringTokenizer(times,",");
+		while(st.hasMoreTokens())
+		{
+			String time=FoodDAO.foodTimeSelectData(Integer.parseInt(st.nextToken()));
+			tList.add(time);
+		}
+		
+		request.setAttribute("tList", tList);
+		
+		return "../reserve/time_info.jsp";
+	}
+	
+	@RequestMapping("reserve/inwon_info.do")
+	public String reserve_inwon_info(HttpServletRequest request,HttpServletResponse response)
+	{
+		return "../reserve/inwon_info.jsp";
+	}
+	
+	@RequestMapping("reserve/reserve_ok.do")
+	public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		// 예약 정보 출력
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String fno=request.getParameter("fno");
+		String date=request.getParameter("date");
+		String time=request.getParameter("time");
+		String inwon=request.getParameter("inwon");
+		
+		System.out.println("맛집 번호 : "+fno);
+		System.out.println("예약일 : "+date);
+		System.out.println("예약 시간 : "+time);
+		System.out.println("예약 인원 : "+inwon);
+		
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		return "../main/main.jsp";
 	}
 }

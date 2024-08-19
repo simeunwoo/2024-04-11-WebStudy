@@ -71,6 +71,25 @@ $(function(){
         	<td width="30%" class="text-right">예악일</td>
         	<td width="70%" id="food_day"></td>
         </tr>
+        <tr>
+        	<td width="30%" class="text-right">시간</td>
+        	<td width="70%" id="food_time_data"></td>
+        </tr>
+        <tr>
+        	<td width="30%" class="text-right">인원</td>
+        	<td width="70%" id="food_inwon_data"></td>
+        </tr>
+        <tr id="reserveBtn" style="display:none">
+        	<td colspan="2" class="text-center">
+        		<form action="../reserve/reserve_ok.do" method="post">
+        			<input type="hidden" name="fno" value="" id="r_fno">
+        			<input type="hidden" name="date" value="" id="r_date">
+        			<input type="hidden" name="time" value="" id="r_time">
+        			<input type="hidden" name="inwon" value="" id="r_inwon">
+        			<button class="btn-lg btn-primary">예약하기</button>
+        		</form>
+        	</td>
+        </tr>
        </table>
       </td>
     </tr>
@@ -78,11 +97,17 @@ $(function(){
       <td width=30% class="default" height=100>
         <table class="table">
         <caption><h4 class="text-center">시간 정보</h4></caption>
+        <tr>
+        	<td class="text-center" id="food_time"></td>
+        </tr>
        </table>
       </td>
       <td width=30% height=100>
        <table class="table">
         <caption><h4 class="text-center">인원 정보</h4></caption>
+        <tr>
+        	<td class="text-center" id="food_inwon"></td>
+        </tr>
        </table>
       </td>
     </tr>
