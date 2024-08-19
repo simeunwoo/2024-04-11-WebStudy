@@ -113,12 +113,10 @@ $(function(){
      <tr>
        <td colspan="2" class="text-center inline">
         <input type="submit" value="회원수정"
-         class="btn-sm btn-info" id="joinBtn"
-        >
+         class="btn-sm btn-info" id="joinBtn">
         <input type=button value="취소"
          class="btn-sm btn-warning"
-         onclick="javascript:history.back()"
-        >
+         onclick="javascript:history.back()">
        </td>
      </tr>
     </table>

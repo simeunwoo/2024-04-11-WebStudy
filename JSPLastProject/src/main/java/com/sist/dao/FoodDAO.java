@@ -474,6 +474,7 @@ public class FoodDAO {
 		FROM project_reserve pr,project_food_house pf
 		WHERE pr.fno=pf.fno
 		AND id=#{id}
+		ORDER BY rno DESC
 	</select>
 	 */
 	public static List<ReserveVO> reserveMyPageData(String id)

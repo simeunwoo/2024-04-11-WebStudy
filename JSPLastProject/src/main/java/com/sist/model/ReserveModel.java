@@ -2,6 +2,7 @@ package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -150,6 +151,21 @@ public class ReserveModel {
 		return "../reserve/inwon_info.jsp";
 	}
 	
+	@RequestMapping("reserve/mypage_reserve.do")
+	public String mypage_reserve(HttpServletRequest request,HttpServletResponse response)
+	{
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		List<ReserveVO> list=FoodDAO.reserveMyPageData(id);
+		
+		request.setAttribute("recvList", list);
+		
+		request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		return "../main/main.jsp";
+	}
+	
 	@RequestMapping("reserve/reserve_ok.do")
 	public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -169,7 +185,18 @@ public class ReserveModel {
 		System.out.println("예약 시간 : "+time);
 		System.out.println("예약 인원 : "+inwon);
 		
-		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
-		return "../main/main.jsp";
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		ReserveVO vo=new ReserveVO();
+		vo.setFno(Integer.parseInt(fno));
+		vo.setDay(date);
+		vo.setTime(time);
+		vo.setInwon(inwon);
+		vo.setId(id);
+		
+		FoodDAO.reserveInsert(vo);
+		
+		return "redirect:../mypage/mypage_reserve.do";
 	}
 }

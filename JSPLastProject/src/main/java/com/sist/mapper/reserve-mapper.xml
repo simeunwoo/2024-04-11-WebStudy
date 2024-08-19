@@ -37,6 +37,7 @@
 		FROM project_reserve pr,project_food_house pf
 		WHERE pr.fno=pf.fno
 		AND id=#{id}
+		ORDER BY rno DESC
 	</select>
 	<!-- 관리자페이지 예약 출력 -->
 	<!-- 관리자 예약 승인 -->
