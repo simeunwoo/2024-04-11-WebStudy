@@ -70,4 +70,15 @@
   	FROM project_member
   	WHERE name=#{name} AND phone=#{phone}
   </select>
+  <!-- 비밀 번호 찾기 -->
+  <select id="memberPwdFindCount" resultType="int" parameterType="string">
+  	SELECT COUNT(*)
+  	FROM project_member
+  	WHERE id=#{id}
+  </select>
+  <select id="memberPwdFindData" resultType="String" parameterType="string">
+  	SELECT pwd
+  	FROM project_member
+  	WHERE id=#{id}
+  </select>
 </mapper>

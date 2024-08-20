@@ -47,6 +47,7 @@ public class MemberDAO {
 		  }
 	  }catch(Exception ex)
 	  {
+		  System.out.println("MemberDAO 오류 1");
 		  ex.printStackTrace();
 	  }
 	  finally
@@ -67,6 +68,7 @@ public class MemberDAO {
 		  count=session.selectOne("memberIdCountData",id);
 	  }catch(Exception ex)
 	  {
+		  System.out.println("MemberDAO 오류 2");
 		  ex.printStackTrace();
 	  }
 	  finally
@@ -93,6 +95,7 @@ public class MemberDAO {
 		  session.insert("memberInsert",vo);
 	  }catch(Exception ex)
 	  {
+		  System.out.println("MemberDAO 오류 3");
 		  ex.printStackTrace();
 	  }
 	  finally
@@ -119,6 +122,7 @@ public class MemberDAO {
 		  vo=session.selectOne("memberUpdateData", id);
 	  }catch(Exception ex)
 	  {
+		  System.out.println("MemberDAO 오류 4");
 		  ex.printStackTrace();
 	  }
 	  finally
@@ -161,6 +165,7 @@ public class MemberDAO {
 		  }
 	  }catch(Exception ex)
 	  {
+		  System.out.println("MemberDAO 오류 5");
 		  ex.printStackTrace();
 	  }
 	  finally
@@ -201,6 +206,7 @@ public class MemberDAO {
   		  }
   	  }catch(Exception ex)
   	  {
+  		  System.out.println("MemberDAO 오류 6");
   		  ex.printStackTrace();
   	  }
   	  finally
@@ -230,6 +236,50 @@ public class MemberDAO {
   			}
   		}catch(Exception ex)
   		{
+  			System.out.println("MemberDAO 오류 7");
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			if(session!=null)
+  				session.close();
+  		}
+  		
+  		return result;
+  	}
+  	
+  	/*
+  	<select id="memberPwdFindCount" resultType="int" parameterType="string">
+  	SELECT COUNT(*)
+  	FROM project_member
+  	WHERE id=#{id}
+  </select>
+  <select id="memberPwdFindData" resultType="String" parameterType="string">
+  	SELECT pwd
+  	FROM project_member
+  	WHERE id=#{id}
+  </select>
+  	 */
+  	public static String memberPwdFindData(String id)
+  	{
+  		String result="";
+  		SqlSession session=null;
+  		try
+  		{
+  			session=ssf.openSession();
+  			int count=session.selectOne("memberPwdFindCount",id);
+  			if(count==0)
+  			{
+  				result="no";
+  			}
+  			else
+  			{
+  				String pwd=session.selectOne("memberPwdFindData",id);
+  				result=pwd;
+  			}
+  		}catch(Exception ex)
+  		{
+  			System.out.println("MemberDAO 오류 8");
   			ex.printStackTrace();
   		}
   		finally

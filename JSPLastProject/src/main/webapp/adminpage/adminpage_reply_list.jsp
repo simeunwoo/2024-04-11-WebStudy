@@ -46,7 +46,8 @@
       		<a href="../adminpage/reply_insert.do?no=${vo.no }" class="btn btn-sm btn-danger">답변 대기</a>
       	</c:if>
       	<c:if test="${vo.isreply!=0 }">
-      		<span class="btn btn-sm btn-default">답변 완료</span>
+      		<a href="../adminpage/reply_update.do?no=${vo.no }" class="btn btn-sm btn-default">수정</a>
+      		<a href="../adminpage/reply_delete.do?no=${vo.no }" class="btn btn-sm btn-default">삭제</a>
       	</c:if>
       </td>
     </tr>
