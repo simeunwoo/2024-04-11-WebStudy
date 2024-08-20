@@ -29,7 +29,7 @@ $(function(){
 		}
 		$.ajax({
 			type:'post',
-			url:'../member/idcheck_ok.do',
+			url:'../member/idcheck_ok2.do',
 			data:{"name":name,"email":email},
 			success:function(result)
 			{
@@ -43,6 +43,45 @@ $(function(){
 				else
 				{
 					$('#result_email').html('<h3><font color="blue">'+result+'</font></h3>')
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+	$('#phoneBtn').click(function(){
+		let name=$('#p_name').val()
+		if(name.trim()==="")
+		{
+			$('#p_name').focus()
+			$('#result_phone').html('<font color="red">이름을 입력하세요</font>')
+			return
+		}
+		let phone=$('#phone').val()
+		if(phone.trim()==="")
+		{
+			$('#phone').focus()
+			$('#result_phone').html('<font color="red">전화번호를 입력하세요</font>')
+			return
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/idcheck_ok3.do',
+			data:{"name":name,"phone":phone},
+			success:function(result)
+			{
+				if(result==='no')
+				{
+					$('#result_phone').html('<h3><font color="red">이름이나 전화번호가 존재하지 않습니다</font></h3>')
+					$('#p_name').val("")
+					$('#phone').val("")
+					$('#p_name').focus()
+				}
+				else
+				{
+					$('#result_phone').html('<h3><font color="blue">'+result+'</font></h3>')
 				}
 			},
 			error:function(request,status,error)

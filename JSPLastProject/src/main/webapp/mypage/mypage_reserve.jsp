@@ -30,6 +30,7 @@ $(function(){
 				$('#score').text(js.score)
 				$('#address').text(js.address)
 				$('#phone').text(js.phone)
+				$('#theme').text(js.theme)
 				$('#rno').text(js.rno)
 				$('#rdate').text(js.rday)
 				$('#rtime').text(js.rtime)

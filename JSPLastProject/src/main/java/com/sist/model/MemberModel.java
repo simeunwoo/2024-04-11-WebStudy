@@ -130,7 +130,7 @@ public class MemberModel {
 	  return "../main/main.jsp";
   }
   
-  @RequestMapping("member/idcheck_ok.do")
+  @RequestMapping("member/idcheck_ok2.do")
   public void member_idcheck_ok2(HttpServletRequest request,HttpServletResponse response)
   {
 	  try
@@ -147,6 +147,32 @@ public class MemberModel {
 	  
 	  // 데이터베이스 연동
 	  String result=MemberDAO.memberIdFindData(vo);
+	  
+	  // Ajax로 값 전송
+	  try
+	  {
+		  PrintWriter out=response.getWriter();
+		  out.write(result);
+	  }catch(Exception ex) {}
+  }
+  
+  @RequestMapping("member/idcheck_ok3.do")
+  public void member_idcheck_ok3(HttpServletRequest request,HttpServletResponse response)
+  {
+	  try
+	  {
+		  request.setCharacterEncoding("UTF-8");
+	  }catch(Exception ex) {}
+	  
+	  String name=request.getParameter("name");
+	  String phone=request.getParameter("phone");
+	  
+	  MemberVO vo=new MemberVO();
+	  vo.setName(name);
+	  vo.setPhone(phone);
+	  
+	  // 데이터베이스 연동
+	  String result=MemberDAO.memberIdFindData2(vo);
 	  
 	  // Ajax로 값 전송
 	  try

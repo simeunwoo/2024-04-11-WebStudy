@@ -211,4 +211,33 @@ public class MemberDAO {
   		
   		return result;
   	}
+  	
+  	public static String memberIdFindData2(MemberVO vo)
+  	{
+  		String result="";
+  		SqlSession session=null;
+  		try
+  		{
+  			session=ssf.openSession();
+  			int count=session.selectOne("memberIdFindCount2",vo);
+  			if(count==0)
+  			{
+  				result="no";
+  			}
+  			else
+  			{
+  				result=session.selectOne("memberIdFindData2",vo);
+  			}
+  		}catch(Exception ex)
+  		{
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			if(session!=null)
+  				session.close();
+  		}
+  		
+  		return result;
+  	}
 }
