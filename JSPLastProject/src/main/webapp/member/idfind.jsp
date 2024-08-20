@@ -10,10 +10,54 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 <script>
-$( function() {
-$( "#tabs" ).tabs();
-} );
- </script>
+$(function(){
+	$("#tabs").tabs()
+	$('#emailBtn').click(function(){
+		let name=$('#e_name').val()
+		if(name.trim()==="")
+		{
+			$('#e_name').focus()
+			$('#result_email').html('<font color="red">이름을 입력하세요</font>')
+			return
+		}
+		let email=$('#email').val()
+		if(email.trim()==="")
+		{
+			$('#email').focus()
+			$('#result_email').html('<font color="red">이메일을 입력하세요</font>')
+			return
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/idcheck_ok.do',
+			data:{"name":name,"email":email},
+			success:function(result)
+			{
+				if(result==='no')
+				{
+					$('#result_email').html('<h3><font color="red">이름이나 이메일이 존재하지 않습니다</font></h3>')
+					$('#e_name').val("")
+					$('#email').val("")
+					$('#e_name').focus()
+				}
+				else
+				{
+					$('#result_email').html('<h3><font color="blue">'+result+'</font></h3>')
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+})
+</script>
+<style type="text/css">
+#tabs{
+	width: 600px;
+}
+</style>
 </head>
 <body>
 	<div class="wrapper row3">
@@ -21,19 +65,60 @@ $( "#tabs" ).tabs();
 			<h2 class="sectiontitle">회원 가입</h2>
 			<div id="tabs">
 			  <ul>
-			    <li><a href="#tabs-1">Nunc tincidunt</a></li>
-			    <li><a href="#tabs-2">Proin dolor</a></li>
-			    <li><a href="#tabs-3">Aenean lacinia</a></li>
+			    <li><a href="#tabs-1">이메일로 찾기</a></li>
+			    <li><a href="#tabs-2">전화번호로 찾기</a></li>
 			  </ul>
 			  <div id="tabs-1">
-			    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+			  	<table class="table">
+			  		<tr>
+			  			<td width="20%">이름 : </td>
+			  			<td width="80">
+			  				<input type="text" class="input-sm" name="name" size="25" id="e_name">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td width="20%">이메일 : </td>
+			  			<td width="80">
+			  				<input type="text" class="input-sm" name="email" size="25" id="email">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td class="text-center" colspan="2">
+			  				<input type="button" class="btn-sm btn-primary" value="검색" id="emailBtn">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td class="text-center" colspan="2">
+			  				<span id="result_email"></span>
+			  			</td>
+			  		</tr>			  		
+			  	</table>
 			  </div>
 			  <div id="tabs-2">
-			    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-			  </div>
-			  <div id="tabs-3">
-			    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-			    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+			  	<table class="table">
+			  		<tr>
+			  			<td width="20%">이름 : </td>
+			  			<td width="80">
+			  				<input type="text" class="input-sm" name="name" size="25" id="p_name">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td width="20%">전화번호 : </td>
+			  			<td width="80">
+			  				<input type="text" class="input-sm" name="phone" size="25" id="phone">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td class="text-center" colspan="2">
+			  				<input type="button" class="btn-sm btn-primary" value="검색" id="phoneBtn">
+			  			</td>
+			  		</tr>
+			  		<tr>
+			  			<td class="text-center" colspan="2">
+			  				<span id="result_phone"></span>
+			  			</td>
+			  		</tr>			  		
+			  	</table>
 			  </div>
 			</div>
 		</main>
