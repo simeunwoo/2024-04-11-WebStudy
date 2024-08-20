@@ -84,6 +84,7 @@ public class MyPageModel {
 	   List<AllJjimVO> list=AllJjimDAO.JjimMyPageListData(id);
 	   
 	   request.setAttribute("allList", list);
+	   request.setAttribute("jjimCount", list.size());
 	   request.setAttribute("title", "찜 관리");
 	   
 	   request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
