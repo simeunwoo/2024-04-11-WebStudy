@@ -4,11 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
 
 import java.util.*;
+import java.io.PrintWriter;
 import java.text.*;
 
 public class ReserveModel {
@@ -232,5 +235,40 @@ public class ReserveModel {
 		FoodDAO.reserveCancel(Integer.parseInt(rno));
 		
 		return "redirect:../mypage/mypage_reserve.do";
+	}
+	
+	@RequestMapping("mypage/mypage_reserve_info.do")
+	public void mypage_reserve_info(HttpServletRequest request,HttpServletResponse response)
+	{
+		String rno=request.getParameter("rno");
+		
+		// 데이터베이스 연동
+		/*
+		rno,day,pr.time,inwon,pf.name,pf.poster,pf.address,phone,theme,score,content
+			TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+		 */
+		ReserveVO vo=FoodDAO.mypageReserveInfoData(Integer.parseInt(rno));
+		JSONObject obj=new JSONObject();
+		obj.put("rno", vo.getRno());
+		obj.put("day", vo.getDay());
+		obj.put("time", vo.getTime());
+		obj.put("inwon", vo.getInwon());
+		obj.put("name", vo.getFvo().getName());
+		obj.put("poster", vo.getFvo().getPoster());
+		obj.put("address", vo.getFvo().getAddress());
+		obj.put("phone", vo.getFvo().getPhone());
+		obj.put("theme", vo.getFvo().getTheme());
+		obj.put("score", vo.getFvo().getScore());
+		obj.put("content", vo.getFvo().getContent());
+		obj.put("regdate", vo.getDbday());
+		
+		// Ajax로 값 전송
+		try
+		{
+			response.setContentType("text/plain;charset=UTF-8");
+			// => text/html(HTML 전송), text/xml(XML 전송), text/plain(JSON 전송)
+			PrintWriter out=response.getWriter();
+			out.write(obj.toJSONString());
+		}catch(Exception ex) {}
 	}
 }

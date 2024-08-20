@@ -584,4 +584,36 @@ public class FoodDAO {
 				session.close();
 		}
 	}
+	
+	/*
+	<select id="mypageReserveInfoData" resultMap="reserveMap" parameterType="int">
+		SELECT rno,day,pr.time,inwon,pf.name,pf.poster,pf.address,phone,theme,score,content
+			TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+		FROM project_reserve pr, project_food_house pf
+		WHERE pr.fno=pf.fno
+		AND rno=#{rno}
+	</select>
+	 */
+	public static ReserveVO mypageReserveInfoData(int rno)
+	{
+		ReserveVO vo=new ReserveVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("mypageReserveInfoData",rno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 20");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }
