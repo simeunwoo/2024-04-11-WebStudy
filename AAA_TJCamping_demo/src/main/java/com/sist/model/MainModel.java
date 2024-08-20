@@ -24,6 +24,7 @@ public class MainModel {
 			}
 		}
 		
+		List<CampVO> cList=CampDAO.campNoTopData();
 		List<FoodVO> hitList = FoodDAO.foodHitTopData();
 		List<FoodVO> likeList = FoodDAO.foodLikeTopData();
 		List<FoodVO> jjimList = FoodDAO.foodJjimTopData();
@@ -34,7 +35,7 @@ public class MainModel {
 		
 		request.setAttribute("relikelist", relikelist);
 		
-		
+		request.setAttribute("cList", cList);
 		request.setAttribute("cookieList", cookieList);
 		request.setAttribute("hitList", hitList);
 		request.setAttribute("likeList", likeList);

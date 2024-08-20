@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.packages-img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+</style>
 </head>
 <body>
 	<!-- 롤링배너 Start -->
@@ -83,10 +90,10 @@
 			<div class="position-relative rounded-pill w-100 mx-auto p-4" style="background: rgba(37, 103, 75,0.8);">
 				<input
 					class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
-					type="text" placeholder="지역명">
-				<button type="button"
-					class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
-					style="top: 50%; right: 46px; transform: translateY(-50%);">Search</button>
+					type="text" placeholder="캠핑장 이름을 검색하세요">
+				<a href="../camp/list.do"
+					class="btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+					style="top: 50%; right: 46px; transform: translateY(-50%);">Search</a>
 			</div>
 		</div>
 	</div>
