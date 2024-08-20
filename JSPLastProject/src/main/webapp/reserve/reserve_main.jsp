@@ -9,6 +9,7 @@
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+/*
 $(function(){	
 	$.ajax({
 		type:'post',
@@ -23,6 +24,7 @@ $(function(){
 		}
 	})
 })
+*/
 </script>
 <body>
 <div class="wrapper row3">

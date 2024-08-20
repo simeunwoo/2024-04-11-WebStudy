@@ -72,4 +72,18 @@
 		FROM camp
 		WHERE camp_addr LIKE '%'||?||'%'
 	</select>
+	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
+		SELECT camp_no,camp_name,image1,num
+		FROM (SELECT camp_no,camp_name,image1,rownum as num
+		FROM (SELECT camp_no,camp_name,image1
+		FROM camp
+		WHERE camp_animal='y'
+		ORDER BY camp_no ASC))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="campPetTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/12.0)
+		FROM camp
+		WHERE camp_animal='y'
+	</select>
 </mapper>

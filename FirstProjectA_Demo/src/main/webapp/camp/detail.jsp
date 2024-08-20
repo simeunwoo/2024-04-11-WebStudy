@@ -396,14 +396,7 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 	    <tr>
 	    			<td colspan="3" class="text-right">
 	    				<c:if test="${sessionScope.id!=null }">
-		    				<c:if test="${check==false }">
-		    					<input type="button" class="btn btn-xs btn-warning" value="찜하기"
-		    					  id="jjimBtn" data-cno="${vo.camp_no }">
-		    				</c:if>
-		    				<c:if test="${check==true }">
-		    					<span class="btn btn-xs btn-default">찜하기</span>
-		    				</c:if>
-		    				<a href="#" class="btn btn-xs btn-info">예약</a>
+		    				<a href="../camp/reserve.do?camp_no=${vo.camp_no }" class="btn btn-xs btn-info">예약</a>
 		    			</c:if>
 		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
 	    			</td>
@@ -412,6 +405,8 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 
 </div>
 
+
+<div style="height:60px"></div>
 
 <!-- main_jsp End -->
 

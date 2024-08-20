@@ -9,6 +9,7 @@
 	<!-- typeAliases : connection 관련 : getConnection / disConnection -->
 	<typeAlias type="com.sist.vo.CampVO" alias="CampVO"/>
 	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+	<typeAlias type="com.sist.vo.ReserveVO" alias="ReserveVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->

@@ -210,7 +210,62 @@ public class CampDAO {
 		return total;
 	}
 
-
-
+	/*
+	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
+		SELECT camp_no,camp_name,image1,num
+		FROM (SELECT camp_no,camp_name,image1,rownum as num
+		FROM (SELECT camp_no,camp_name,image1
+		FROM camp
+		ORDER BY camp_no ASC))
+		WHERE num BETWEEN #{start} AND #{end}
+		AND camp_animal='y'
+	</select>
+	 */
+	public static List<CampVO> campPetData(Map map)
+	{
+		List<CampVO> list=new ArrayList<CampVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("campPetData",map);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 9");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
+	
+	public static int campPetTotalPage()
+	{
+		int total=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("campPetTotalPage");
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 10");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
 	
 }
