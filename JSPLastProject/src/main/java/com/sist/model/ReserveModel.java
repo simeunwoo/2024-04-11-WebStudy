@@ -199,4 +199,38 @@ public class ReserveModel {
 		
 		return "redirect:../mypage/mypage_reserve.do";
 	}
+	
+	@RequestMapping("adminpage/adminpage_reserve.do")
+	public String adminpage_reserve(HttpServletRequest request,HttpServletResponse response)
+	{
+		List<ReserveVO> recvList=FoodDAO.reserveAdminPageData();
+		
+		request.setAttribute("recvList", recvList);
+		
+		request.setAttribute("admin_jsp", "../adminpage/adminpage_reserve.jsp");
+		request.setAttribute("main_jsp","../adminpage/adminpage_main.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("adminpage/adminpage_reserve_ok.do")
+	public String adminpage_reserve_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String rno=request.getParameter("rno");
+		
+		// 데이터베이스 연동 => 모든 데이터가 오라클에 존재하기 때문
+		FoodDAO.reserveOk(Integer.parseInt(rno));
+		
+		return "redirect:../adminpage/adminpage_reserve.do";
+	}
+	
+	@RequestMapping("mypage/mypage_reserve_cancel.do")
+	public String mypage_reserve_cancel(HttpServletRequest request,HttpServletResponse response)
+	{
+		String rno=request.getParameter("rno");
+		
+		// 데이터베이스 연동 => 삭제
+		FoodDAO.reserveCancel(Integer.parseInt(rno));
+		
+		return "redirect:../mypage/mypage_reserve.do";
+	}
 }

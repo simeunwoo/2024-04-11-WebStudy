@@ -40,7 +40,23 @@
 		ORDER BY rno DESC
 	</select>
 	<!-- 관리자페이지 예약 출력 -->
+	<select id="reserveAdminPageData" resultMap="reserveMap">
+		SELECT rno,pr.fno,id,pr.time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
+			TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+		FROM project_reserve pr,project_food_house pf
+		WHERE pr.fno=pf.fno
+		ORDER BY rno DESC
+	</select>
 	<!-- 관리자 예약 승인 -->
+	<update id="reserveOk" parameterType="int">
+		UPDATE project_reserve SET
+		isok='y'
+		WHERE rno=#{rno}
+	</update>
 	<!-- 마이페이지 예약 확인 -->
 	<!-- 마이페이지 예약 취소 -->
+	<delete id="reserveCancel" parameterType="int">
+		DELETE FROM project_reserve
+		WHERE rno=#{rno}
+	</delete>
 </mapper>

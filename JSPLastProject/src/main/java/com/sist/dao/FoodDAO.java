@@ -499,4 +499,89 @@ public class FoodDAO {
 		
 		return list;
 	}
+	
+	/*
+	<select id="reserveAdminPageData" resultMap="reserveMap">
+		SELECT rno,pr.fno,id,pr.time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
+			TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+		FROM project_reserve pr,project_food_house pf
+		WHERE pr.fno=pf.fno
+		ORDER BY rno DESC
+	</select>
+	 */
+	public static List<ReserveVO> reserveAdminPageData()
+	{
+		List<ReserveVO> list=new ArrayList<ReserveVO>();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("reserveAdminPageData");
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 17");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
+	
+	/*
+	<update id="reserveOk" parameterType="int">
+		UPDATE project_reserve SET
+		isok='y'
+		WHERE rno=#{rno}
+	</update>
+	 */
+	public static void reserveOk(int rno)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.update("reserveOk",rno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 18");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	
+	/*
+	<delete id="reserveCancel" parameterType="int">
+		DELETE FROM project_reserve
+		WHERE rno=#{rno}
+	</delete>
+	 */
+	public static void reserveCancel(int rno)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.delete("reserveCancel",rno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 19");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

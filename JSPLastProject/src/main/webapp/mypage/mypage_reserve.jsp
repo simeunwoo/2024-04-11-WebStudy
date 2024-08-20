@@ -43,7 +43,7 @@
 							<c:if test="${vo.isok=='n' }">
 								<span class="btn btn-default btn-xs">예약대기</span>
 							</c:if>
-							<input type="button" class="btn-xs btn-danger" value="취소">
+							<a href="../mypage/mypage_reserve_cancel.do?rno=${vo.rno }" class="btn-xs btn-danger">취소</a>
 						</td>	
 					</tr>
 				</c:forEach>
