@@ -518,7 +518,9 @@ $(function(){
 		
 		<!-- 검색 기능 End -->
 		
-
+<div class="container">
+	<h3>${aaa } 캠핑장은 총 <span style="color:red">${count }</span>개 있다</h3>
+</div>
 <div style="height:70px"></div>
 
 			<div class="tab-class text-center">

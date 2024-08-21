@@ -18,4 +18,5 @@
 	<bean id="mypage" class="com.sist.model.MyPageModel"/>
 	<bean id="reserve" class="com.sist.model.ReserveModel"/>
 	<bean id="recipe" class="com.sist.model.RecipeModel"/>
+	<bean id="cart" class="com.sist.model.CartModel"/>
 </beans>

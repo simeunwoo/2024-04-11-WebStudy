@@ -74,7 +74,7 @@ public class CampModel {
 		return "../main/main.jsp";
 	}
 	
-/*	@RequestMapping("camp/map.do")
+	@RequestMapping("camp/map.do")
 	public String camp_map(HttpServletRequest request,HttpServletResponse response)
 	{
 		String a=request.getParameter("a");
@@ -91,11 +91,10 @@ public class CampModel {
 		int end=rowSize*curpage;
 		map.put("start", start);
 		map.put("end", end);
-		
-		<<< a와 camp_addr 사이 ~ >>>
+		map.put("a", a);
 		
 		List<CampVO> list=CampDAO.campFindData(map);
-		int totalpage=CampDAO.campFindTotalPage(camp_addr);
+		int totalpage=CampDAO.campFindTotalPage(aList[Integer.parseInt(a)]);
 		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -118,9 +117,9 @@ public class CampModel {
 		
 		request.setAttribute("main_jsp", "../camp/map.jsp");
 		return "../main/main.jsp";
-	} */
+	} 
 	
-	@RequestMapping("camp/map.do")
+/*	@RequestMapping("camp/map.do")
 	public String camp_map(HttpServletRequest request,HttpServletResponse response)
 	{
 		String page=request.getParameter("page");
@@ -152,7 +151,7 @@ public class CampModel {
 		
 		request.setAttribute("main_jsp", "../camp/map.jsp");
 		return "../main/main.jsp";
-	}
+	} */
 	
 	@RequestMapping("camp/pet.do")
 	public String camp_pet(HttpServletRequest request,HttpServletResponse response)
