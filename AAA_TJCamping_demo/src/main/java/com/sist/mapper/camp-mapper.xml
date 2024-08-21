@@ -86,4 +86,9 @@
 		FROM camp
 		WHERE camp_animal='y'
 	</select>
+	<select id="campReserveData" resultType="CampVO" parameterType="int">
+		SELECT camp_name,image1,camp_phone,camp_price,camp_addr
+		FROM camp
+		WHERE camp_no=#{camp_no}
+	</select>
 </mapper>

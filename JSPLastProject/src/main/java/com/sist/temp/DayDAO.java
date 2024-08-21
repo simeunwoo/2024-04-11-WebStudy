@@ -10,7 +10,7 @@ public class DayDAO {
 	
 	private Connection conn;
 	private PreparedStatement ps;
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@211.238.142.124:1521:XE";
 	
 	// ssf=new SqlsessionBuilder().build("Config.xml");
 	public DayDAO()
@@ -26,7 +26,7 @@ public class DayDAO {
 	{
 		try
 		{
-			conn=DriverManager.getConnection(URL,"hr","happy");
+			conn=DriverManager.getConnection(URL,"hr2","happy");
 		}catch(Exception ex) {}
 	}
 	
@@ -71,17 +71,17 @@ public class DayDAO {
 		return list;
 	}
 	
-	public void foodRdaysUpdate(int fno,String rdays)
+	public void foodRdaysUpdate(int camp_no,String rdays)
 	{
 		try
 		{
 			getConnection();
-			String sql="UPDATE project_food_house SET "
+			String sql="UPDATE camp SET "
 					+ "rdays=? "
-					+ "WHERE fno=?";
+					+ "WHERE camp_no=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, rdays);
-			ps.setInt(2, fno);
+			ps.setInt(2, camp_no);
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{

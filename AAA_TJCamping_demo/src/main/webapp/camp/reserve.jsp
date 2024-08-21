@@ -9,11 +9,13 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-
+        
+        
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+         
 
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
@@ -29,25 +31,113 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+      
+
+</head>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-$(function(){	
-	$.ajax({
-		type:'post',
-		url:'../camp/reserve_camp.do',
-		success:function(result)
-		{
-			$('#camp_list').html(result)
-		},
-		error:function(request,status,error)
-		{
-			console.log(error)
-		}
+$(function(){
+	$('#year').change(function(){
+		let year=$('#year').val()
+		let month=$('#month').val()
+		let cno=${cno}
+		
+		$.ajax({
+			type:'post',
+			url:'../camp/reserve.do',
+			data:{"year":year,"month":month,"cno":cno},
+			success:function(result)
+			{
+				$('#rdate').html(result)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+	   })
+	})
+	
+	$('#month').change(function(){
+		let year=$('#year').val()
+		let month=$('#month').val()
+		let cno=${cno}
+		
+		$.ajax({
+			type:'post',
+			url:'../camp/reserve.do',
+			data:{"year":year,"month":month,"cno":cno},
+			success:function(result)
+			{
+				$('#rdate').html(result)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+	   })
+	})
+	
+	$('.rday_can').click(function(){
+		let year=$(this).attr("data-year")
+		let month=$(this).attr("data-month")
+		let day1=$(this).attr("data-day1")
+		let rday=year+"년 "+month+"월 "+day1+"일"
+		$('#camp_day').text(rday)
+		
+		$.ajax({
+			type:'post',
+			url:'../camp/reserve.do',
+			data:{"day1":day1},
+			success:function(result)
+			{
+				$('#camp_time').html(result)
+				
+				$('#r_date').val(year+"-"+month+"-"+day1)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+})
+$(function(){
+	$('.times').click(function(){
+		let time=$(this).text()
+		
+		$.ajax({
+			type:'post',
+			url:'../camp/reserve.do',
+			success:function(result)
+			{
+				$('#camp_inwon').html(result)
+				$('#camp_time_data').text(time)
+				
+				$('#r_time').val(time)
+			},
+			error:function(request,status,error)
+			{
+				console.log(error)
+			}
+		})
+	})
+})
+$(function(){
+	$('.inwons').click(function(){
+		let inwon=$(this).text()
+		$('#camp_inwon_data').text(inwon)
+		$('#reserveBtn').show()
+		
+		$('#r_inwon').val(inwon)
 	})
 })
 </script>
-</head>
+<style type="text/css">
+.rday_can:hover{
+	cursor: pointer;
+}
+</style>
 <body>
 
 <!-- Header Start -->
@@ -74,12 +164,49 @@ $(function(){
     <tr>
       <td width=30% class="danger" height="400">
        <table class="table">
-        <caption><h4 class="text-center">캠핑장 정보</h4></caption>
+        <h4 class="text-center">캠핑장 정보</h4>
         <tr>
-        	<td>
-        		<div id="camp_list" style="height:400px;overflow-y:scroll"></div>
+        	<td colspan="2" class="text-center">
+        		<img src="${vo.image1 }" style="width:200px;height:200px">
         	</td>
         </tr>
+        <tr>
+        	<th width="20%">업체명</th>
+        	<td width="80%">${vo.camp_name }</td>
+        </tr>
+        <tr>
+        	<th width="20%">주소</th>
+        	<td width="80%">${vo.camp_addr }</td>
+        </tr>
+        <tr>
+        	<th width="20%">☎</th>
+        	<td width="80%">${vo.camp_phone }</td>
+        </tr>
+        <tr>
+        	<th width="20%">가격</th>
+        	<td width="80%">${vo.camp_price }원</td>
+        </tr>
+        <tr>
+        	<th width="20%">예약일</th>
+        	<td width="80%" id="camp_day"></td>
+        </tr>
+        <tr>
+        	<th width="20%">시간</th>
+        	<td width="80%" id="camp_time_data"></td>
+        </tr>
+        <tr>
+        	<th width="20%">인원</th>
+        	<td width="80%" id="camp_inwon_data"></td>
+        </tr>
+        
+        <form action="../reserve/reserve_ok.do" method="post">
+        			<input type="hidden" name="fno" value="" id="r_fno">
+        			<input type="hidden" name="date" value="" id="r_date">
+        			<input type="hidden" name="time" value="" id="r_time">
+        			<input type="hidden" name="inwon" value="" id="r_inwon">
+        			<button class="btn-lg btn-primary">예약하기</button>
+        		</form>
+        
        </table>
       </td>
       <td width=30% class="info" height="400">
@@ -87,18 +214,87 @@ $(function(){
         <caption><h4 class="text-center">예약일 정보</h4></caption>
         <tbody>
          <tr>
-          <td id="rdate"></td>
+          <td id="rdate">
+          	  <table class="table">
+			   <tr>
+			     <td class="text-center">${year }년 ${month }월</td>
+			   </tr>
+			   <tr>
+			     <td class="inline">
+			      <select name="year" id="year" class="input-sm">
+			       <c:forEach var="i" begin="2024" end="2028">
+			        <option ${i==year?"selected":""}>${i }</option>
+			       </c:forEach>
+			      </select>년&nbsp;
+			      <select name="month" id="month" class="input-sm">
+			       <c:forEach var="i" begin="1" end="12">
+			        <option ${i==month?"selected":""}>${i }</option>
+			       </c:forEach>
+			      </select>월
+			     </td>
+			   </tr>
+			  </table>
+			  <div style="height: 10px"></div>
+			  <table class="table">
+			    <tr>
+			     <c:forEach var="i" items="${weeks }" varStatus="s">
+			       <c:choose>
+			        <c:when test="${s.index==0 }">
+			         <c:set var="color" value="red"/>
+			        </c:when>
+			        <c:when test="${s.index==6 }">
+			         <c:set var="color" value="blue"/>
+			        </c:when>
+			        <c:otherwise>
+			          <c:set var="color" value="white"/>
+			        </c:otherwise>
+			       </c:choose>
+			       <th class="text-center"><span style="color:${color}">${i }</span></th>
+			     </c:forEach>
+			    </tr>
+			    <c:set var="week" value="${week}"/>
+			    <c:forEach var="i" begin="1" end="${lastday }">
+			      <c:if test="${i==1 }">
+			       <tr>
+			        <c:forEach var="j" begin="1" end="${week }">
+			          <td class="text-center" height="35">&nbsp;</td>
+			        </c:forEach>
+			      </c:if>
+			      <c:if test="${rday[i]==1 }">
+				      <td class="text-center success ${day1==i?'danger':'' }" height="35">
+				      	<span class="rday_can" style="font-weight:bold"
+				      	  data-year="${year }"
+				      	  data-month="${month }"
+				      	  data-day1="${i }">${i }</span>
+				      </td>
+			      </c:if>
+			      <c:if test="${rday[i]==0 }">
+				      <td class="text-center ${day1==i?'danger':'' }" height="35">
+				      	<span style="color:gray">${i }</span>
+				      </td>
+			      </c:if>
+			      <c:set var="week" value="${week+1 }"/>
+			      <c:if test="${week>6 }">
+			       <c:set var="week" value="0"/>
+			       <tr/>
+			       <tr>
+			      </c:if>
+			    </c:forEach>
+			    </tr>
+			  </table>
+          </td>
          </tr>
         </tbody>
        </table>
       </td>
-      <td width=20% rowspan="2" class="success" height="500">
+      
+      <td width=20% rowspan="2" class="success" height="500"> 
        <table class="table">
         <caption><h4 class="text-center">예약 정보</h4></caption>
         <tr>
         	<td class="text-center" colspan="2">
         		<img src="#"
-        		  style="width:250px;height:180px" id="camp_image">
+        		  style="width:200px;height:200px" id="">
         	</td>
         </tr>
         <tr>
@@ -110,16 +306,16 @@ $(function(){
         	<td width="70%" id="camp_phone"></td>
         </tr>
         <tr>
-        	<td width="30%" class="text-right">예악일</td>
-        	<td width="70%" id="camp_day"></td>
+        	<td width="30%" class="text-right">예약일</td>
+        	<td width="70%"></td>
         </tr>
         <tr>
         	<td width="30%" class="text-right">시간</td>
-        	<td width="70%" id="camp_time_data"></td>
+        	<td width="70%"></td>
         </tr>
         <tr>
         	<td width="30%" class="text-right">인원</td>
-        	<td width="70%" id="camp_inwon_data"></td>
+        	<td width="70%"></td>
         </tr>
         <tr id="reserveBtn" style="display:none">
         	<td colspan="2" class="text-center">
@@ -140,7 +336,11 @@ $(function(){
         <table class="table">
         <caption><h4 class="text-center">시간 정보</h4></caption>
         <tr>
-        	<td class="text-center" id="camp_time"></td>
+        	<td class="text-center" id="camp_time">
+        		<c:forEach var="t" items="${tList }">
+					<span class="btn btn-xs btn-primary times" style="margin-top:5px;margin-left:5px">${t }</span>
+				</c:forEach>
+        	</td>
         </tr>
        </table>
       </td>
@@ -148,7 +348,12 @@ $(function(){
        <table class="table">
         <caption><h4 class="text-center">인원 정보</h4></caption>
         <tr>
-        	<td class="text-center" id="camp_inwon"></td>
+        	<td class="text-center" id="camp_inwon">
+        		<c:forEach var="i" begin="1" end="5">
+					<span class="btn btn-xs btn-danger inwons">${i }명</span>
+				</c:forEach>
+					<span class="btn btn-xs btn-danger inwons">단체</span>
+        	</td>
         </tr>
        </table>
       </td>
@@ -178,13 +383,7 @@ $(function(){
             </div>
         </div>
         <!-- Copyright End -->
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
-        
-        <!-- JavaScript Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="lib/easing/easing.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
@@ -194,6 +393,7 @@ $(function(){
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+      
 
 
 

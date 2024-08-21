@@ -268,4 +268,35 @@ public class CampDAO {
 		return total;
 	}
 	
+	/*
+	<select id="campReserveData" resultType="CampVO" parameterType="int">
+		SELECT camp_name,image1,camp_name,camp_phone,camp_price
+		FROM camp
+		WHERE camp_no=#{camp_no}
+	</select>
+	 */
+	public static CampVO campReserveData(int camp_no)
+	{
+		CampVO vo=new CampVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("campReserveData",camp_no);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 11");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	
 }

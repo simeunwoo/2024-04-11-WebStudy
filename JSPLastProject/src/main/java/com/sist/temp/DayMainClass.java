@@ -7,20 +7,20 @@ public class DayMainClass {
 		DayMainClass d=new DayMainClass();
 	//	d.dayRandom();
 		DayDAO dao=new DayDAO();
-	/*	List<Integer> list=dao.foodGetFno();
+		List<Integer> list=dao.foodGetFno();
 		for(int fno:list)
 		{
 			dao.foodRdaysUpdate(fno, d.dayRandom());
 		}
-		System.out.println("수정 완료"); */
+		System.out.println("수정 완료");
 		
-		for(int i=1;i<=31;i++)
+/*		for(int i=1;i<=31;i++)
 		{
 			dao.timeInsert(i, d.timeRandom());
 		}
-		System.out.println("저장 완료");
+		System.out.println("저장 완료"); */
 	}
-	/*
+	
 	public String dayRandom()
 	{
 		int[] days=new int[(int)(Math.random()*10)+10];
@@ -61,8 +61,8 @@ public class DayMainClass {
 		System.out.println(str);
 		
 		return str;
-	} */
-	
+	} 
+	/*
 	public String timeRandom()
 	{
 		int[] times=new int[(int)(Math.random()*10)+5];
@@ -92,5 +92,5 @@ public class DayMainClass {
 		str=str.substring(0,str.lastIndexOf(","));
 		
 		return str;
-	}
+	} */
 }

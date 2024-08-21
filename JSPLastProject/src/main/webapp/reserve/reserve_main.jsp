@@ -9,7 +9,7 @@
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-/*
+
 $(function(){	
 	$.ajax({
 		type:'post',
@@ -24,7 +24,7 @@ $(function(){
 		}
 	})
 })
-*/
+
 </script>
 <body>
 <div class="wrapper row3">
@@ -70,7 +70,7 @@ $(function(){
         	<td width="70%" id="food_phone"></td>
         </tr>
         <tr>
-        	<td width="30%" class="text-right">예악일</td>
+        	<td width="30%" class="text-right">예약일</td>
         	<td width="70%" id="food_day"></td>
         </tr>
         <tr>
