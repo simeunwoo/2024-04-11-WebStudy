@@ -21,6 +21,7 @@
      <typeAlias type="com.sist.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
      <typeAlias type="com.sist.vo.ReplyBoardVO" alias="BoardreplyVO"/>
      <typeAlias type="com.sist.vo.ReserveVO" alias="ReserveVO"/>
+     <typeAlias type="com.sist.vo.RecipeVO" alias="RecipeVO"/>
    </typeAliases>
    <!-- connection관련 : getConnection/disConnection -->
     <environments default="development">
@@ -50,5 +51,6 @@
      <mapper resource="com/sist/mapper/replyboard-mapper.xml"/>
      <mapper resource="com/sist/mapper/reply-mapper.xml"/>
      <mapper resource="com/sist/mapper/reserve-mapper.xml"/>
+     <mapper resource="com/sist/mapper/recipe-mapper.xml"/>
    </mappers>
 </configuration>
