@@ -73,4 +73,29 @@ public class RecipeDAO {
 		
 		return count;
 	}
+	
+	public static RecipeDetailVO recipeDetailData(int no)
+	{
+		RecipeDetailVO vo=new RecipeDetailVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("recipeHitIncrement",no);
+			session.commit();
+			vo=session.selectOne("recipeDetailData",no);
+		}catch(Exception ex)
+		{
+			System.out.println("RecipeDAO 오류 3");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 }

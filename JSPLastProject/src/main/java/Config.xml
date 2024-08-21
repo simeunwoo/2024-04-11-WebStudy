@@ -22,6 +22,8 @@
      <typeAlias type="com.sist.vo.ReplyBoardVO" alias="BoardreplyVO"/>
      <typeAlias type="com.sist.vo.ReserveVO" alias="ReserveVO"/>
      <typeAlias type="com.sist.vo.RecipeVO" alias="RecipeVO"/>
+     <typeAlias type="com.sist.vo.RecipeDetailVO" alias="RecipeDetailVO"/>
+     <typeAlias type="com.sist.vo.ChefVO" alias="ChefVO"/>
    </typeAliases>
    <!-- connection관련 : getConnection/disConnection -->
     <environments default="development">
