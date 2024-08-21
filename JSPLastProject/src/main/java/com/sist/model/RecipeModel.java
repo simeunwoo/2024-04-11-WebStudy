@@ -74,4 +74,31 @@ public class RecipeModel {
 		request.setAttribute("main_jsp", "../recipe/recipe_detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("recipe/chef_list.do")
+	public String chef_list(HttpServletRequest request,HttpServletResponse response)
+	{
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		
+		int rowSize=50;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<ChefVO> list=RecipeDAO.recipeChefListData(map);
+		int totalpage=RecipeDAO.recipeChefTotalPage();
+		
+		request.setAttribute("chefList", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		
+		request.setAttribute("main_jsp", "../recipe/chef_list.jsp");
+		return "../main/main.jsp";
+	}
 }

@@ -19,7 +19,7 @@ public class CampModel {
 	{"전체","의정부","안양","평택","동두천","안산","고양","남양주","오산","용인","파주","안성","김포","화성",
 	"광주","양주","포천","여주","연천","가평","양평","청주","충주","제천","보은","옥천","영동","진천","음성",
 	"괴산","단양","증평","천안","아산","서산","당진","공주","보령","논산","홍성","예산","부여","서천","청양",
-	"태안","금산"};
+	"태안","금산"}; // 총 46개 => [0]~[45]
 
 	@RequestMapping("camp/list.do")
 	public String camp_list(HttpServletRequest request,HttpServletResponse response)
@@ -78,6 +78,8 @@ public class CampModel {
 	public String camp_map(HttpServletRequest request,HttpServletResponse response)
 	{
 		String a=request.getParameter("a");
+		if(a==null)
+			a="1";
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
@@ -89,8 +91,6 @@ public class CampModel {
 		int end=rowSize*curpage;
 		map.put("start", start);
 		map.put("end", end);
-		map.put("page", curpage);
-		map.put("camp_addr", aList[Integer.parseInt(a)]);
 		
 		List<CampVO> list=CampDAO.campFindData(map);
 		int totalpage=CampDAO.campFindTotalPage();
