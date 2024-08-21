@@ -92,8 +92,10 @@ public class CampModel {
 		map.put("start", start);
 		map.put("end", end);
 		
+		<<< a와 camp_addr 사이 ~ >>>
+		
 		List<CampVO> list=CampDAO.campFindData(map);
-		int totalpage=CampDAO.campFindTotalPage();
+		int totalpage=CampDAO.campFindTotalPage(camp_addr);
 		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;

@@ -162,7 +162,7 @@ public class CampDAO {
 		return list;
 	}
 	
-	public static int campFindTotalPage()
+	public static int campFindTotalPage(String camp_addr)
 	{
 		int total=0;
 		SqlSession session=null;
@@ -170,7 +170,7 @@ public class CampDAO {
 		try
 		{
 			session=ssf.openSession();
-			total=session.selectOne("campFindTotalPage");
+			total=session.selectOne("campFindTotalPage",camp_addr);
 		}catch(Exception ex)
 		{
 			System.out.println("CampDAO 오류 7");
