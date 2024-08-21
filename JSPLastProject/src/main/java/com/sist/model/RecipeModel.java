@@ -64,8 +64,8 @@ public class RecipeModel {
 		}
 		
 		String s=vo.getData();
-		s=s.replace("구매", "");
-		vo.setData(s.trim());
+		// s=s.replace("구매", "");
+		// vo.setData(s.trim());
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("foodsList", sList);
