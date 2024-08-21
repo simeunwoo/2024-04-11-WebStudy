@@ -32,7 +32,7 @@ public class GoodsModel {
 		int rowSize=20;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-		map.put("table_name", tables[Integer.parseInt(cno)]);
+	//	map.put("table_name", tables[Integer.parseInt(cno)]);
 		map.put("start", start);
 		map.put("end", end);
 		
@@ -66,7 +66,7 @@ public class GoodsModel {
 		String no=request.getParameter("no");
 		
 		Map map=new HashMap();
-		map.put("table_name", tables[Integer.parseInt(cno)]);
+	//	map.put("table_name", tables[Integer.parseInt(cno)]);
 		map.put("no", no);
 		
 		GoodsVO vo=GoodsDAO.goodsDetailData(map);
@@ -76,6 +76,7 @@ public class GoodsModel {
 		vo.setPrice(Integer.parseInt(price));
 		
 		request.setAttribute("vo", vo);
+		request.setAttribute("type", cno);
 		
 		request.setAttribute("main_jsp", "../goods/detail.jsp");
 		return "../main/main.jsp";

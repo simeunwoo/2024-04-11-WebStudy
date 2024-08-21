@@ -53,8 +53,8 @@
 		width: 100%;
 		height: 40px;
 	}
-	#cart,#buy{
-		width: 250px;
+	#cart,#buy,#list{
+		width: 150px;
 		height: 70px;
 		border: 2px green solid;
 		font-size: 20px;
@@ -74,6 +74,10 @@
 		background-color: green;
 		color:white;
 	}
+	#list{
+		background-color: blue;
+		color:white;
+	}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -88,6 +92,7 @@ $(function(){
 		let price=$('#sel').attr("data-price")
 		let total=Number(price)*Number(account)
 		$('#total').text(total.toLocaleString()+"원")
+		$('#account').val(account)
 	})
 })
 </script>
@@ -162,10 +167,17 @@ $(function(){
 	   </tr>
 	   <tr>
 		   <td width="60%" class="inline">
-			   <input type="button" value="장바구니" id="cart">
-			   <input type="button" value="바로구매" id="buy"
-			    onclick="requestPay()"
-			   >
+		   		<c:if test="${sessionScope.id!=null }">
+		   			<form method="post" action="../goods/cart_insert.do">
+		   				<input type="hidden" name="gno" value="${vo.no }">
+		   				<input type="hidden" name="type" value="${type }">
+		   				<input type="hidden" name="price" value="${vo.price }">
+		   				<input type="hidden" name="account" value="" id="account">
+		   				<input type="button" value="장바구니" id="cart">
+		   			</form>
+				   <input type="button" value="바로구매" id="buy">
+				</c:if>
+			    <input type="button" value="목록" onclick="javascript:history.back()">
 		   </td>
 	   </tr>
    </table>
