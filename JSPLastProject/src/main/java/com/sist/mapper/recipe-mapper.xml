@@ -21,7 +21,7 @@
 		hit=hit+1
 		WHERE no=#{no}
 	</update>
-	<select id="recipeDetail" resultType="RecipeDetailVO" parameterType="int">
+	<select id="recipeDetailData" resultType="RecipeDetailVO" parameterType="int">
 		SELECT *
 		FROM recipeDetail
 		WHERE no=#{no}

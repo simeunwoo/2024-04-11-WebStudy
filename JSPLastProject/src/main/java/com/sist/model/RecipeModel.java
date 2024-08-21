@@ -56,8 +56,20 @@ public class RecipeModel {
 		List<String> iList=new ArrayList<String>();
 		
 		String[] temp=vo.getFoodmake().split("\n");
+		for(String fm:temp)
+		{
+			StringTokenizer st=new StringTokenizer(fm,"^");
+			sList.add(st.nextToken());
+			iList.add(st.nextToken());
+		}
+		
+		String s=vo.getData();
+		s=s.replace("구매", "");
+		vo.setData(s.trim());
 		
 		request.setAttribute("vo", vo);
+		request.setAttribute("foodsList", sList);
+		request.setAttribute("imgList", iList);
 		
 		request.setAttribute("main_jsp", "../recipe/recipe_detail.jsp");
 		return "../main/main.jsp";
