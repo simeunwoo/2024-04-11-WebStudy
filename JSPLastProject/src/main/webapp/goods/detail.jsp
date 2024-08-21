@@ -173,7 +173,7 @@ $(function(){
 		   				<input type="hidden" name="type" value="${type }">
 		   				<input type="hidden" name="price" value="${vo.price }">
 		   				<input type="hidden" name="account" value="" id="account">
-		   				<input type="button" value="장바구니" id="cart">
+		   				<input type="submit" value="장바구니" id="cart">
 		   			</form>
 				   <input type="button" value="바로구매" id="buy">
 				</c:if>
