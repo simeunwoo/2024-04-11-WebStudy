@@ -14,6 +14,7 @@ public class RecipeModel {
 	@RequestMapping("recipe/recipe_list.do")
 	public String recipe_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		// 어떤 데이터를 전송할 지
 		request.setAttribute("main_jsp", "../recipe/recipe_list.jsp");
 		return "../main/main.jsp";
 	}
