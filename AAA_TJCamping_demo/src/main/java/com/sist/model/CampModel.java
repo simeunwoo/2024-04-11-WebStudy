@@ -79,7 +79,7 @@ public class CampModel {
 	{
 		String a=request.getParameter("a");
 		if(a==null)
-			a="1";
+			a="0";
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
