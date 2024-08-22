@@ -290,4 +290,59 @@ public class MemberDAO {
   		
   		return result;
   	}
+  	
+  	/*
+  	<select id="pwdCheckData" resultType="int" parameterType="hashmap">
+  	SELECT COUNT(*)
+  	FROM project_number
+  	WHERE id=#{id} AND pwd=#{pwd}
+  </select>
+  <update id="pwdChange" parameterType="hashmap">
+  	UPDATE project_member SET
+  	pwd=#{pwd}
+  	WHERE id=#{id}
+  </update>
+  	 */
+  	public static int pwdCheckData(Map map)
+  	{
+  		int count=0;
+  		SqlSession session=null;
+  		
+  		try
+  		{
+  			session=ssf.openSession();
+  			count=session.selectOne("pwdCheckData",map);
+  		}catch(Exception ex)
+  		{
+  			System.out.println("MemberDAO 오류 9");
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			if(session!=null)
+  				session.close();
+  		}
+  		
+  		return count;
+  	}
+  	
+  	public static void pwdChange(Map map)
+  	{
+  		SqlSession session=null;
+  		
+  		try
+  		{
+  			session=ssf.openSession(true);
+  			session.update("pwdChange",map);
+  		}catch(Exception ex)
+  		{
+  			System.out.println("MemberDAO 오류 10");
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			if(session!=null)
+  				session.close();
+  		}
+  	}
 }

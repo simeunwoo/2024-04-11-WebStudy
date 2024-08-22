@@ -199,6 +199,22 @@ public class MemberModel {
 	  String npwd=request.getParameter("new_pwd");
 	  
 	  // 데이터베이스 연동
+	  Map map=new HashMap();
+	  map.put("id", id);
+	  map.put("pwd", opwd);
+	  
+	  int count=MemberDAO.pwdCheckData(map);
+	  if(count!=0)
+	  {
+		  map=new HashMap();
+		  map.put("id", id);
+		  map.put("pwd", npwd);
+		  MemberDAO.pwdChange(map);
+		  
+		  session.invalidate();
+	  }
+	  
+	  request.setAttribute("count", count);
 	  
 	  return "../member/pwd_change_ok.jsp";
   }
