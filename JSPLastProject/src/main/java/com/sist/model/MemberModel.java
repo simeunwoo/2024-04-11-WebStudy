@@ -180,7 +180,7 @@ public class MemberModel {
   }
   
   @RequestMapping("member/pwd_change.do")
-  public String pwd_change(HttpServletRequest request,HttpServletResponse response)
+  public String member_pwd_change(HttpServletRequest request,HttpServletResponse response)
   {
 	  request.setAttribute("title", "비밀 번호 변경");
 	  
@@ -190,7 +190,7 @@ public class MemberModel {
   }
   
   @RequestMapping("member/pwd_change_ok.do")
-  public String pwd_change_ok(HttpServletRequest request,HttpServletResponse response)
+  public String member_pwd_change_ok(HttpServletRequest request,HttpServletResponse response)
   {
 	  HttpSession session=request.getSession();
 	  String id=(String)session.getAttribute("id");
