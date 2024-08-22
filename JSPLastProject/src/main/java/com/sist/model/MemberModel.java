@@ -127,78 +127,44 @@ public class MemberModel {
 	  MemberDAO.memberInsert(vo);
 	  return "redirect:../main/main.do";
   }
-  
   @RequestMapping("member/idfind.do")
   public String member_idfind(HttpServletRequest request,HttpServletResponse response)
   {
 	  request.setAttribute("main_jsp", "../member/idfind.jsp");
 	  return "../main/main.jsp";
   }
-  
-  @RequestMapping("member/idcheck_ok2.do")
-  public void member_idcheck_ok2(HttpServletRequest request,HttpServletResponse response)
+  @RequestMapping("member/idcheck_ok.do")
+  public void member_idfind_ok(HttpServletRequest request,HttpServletResponse response)
   {
 	  try
 	  {
 		  request.setCharacterEncoding("UTF-8");
-	  }catch(Exception ex) {}
-	  
+	  }catch(Exception ex){}
 	  String name=request.getParameter("name");
 	  String email=request.getParameter("email");
 	  
 	  MemberVO vo=new MemberVO();
 	  vo.setName(name);
 	  vo.setEmail(email);
-	  
-	  // 데이터베이스 연동
+	  // 데이터베이스 연동 
 	  String result=MemberDAO.memberIdFindData(vo);
-	  
-	  // Ajax로 값 전송
+	  // Ajax로 값 전송 
 	  try
 	  {
 		  PrintWriter out=response.getWriter();
 		  out.write(result);
 	  }catch(Exception ex) {}
   }
-  
-  @RequestMapping("member/idcheck_ok3.do")
-  public void member_idcheck_ok3(HttpServletRequest request,HttpServletResponse response)
-  {
-	  try
-	  {
-		  request.setCharacterEncoding("UTF-8");
-	  }catch(Exception ex) {}
-	  
-	  String name=request.getParameter("name");
-	  String phone=request.getParameter("phone");
-	  
-	  MemberVO vo=new MemberVO();
-	  vo.setName(name);
-	  vo.setPhone(phone);
-	  
-	  // 데이터베이스 연동
-	  String result=MemberDAO.memberIdFindData2(vo);
-	  
-	  // Ajax로 값 전송
-	  try
-	  {
-		  PrintWriter out=response.getWriter();
-		  out.write(result);
-	  }catch(Exception ex) {}
-  }
-  
   @RequestMapping("member/pwdfind.do")
   public String member_pwdfind(HttpServletRequest request,HttpServletResponse response)
   {
 	  request.setAttribute("main_jsp", "../member/pwdfind.jsp");
 	  return "../main/main.jsp";
   }
-  
   @RequestMapping("member/pwdfind_ok.do")
   public void member_pwdfind_ok(HttpServletRequest request,HttpServletResponse response)
   {
 	  String id=request.getParameter("id");
-	  
 	  String result=MemberDAO.memberPwdFindData(id);
 	  if(!result.equals("no"))
 	  {
@@ -211,5 +177,15 @@ public class MemberModel {
 		  PrintWriter out=response.getWriter();
 		  out.write(result);
 	  }catch(Exception ex) {}
+  }
+  
+  @RequestMapping("member/pwd_change.do")
+  public String pwd_change(HttpServletRequest request,HttpServletResponse response)
+  {
+	  request.setAttribute("title", "비밀 번호 변경");
+	  
+	  request.setAttribute("mypage_jsp", "../member/pwd_change.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
   }
 }
