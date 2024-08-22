@@ -162,6 +162,7 @@ public class ReserveModel {
 		
 		List<ReserveVO> list=FoodDAO.reserveMyPageData(id);
 		
+		request.setAttribute("title", "예약 관리");
 		request.setAttribute("recvList", list);
 		
 		request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
@@ -254,7 +255,7 @@ public class ReserveModel {
 		obj.put("time", vo.getTime());
 		obj.put("inwon", vo.getInwon());
 		obj.put("name", vo.getFvo().getName());
-		obj.put("poster", vo.getFvo().getPoster());
+		obj.put("poster", "http://www.menupan.com"+vo.getFvo().getPoster());
 		obj.put("address", vo.getFvo().getAddress());
 		obj.put("phone", vo.getFvo().getPhone());
 		obj.put("theme", vo.getFvo().getTheme());

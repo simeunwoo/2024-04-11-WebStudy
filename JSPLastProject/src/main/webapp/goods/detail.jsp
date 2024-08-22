@@ -176,7 +176,7 @@ $(function(){
 		   			</form>
 				   <input type="button" value="바로구매" id="buy">
 				</c:if>
-			    <input type="button" value="목록" onclick="javascript:history.back()">
+			    <input type="button" value="목록" onclick="javascript:history.back()" id="list">
 		   </td>
 	   </tr>
    </table>

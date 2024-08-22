@@ -12,35 +12,28 @@
         var IMP = window.IMP; 
         IMP.init("imp68206770"); 
         
-        function requestPay(json) {
+        function requestPay(json,name,price) {
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
                 merchant_uid: "ORD20180131-0000011", // 주문번호
-                name: $('#gname').text(),
-                amount: $('#price').text(), // 숫자 타입
+                name: name,
+                amount: price, // 숫자 타입
                 buyer_email: json.email,
                 buyer_name: json.name,
                 buyer_tel: json.phone,
                 buyer_addr: json.address,
                 buyer_postcode: json.post
             }, function (rsp) { // callback
-                $.ajax({
-                   type: 'POST',
-                   url: '/verify/' + rsp.imp_uid
-                }).done(function(data) {
-                    if(rsp.paid_amount === data.response.amount){
-                        alert("결제 성공");
-                    } else {
-                        alert("결제 성공");
-                    }
-                });
+                location.href='http://localhost/JSPLastProject/mypage/mypage_buy.do'
             });
         }
         
         $(function(){
         	$('#buyBtn').click(function(){
-        		let cno=$('#cno').text()
+        		let cno=$(this).attr("data-cno")
+        		let name=$('#gname'+cno).text()
+        		let price=$('#price'+price).text()
         		$.ajax({
         			type:'post',
         			url:'../mypage/mypage_cart_buy.do'
@@ -48,8 +41,7 @@
         			success:function(result)
         			{
         				let json=JSON.parse(result)
-        				requestPay(json)
-        				location.href="../mypage/mypage_buy.do"
+        				requestPay(json,name,price)
         			}
         		})
         	})
@@ -82,11 +74,11 @@
 					<td class="text-center">
 						<img src="${vo.gvo.goods_poster }" style="width:25px;height:25px">
 					</td>
-					<td class="text-center" id="gname">${vo.gvo.goods_name }</td>
-					<td class="text-center" id="account">${vo.account }</td>
-					<td class="text-center" id="price">${vo.price }</td>
+					<td class="text-center" id="gname${vo.cno }">${vo.gvo.goods_name }</td>
+					<td class="text-center" id="account${vo.cno }">${vo.account }</td>
+					<td class="text-center" id="price${vo.cno }">${vo.price }</td>
 					<td class="text-center">
-						<input type="button" class="btn btn-xs btn-primary" value="구매" id="buyBtn">
+						<input type="button" class="btn btn-xs btn-primary" value="구매" data-cno="${vo.cno }">
 						<a href="../mypage/mypage_cart_cancel.do?cno=${vo.cno }" class="btn btn-xs btn-danger">취소</a>
 					</td>
 				</tr>
