@@ -104,7 +104,7 @@ public class ReserveModel {
 		request.setAttribute("week", week);
 		request.setAttribute("weeks", weeks);
 		request.setAttribute("lastday", lastday);
-		request.setAttribute("fno", strCno);
+		request.setAttribute("strCno", strCno);
 		
 		request.setAttribute("vo", vo);
 		
@@ -128,7 +128,7 @@ public class ReserveModel {
 		return "../main/main.jsp";
 	}
 	
-	/*
+	
 	@RequestMapping("camp_/reserve_ok.do")
 	public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -158,9 +158,8 @@ public class ReserveModel {
 		vo.setInwon(inwon);
 		vo.setId(id);
 		
-		CampDAO.reserveInsert(vo);
+		ReserveDAO.campReserveInsert(vo);
 		
 		return "redirect:../mypage/mypage_reserve.do";
-	} */
-	
+	}
 }

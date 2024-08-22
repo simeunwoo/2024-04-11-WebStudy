@@ -37,11 +37,12 @@
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 $(function(){
-	$('#year').change(function(){
+	function loadCalendar(){
 		let year=$('#year').val()
 		let month=$('#month').val()
-		let cno=${cno}
+		let cno=${strCno}
 		
 		$.ajax({
 			type:'post',
@@ -49,58 +50,23 @@ $(function(){
 			data:{"year":year,"month":month,"cno":cno},
 			success:function(result)
 			{
-				$('#rdate').html(result)
-			},
-			error:function(request,status,error)
-			{
-				console.log(error)
-			}
-	   })
-	})
-	
-	$('#month').change(function(){
-		let year=$('#year').val()
-		let month=$('#month').val()
-		let cno=${cno}
-		
-		$.ajax({
-			type:'post',
-			url:'../camp/reserve.do',
-			data:{"year":year,"month":month,"cno":cno},
-			success:function(result)
-			{
-				$('#rdate').html(result)
-			},
-			error:function(request,status,error)
-			{
-				console.log(error)
-			}
-	   })
-	})
-	
-	$('.rday_can').click(function(){
-		let year=$(this).attr("data-year")
-		let month=$(this).attr("data-month")
-		let day1=$(this).attr("data-day1")
-		let rday=year+"년 "+month+"월 "+day1+"일"
-		$('#camp_day').text(rday)
-		
-		$.ajax({
-			type:'post',
-			url:'../camp/reserve.do',
-			data:{"day1":day1},
-			success:function(result)
-			{
-				$('#camp_time').html(result)
 				
-				$('#r_date').val(year+"-"+month+"-"+day1)
 			},
 			error:function(request,status,error)
 			{
 				console.log(error)
 			}
-		})
+			})
+		}
+	
+	loadCalendar()
+	
+	$('#year,#month').change(function(){
+		loadCalendar()
 	})
+	
+	
+	
 })
 $(function(){
 	$('.times').click(function(){
@@ -111,7 +77,6 @@ $(function(){
 			url:'../camp/reserve.do',
 			success:function(result)
 			{
-				$('#camp_inwon').html(result)
 				$('#camp_time_data').text(time)
 				
 				$('#r_time').val(time)
@@ -140,7 +105,7 @@ $(function(){
 </style>
 <body>
 
-<!-- Header Start -->
+		<!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
                 <h3 class="text-white display-3 mb-4">캠핑장 예약</h3>
@@ -200,12 +165,12 @@ $(function(){
         </tr>
         
         <form action="../reserve/reserve_ok.do" method="post">
-        			<input type="hidden" name="fno" value="" id="r_fno">
-        			<input type="hidden" name="date" value="" id="r_date">
-        			<input type="hidden" name="time" value="" id="r_time">
-        			<input type="hidden" name="inwon" value="" id="r_inwon">
-        			<button class="btn-lg btn-primary">예약하기</button>
-        		</form>
+        	<input type="hidden" name="strCno" value="" id="r_cno">
+        	<input type="hidden" name="date" value="" id="r_date">
+        	<input type="hidden" name="time" value="" id="r_time">
+        	<input type="hidden" name="inwon" value="" id="r_inwon">
+        	<button class="btn-lg btn-primary">예약하기</button>
+        </form>
         
        </table>
       </td>
@@ -214,7 +179,7 @@ $(function(){
         <caption><h4 class="text-center">예약일 정보</h4></caption>
         <tbody>
          <tr>
-          <td id="rdate">
+          <td>
           	  <table class="table">
 			   <tr>
 			     <td class="text-center">${year }년 ${month }월</td>
@@ -246,7 +211,7 @@ $(function(){
 			         <c:set var="color" value="blue"/>
 			        </c:when>
 			        <c:otherwise>
-			          <c:set var="color" value="white"/>
+			          <c:set var="color" value="black"/>
 			        </c:otherwise>
 			       </c:choose>
 			       <th class="text-center"><span style="color:${color}">${i }</span></th>
@@ -262,10 +227,7 @@ $(function(){
 			      </c:if>
 			      <c:if test="${rday[i]==1 }">
 				      <td class="text-center success ${day1==i?'danger':'' }" height="35">
-				      	<span class="rday_can" style="font-weight:bold"
-				      	  data-year="${year }"
-				      	  data-month="${month }"
-				      	  data-day1="${i }">${i }</span>
+				      	
 				      </td>
 			      </c:if>
 			      <c:if test="${rday[i]==0 }">
@@ -287,50 +249,8 @@ $(function(){
         </tbody>
        </table>
       </td>
-      
-      <td width=20% rowspan="2" class="success" height="500"> 
-       <table class="table">
-        <caption><h4 class="text-center">예약 정보</h4></caption>
-        <tr>
-        	<td class="text-center" colspan="2">
-        		<img src="#"
-        		  style="width:200px;height:200px" id="">
-        	</td>
-        </tr>
-        <tr>
-        	<td width="30%" class="text-right">업체명</td>
-        	<td width="70%" id="camp_name"></td>
-        </tr>
-        <tr>
-        	<td width="30%" class="text-right">☎</td>
-        	<td width="70%" id="camp_phone"></td>
-        </tr>
-        <tr>
-        	<td width="30%" class="text-right">예약일</td>
-        	<td width="70%"></td>
-        </tr>
-        <tr>
-        	<td width="30%" class="text-right">시간</td>
-        	<td width="70%"></td>
-        </tr>
-        <tr>
-        	<td width="30%" class="text-right">인원</td>
-        	<td width="70%"></td>
-        </tr>
-        <tr id="reserveBtn" style="display:none">
-        	<td colspan="2" class="text-center">
-        		<form action="../camp/reserve_ok.do" method="post">
-        			<input type="hidden" name="camp_no" value="" id="r_camp_no">
-        			<input type="hidden" name="date" value="" id="r_date">
-        			<input type="hidden" name="time" value="" id="r_time">
-        			<input type="hidden" name="inwon" value="" id="r_inwon">
-        			<button class="btn-lg btn-primary">예약하기</button>
-        		</form>
-        	</td>
-        </tr>
-       </table>
-      </td>
     </tr>
+    
     <tr>
       <td width=30% class="default" height=100>
         <table class="table">
