@@ -167,10 +167,9 @@ $(function(){
 	   </tr>
 	   <tr>
 		   <td width="60%" class="inline">
-		   		<c:if test="${sessionScope.id!=null }">
+		   		<c:if test="${sessionScope.id!=null and type==1 }">
 		   			<form method="post" action="../goods/cart_insert.do">
 		   				<input type="hidden" name="gno" value="${vo.no }">
-		   				<input type="hidden" name="type" value="${type }">
 		   				<input type="hidden" name="price" value="${vo.price }">
 		   				<input type="hidden" name="account" value="" id="account">
 		   				<input type="submit" value="장바구니" id="cart">
