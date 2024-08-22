@@ -188,4 +188,18 @@ public class MemberModel {
 	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 	  return "../main/main.jsp";
   }
+  
+  @RequestMapping("member/pwd_change_ok.do")
+  public String pwd_change_ok(HttpServletRequest request,HttpServletResponse response)
+  {
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  
+	  String opwd=request.getParameter("old_pwd");
+	  String npwd=request.getParameter("new_pwd");
+	  
+	  // 데이터베이스 연동
+	  
+	  return "../member/pwd_change_ok.jsp";
+  }
 }
