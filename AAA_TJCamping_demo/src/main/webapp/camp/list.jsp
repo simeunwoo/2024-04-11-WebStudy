@@ -104,6 +104,8 @@
         <!-- Explore Tour Start -->
         
 
+           
+           
                 
         
         <div class="container-fluid destination py-5">
@@ -112,6 +114,18 @@
 				<h5 class="section-title px-3">campsite</h5>
 				<h1 class="mb-0">캠핑장</h1>
 			</div>
+			<table class="table">
+			     <tr>
+			      <td class="text-right inline">
+			      <form method="post" action="../camp/find.do">
+			       <input type="checkbox" value="N" name="fs">이름
+			       <input type="checkbox" value="P" name="fs">가격
+			       <input type=text name=ss size=15 class="input-sm">
+			       <input type=submit value="검색" class="btn btn-sm btn-success">
+			       </form>
+			      </td>
+			     </tr>
+			</table>
 			<div class="tab-class text-center">
 				<div class="tab-content">
 					<div id="tab-1" class="tab-pane fade show p-0 active">

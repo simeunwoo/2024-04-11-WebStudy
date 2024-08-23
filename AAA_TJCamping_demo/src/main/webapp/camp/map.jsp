@@ -210,23 +210,23 @@ $(function(){
 <div class="container text-center mt-5">
     <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
         <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
-                <span class="text-dark" style="width: 70px;">전국</span>
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="${aList }">
+                <span class="text-dark" style="width: 150px;">전국</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2" id="btn-gyeonggi">
-                <span class="text-dark" style="width: 70px;">경기</span>
+                <span class="text-dark" style="width: 150px;">경기</span>
             </a>
-        </li>
+        </li> 
         <li class="nav-item">
             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3" id="btn-chungbuk">
-                <span class="text-dark" style="width: 70px;">충북</span>
+                <span class="text-dark" style="width: 150px;">충북</span>
             </a>
-        </li>
+        </li> 
         <li class="nav-item">
             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 70px;">충남</span>
+                <span class="text-dark" style="width: 150px;">충남</span>
             </a>
         </li>
         
@@ -462,10 +462,8 @@ $(function(){
     </ul>
 
     <!-- Sub-buttons will be displayed here -->
-    <div id="sub-button-container" class="sub-buttons">
-    
-    </div>
-    
+    <div id="sub-button-container" class="sub-buttons"></div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -524,8 +522,7 @@ $(function(){
 
 			<div class="tab-class text-center">
 				<div class="tab-content">
-				<c:forEach var="t" begin="0" end="45">
-					<div id="tab-${t }" class="tab-pane fade show p-0 active">
+					<div id="tab-1" class="tab-pane fade show p-0 active">
 						
 							<div class="flexslider carousel basiccarousel btmspace-80"> <!-- col-xl-8 -->
 							<div class="slides"><!-- <div class="row g-4"> -->
@@ -545,6 +542,11 @@ $(function(){
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
 											</div>
+								<!-- 		<div class="search-icon">
+												<a href="${vo.image1 }"
+													data-lightbox="destination-1"><i
+													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+											</div>  -->
 											</div>
 											</div>
 										</c:forEach>
@@ -556,7 +558,6 @@ $(function(){
 					</div>
 				</div>
 			</div>
-			</c:forEach>
 		</div>
 	</div>
 
