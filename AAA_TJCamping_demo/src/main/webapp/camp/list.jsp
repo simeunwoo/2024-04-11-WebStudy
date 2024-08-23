@@ -166,6 +166,22 @@
 			</div>
 		</div>
 	</div>
+	
+<div style="height:80px"></div>
+
+<h2 class="sectiontitle">최근 둘러본 캠핑장</h2>
+    <div class="container">
+      <ul>
+        <c:forEach var="cvo" items="${cookieList }">
+	        <li>
+	          <figure>
+	          	<img src="${cvo.image1 }" style="width:320px;height:185px">
+	            <figcaption><a href="#">${cvo.camp_name }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:forEach>
+      </ul>
+    </div>
 
         <div class="wrapper row3">
 	  <main class="container clear"> 

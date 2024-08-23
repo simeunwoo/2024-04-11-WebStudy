@@ -2,6 +2,7 @@ package com.sist.model;
 import java.io.PrintWriter;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,14 +46,46 @@ public class CampModel {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
+		Cookie[] cookies=request.getCookies();
+		List<CampVO> cookieList=new ArrayList<CampVO>();
+		if(cookies!=null)
+		{
+			for(int i=cookies.length-1;i>=0;i--) // 최신일수록 가장 앞으로
+			{
+				if(cookies[i].getName().startsWith("camp_"))
+				{
+					String cno=cookies[i].getValue();
+					CampVO vo=CampDAO.campDetailData(Integer.parseInt(cno));
+					cookieList.add(vo);
+				}
+			}
+		}
+		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
+		request.setAttribute("cookieList", cookieList);
+		
 		request.setAttribute("main_jsp", "../camp/list.jsp");
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("camp/detail_before.do")
+	public String camp_detail_before(HttpServletRequest request,HttpServletResponse response)
+	{
+		String cno=request.getParameter("cno");
+		
+		// Cookie 저장
+		Cookie cookie=new Cookie("camp_"+cno,cno);
+		cookie.setMaxAge(60*60*24);
+		cookie.setPath("/");
+		
+		response.addCookie(cookie); // 브라우저로 전송
+		
+		return "redirect:../camp/detail.do?cno="+cno;
 	}
 	
 	@RequestMapping("camp/detail.do")

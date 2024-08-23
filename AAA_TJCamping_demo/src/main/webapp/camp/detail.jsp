@@ -349,8 +349,8 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 <div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Campsite Map</h5>
-            <h1 class="mb-0">캠핑장</h1>
+            <h5 class="section-title px-3">Near Campsite</h5>
+            <h1 class="mb-0">주변 캠핑장</h1>
         </div>
         <div class="packages-carousel owl-carousel">
             <c:forEach var="nvo" items="${nList}" varStatus="s">
