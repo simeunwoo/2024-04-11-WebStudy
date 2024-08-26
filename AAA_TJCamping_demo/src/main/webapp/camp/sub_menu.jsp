@@ -28,7 +28,7 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-        <c:forEach var="m" items="${list }">
+        <c:forEach var="m" items="${sList }">
          <span class="btn btn-sm btn-success submenu">${m }</span>
         </c:forEach>
       </td>

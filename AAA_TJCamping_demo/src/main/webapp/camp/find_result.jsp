@@ -14,7 +14,7 @@
         <figure>
           <header class="heading"><h2 class="sectiontitle">&lt;${menu }&gt; 에 있는 캠핑장 목록입니다</h2></header>
           <ul class="nospace clear">
-           <c:forEach var="vo" items="${list }" varStatus="s">
+           <c:forEach var="vo" items="${sList }" varStatus="s">
              <c:if test="${s.index%4==0 }">
                <li class="one_quarter first"><a href="#"><img style="width:250px;height:250px" src="${vo.image1 }" title="${vo.camp_name }"></a></li>
              </c:if>

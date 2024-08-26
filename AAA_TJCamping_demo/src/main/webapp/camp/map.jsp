@@ -134,7 +134,6 @@ $(function(){
     });
 });
 */
-*
 /*	$('#deleteBtn').click(function(){
 		let pwd=$('#del_pwd').val()
 		if(pwd.trim()==="")
