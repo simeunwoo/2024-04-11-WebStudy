@@ -20,7 +20,7 @@ public class CampModel {
 	{"","전체","의정부","안양","평택","동두천","안산","고양","남양주","오산","용인","파주","안성","김포","화성",
 	"광주","양주","포천","여주","연천","가평","양평","청주","충주","제천","보은","옥천","영동","진천","음성",
 	"괴산","단양","증평","천안","아산","서산","당진","공주","보령","논산","홍성","예산","부여","서천","청양",
-	"태안","금산"}; // 총 46개 => [1]~[46]
+	"태안","금산"}; // 총 46개 => [1]~[46] 
 
 	@RequestMapping("camp/list.do")
 	public String camp_list(HttpServletRequest request,HttpServletResponse response)
@@ -185,4 +185,57 @@ public class CampModel {
 		request.setAttribute("main_jsp", "../camp/pet.jsp");
 		return "../main/main.jsp";
 	}
+	
+    @RequestMapping("camp/sub_menu.do")
+    public String camp_sub_menu(HttpServletRequest request,HttpServletResponse response)
+    {
+    	String[] menu1={"전체","의정부","안양","평택","동두천","안산","고양","남양주","오산","용인","파주","안성","김포","화성",
+        		"광주","양주","포천","여주","연천","가평","양평"
+    	};
+    	String[] menu2={"청주","충주","제천","보은","옥천","영동","진천","음성",
+        		"괴산","단양","증평"
+    	};
+    	String[] menu3={"천안","아산","서산","당진","공주","보령","논산","홍성","예산","부여","서천","청양",
+        		"태안","금산"
+    	};
+    	
+        String no=request.getParameter("no");
+        List<String> list=new ArrayList<String>();
+        
+        if(no.equals("1"))
+        {
+        	list.clear();
+        	for(String m:menu1)
+        	{
+        		list.add(m);
+        	}
+        }
+        else if(no.equals("2"))
+        {
+        	list.clear();
+        	for(String m:menu2)
+        	{
+        		list.add(m);
+        	}
+        }
+        else if(no.equals("3"))
+        {
+        	list.clear();
+        	for(String m:menu3)
+        	{
+        		list.add(m);
+        	}
+        }
+        
+        request.setAttribute("list", list);
+        
+    	return "../camp/sub_menu.jsp";
+    }
+    @RequestMapping("camp/find_result.do")
+    public String camp_find_result(HttpServletRequest request,HttpServletResponse response)
+    {
+    	String menu=request.getParameter("menu");
+    	request.setAttribute("menu", menu);
+    	return "../camp/find_result.jsp";
+    }
 }

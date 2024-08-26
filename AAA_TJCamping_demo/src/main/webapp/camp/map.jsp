@@ -202,9 +202,28 @@ $(function(){
 		<!-- 여기다가 검색 기능 넣으세요^^ -->
 	
 		
-		
+	
 <div class="tab-class text-center">
 
+<div class="wrapper row3 reserve_row">
+  <main class="container clear">
+    <table class="table">
+      <tr>
+        <td class="text-center">
+          <span class="btn btn-lg btn-success rebtn" data-no="1">경기</span> 
+          <span class="btn btn-lg btn-info rebtn" data-no="2">충북</span> 
+          <span class="btn btn-lg btn-primary rebtn" data-no="3">충남</span> 
+        </td>
+      </tr>
+    </table>
+    <div id="menu">
+     
+    </div>
+    <div id="recommand">
+      
+    </div>
+  </main>
+</div>
 
 
 <div class="container text-center mt-5">
@@ -234,11 +253,13 @@ $(function(){
         
     </ul>
 
-    <!-- Sub-buttons will be displayed here -->
+    
     <div id="sub-button-container" class="sub-buttons"></div>
 </div>
 
+
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
         // Elements
         const gyeonggiBtn = document.getElementById('btn-gyeonggi');
@@ -280,6 +301,22 @@ $(function(){
             });
         }
     });
+
+
+$(function(){
+	$('.rebtn').click(function(){
+		let no=$(this).attr("data-no");
+		$.ajax({
+			type:'post',
+			url:'../camp/sub_menu.do',
+			data:{"no":no},
+			success:function(result)
+			{
+				$('#menu').html(result);
+			}
+		})
+	})
+})
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -315,11 +352,6 @@ $(function(){
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
 											</div>
-								<!-- 		<div class="search-icon">
-												<a href="${vo.image1 }"
-													data-lightbox="destination-1"><i
-													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-											</div>  -->
 											</div>
 											</div>
 										</c:forEach>
