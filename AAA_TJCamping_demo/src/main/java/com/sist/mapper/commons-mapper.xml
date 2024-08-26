@@ -10,6 +10,7 @@
 		FROM food_house
 	</select>
 	<select id="commonsTodayRecipe" resultType="RecipeVO">
-		SELECT
+		SELECT no,poster,title
+		FROM recipe
 	</select>
 </mapper>
