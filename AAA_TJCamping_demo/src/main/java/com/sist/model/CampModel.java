@@ -200,34 +200,34 @@ public class CampModel {
     	};
     	
         String no=request.getParameter("no");
-        List<String> list=new ArrayList<String>();
+        List<String> sList=new ArrayList<String>();
         
         if(no.equals("1"))
         {
-        	list.clear();
+        	sList.clear();
         	for(String m:menu1)
         	{
-        		list.add(m);
+        		sList.add(m);
         	}
         }
         else if(no.equals("2"))
         {
-        	list.clear();
+        	sList.clear();
         	for(String m:menu2)
         	{
-        		list.add(m);
+        		sList.add(m);
         	}
         }
         else if(no.equals("3"))
         {
-        	list.clear();
+        	sList.clear();
         	for(String m:menu3)
         	{
-        		list.add(m);
+        		sList.add(m);
         	}
         }
         
-        request.setAttribute("list", list);
+        request.setAttribute("sList", sList);
         
     	return "../camp/sub_menu.jsp";
     }
