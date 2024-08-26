@@ -23,7 +23,7 @@ $(function(){
 			success:function(json){
 				let js=JSON.parse(json)
 				console.log(js) // debug
-				$('#info').show()
+				$('#info').show() 
 				$('#poster').attr("src",js.poster)
 				$('#name').text(js.name)
 				$('#address').text(js.address)
