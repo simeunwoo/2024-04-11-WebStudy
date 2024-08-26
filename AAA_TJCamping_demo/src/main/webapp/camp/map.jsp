@@ -166,8 +166,8 @@ $(function(){
 				console.log(error)
 			}
 		})
-	}) */
-})
+	}) 
+})*/
 </script>
 
     </head>
@@ -224,7 +224,7 @@ $(function(){
   </main>
 </div>
 
-
+<!-- 
 <div class="container text-center mt-5">
     <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
         <li class="nav-item">
@@ -255,10 +255,10 @@ $(function(){
     
     <div id="sub-button-container" class="sub-buttons"></div>
 </div>
-
+ -->
 
 <script>
-
+<!--
     document.addEventListener('DOMContentLoaded', function() {
         // Elements
         const gyeonggiBtn = document.getElementById('btn-gyeonggi');
@@ -301,7 +301,7 @@ $(function(){
         }
     });
 
-
+-->
 $(function(){
 	$('.rebtn').click(function(){
 		let no=$(this).attr("data-no");
