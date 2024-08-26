@@ -67,11 +67,6 @@
 		FROM camp
 		WHERE camp_addr LIKE '%'||#{a}||'%'
 	</select>
-	<select id="campFindCount" resultType="int" parameterType="string">
-		SELECT COUNT(*)
-		FROM camp
-		WHERE camp_addr LIKE '%'||#{a}||'%'
-	</select>
 	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
 		SELECT camp_no,camp_name,image1,num
 		FROM (SELECT camp_no,camp_name,image1,rownum as num

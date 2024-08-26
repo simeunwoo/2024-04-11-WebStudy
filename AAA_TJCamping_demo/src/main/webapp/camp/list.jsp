@@ -169,19 +169,38 @@
 	
 <div style="height:80px"></div>
 
-<h2 class="sectiontitle">최근 둘러본 캠핑장</h2>
-    <div class="container">
-      <ul>
-        <c:forEach var="cvo" items="${cookieList }">
-	        <li>
-	          <figure>
-	          	<img src="${cvo.image1 }" style="width:320px;height:185px">
-	            <figcaption><a href="#">${cvo.camp_name }</a></figcaption>
-	          </figure>
-	        </li>
-        </c:forEach>
-      </ul>
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Near Campsite</h5>
+            <h1 class="mb-0">주변 캠핑장</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            <c:forEach var="coovo" items="${cookieList}" varStatus="s">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="${coovo.image1}" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="text-center packages-price py-2 px-4"></div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0 truncate-text">${coovo.camp_name}</h5>
+                            <p class="mb-4"></p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="col-6 text-start px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4"></a>
+                            </div>
+                            <div class="col-6 text-end px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">${coovo.camp_price}원</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
     </div>
+</div>
 
         <div class="wrapper row3">
 	  <main class="container clear"> 

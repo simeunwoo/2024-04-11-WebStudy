@@ -186,30 +186,6 @@ public class CampDAO {
 		return total;
 	}
 	
-	public static int campFindCount(String camp_addr)
-	{
-		int total=0;
-		SqlSession session=null;
-		
-		try
-		{
-			session=ssf.openSession();
-			total=session.selectOne("campFindCount",camp_addr);
-		}catch(Exception ex)
-		{
-			System.out.println("CampDAO 오류 8");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			// connection 반환 (DBCP) => 재사용(반환 시 가능)
-			if(session!=null)
-				session.close();
-		}
-		
-		return total;
-	}
-
 	/*
 	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
 		SELECT camp_no,camp_name,image1,num

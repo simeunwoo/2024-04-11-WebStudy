@@ -54,8 +54,8 @@ public class CampModel {
 			{
 				if(cookies[i].getName().startsWith("camp_"))
 				{
-					String cno=cookies[i].getValue();
-					CampVO vo=CampDAO.campDetailData(Integer.parseInt(cno));
+					String camp_no=cookies[i].getValue();
+					CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
 					cookieList.add(vo);
 				}
 			}
@@ -76,16 +76,16 @@ public class CampModel {
 	@RequestMapping("camp/detail_before.do")
 	public String camp_detail_before(HttpServletRequest request,HttpServletResponse response)
 	{
-		String cno=request.getParameter("cno");
+		String camp_no=request.getParameter("camp_no");
 		
 		// Cookie 저장
-		Cookie cookie=new Cookie("camp_"+cno,cno);
+		Cookie cookie=new Cookie("camp_"+camp_no,camp_no);
 		cookie.setMaxAge(60*60*24);
 		cookie.setPath("/");
 		
 		response.addCookie(cookie); // 브라우저로 전송
 		
-		return "redirect:../camp/detail.do?cno="+cno;
+		return "redirect:../camp/detail.do?camp_no="+camp_no;
 	}
 	
 	@RequestMapping("camp/detail.do")
@@ -135,8 +135,6 @@ public class CampModel {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
-		int count=CampDAO.campFindCount(aList[Integer.parseInt(a)]);
-		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
@@ -145,8 +143,6 @@ public class CampModel {
 		
 		request.setAttribute("a", a);
 		request.setAttribute("abc", aList[Integer.parseInt(a)]);
-		
-		request.setAttribute("count", count);
 		
 		request.setAttribute("main_jsp", "../camp/map.jsp");
 		return "../main/main.jsp";

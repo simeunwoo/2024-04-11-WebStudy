@@ -357,6 +357,7 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
                 <div class="packages-item">
                     <div class="packages-img">
                         <img src="${nvo.image1}" class="img-fluid w-100 rounded-top" alt="Image">
+                        <a href="../camp/detail.do?camp_no=${nvo.camp_no }"/>
                         <div class="text-center packages-price py-2 px-4">Best</div>
                     </div>
                     <div class="packages-content bg-light">
