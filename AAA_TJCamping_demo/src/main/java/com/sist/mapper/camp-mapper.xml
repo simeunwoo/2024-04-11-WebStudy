@@ -86,4 +86,16 @@
 		FROM camp
 		WHERE camp_no=#{camp_no}
 	</select>
+	<select id="campReserveDayData1" resultType="String" parameterType="int">
+    SELECT rdays FROM camp
+    WHERE camp_no=#{camp_no}
+  </select>
+  <select id="campReserveTimeData1" resultType="String" parameterType="int">
+  	SELECT time FROM reserve_date
+  	WHERE dno=#{dno}
+  </select>
+  <select id="campTimeSelectData1" resultType="String" parameterType="int">
+  	SELECT time FROM reserve_time
+  	WHERE tno=#{tno}
+  </select>
 </mapper>

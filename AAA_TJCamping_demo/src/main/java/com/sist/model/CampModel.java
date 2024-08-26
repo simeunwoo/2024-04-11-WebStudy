@@ -54,8 +54,8 @@ public class CampModel {
 			{
 				if(cookies[i].getName().startsWith("camp_"))
 				{
-					String camp_no=cookies[i].getValue();
-					CampVO vo=CampDAO.campDetailData(Integer.parseInt(camp_no));
+					String cno=cookies[i].getValue();
+					CampVO vo=CampDAO.campDetailData(Integer.parseInt(cno));
 					cookieList.add(vo);
 				}
 			}
@@ -76,16 +76,16 @@ public class CampModel {
 	@RequestMapping("camp/detail_before.do")
 	public String camp_detail_before(HttpServletRequest request,HttpServletResponse response)
 	{
-		String camp_no=request.getParameter("camp_no");
+		String cno=request.getParameter("cno");
 		
 		// Cookie 저장
-		Cookie cookie=new Cookie("camp_"+camp_no,camp_no);
+		Cookie cookie=new Cookie("camp_"+cno,cno);
 		cookie.setMaxAge(60*60*24);
 		cookie.setPath("/");
 		
 		response.addCookie(cookie); // 브라우저로 전송
 		
-		return "redirect:../camp/detail.do?camp_no="+camp_no;
+		return "redirect:../camp/detail.do?cno="+cno;
 	}
 	
 	@RequestMapping("camp/detail.do")
@@ -135,6 +135,8 @@ public class CampModel {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
+		int count=CampDAO.campFindCount(aList[Integer.parseInt(a)]);
+		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
@@ -143,6 +145,8 @@ public class CampModel {
 		
 		request.setAttribute("a", a);
 		request.setAttribute("abc", aList[Integer.parseInt(a)]);
+		
+		request.setAttribute("count", count);
 		
 		request.setAttribute("main_jsp", "../camp/map.jsp");
 		return "../main/main.jsp";
@@ -196,34 +200,34 @@ public class CampModel {
     	};
     	
         String no=request.getParameter("no");
-        List<String> sList=new ArrayList<String>();
+        List<String> list=new ArrayList<String>();
         
         if(no.equals("1"))
         {
-        	sList.clear();
+        	list.clear();
         	for(String m:menu1)
         	{
-        		sList.add(m);
+        		list.add(m);
         	}
         }
         else if(no.equals("2"))
         {
-        	sList.clear();
+        	list.clear();
         	for(String m:menu2)
         	{
-        		sList.add(m);
+        		list.add(m);
         	}
         }
         else if(no.equals("3"))
         {
-        	sList.clear();
+        	list.clear();
         	for(String m:menu3)
         	{
-        		sList.add(m);
+        		list.add(m);
         	}
         }
         
-        request.setAttribute("sList", sList);
+        request.setAttribute("list", list);
         
     	return "../camp/sub_menu.jsp";
     }

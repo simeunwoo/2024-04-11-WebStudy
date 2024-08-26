@@ -186,6 +186,30 @@ public class CampDAO {
 		return total;
 	}
 	
+	public static int campFindCount(String camp_addr)
+	{
+		int total=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			total=session.selectOne("campFindCount",camp_addr);
+		}catch(Exception ex)
+		{
+			System.out.println("CampDAO 오류 8");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+
 	/*
 	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
 		SELECT camp_no,camp_name,image1,num
@@ -274,5 +298,169 @@ public class CampDAO {
 		
 		return vo;
 	}
+	
+	   public static String campReserveDayData1(int camp_no)
+	   {
+		   String rdays="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   rdays=session.selectOne("campReserveDayData1", camp_no);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campReserveDayData1 err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return rdays;
+	   }
+	   
+	   public static String campTimeSelectData(int tno)
+	   {
+		   String times="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   times=session.selectOne("campTimeSelectData", tno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campTimeSelectData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return times;
+	   }
+	   
+	   
+	  
+	   public static void campReserveInsert(ReserveVO vo)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.insert("campReserveInsert", vo);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campReserveInsert err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static List<ReserveVO> campReserveMyPageData(String id)
+	   {
+		   List<ReserveVO> list=new ArrayList<ReserveVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   list=session.selectList("campReserveMyPageData", id);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campReserveMyPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static List<ReserveVO> campReserveAdminPageData()
+	   {
+		   List<ReserveVO> list=new ArrayList<ReserveVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   list=session.selectList("campReserveAdminPageData");
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campReserveAdminPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static void reserveOk(int rno)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.update("reserveOk",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("reserveOk err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static void reserveCancel(int rno)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.delete("reserveCancel",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("reserveCancel err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static ReserveVO campReserveMyPageData(int rno)
+	   {
+		   ReserveVO vo=new ReserveVO();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   vo=session.selectOne("campReserveMyPageData",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campReserveMyPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return vo;
+	   }
 	
 }

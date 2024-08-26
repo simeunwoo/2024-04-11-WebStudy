@@ -88,28 +88,7 @@ public class ReserveDAO {
 		return list;
 	}
 	
-	public static String campReserveDayData(int camp_no)
-	{
-		String rdays="";
-		SqlSession session=null;
-		
-		try
-		{
-			session=ssf.openSession();
-			rdays=session.selectOne("campReserveDayData",camp_no);
-		}catch(Exception ex)
-		{
-			System.out.println("ReserveDAO 오류 4");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			if(session!=null)
-				session.close();
-		}
-		
-		return rdays;
-	}
+	
 	
 	public static String campReserveTimeData(int dno)
 	{
