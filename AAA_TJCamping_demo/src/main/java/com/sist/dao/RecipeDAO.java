@@ -239,14 +239,14 @@ public class RecipeDAO {
     */
   
 // 같은 셰프 레시피 출력
-	public static List<RecipeVO> chefRecipeData(String ress){
+	public static List<RecipeVO> sameRecipeData(String info3){
 		List<RecipeVO> reList = new ArrayList<RecipeVO>();
 		SqlSession session=null; // Connection
 		try {
 			session = ssf.openSession();
-			reList=session.selectList("chefRecipeData" , ress);
+			reList=session.selectList("sameRecipeData" , info3);
 		} catch (Exception ex) {
-			System.out.println("chefRecipeData 오류");
+			System.out.println("sameRecipeData 오류");
 			ex.printStackTrace();
 		} finally {
 			if(session!=null) session.close(); 
