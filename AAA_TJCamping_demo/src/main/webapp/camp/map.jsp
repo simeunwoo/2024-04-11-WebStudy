@@ -407,13 +407,13 @@ $(function(){
 <nav class="pagination">
         <ul>
         <c:if test="${startPage>1 }">
-          <a href="../camp/list.do?page=${startPage-1 }">&laquo; 이전</a>
+          <a href="../camp/map.do?page=${startPage-1 }">&laquo; 이전</a>
         </c:if>
         <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li ${curpage==i?"class=current":"" }><a href="../camp/list.do?page=${i }">${i }</a></li>
+          <li ${curpage==i?"class=current":"" }><a href="../camp/map.do?page=${i }">${i }</a></li>
         </c:forEach>
         <c:if test="${endPage<totalpage }">
-          <a href="../camp/list.do?page=${endPage+1 }">다음 &raquo;</a>
+          <a href="../camp/map.do?page=${endPage+1 }">다음 &raquo;</a>
         </c:if>
         </ul>
       </nav>

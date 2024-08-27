@@ -131,15 +131,13 @@ public class CampModel {
 		map.put("a", a);
 		
 		List<CampVO> list=CampDAO.campFindData(map);
-		int totalpage=CampDAO.campFindTotalPage(aList[Integer.parseInt(a)]);
+		int totalpage=CampDAO.campTotalPage();
 		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
-		
-		int count=CampDAO.campFindCount(aList[Integer.parseInt(a)]);
 		
 		Cookie[] cookies=request.getCookies();
 		List<CampVO> cookieList=new ArrayList<CampVO>();
@@ -166,8 +164,6 @@ public class CampModel {
 		
 		request.setAttribute("a", a);
 		request.setAttribute("abc", aList[Integer.parseInt(a)]);
-		
-		request.setAttribute("count", count);
 		
 		CommonsModel.footerPrint(request);
 		

@@ -381,31 +381,17 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
     </div>
 </div>
 
-<div class="flexslider carousel basiccarousel btmspace-80">
-	      <ul class="slides">
-	       <c:forEach var="vo" items="${nList }">
-		        <li>
-		          <figure><img class="radius-10 btmspace-10"
-		            src="${vo.image1 }" style="width: 320px;height: 185px"
-		            title="${vo.camp_addr }">
-		            <figcaption><a href="../camp/detail.do?camp_no=${vo.camp_no }">${vo.camp_name }</a></figcaption>
-		          </figure>
-		        </li>
-	        </c:forEach>
-	      </ul>
-	    </div>
-	    <div>
-	    <tr>
-	    			<td colspan="3" class="text-right">
-	    				<c:if test="${sessionScope.id!=null }">
-		    				<a href="../camp/reserve.do?camp_no=${vo.camp_no }" class="btn btn-xs btn-info">예약</a>
-		    			</c:if>
-		    			<input type="button" class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
-	    			</td>
-	    		</tr>
-	    </div>
 
-</div>
+	    <div class="container">
+    <div class="d-flex justify-content-end mb-3">
+        <c:if test="${sessionScope.id != null }">
+            <a href="../camp/reserve.do?camp_no=${vo.camp_no }" class="btn btn-info me-2">예약</a>
+        </c:if>
+        <input type="button" class="btn btn-danger" value="목록" onclick="javascript:history.back()">
+    </div>
+</div></div>
+<!-- Button Section End -->
+
 
 
 <div style="height:60px"></div>

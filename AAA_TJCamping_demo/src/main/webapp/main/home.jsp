@@ -412,7 +412,9 @@
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text">${cvo.camp_name}</h5>
+                        	<a href="../camp/detail.do?camp_no=${cvo.camp_no }"/>
+                            	<h5 class="mb-0 truncate-text">${cvo.camp_name}</h5>
+                            </a>
                             <p class="mb-4"></p>
                         </div>
                         <div class="row bg-primary rounded-bottom mx-0">

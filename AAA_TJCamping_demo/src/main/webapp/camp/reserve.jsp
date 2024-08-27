@@ -42,6 +42,9 @@
 .can {
 	background-color: red;
 }
+.bg-breadcrumb {
+    background-image: url('camp_reserve.jpg');
+}
 </style>
 </head>
 <body>

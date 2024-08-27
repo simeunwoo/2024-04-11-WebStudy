@@ -62,11 +62,13 @@
 		WHERE camp_addr LIKE '%'||#{a}||'%'))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
+	<!--
 	<select id="campFindTotalPage" resultType="int" parameterType="string">
 		SELECT CEIL(COUNT(*)/12.0)
 		FROM camp
 		WHERE camp_addr LIKE '%'||#{a}||'%'
 	</select>
+	-->
 	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
 		SELECT camp_no,camp_name,image1,num
 		FROM (SELECT camp_no,camp_name,image1,rownum as num
