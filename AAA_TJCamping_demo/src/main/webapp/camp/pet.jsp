@@ -150,24 +150,30 @@
 		</div>
 	</div>
 	
-	<div style="height:80px"></div>
+
+
+
+
+
 
 <div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Near Campsite</h5>
-            <h1 class="mb-0">주변 캠핑장</h1>
+            <h5 class="section-title px-3">Recently visited campsites</h5>
+            <h1 class="mb-0">최근 둘러본 캠핑장</h1>
         </div>
         <div class="packages-carousel owl-carousel">
             <c:forEach var="coovo" items="${cookieList}" varStatus="s">
                 <div class="packages-item">
                     <div class="packages-img">
-                        <img src="${coovo.image1}" class="img-fluid w-100 rounded-top" alt="Image">
-                        <div class="text-center packages-price py-2 px-4"></div>
+                        <img src="${coovo.image1}" style="height:280px;width:420px" class="rounded-top">
+                    <div class="text-center packages-price py-2 px-4">Visit</div>
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text">${coovo.camp_name}</h5>
+                        	<a href="../camp/detail.do?camp_no=${coovo.camp_no }"/>
+                            	<h5 class="mb-0 truncate-text">${coovo.camp_name}</h5>
+                            </a>
                             <p class="mb-4"></p>
                         </div>
                         <div class="row bg-primary rounded-bottom mx-0">
@@ -184,6 +190,9 @@
         </div>
     </div>
 </div>
+
+
+
 
         <div class="wrapper row3">
 	  <main class="container clear"> 

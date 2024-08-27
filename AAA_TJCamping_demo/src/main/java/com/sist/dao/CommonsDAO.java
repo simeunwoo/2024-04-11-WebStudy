@@ -17,52 +17,52 @@ public class CommonsDAO {
 		ssf=CreateSqlSessionFactory.getSsf();
 	}
 	
-	public static List<CampVO> commonsTodayCampsite()
+	public static CampVO commonsTodayCampsite()
 	{
-		List<CampVO> list=new ArrayList<CampVO>();
+		CampVO vo=new CampVO();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			 list=session.selectList("commonsTodayCampsite");
+			 vo=session.selectOne("commonsTodayCampsite");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
 			if(session!=null) session.close();
 		}
 		
-		return list;
+		return vo;
 	}
 	
-	public static List<FoodVO> commonsTodayFood()
+	public static FoodVO commonsTodayFood()
 	{
-		List<FoodVO> list=new ArrayList<FoodVO>();
+		FoodVO vo=new FoodVO();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			list=session.selectList("commonsTodayFood");
+			vo=session.selectOne("commonsTodayFood");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
 			if(session!=null) session.close();
 		}
 		
-		return list;
+		return vo;
 	}
 	
-	public static List<RecipeVO> commonsTodayRecipe()
+	public static RecipeVO commonsTodayRecipe()
 	{
-		List<RecipeVO> list=new ArrayList<RecipeVO>();
+		RecipeVO vo=new RecipeVO();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			list=session.selectList("commonsTodayRecipe");
+			vo=session.selectOne("commonsTodayRecipe");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
 			if(session!=null) session.close();
 		}
 		
-		return list;
+		return vo;
 	}
 	
 }

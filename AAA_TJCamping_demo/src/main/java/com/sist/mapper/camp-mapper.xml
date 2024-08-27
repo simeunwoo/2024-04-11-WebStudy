@@ -47,8 +47,8 @@
 		WHERE rownum&lt;=12
 	</select>
 	<select id="campNearListData" resultType="CampVO" parameterType="string">
-		SELECT camp_no,camp_name,image1,camp_addr,rownum
-		FROM (SELECT camp_no,camp_name,image1,camp_addr
+		SELECT camp_no,camp_name,image1,camp_addr,camp_price,rownum
+		FROM (SELECT camp_no,camp_name,image1,camp_addr,camp_price
 		FROM camp
 		WHERE camp_addr LIKE '%'||#{ss}||'%'
 		ORDER BY camp_no ASC)

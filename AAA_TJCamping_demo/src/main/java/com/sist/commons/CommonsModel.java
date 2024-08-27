@@ -1,6 +1,6 @@
 package com.sist.commons;
 
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,16 +13,12 @@ public class CommonsModel {
 
 	public static void footerPrint(HttpServletRequest request)
 	{
-		List<CampVO> footAList=CommonsDAO.commonsTodayCampsite();
-		List<FoodVO> footBList=CommonsDAO.commonsTodayFood();
-		List<RecipeVO> footCList=CommonsDAO.commonsTodayRecipe();
+		CampVO cvo=CommonsDAO.commonsTodayCampsite();
+		FoodVO fvo=CommonsDAO.commonsTodayFood();
+		RecipeVO rvo=CommonsDAO.commonsTodayRecipe();
 		
-	//	int a=(int)(Math.random()*100)+1;
-	//	int b=(int)(Math.random()*100)+1;
-	//	int c=(int)(Math.random()*100)+1;
-		
-		request.setAttribute("footAList", footAList);
-		request.setAttribute("footBList", footBList);
-		request.setAttribute("footCList", footCList);
+		request.setAttribute("cvo", cvo);
+		request.setAttribute("fvo", fvo);
+		request.setAttribute("rvo", rvo);
 	}
 }
