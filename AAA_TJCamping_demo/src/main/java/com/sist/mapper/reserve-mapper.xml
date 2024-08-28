@@ -38,6 +38,7 @@ ISOK             CHAR(1)
 		WHERE re.cno=ca.camp_no
 		ORDER BY rno DESC
 	</select>
+	<!--
 	<select id="campReserveDayData" resultType="String" parameterType="int">
 		SELECT rdays
 		FROM camp
@@ -53,4 +54,5 @@ ISOK             CHAR(1)
 		FROM reserve_time
 		WHERE tno=#{tno}
 	</select>
+	-->
 </mapper>

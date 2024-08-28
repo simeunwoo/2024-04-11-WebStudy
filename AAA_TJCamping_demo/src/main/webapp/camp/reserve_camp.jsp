@@ -65,11 +65,13 @@ $(function(){
 	<table class="table">
 		<tr>
 			<td class="text-center inline">
+			<!-- 
 				<input type="button" class="btn-xs btn-success types" value="한식">
 				<input type="button" class="btn-xs btn-primary types" value="양식">
 				<input type="button" class="btn-xs btn-danger types" value="중식">
 				<input type="button" class="btn-xs btn-info types" value="일식">
 				<input type="button" class="btn-xs btn-warning types" value="분식">
+				 -->
 			</td>
 		</tr>
 	</table>

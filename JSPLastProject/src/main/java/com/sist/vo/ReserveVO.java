@@ -1,4 +1,5 @@
 package com.sist.vo;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import lombok.Data;
@@ -21,3 +22,4 @@ public class ReserveVO {
 	
 	private FoodVO fvo=new FoodVO(); // JOIN
 }
+

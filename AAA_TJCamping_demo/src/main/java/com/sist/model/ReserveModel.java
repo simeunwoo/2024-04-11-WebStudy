@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -24,11 +25,14 @@ public class ReserveModel {
 		System.out.println(camp_no);
 		CampVO vo=CampDAO.campReserveData(Integer.parseInt(camp_no));
 		request.setAttribute("camp_no", camp_no);
+			/*
 		  String strYear=request.getParameter("year");
 		  String strMonth=request.getParameter("month");
 		  String strDay="";
+		  */
+		//  String strCamp_no=request.getParameter("camp_no");
 		  
-		  
+		  /*
 		  Date date=new Date();
 		  SimpleDateFormat sdf=new SimpleDateFormat("yyyy-M-d");
 		  String today=sdf.format(date);
@@ -37,11 +41,11 @@ public class ReserveModel {
 		  String sy=st.nextToken();
 		  String sm=st.nextToken();
 		  strDay=st.nextToken();
-		  /////////////////// 오늘 날짜만 저장 
+
 		  String tday=strDay;
 		  String tyear=sy;
 		  String tmonth=sm;
-		  ///////////////////
+
 		  if(strYear==null)
 		  {
 			  strYear=sy;
@@ -50,12 +54,12 @@ public class ReserveModel {
 		  {
 			  strMonth=sm;
 		  }
-		
+
 		  int year=Integer.parseInt(strYear);
 		  int month=Integer.parseInt(strMonth);
 		  int day=Integer.parseInt(strDay);
 		  
-		  // 요일 구하기 / 마지막 날 
+		 
 		  Calendar cal=Calendar.getInstance();
 		  cal.set(Calendar.YEAR, year);
 		  cal.set(Calendar.MONTH, month-1);
@@ -70,12 +74,12 @@ public class ReserveModel {
 		  request.setAttribute("month", month);
 		  request.setAttribute("day", day);
 		  request.setAttribute("week", week);
-		  request.setAttribute("lastday", lastday);
+		  request.setAttribute("lastday", lastday); */
 		  
-		  // 예약 가능한 날 => 1,2,3,19,20....
-		  if(camp_no!=null)
+		  /*
+		  if(strCamp_no!=null)
 		  {
-		     String rdays=CampDAO.campReserveDayData1(Integer.parseInt(camp_no));
+		     String rdays=CampDAO.campReserveDayData(Integer.parseInt(strCamp_no));
 		     int[] reserveDays=new int[32];
 		     if(month==Integer.parseInt(tmonth) && year==Integer.parseInt(tyear))
 		     {
@@ -105,7 +109,9 @@ public class ReserveModel {
 		  }
 		 
 		  String[] weeks={"일","월","화","수","목","금","토"};
-		  request.setAttribute("weeks", weeks);
+		  request.setAttribute("weeks", weeks); */
+		  
+		  CommonsModel.footerPrint(request);
 		  
 		  request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../camp/reserve.jsp");
@@ -117,10 +123,11 @@ public class ReserveModel {
 		
 		String camp_no=request.getParameter("camp_no");
 		CampVO vo=CampDAO.campReserveData(Integer.parseInt(camp_no));
-		request.setAttribute("camp_no", camp_no);
+	//	request.setAttribute("camp_no", camp_no);
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
 		String strDay="";
+		String strCamp_no=request.getParameter("camp_no");
 		
 		
 		Date date=new Date();
@@ -168,9 +175,9 @@ public class ReserveModel {
 		
 		
 		// 예약 가능한 날 => 1,2,3,19,20....
-		if(camp_no!=null)
+		if(strCamp_no!=null)
 		{
-			String rdays=CampDAO.campReserveDayData1(Integer.parseInt(camp_no));
+			String rdays=CampDAO.campReserveDayData(Integer.parseInt(strCamp_no));
 			int[] reserveDays=new int[32];
 			if(month==Integer.parseInt(tmonth) && year==Integer.parseInt(tyear))
 			{
@@ -200,8 +207,9 @@ public class ReserveModel {
 		}
 		
 		String[] weeks={"일","월","화","수","목","금","토"};
+		request.setAttribute("weeks", weeks);
 		request.setAttribute("vo", vo);
-		request.setAttribute("camp_no", camp_no);
+		request.setAttribute("camp_no", strCamp_no);
 		return "../camp/reserve_date.jsp";
 	}
 	
@@ -211,12 +219,12 @@ public class ReserveModel {
 		String day=request.getParameter("day");
 		
 		// 데이터베이스 연동
-		String times=ReserveDAO.campReserveTimeData(Integer.parseInt(day));
+		String times=CampDAO.campReserveTimeData(Integer.parseInt(day));
 		List<String> tList=new ArrayList<String>();
 		StringTokenizer st=new StringTokenizer(times,",");
 		while(st.hasMoreTokens())
 		{
-			String time=ReserveDAO.campTimeSelectData(Integer.parseInt(st.nextToken()));
+			String time=CampDAO.campTimeSelectData(Integer.parseInt(st.nextToken()));
 			tList.add(time);
 		}
 		

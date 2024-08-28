@@ -92,7 +92,7 @@ $(function(){
 </style>
 </head>
 <body>
-  <table class="table " >
+  <table class="table" >
    <tr class="reserve">
      <td class="text-center ">${year }년 ${month }월</td>
    </tr>
