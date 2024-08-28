@@ -89,7 +89,7 @@ public class ReserveDAO {
 	}
 	
 	
-	/*
+	
 	public static String campReserveTimeData(int dno)
 	{
 		String times="";
@@ -135,19 +135,18 @@ public class ReserveDAO {
 		
 		return times;
 	}
-	
-	public static String campReserveDayData(int camp_no)
+	public static ReserveVO myReserveData(int rno)
 	{
-		String rdays="";
+		ReserveVO vo = new ReserveVO();
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			rdays=session.selectOne("campReserveDayData",camp_no);
+			vo=session.selectOne("myReserveData",rno);
 		}catch(Exception ex)
 		{
-			System.out.println("ReserveDAO 오류 7");
+			System.out.println("myReserveData 오류 3");
 			ex.printStackTrace();
 		}
 		finally
@@ -156,7 +155,44 @@ public class ReserveDAO {
 				session.close();
 		}
 		
-		return rdays;
+		return vo;
 	}
-	*/
+	public static void reserveCancel(int rno) {
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.delete("reserveCancel",rno);
+			session.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("reserveCancel 오류 6");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	public static void reserveOk(int rno) {
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("reserveOk",rno);
+			session.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("reserveOk 오류 6");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }

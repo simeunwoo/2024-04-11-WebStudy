@@ -24,15 +24,12 @@ public class ReserveModel {
 		String camp_no=request.getParameter("camp_no");
 		System.out.println(camp_no);
 		CampVO vo=CampDAO.campReserveData(Integer.parseInt(camp_no));
-		request.setAttribute("camp_no", camp_no);
-			/*
+//		request.setAttribute("camp_no", camp_no);
 		  String strYear=request.getParameter("year");
 		  String strMonth=request.getParameter("month");
 		  String strDay="";
-		  */
-		//  String strCamp_no=request.getParameter("camp_no");
 		  
-		  /*
+		  
 		  Date date=new Date();
 		  SimpleDateFormat sdf=new SimpleDateFormat("yyyy-M-d");
 		  String today=sdf.format(date);
@@ -41,11 +38,11 @@ public class ReserveModel {
 		  String sy=st.nextToken();
 		  String sm=st.nextToken();
 		  strDay=st.nextToken();
-
+		  /////////////////// 오늘 날짜만 저장 
 		  String tday=strDay;
 		  String tyear=sy;
 		  String tmonth=sm;
-
+		  ///////////////////
 		  if(strYear==null)
 		  {
 			  strYear=sy;
@@ -54,12 +51,12 @@ public class ReserveModel {
 		  {
 			  strMonth=sm;
 		  }
-
+		
 		  int year=Integer.parseInt(strYear);
 		  int month=Integer.parseInt(strMonth);
 		  int day=Integer.parseInt(strDay);
 		  
-		 
+		  // 요일 구하기 / 마지막 날 
 		  Calendar cal=Calendar.getInstance();
 		  cal.set(Calendar.YEAR, year);
 		  cal.set(Calendar.MONTH, month-1);
@@ -74,12 +71,12 @@ public class ReserveModel {
 		  request.setAttribute("month", month);
 		  request.setAttribute("day", day);
 		  request.setAttribute("week", week);
-		  request.setAttribute("lastday", lastday); */
+		  request.setAttribute("lastday", lastday);
 		  
-		  /*
-		  if(strCamp_no!=null)
+		  // 예약 가능한 날 => 1,2,3,19,20....
+		  if(camp_no!=null)
 		  {
-		     String rdays=CampDAO.campReserveDayData(Integer.parseInt(strCamp_no));
+		     String rdays=CampDAO.campReserveDayData1(Integer.parseInt(camp_no));
 		     int[] reserveDays=new int[32];
 		     if(month==Integer.parseInt(tmonth) && year==Integer.parseInt(tyear))
 		     {
@@ -109,7 +106,7 @@ public class ReserveModel {
 		  }
 		 
 		  String[] weeks={"일","월","화","수","목","금","토"};
-		  request.setAttribute("weeks", weeks); */
+		  request.setAttribute("weeks", weeks);
 		  
 		  CommonsModel.footerPrint(request);
 		  
@@ -123,11 +120,10 @@ public class ReserveModel {
 		
 		String camp_no=request.getParameter("camp_no");
 		CampVO vo=CampDAO.campReserveData(Integer.parseInt(camp_no));
-	//	request.setAttribute("camp_no", camp_no);
+		//request.setAttribute("camp_no", camp_no);
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
 		String strDay="";
-		String strCamp_no=request.getParameter("camp_no");
 		
 		
 		Date date=new Date();
@@ -175,9 +171,9 @@ public class ReserveModel {
 		
 		
 		// 예약 가능한 날 => 1,2,3,19,20....
-		if(strCamp_no!=null)
+		if(camp_no!=null)
 		{
-			String rdays=CampDAO.campReserveDayData(Integer.parseInt(strCamp_no));
+			String rdays=CampDAO.campReserveDayData1(Integer.parseInt(camp_no));
 			int[] reserveDays=new int[32];
 			if(month==Integer.parseInt(tmonth) && year==Integer.parseInt(tyear))
 			{
@@ -207,9 +203,8 @@ public class ReserveModel {
 		}
 		
 		String[] weeks={"일","월","화","수","목","금","토"};
-		request.setAttribute("weeks", weeks);
 		request.setAttribute("vo", vo);
-		request.setAttribute("camp_no", strCamp_no);
+		request.setAttribute("camp_no", camp_no);
 		return "../camp/reserve_date.jsp";
 	}
 	
@@ -219,12 +214,12 @@ public class ReserveModel {
 		String day=request.getParameter("day");
 		
 		// 데이터베이스 연동
-		String times=CampDAO.campReserveTimeData(Integer.parseInt(day));
+		String times=ReserveDAO.campReserveTimeData(Integer.parseInt(day));
 		List<String> tList=new ArrayList<String>();
 		StringTokenizer st=new StringTokenizer(times,",");
 		while(st.hasMoreTokens())
 		{
-			String time=CampDAO.campTimeSelectData(Integer.parseInt(st.nextToken()));
+			String time=ReserveDAO.campTimeSelectData(Integer.parseInt(st.nextToken()));
 			tList.add(time);
 		}
 		
@@ -245,6 +240,8 @@ public class ReserveModel {
 	  {
 		  HttpSession session=request.getSession();
 		  String id=(String)session.getAttribute("id");
+		  
+		  CommonsModel.footerPrint(request);
 		  
 		  List<ReserveVO> list=CampDAO.campReserveMyPageData(id);
 		  request.setAttribute("title", "예약관리");
@@ -312,32 +309,29 @@ public class ReserveModel {
 	  public void mypage_reserve_info(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  String rno=request.getParameter("rno");
-		  // 데이터베이스 연동 
-		  /*
-		   *   rno,day,pr.time,inwon,pf.name,pf.poster,pf.address,phone,theme,score,content,
-			           TO_CHAR(redate,'YYYY-MM-DD HH24:MI:SS') as dbday
-		   */
-		  ReserveVO vo=CampDAO.campReserveMyPageData(Integer.parseInt(rno));
-		  // {rno:1....} => JSON:JavaScript Object Notation
-		  // 자바 = 자바스크립트 호환 => RestFul 
-		  JSONObject obj=new JSONObject();
-		  obj.put("rno", vo.getRno());
-		  obj.put("day", vo.getDay());
-		  obj.put("time", vo.getTime());
-		  obj.put("inwon", vo.getInwon());
-		  obj.put("name",vo.getCvo().getCamp_name());
-		  obj.put("poster",vo.getCvo().getImage1());
-		  obj.put("price",vo.getCvo().getCamp_price());
-		  obj.put("address",vo.getCvo().getCamp_addr());
-		  obj.put("phone",vo.getCvo().getCamp_phone());
-		  obj.put("regdate",vo.getDbday());
-		  // Ajax 값을 전송 
-		  try
-		  {
-			  response.setContentType("text/plain;charset=UTF-8");
-			  // => text/html(HTML) , text/xml(XML) , text/plain(JSON)
-			  PrintWriter out=response.getWriter();
-			  out.write(obj.toJSONString());
-		  }catch(Exception ex) {}
+		  ReserveVO rmvo = ReserveDAO.myReserveData(Integer.parseInt(rno));
+		  
+		  JSONObject obj = new JSONObject();
+		    obj.put("rno", rmvo.getRno());
+		    obj.put("day", rmvo.getDay());
+		    obj.put("time", rmvo.getTime());
+		    obj.put("inwon", rmvo.getInwon());
+		    obj.put("name", rmvo.getCvo().getCamp_name());
+		    obj.put("poster", rmvo.getCvo().getImage1());
+		    obj.put("price", rmvo.getCvo().getCamp_price());
+		    obj.put("address", rmvo.getCvo().getCamp_addr());
+		    obj.put("phone", rmvo.getCvo().getCamp_phone());
+		    obj.put("regdate", rmvo.getDbday());
+		    
+		    try {
+		        // 응답 타입 설정 (JSON으로 전송)
+		        response.setContentType("application/json;charset=UTF-8");
+		        PrintWriter out = response.getWriter();
+		        
+		        // JSON 객체를 문자열로 변환 후 전송
+		        out.write(obj.toJSONString());
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
 	  }
 }

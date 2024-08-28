@@ -12,8 +12,8 @@ REGDATE          DATE
 ISOK             CHAR(1)
 	-->
 	<insert id="campReserveInsert" parameterType="ReserveVO">
-		INSERT INTO reserve(rno,id,cno,day,time,inwon)
-		VALUES(re_cno_seq.nextval,#{id},#{cno},#{day},#{time},#{inwon})
+		INSERT INTO reserve(rno,id,cno,day,time,inwon,isok)
+		VALUES(re_cno_seq.nextval,#{id},#{cno},#{day},#{time},#{inwon},'n')
 	</insert>
 	<resultMap type="com.sist.vo.ReserveVO" id="reserveMap">
 		<result property="cvo.camp_name" column="camp_name"/>
@@ -23,8 +23,8 @@ ISOK             CHAR(1)
 		<result property="cvo.camp_price" column="camp_price"/>
 	</resultMap>
 	<select id="campReserveMyPageData" resultMap="reserveMap" parameterType="string">
-		SELECT rno,cno,day,time,inwon,isok,camp_name,image1,camp_address,camp_phone,
-			camp_price,TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+		SELECT rno,day,time,inwon,camp_name,image1,isok,camp_price,camp_addr,camp_phone
+			,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,cno
 		FROM reserve re,camp ca
 		WHERE re.cno=ca.camp_no
 		AND id=#{id}
@@ -34,11 +34,10 @@ ISOK             CHAR(1)
 	<select id="campReserveAdminPageData" resultMap="reserveMap">
 		SELECT rno,cno,id,time,inwon,isok,camp_name,image1,camp_addr,camp_phone,
 			camp_price,TO_CHAR(regdate,'YYYY-MM-DD') as dbday
-		FROM reserve,camp
+		FROM reserve re,camp ca
 		WHERE re.cno=ca.camp_no
 		ORDER BY rno DESC
 	</select>
-	<!--
 	<select id="campReserveDayData" resultType="String" parameterType="int">
 		SELECT rdays
 		FROM camp
@@ -54,5 +53,21 @@ ISOK             CHAR(1)
 		FROM reserve_time
 		WHERE tno=#{tno}
 	</select>
-	-->
+	  <!-- admin = 승인 -->
+  <update id="reserveOk" parameterType="int">
+   UPDATE reserve SET
+   isok='y'
+   WHERE rno=#{rno}
+  </update>
+
+    <!-- mypage = 취소 -->
+  <delete id="reserveCancel" parameterType="int">
+   DELETE FROM reserve
+   WHERE rno=#{rno}
+  </delete>
+  <select id="myReserveData" parameterType="int" resultMap="reserveMap">
+  		select image1,camp_name,camp_addr,camp_phone,camp_price,rno,day,time,inwon,TO_CHAR(regdate,'YYYY-MM-DD') as dbday 
+		from camp ca , reserve re 
+		where rno=#{rno} and ca.camp_no=re.cno
+  </select>
 </mapper>

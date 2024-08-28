@@ -84,20 +84,40 @@
 		WHERE camp_animal='y'
 	</select>
 	<select id="campReserveData" resultType="CampVO" parameterType="int">
-		SELECT camp_name,image1,camp_phone,camp_price,camp_addr
+		SELECT camp_no,camp_name,image1,camp_phone,camp_price,camp_addr
 		FROM camp
 		WHERE camp_no=#{camp_no}
 	</select>
-	<select id="campReserveDayData" resultType="String" parameterType="int">
+	<select id="campReserveDayData1" resultType="String" parameterType="int">
     SELECT rdays FROM camp
     WHERE camp_no=#{camp_no}
   </select>
-  <select id="campReserveTimeData" resultType="String" parameterType="int">
+  <select id="campReserveTimeData1" resultType="String" parameterType="int">
   	SELECT time FROM reserve_date
   	WHERE dno=#{dno}
   </select>
-  <select id="campTimeSelectData" resultType="String" parameterType="int">
+  <select id="campTimeSelectData1" resultType="String" parameterType="int">
   	SELECT time FROM reserve_time
   	WHERE tno=#{tno}
   </select>
+  <select id="campSearchData" resultType="CampVO" parameterType="hashmap">
+		SELECT camp_no,camp_name,image1,camp_price
+		FROM camp
+		WHERE(
+	<trim prefix="(" suffix=")" prefixOverrides="OR">
+	<foreach collection="fsArr" item="fs">
+		<trim prefix="OR">
+		<choose>
+			<when test="fs=='N'.toString()">
+				camp_name LIKE '%'||#{ss}||'%'
+			</when>
+			<when test="fs=='P'.toString()">
+				camp_price LIKE '%'||#{ss}||'%'
+			</when>
+		</choose>
+		</trim>
+	</foreach>
+	</trim>
+	) AND type=1 
+	</select>
 </mapper>

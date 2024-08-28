@@ -276,17 +276,17 @@ public class CampDAO {
 		return vo;
 	}
 	
-	   public static String campReserveDayData(int camp_no)
+	   public static String campReserveDayData1(int camp_no)
 	   {
 		   String rdays="";
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession();
-			   rdays=session.selectOne("campReserveDayData", camp_no);
+			   rdays=session.selectOne("campReserveDayData1", camp_no);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("campReserveDayData err");
+			   System.out.println("campReserveDayData1 err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -295,27 +295,6 @@ public class CampDAO {
 				   session.close();
 		   }
 		   return rdays;
-	   }
-	   
-	   public static String campReserveTimeData(int dno)
-	   {
-		   String times="";
-		   SqlSession session=null; //Connection
-		   try
-		   {
-			   session=ssf.openSession();
-			   times=session.selectOne("campReserveTimeData", dno);
-		   }catch(Exception ex)
-		   {
-			   System.out.println("campReserveTimeData err");
-			   ex.printStackTrace();
-		   }
-		   finally
-		   {
-			   if(session!=null)
-				   session.close();
-		   }
-		   return times;
 	   }
 	   
 	   public static String campTimeSelectData(int tno)
@@ -460,5 +439,25 @@ public class CampDAO {
 		   }
 		   return vo;
 	   }
-	
+	   
+	   public static List<CampVO> campSearchData(Map map)
+	   {
+		   List<CampVO> list=new ArrayList<CampVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   list=session.selectList("campSearchData",map);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campSearchData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
 }

@@ -316,4 +316,28 @@ public class CampModel {
  	   request.setAttribute("main_jsp", "../camp/nearfood.jsp");
  	   return "../main/main.jsp";
     }
+    
+    @RequestMapping("camp/find.do")
+	  public String camp_find(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  
+		  String[] fsArr=request.getParameterValues("fs");
+		  String ss=request.getParameter("ss");
+		  Map map=new HashMap();
+		  map.put("fsArr", fsArr);
+		  map.put("ss", ss);
+		  // 데이터베이스 연동 
+		  List<CampVO> list=CampDAO.campSearchData(map);
+		  
+		  CommonsModel.footerPrint(request);
+		  
+		  // 결과값 전송 
+		  request.setAttribute("list", list);
+		  request.setAttribute("main_jsp", "../camp/find.jsp");
+		  return "../main/main.jsp";
+	  }
 }
