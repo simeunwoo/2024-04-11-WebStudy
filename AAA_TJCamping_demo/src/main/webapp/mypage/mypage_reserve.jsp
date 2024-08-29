@@ -12,31 +12,77 @@
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
+let sel=0;
+	var IMP = window.IMP; 
+	IMP.init("imp68206770"); 
+
+	function requestPay(json,name,price) {
+	    IMP.request_pay({
+	        pg: "html5_inicis",
+	        pay_method: "card",
+	        merchant_uid: "ORD20180131-0000011",   // 주문번호
+	        name: name,
+	        amount: price,         // 숫자 타입
+	        buyer_email: "asd@sist.com",
+	        buyer_name: "가나다",
+	        buyer_tel: "010-1234-1234",
+	        buyer_addr: "asc",
+	        buyer_postcode: "123-456"
+	    }, function (rsp) { // callback
+	    	location.href='http://localhost/TJCamping/mypage/mypage_main.do'
+	        
+	    });
+	}
 $(function(){
+	
 	$('.infos').click(function(){
 		let rno=$(this).attr("data-rno")
 		$.ajax({
 			type:'post',
 			url:'../mypage/mypage_reserve_info.do',
 			data:{"rno":rno},
-			success:function(json){
-				let js=JSON.parse(json)
-				console.log(js) // debug
-				$('#info').show() 
-				$('#poster').attr("src",js.poster)
-				$('#name').text(js.name)
-				$('#address').text(js.address)
-				$('#phone').text(js.phone)
-				$('#price').text(js.price)
-				$('#rno').text(js.rno)
-				$('#rdate').text(js.day)
-				$('#rtime').text(js.time)
-				$('#rinwon').text(js.inwon)
-				$('#regdate').text(js.regdate)
-			},
+			success: function(json) {
+		        // json이 JavaScript 객체인 경우
+		        console.log(json); // debug
+		        $('#info').show();
+		        $('#poster').attr("src", json.poster);
+		        $('#name').text(json.name);
+		        $('#address').text(json.address);
+		        $('#phone').text(json.phone);
+		        $('#price').text(json.price);
+		        $('#rno').text(json.rno);
+		        $('#rdate').text(json.day);
+		        $('#rtime').text(json.time);
+		        $('#rinwon').text(json.inwon);
+		        $('#regdate').text(json.regdate);
+		        $('#buy').show();
+		    },
+
 			error:function(request,status,error){
 				console.log(error)
+			}
+		})
+	})
+	
+	$('#buy').click(function(){
+		
+		let camp_no=$('.camp_no').val()
+		alert(camp_no)
+		let price=$('.camp_price').val()
+		let account=$('#camp_inwon').text()
+		account = account.replace('명', '');
+		price=price*account
+		let name = $('#name').text()
+		$.ajax({
+			type:'post',
+			url:'../mypage/camp_buy_insert.do',
+			data:{"camp_no":camp_no,"price":price,"account":account},
+			success:function(result){
+				alert(result)
+				/* let json=JSON.parse(result) */
+				requestPay(result,name,price)
 			}
 		})
 	})
@@ -58,16 +104,21 @@ $(function(){
       <th class="text-center">인원</th>
       <th class="text-center">상태</th>
      </tr>
-     <c:forEach var="rvo" items="${recvList }">
+     <c:forEach var="rvo" items="${rList }">
+     <input type="hidden" class="camp_addr" value="${rvo.cvo.camp_addr }">
+     <input type="hidden" class="camp_price" value="${rvo.cvo.camp_price }">
+     <input type="hidden" class="camp_phone" value="${rvo.cvo.camp_phone}">
+     <input type="hidden" class="camp_regdate" value="${rvo.regdate }">
+      <input type="hidden" class="camp_no" value="${rvo.cno }">
        <tr>
-          <td class="text-center">${rvo.rno }</td>
+          <td class="text-center" id="camp_rno">${rvo.rno }</td>
 	      <td class="text-center">
-	       <img src="${rvo.cvo.image1 }" style="width: 20px;height: 20px">
+	       <img src="${rvo.cvo.image1 }" style="width: 20px;height: 20px" id="campimg">
 	      </td>
-	      <td>${rvo.cvo.camp_name }</td>
-	      <td class="text-center">${rvo.day }</td>
-	      <td class="text-center">${rvo.time }</td>
-	      <td class="text-center">${rvo.inwon }</td>
+	      <td id="camp_name">${rvo.cvo.camp_name }</td>
+	      <td class="text-center" id="camp_day">${rvo.day }</td>
+	      <td class="text-center" id="camp_time">${rvo.time }</td>
+	      <td class="text-center" id="camp_inwon">${rvo.inwon }</td>
 	      <td class="text-center inline">
 	       <c:if test="${rvo.isok=='y' }">
 	        <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
@@ -81,14 +132,13 @@ $(function(){
      </c:forEach>
     </table>
     <div style="height: 10px"></div>
-    <%-- <table class="table" style="display:none" id="info">
-      <caption><h4>예약 정보</h4></caption>
+    <table class="table" style="display:none" id="info">
       <tr>
         <td width=30% class="text-center" rowspan="9">
           <img src="" style="width: 100%" id="poster">
         </td>
         <td colspan="2">
-         <h3><span id="name"></span>&nbsp;<span id="score" style="color:orange;"></span></h3>
+         <h3><span id="name"></span></h3>
         </td>
       </tr>
       <tr>
@@ -121,9 +171,10 @@ $(function(){
       </tr>
       <tr>
        <th width=20% class="text-center">신청일</th>
-       <td width="50%" id="regdate"></td>
+       <td width="40%" id="regdate"></td>
       </tr>
-    </table> --%>
+    </table> 
+       <input type="button" value="결제하기" id="buy"  class="btn-sm" width=20px; style="display:none; background-color:green;">
    </div>
   </main>
 </div>

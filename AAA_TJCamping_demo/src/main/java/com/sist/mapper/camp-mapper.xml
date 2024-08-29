@@ -100,24 +100,44 @@
   	SELECT time FROM reserve_time
   	WHERE tno=#{tno}
   </select>
-  <select id="campSearchData" resultType="CampVO" parameterType="hashmap">
-		SELECT camp_no,camp_name,image1,camp_price
+  <select id="campSearchData" resultType="CampVO" parameterType="map">
+    SELECT camp_no, camp_name, image1
+    FROM camp
+    WHERE
+    <trim prefix="" suffix="" prefixOverrides="OR">
+        <foreach collection="fsArr" item="fs" separator="OR">
+            <choose>
+                <when test="fs == 'N'">
+                    camp_name LIKE '%'||#{ss}||'%'
+                </when>
+                <when test="fs == 'P'">
+                    camp_price LIKE '%'||#{ss}||'%'
+                </when>
+            </choose>
+        </foreach>
+    </trim>
+    <if test="start != null and end != null">
+        AND num BETWEEN #{start} AND #{end}
+    </if>
+	</select>
+	<select id="campSearchTotalPage" resultType="int" parameterType="map">
+		SELECT CEIL(COUNT(*)/12.0)
 		FROM camp
-		WHERE(
-	<trim prefix="(" suffix=")" prefixOverrides="OR">
-	<foreach collection="fsArr" item="fs">
-		<trim prefix="OR">
-		<choose>
-			<when test="fs=='N'.toString()">
-				camp_name LIKE '%'||#{ss}||'%'
-			</when>
-			<when test="fs=='P'.toString()">
-				camp_price LIKE '%'||#{ss}||'%'
-			</when>
-		</choose>
-		</trim>
-	</foreach>
-	</trim>
-	) AND type=1 
+		WHERE
+	<trim prefix="" suffix="" prefixOverrides="OR">
+        <foreach collection="fsArr" item="fs" separator="OR">
+            <choose>
+                <when test="fs == 'N'">
+                    camp_name LIKE '%'||#{ss}||'%'
+                </when>
+                <when test="fs == 'P'">
+                    camp_price LIKE '%'||#{ss}||'%'
+                </when>
+            </choose>
+        </foreach>
+    </trim>
+    <if test="start != null and end != null">
+        AND num BETWEEN #{start} AND #{end}
+    </if>
 	</select>
 </mapper>

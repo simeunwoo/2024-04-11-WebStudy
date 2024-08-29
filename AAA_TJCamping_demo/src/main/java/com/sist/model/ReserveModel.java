@@ -245,31 +245,39 @@ public class ReserveModel {
 		  
 		  List<ReserveVO> list=CampDAO.campReserveMyPageData(id);
 		  request.setAttribute("title", "예약관리");
-		  request.setAttribute("recvList", list);
+		  request.setAttribute("rList", list);
 		  request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
 		  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		  return "../main/main.jsp";
 	  }
-	  @RequestMapping("reserve/reserve_ok.do")
+	  @RequestMapping("camp/reserve_ok.do")
 	  public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
 	  {
-		  // 예약정보 
 		  try
 		  {
+		  // 예약정보 
+		//  try
+		//  {
 			  request.setCharacterEncoding("UTF-8");
-		  }catch(Exception ex) {}
+		/*  }catch(Exception ex) {} */
 		  String camp_no=request.getParameter("camp_no");
 		  String date=request.getParameter("date");
 		  String time=request.getParameter("time");
 		  String inwon=request.getParameter("inwon");
 		  
-		  System.out.println("캠핑장 번호:"+camp_no);
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  
+		// 필수 값이 누락되었는지 확인
+	        if (camp_no == null || date == null || time == null || inwon == null || id == null) {
+	            throw new IllegalArgumentException("필수 예약 정보가 누락되었습니다.");
+	        }
+		  
+		  System.out.println("캠핑장 번호:"+Integer.parseInt(camp_no));
 		  System.out.println("예약일:"+date);
 		  System.out.println("예약시간:"+time);
 		  System.out.println("인원:"+inwon);
-		  
-		  HttpSession session=request.getSession();
-		  String id=(String)session.getAttribute("id");
+		  System.out.println("사용자 ID:"+id);
 		  
 		  ReserveVO vo=new ReserveVO();
 		  vo.setCno(Integer.parseInt(camp_no));
@@ -280,6 +288,12 @@ public class ReserveModel {
 		  
 		  CampDAO.campReserveInsert(vo);
 		  return "redirect:../mypage/mypage_reserve.do";
+		  }catch(Exception ex)
+		  {
+			  ex.printStackTrace();
+		        request.setAttribute("errorMessage", "예약 처리 중 오류가 발생했습니다. 관리자에게 문의하세요.");
+		        return "errorPage";
+		  }
 	  }
 
 		/*
@@ -325,7 +339,7 @@ public class ReserveModel {
 		    
 		    try {
 		        // 응답 타입 설정 (JSON으로 전송)
-		        response.setContentType("application/json;charset=UTF-8");
+		        response.setContentType("application/json;charset=UTF-8"); // text/plain
 		        PrintWriter out = response.getWriter();
 		        
 		        // JSON 객체를 문자열로 변환 후 전송

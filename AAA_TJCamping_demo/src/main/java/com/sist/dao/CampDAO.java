@@ -460,4 +460,25 @@ public class CampDAO {
 		   }
 		   return list;
 	   }
+	   
+	   public static int campSearchTotalPage(Map map)
+	   {
+		   int total=0;
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   total=session.selectOne("campSearchTotalPage",map);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campSearchTotalpage err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return total;
+	   }
 }

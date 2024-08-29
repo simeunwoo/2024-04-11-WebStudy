@@ -12,8 +12,8 @@ REGDATE          DATE
 ISOK             CHAR(1)
 	-->
 	<insert id="campReserveInsert" parameterType="ReserveVO">
-		INSERT INTO reserve(rno,id,cno,day,time,inwon,isok)
-		VALUES(re_cno_seq.nextval,#{id},#{cno},#{day},#{time},#{inwon},'n')
+		INSERT INTO reserve(rno,id,cno,day,time,inwon)
+		VALUES(re_rno_seq.nextval,#{id},#{cno},#{day},#{time},#{inwon})
 	</insert>
 	<resultMap type="com.sist.vo.ReserveVO" id="reserveMap">
 		<result property="cvo.camp_name" column="camp_name"/>
@@ -66,8 +66,9 @@ ISOK             CHAR(1)
    WHERE rno=#{rno}
   </delete>
   <select id="myReserveData" parameterType="int" resultMap="reserveMap">
-  		select image1,camp_name,camp_addr,camp_phone,camp_price,rno,day,time,inwon,TO_CHAR(regdate,'YYYY-MM-DD') as dbday 
-		from camp ca , reserve re 
-		where rno=#{rno} and ca.camp_no=re.cno
+  		SELECT image1,camp_name,camp_addr,camp_phone,camp_price,rno,day,time,inwon,TO_CHAR(regdate,'YYYY-MM-DD') as dbday 
+		FROM camp ca,reserve re 
+		WHERE rno=#{rno}
+		AND ca.camp_no=re.cno
   </select>
 </mapper>

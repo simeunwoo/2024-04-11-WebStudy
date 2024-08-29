@@ -364,6 +364,26 @@ $(function(){
 		</div>
 	</div>
 
+
+        <div class="wrapper row3">
+	  <main class="container clear"> 
+<nav class="pagination">
+        <ul>
+        <c:if test="${startPage>1 }">
+          <a href="../camp/map.do?page=${startPage-1 }">&laquo; 이전</a>
+        </c:if>
+        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+          <li ${curpage==i?"class=current":"" }><a href="../camp/map.do?page=${i }">${i }</a></li>
+        </c:forEach>
+        <c:if test="${endPage<totalpage }">
+          <a href="../camp/map.do?page=${endPage+1 }">다음 &raquo;</a>
+        </c:if>
+        </ul>
+      </nav>
+      </main>
+      </div>
+
+
 <div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -398,27 +418,6 @@ $(function(){
         </div>
     </div>
 </div>
-
-
-
-
-        <div class="wrapper row3">
-	  <main class="container clear"> 
-<nav class="pagination">
-        <ul>
-        <c:if test="${startPage>1 }">
-          <a href="../camp/map.do?page=${startPage-1 }">&laquo; 이전</a>
-        </c:if>
-        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li ${curpage==i?"class=current":"" }><a href="../camp/map.do?page=${i }">${i }</a></li>
-        </c:forEach>
-        <c:if test="${endPage<totalpage }">
-          <a href="../camp/map.do?page=${endPage+1 }">다음 &raquo;</a>
-        </c:if>
-        </ul>
-      </nav>
-      </main>
-      </div>
       
       <div style="height:30px"></div>
         
