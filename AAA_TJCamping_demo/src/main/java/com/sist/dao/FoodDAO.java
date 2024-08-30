@@ -102,6 +102,35 @@ public class FoodDAO {
 		}
 		return total;
 	}
+	public static List<FoodVO> foodAListData(Map map){
+		List<FoodVO> list = new ArrayList<FoodVO>();
+		SqlSession session=null;
+		try {
+			session = ssf.openSession();
+			list=session.selectList("foodAListData",map);
+		} catch (Exception ex) {
+			System.out.println("foodAListData 오류");
+			ex.printStackTrace();
+		} finally {
+			if(session!=null) session.close();
+		}
+		return list;
+	}
+	
+	public static int foodATotalPage() {
+		int total=0;
+		SqlSession session=null;
+		try {
+			session = ssf.openSession();
+			total=session.selectOne("foodATotalPage");
+		} catch (Exception ex) {
+			System.out.println("foodATotalPage 오류");
+			ex.printStackTrace();
+		} finally {
+			if(session!=null) session.close();
+		}
+		return total;
+	}
 	
 	public static FoodVO foodDetailData(int fno) {
 		FoodVO vo = new FoodVO();

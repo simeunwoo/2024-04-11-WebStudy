@@ -292,8 +292,8 @@ public class CampModel {
  	   
  	   map.put("start", start);
  	   map.put("end", end);
- 	   List<FoodVO> fList=FoodDAO.foodListData(map);
- 	   int totalpage=FoodDAO.foodTotalPage();
+ 	   List<FoodVO> fList=FoodDAO.foodAListData(map);
+ 	   int totalpage=FoodDAO.foodATotalPage();
  	   
  	   final int BLOCK=10;
  	   int startPage=((curpage-1)/BLOCK*BLOCK)+1;

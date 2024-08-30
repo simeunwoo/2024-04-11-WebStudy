@@ -23,15 +23,26 @@
 		SELECT COUNT(*) FROM food_house
 	</select>
 	<!--  맛집 목록 출력 -->
-	<select id="foodListData" resultType="FoodVO" parameterType="hashmap">
+	 
+	<select id="foodAListData" resultType="FoodVO" parameterType="hashmap">
 		SELECT fno , name , poster , score ,num
 		FROM (SELECT fno , name , poster , score , rownum as num 
 				  FROM (SELECT /*+ INDEX_ASC(food_house FOOD_HOUSE_PK)*/ fno , name , poster ,score 
 				  		    FROM food_house ))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
-	<select id="foodTotalPage" resultType="int">
+	<select id="foodATotalPage" resultType="int">
 		SELECT CEIL(COUNT(*)/20.0) FROM food_house
+	</select>
+	<select id="foodListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno , name , poster , hit ,num
+		FROM (SELECT fno , name , poster , hit , rownum as num 
+				  FROM (SELECT /*+ INDEX_ASC(food_blue fb_no_PK)*/ fno , name , poster ,hit 
+				  		    FROM food_blue ))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="foodTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/20.0) FROM food_blue
 	</select>
 	<!--  맛집 상세보기 -->
 	<update id="foodHitIncrement" parameterType="int">
